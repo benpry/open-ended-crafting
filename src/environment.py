@@ -1,5 +1,39 @@
+import random
 import gymnasium as gym
-from src.model_calls import get_initial_inventory, combine_elements
+from src.model_calls import combine_elements
+
+all_ingredients = [
+    {"name": "apple", "emoji": "🍎", "value": 2, "consumable": True},
+    {"name": "banana", "emoji": "🍌", "value": 2, "consumable": True},
+    {"name": "carrot", "emoji": "🥕", "value": 2, "consumable": True},
+    {"name": "egg", "emoji": "🥚", "value": 0, "consumable": True},
+    {"name": "raw fish", "emoji": "🐟", "value": 6, "consumable": True},
+    {"name": "raw meat", "emoji": "🥩", "value": 0, "consumable": True},
+    {"name": "raw rice", "emoji": "🌾", "value": 0, "consumable": True},
+    {"name": "wheat", "emoji": "🌾", "value": 0, "consumable": True},
+    {"name": "milk", "emoji": "🥛", "value": 8, "consumable": True},
+    {"name": "cheese", "emoji": "🧀", "value": 10, "consumable": True},
+    {"name": "lettuce", "emoji": "🥬", "value": 2, "consumable": True},
+    {"name": "tomato", "emoji": "🍅", "value": 2, "consumable": True},
+    {"name": "onion", "emoji": "🧅", "value": 1, "consumable": True},
+    {"name": "garlic", "emoji": "🧄", "value": 0, "consumable": True},
+    {"name": "ginger", "emoji": "🫚", "value": 0, "consumable": True},
+    {"name": "mushroom", "emoji": "🍄", "value": 2, "consumable": True},
+    {"name": "pepper", "emoji": "🌶️", "value": 2, "consumable": True},
+    {"name": "potato", "emoji": "🥔", "value": 2, "consumable": True},
+    {"name": "coconut", "emoji": "🥥", "value": 2, "consumable": True},
+    {"name": "pineapple", "emoji": "🍍", "value": 2, "consumable": True},
+]
+
+
+all_tools = [
+    {"name": "oven", "emoji": "🔥", "value": 0, "consumable": False},
+    {"name": "knife", "emoji": "🔪", "value": 0, "consumable": False},
+    {"name": "salt", "emoji": "🧂", "value": 0, "consumable": False},
+    {"name": "bowl", "emoji": "🥣", "value": 0, "consumable": False},
+    {"name": "pot", "emoji": "🥘", "value": 0, "consumable": False},
+    {"name": "stove", "emoji": "🔥", "value": 0, "consumable": False},
+]
 
 
 class CookingGame(gym.Env):
@@ -17,12 +51,10 @@ class CookingGame(gym.Env):
         """
         Get an initial state consisting of basic ingredients.
         """
-        inv_response = get_initial_inventory(self.model)
-
         # get the item names and delete the reasoning
-        self.inventory = [dict(x) for x in inv_response.items]
-        for item in self.inventory:
-            del item["reasoning"]
+        ingredients = random.sample(all_ingredients, 4)
+        tools = random.sample(all_tools, 2)
+        self.inventory = tools + ingredients
 
         self.best_value = max(item["value"] for item in self.inventory)
 

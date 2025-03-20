@@ -2,7 +2,8 @@ from src.environment import CookingGame
 import random
 
 # model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"
-model = "openai/gpt-4o"
+# model = "openai/gpt-4o"
+model = "anthropic/claude-3-7-sonnet-20250219"
 game = CookingGame(model)
 game.reset()
 
@@ -17,4 +18,5 @@ for i in range(10):
     print(f"Step {i}")
     game.render()
     action = get_action(game.inventory)
+    print(f"combining {action['item1']['name']} and {action['item2']['name']}")
     game.step(action)
