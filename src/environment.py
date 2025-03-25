@@ -1,6 +1,6 @@
 import random
 import gymnasium as gym
-from src.model_calls import combine_elements
+from src.world_model import MemoizedWorldModel
 
 all_ingredients = [
     {"name": "apple", "emoji": "🍎", "value": 2, "consumable": True},
@@ -35,6 +35,10 @@ all_tools = [
     {"name": "stove", "emoji": "🔥", "value": 0, "consumable": False},
 ]
 
+universal_items = [
+    {"name": "water", "emoji": "💧", "value": 0, "consumable": False},
+]
+
 
 class CookingGame(gym.Env):
     """
@@ -44,6 +48,7 @@ class CookingGame(gym.Env):
     def __init__(self, model: str):
         super().__init__()
         self.model = model
+        self.world_model = MemoizedWorldModel(lm=model)
         self.inventory = []
         self.best_value = 0
 
@@ -52,19 +57,24 @@ class CookingGame(gym.Env):
         Get an initial state consisting of basic ingredients.
         """
         # get the item names and delete the reasoning
-        ingredients = random.sample(all_ingredients, 4)
+        ingredients = random.sample(all_ingredients, 5)
         tools = random.sample(all_tools, 2)
-        self.inventory = tools + ingredients
-
+        self.inventory = universal_items + tools + ingredients
         self.best_value = max(item["value"] for item in self.inventory)
 
         return self.inventory
 
-    def step(self, action: dict):
+    def reset_world_model(self):
+        """
+        Reset the world model.
+        """
+        self.world_model = MemoizedWorldModel(lm=self.model)
+
+    def step(self, action: tuple[str, str]):
         """
         Take an action in the environment.
         """
-        item1, item2 = action["item1"], action["item2"]
+        item1, item2 = action
 
         # check if the items are in the inventory
         if item1 not in self.inventory or item2 not in self.inventory:
@@ -77,9 +87,7 @@ class CookingGame(gym.Env):
             self.inventory.remove(item2)
 
         # combine the items
-        new_item = combine_elements(item1, item2, self.model)
-        new_item = dict(new_item)
-        del new_item["reasoning"]
+        new_item = self.world_model.combine(item1, item2)
 
         # reward is the difference between the new item and the best value
         reward = max(new_item["value"] - self.best_value, 0)
@@ -90,7 +98,7 @@ class CookingGame(gym.Env):
 
         return self.inventory, reward, False, {}
 
-    def render(self, mode="human"):
+    def render(self):
         """
         Render the environment.
         """
