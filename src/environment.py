@@ -74,11 +74,17 @@ class CookingGame(gym.Env):
         """
         Take an action in the environment.
         """
-        item1, item2 = action
+        name1, name2 = action
+
+        inv_names = [item["name"] for item in self.inventory]
 
         # check if the items are in the inventory
-        if item1 not in self.inventory or item2 not in self.inventory:
-            raise ValueError(f"Item {item1} or {item2} not in inventory")
+        if name1 not in inv_names or name2 not in inv_names:
+            raise ValueError(f"Item {name1} or {name2} not in inventory")
+
+        # get the items
+        item1 = next(item for item in self.inventory if item["name"] == name1)
+        item2 = next(item for item in self.inventory if item["name"] == name2)
 
         # remove consumable items
         if item1["consumable"]:
