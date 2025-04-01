@@ -3,43 +3,58 @@ A fastapi server that runs the cooking game.
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from src.environment import CookingGame
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import Optional
 from uuid import uuid4
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 games = {}
 
 
 class InitRequest(BaseModel):
-    model: str
+    model: Optional[str] = Field(
+        "gemini/gemini-2.0-flash", description="The model to use for the game"
+    )
 
 
 @app.get("/init")
-def initialize(request: InitRequest):
+def initialize(request: Optional[InitRequest] = None):
     """
     Get an initial inventory
     """
-    game = CookingGame(model=request.model)
+    model = request.model if request else "gemini/gemini-2.0-flash"
+    game = CookingGame(model)
     game.reset()
     game_id = str(uuid4())
     games[game_id] = game
     return {
-        "id": game_id,
+        "game_id": game_id,
         "inventory": game.inventory,
     }
 
 
 class StepRequest(BaseModel):
+    game_id: str
     action: tuple[str, str]
 
 
-@app.get("/{game_id}/step")
-def step(game_id: str, request: StepRequest):
+@app.post("/step")
+def step(request: StepRequest):
     """
     Take an action in the game.
     """
-    game = games[game_id]
+    game = games[request.game_id]
     game.step(request.action)
-    return game.inventory
+    return {
+        "inventory": game.inventory,
+    }

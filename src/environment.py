@@ -26,17 +26,11 @@ all_ingredients = [
 ]
 
 
-all_tools = [
-    {"name": "oven", "emoji": "🔥", "value": 0, "consumable": False},
-    {"name": "knife", "emoji": "🔪", "value": 0, "consumable": False},
-    {"name": "salt", "emoji": "🧂", "value": 0, "consumable": False},
-    {"name": "bowl", "emoji": "🥣", "value": 0, "consumable": False},
-    {"name": "pot", "emoji": "🥘", "value": 0, "consumable": False},
-    {"name": "stove", "emoji": "🔥", "value": 0, "consumable": False},
-]
-
-universal_items = [
+tools = [
     {"name": "water", "emoji": "💧", "value": 0, "consumable": False},
+    {"name": "knife", "emoji": "🔪", "value": 0, "consumable": False},
+    {"name": "oven", "emoji": "🔥", "value": 0, "consumable": False},
+    {"name": "salt", "emoji": "🧂", "value": 0, "consumable": False},
 ]
 
 
@@ -58,8 +52,7 @@ class CookingGame(gym.Env):
         """
         # get the item names and delete the reasoning
         ingredients = random.sample(all_ingredients, 5)
-        tools = random.sample(all_tools, 2)
-        self.inventory = universal_items + tools + ingredients
+        self.inventory = tools + ingredients
         self.best_value = max(item["value"] for item in self.inventory)
 
         return self.inventory
@@ -94,6 +87,10 @@ class CookingGame(gym.Env):
 
         # combine the items
         new_item = self.world_model.combine(item1, item2)
+
+        # if the new item is already in the inventory, don't add it
+        if new_item["name"] in inv_names:
+            return self.inventory, 0, False, {}
 
         # reward is the difference between the new item and the best value
         reward = max(new_item["value"] - self.best_value, 0)
