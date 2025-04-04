@@ -33,6 +33,7 @@ def initialize(request: Optional[InitRequest] = None):
     Get an initial inventory
     """
     model = request.model if request else "gemini/gemini-2.0-flash"
+    # model = request.model if request else "anthropic/claude-3-7-sonnet-20250219"
     game = CookingGame(model)
     game.reset()
     game_id = str(uuid4())
@@ -57,4 +58,5 @@ def step(request: StepRequest):
     game.step(request.action)
     return {
         "inventory": game.inventory,
+        "new_item": game.new_item,
     }

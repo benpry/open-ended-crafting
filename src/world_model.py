@@ -5,6 +5,7 @@ This file handles interfacing with the language model to get new crafting instru
 from litellm import completion
 from src.prompts import get_combination_prompt
 from pydantic import BaseModel
+import json
 
 
 class Item(BaseModel):
@@ -50,15 +51,28 @@ class MemoizedWorldModel:
     def combine(self, e1, e2):
         items = frozenset((e1["name"], e2["name"]))
         if items in self.combinations:
-            return self.combinations[items]
-
+            new_item = self.combinations[items][-1]
         else:
-            new_item = combine_elements(e1, e2, self.combinations, self.lm)
-            new_item = dict(new_item)
-            del new_item["reasoning"]
-            self.combinations[items] = new_item
+            ic_examples = list(self.combinations.values())
+            new_item = combine_elements(e1, e2, ic_examples, self.lm)
 
-            return new_item
+        print("created new item")
+        print(new_item)
+        return dict(new_item.model_copy(update={"exclude": {"reasoning"}}))
+
+    def save(self, filepath: str):
+        world_model_dict = {
+            "lm": self.lm,
+            "combinations": self.combinations,
+        }
+        with open(filepath, "w") as f:
+            json.dump(world_model_dict, f)
+
+    def load(self, filepath: str):
+        with open(filepath, "r") as f:
+            world_model_dict = json.load(f)
+        self.lm = world_model_dict["lm"]
+        self.combinations = world_model_dict["combinations"]
 
 
 if __name__ == "__main__":
