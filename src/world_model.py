@@ -13,7 +13,7 @@ class Item(BaseModel):
     name: str
     emoji: str
     value: int
-    consumable: bool
+    durable: bool
 
 
 class Inventory(BaseModel):

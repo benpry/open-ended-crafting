@@ -6,132 +6,132 @@ items = {
     "apple": {
         "name": "apple",
         "value": 2,
-        "consumable": True,
+        "durable": False,
         "emoji": "🍎",
     },
     "flour": {
         "name": "flour",
         "value": 1,
-        "consumable": False,
+        "durable": True,
         "emoji": "🌾",
     },
     "raw meat": {
         "name": "raw meat",
         "value": 0,
-        "consumable": False,
+        "durable": True,
         "emoji": "🥩",
     },
     "knife": {
         "name": "knife",
         "value": 0,
-        "consumable": False,
+        "durable": True,
         "emoji": "🔪",
     },
     "salt": {
         "name": "salt",
         "value": 0,
-        "consumable": False,
+        "durable": True,
         "emoji": "🧂",
     },
     "stove": {
         "name": "stove",
         "value": 0,
-        "consumable": False,
+        "durable": True,
         "emoji": "🔥",
     },
     "water": {
         "name": "water",
         "value": 0,
-        "consumable": False,
+        "durable": True,
         "emoji": "💧",
     },
     "floury apple": {
         "reasoning": "Combining apple and flour should make an apple with flour around it. This is probably worse than just eating the apple, so the value should be lower than the apple's original value.",
         "name": "floury apple.",
         "value": 1,
-        "consumable": True,
+        "durable": False,
         "emoji": "🍎",
     },
     "breaded apple": {
         "reasoning": "Cooking the floury apple should crisp up the flour and make something crispy and delicious. The value should be higher than the floury apple's original value.",
         "name": "breaded apple",
         "value": 20,
-        "consumable": True,
+        "durable": False,
         "emoji": "🍞🍎",
     },
     "sliced raw meat": {
         "reasoning": "Slicing raw meat will make it more uniform, so if gets cooked it will not be as good. This doesn't change the fact that it's raw and raw meat is inedible, so the value should still be 0",
         "name": "sliced raw meat",
         "value": 0,
-        "consumable": True,
+        "durable": False,
         "emoji": "🔪🥩",
     },
     "cooked sliced meat": {
         "reasoning": "Cooking sliced meat makes it edible. But it's not as good as cooked non-sliced meat because it doesn't get the crust outside and the rare meat inside.",
         "name": "cooked sliced meat",
         "value": 35,
-        "consumable": True,
+        "durable": False,
         "emoji": "🔪🍖",
     },
     "cooked meat": {
         "reasoning": "Cooking meat makes it edible and more delicious. The value should be higher than the raw meat's original value.",
         "name": "cooked meat.",
         "value": 40,
-        "consumable": True,
+        "durable": False,
         "emoji": "🍖",
     },
     "sliced cooked meat": {
         "reasoning": "Slicing cooked meat makes it easier to eat. The value should be higher than the cooked meat's original value.",
         "name": "sliced cooked meat",
         "value": 50,
-        "consumable": True,
+        "durable": False,
         "emoji": "🔪🍖",
     },
     "salted sliced cooked meat": {
         "reasoning": "Adding salt to sliced cooked meat makes it more delicious. The value should be higher than the sliced cooked meat's original value.",
         "name": "salted sliced cooked meat",
         "value": 55,
-        "consumable": True,
+        "durable": False,
         "emoji": "🧂🔪🍖",
     },
     "too salty sliced cooked meat": {
         "reasoning": "Adding salt to sliced cooked meat that already has salt on it should make it too salty to eat. The value should be lower than the salted sliced cooked meat's original value.",
         "name": "too salty sliced cooked meat",
         "value": 20,
-        "consumable": True,
+        "durable": False,
         "emoji": "🧂🧂🍖",
     },
     "banana": {
         "name": "banana",
         "emoji": "🍌",
         "value": 2,
-        "consumable": True,
+        "durable": False,
     },
     "carrot": {
         "name": "carrot",
         "emoji": "🥕",
         "value": 2,
-        "consumable": True,
+        "durable": False,
     },
     "banana and carrot": {
         "reasoning": "It's not clear how to combine a banana and a carrot, so we will just return a banana and a carrot individually, with a value that is the sum of the two values.",
         "name": "banana and carrot",
         "value": 4,
-        "consumable": True,
+        "durable": False,
         "emoji": "🍌🥕",
     },
     "banana and carrot in water": {
         "reasoning": "Combining banana and carrot with water should just make banana and carrot in water. It's not a soup yet because it hasn't been cooked. Putting them in water makes them soggy and worse (until cooking).",
         "name": "banana and carrot in water",
         "value": 2,
-        "consumable": True,
+        "durable": False,
         "emoji": "🍌🥕💧",
     },
     "banana and carrot soup": {
         "reasoning": "Cooking banana and carrot in water should make a soup. The value should be higher than the banana and carrot in water's original value. But banana and carrot are kidn",
         "name": "banana and carrot soup",
         "value": 18,
-        "consumable": True,
+        "durable": False,
         "emoji": "🍌🥕🍲",
     },
 }
@@ -191,13 +191,13 @@ def get_combination_prompt(e1, e2, ic_examples):
             "name": item1["name"],
             "emoji": item1["emoji"],
             "value": item1["value"],
-            "consumable": item1["consumable"],
+            "durable": item1["durable"],
         }
         item2 = {
             "name": item2["name"],
             "emoji": item2["emoji"],
             "value": item2["value"],
-            "consumable": item2["consumable"],
+            "durable": item2["durable"],
         }
         messages.append(
             {
@@ -215,7 +215,5 @@ def get_combination_prompt(e1, e2, ic_examples):
     messages += [
         {"role": "user", "content": f"Item 1: {e1}\nItem 2: {e2}"},
     ]
-
-    print(messages)
 
     return messages
