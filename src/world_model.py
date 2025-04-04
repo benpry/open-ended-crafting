@@ -55,10 +55,12 @@ class MemoizedWorldModel:
         else:
             ic_examples = list(self.combinations.values())
             new_item = combine_elements(e1, e2, ic_examples, self.lm)
+            new_item = dict(new_item.model_copy(update={"exclude": {"reasoning"}}))
+            if len(new_item["emoji"]) > 3:
+                new_item["emoji"] = new_item["emoji"][:3]
+            self.combinations[items] = (e1, e2, new_item)
 
-        print("created new item")
-        print(new_item)
-        return dict(new_item.model_copy(update={"exclude": {"reasoning"}}))
+        return new_item
 
     def save(self, filepath: str):
         world_model_dict = {

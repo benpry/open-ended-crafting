@@ -51,7 +51,7 @@ class CookingGame(gym.Env):
         Get an initial state consisting of basic ingredients.
         """
         # get the item names and delete the reasoning
-        ingredients = random.sample(all_ingredients, 5)
+        ingredients = random.sample(all_ingredients, 4)
         self.inventory = tools + ingredients
 
         return self.inventory
@@ -95,10 +95,10 @@ class CookingGame(gym.Env):
         item1 = next(item for item in self.inventory if item["name"] == name1)
         item2 = next(item for item in self.inventory if item["name"] == name2)
 
-        # remove consumable items
-        if item1["consumable"]:
+        # remove non-durable items
+        if not item1["durable"]:
             self.inventory.remove(item1)
-        if item2["consumable"]:
+        if not item2["durable"]:
             self.inventory.remove(item2)
 
         # combine the items
@@ -111,7 +111,12 @@ class CookingGame(gym.Env):
         # update the inventory
         self.inventory.append(new_item)
 
-        return self.inventory, 0, False, {}
+        obs = {
+            "inventory": self.inventory,
+            "new_item": new_item,
+        }
+
+        return obs, 0, False, {}
 
     def render(self):
         """

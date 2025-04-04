@@ -55,8 +55,7 @@ def step(request: StepRequest):
     Take an action in the game.
     """
     game = games[request.game_id]
-    game.step(request.action)
-    return {
-        "inventory": game.inventory,
-        "new_item": game.new_item,
-    }
+    print(f"inventory: {game.inventory}")
+    obs, _, _, _ = game.step(request.action)
+    print(f"obs: {obs}")
+    return obs
