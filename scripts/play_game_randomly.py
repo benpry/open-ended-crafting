@@ -1,4 +1,4 @@
-from src.environment import CookingGame
+from src.environments import CookingGame
 import random
 
 # model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"

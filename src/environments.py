@@ -2,47 +2,18 @@ import random
 from typing import Optional
 import gymnasium as gym
 from src.world_model import MemoizedWorldModel
-
-all_ingredients = [
-    {"name": "apple", "emoji": "🍎", "value": 2, "durable": False},
-    {"name": "banana", "emoji": "🍌", "value": 2, "durable": False},
-    {"name": "carrot", "emoji": "🥕", "value": 2, "durable": False},
-    {"name": "egg", "emoji": "🥚", "value": 0, "durable": False},
-    {"name": "raw fish", "emoji": "🐟", "value": 2, "durable": False},
-    {"name": "raw meat", "emoji": "🥩", "value": 0, "durable": False},
-    {"name": "raw rice", "emoji": "🌾", "value": 0, "durable": False},
-    {"name": "wheat", "emoji": "🌾", "value": 0, "durable": False},
-    {"name": "milk", "emoji": "🥛", "value": 2, "durable": False},
-    {"name": "cheese", "emoji": "🧀", "value": 2, "durable": False},
-    {"name": "lettuce", "emoji": "🥬", "value": 2, "durable": False},
-    {"name": "tomato", "emoji": "🍅", "value": 2, "durable": False},
-    {"name": "onion", "emoji": "🧅", "value": 1, "durable": False},
-    {"name": "garlic", "emoji": "🧄", "value": 0, "durable": False},
-    {"name": "ginger", "emoji": "🫚", "value": 0, "durable": False},
-    {"name": "mushroom", "emoji": "🍄", "value": 2, "durable": False},
-    {"name": "pepper", "emoji": "🌶️", "value": 2, "durable": False},
-    {"name": "potato", "emoji": "🥔", "value": 2, "durable": False},
-    {"name": "coconut", "emoji": "🥥", "value": 2, "durable": False},
-    {"name": "pineapple", "emoji": "🍍", "value": 2, "durable": False},
-]
+from src.constants import ITEMS
 
 
-tools = [
-    {"name": "water", "emoji": "💧", "value": 0, "durable": True},
-    {"name": "knife", "emoji": "🔪", "value": 0, "durable": True},
-    {"name": "stove", "emoji": "🔥", "value": 0, "durable": True},
-    {"name": "salt", "emoji": "🧂", "value": 0, "durable": True},
-]
-
-
-class CookingGame(gym.Env):
+class CraftingGame(gym.Env):
     """
-    An open-ended LM-driven cooking game.
+    An open-ended LM-driven crafting game.
     """
 
-    def __init__(self, model: str):
+    def __init__(self, model: str, setting: str):
         super().__init__()
         self.model = model
+        self.setting = setting
         self.world_model = MemoizedWorldModel(lm=model)
         self.inventory = []
 
@@ -51,10 +22,19 @@ class CookingGame(gym.Env):
         Get an initial state consisting of basic ingredients.
         """
         # get the item names and delete the reasoning
-        ingredients = random.sample(all_ingredients, 4)
+        tools = random.sample(ITEMS[self.setting], 5)
+        ingredients = random.sample(ITEMS[self.setting], 5)
         self.inventory = tools + ingredients
 
         return self.inventory
+
+    def render(self):
+        """
+        Render the environment.
+        """
+        print("Inventory:")
+        for item in self.inventory:
+            print(f"{item['emoji']} {item['name']}, tastiness: {item['value']}")
 
     def reset_world_model(self):
         """
@@ -118,10 +98,8 @@ class CookingGame(gym.Env):
 
         return obs, 0, False, {}
 
-    def render(self):
-        """
-        Render the environment.
-        """
-        print("Inventory:")
-        for item in self.inventory:
-            print(f"{item['emoji']} {item['name']}, tastiness: {item['value']}")
+
+class CookingGame(CraftingGame):
+    """
+    An open-ended LM-driven cooking game.
+    """

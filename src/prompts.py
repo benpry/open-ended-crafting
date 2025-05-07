@@ -113,26 +113,19 @@ items = {
         "value": 2,
         "durable": False,
     },
-    "banana and carrot": {
-        "reasoning": "It's not clear how to combine a banana and a carrot, so we will just return a banana and a carrot individually, with a value that is the sum of the two values.",
-        "name": "banana and carrot",
-        "value": 4,
+    "carrot in water": {
+        "reasoning": "Combining a carrot with water should just make a carrot in water. It's not a soup yet because it hasn't been cooked. Putting them in water makes them soggy and worse (until cooking).",
+        "name": "carrot in water",
+        "value": 1,
         "durable": False,
-        "emoji": "🍌🥕",
+        "emoji": "🥕💧",
     },
-    "banana and carrot in water": {
-        "reasoning": "Combining banana and carrot with water should just make banana and carrot in water. It's not a soup yet because it hasn't been cooked. Putting them in water makes them soggy and worse (until cooking).",
-        "name": "banana and carrot in water",
-        "value": 2,
-        "durable": False,
-        "emoji": "🍌🥕💧",
-    },
-    "banana and carrot soup": {
-        "reasoning": "Cooking banana and carrot in water should make a soup. The value should be higher than the banana and carrot in water's original value. But banana and carrot are kidn",
-        "name": "banana and carrot soup",
+    "carrot soup": {
+        "reasoning": "Cooking carrot in water should make a soup. The value should be higher than the carrot in water's original value. But banana and carrot are kind of gross together, so the value should be lower than the carrot's original value.",
+        "name": "carrot soup",
         "value": 18,
         "durable": False,
-        "emoji": "🍌🥕🍲",
+        "emoji": "🥕🍲",
     },
 }
 
@@ -144,13 +137,8 @@ base_examples = [
     [items["cooked meat"], items["knife"], items["sliced cooked meat"]],
     [items["sliced cooked meat"], items["salt"], items["salted sliced cooked meat"]],
     [items["sliced cooked meat"], items["salt"], items["too salty sliced cooked meat"]],
-    [items["banana"], items["carrot"], items["banana and carrot"]],
-    [items["banana and carrot"], items["water"], items["banana and carrot in water"]],
-    [
-        items["banana and carrot in water"],
-        items["stove"],
-        items["banana and carrot soup"],
-    ],
+    [items["carrot"], items["water"], items["carrot in water"]],
+    [items["carrot in water"], items["stove"], items["carrot soup"]],
 ]
 
 
@@ -168,14 +156,13 @@ def get_combination_prompt(e1, e2, ic_examples):
 
     Finally, you should choose an appropriate string of up to three emoji for the item.
 
-    Some general rules should be true of the resulting items:
-    1. Cooking sliced vegetables on the stove should be better than cooking whole vegetables on the stove.
-    2. Slicing meat after cooking it should make it better. Cooking sliced meat should not be as good as cooking whole meat.
-    3. Putting things in water should make them worse, unless they are sliced and cooked on the stove to make a soup.
-    4. Adding salt should make things a bit better, but adding salt more than once should make them worse. Combinining two salted ingredients should make something that's too salty.
-    5. Grains should be combined with water before being placed on the stove. Putting raw grains on the stove should toast them, which makes them a little bit better, but roasted grains combined with water should not make anything good.
-    6. Adding something inedible, like raw rice or raw meat, to something edible should drop the value dramatically. The value should come up again if the dish gets cooked again on the stove.
-    7. If something is already a dish, you should be very judicious in deciding whether adding a new thing improves it. Adding items where the flavor makes sense, or common aromatics like ginger and garlic, should improve it. But adding random ingredients should not improve it.
+    Your decisions should follow these rules:
+    1. Slicing meat after cooking it should make it better. Cooking sliced meat should not be as good as cooking whole meat.
+    2. You can make soup by slicing things, combining them with water, and cooking them on the stove. Cooking whole items, like meat and tomato, that haven't been sliced should not make a good soup.
+    3. Adding salt should make things better by about 10%, but adding salt more than once should make them worse. Combinining two salted ingredients should make something that's too salty.
+    4. Grains should be combined with water before being placed on the stove. Putting raw grains on the stove should toast them, which makes them a little bit better, but toasted grains combined with water should not make anything good.
+    5. Adding something inedible, like raw rice or raw meat, to something edible should drop the value dramatically. The value should come up again if the dish gets cooked again on the stove.
+    6. If something is already a dish, you should be very judicious in deciding whether adding a new thing improves it. Adding items where the flavor makes sense, or common aromatics like ginger and garlic, should improve it. But in general, a dish with more than 3 major ingredients shouldn't be very good.
 
     Think step by step about what the resulting item should be, what its value should be, and what emoji to use.
     """
