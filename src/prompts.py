@@ -2,6 +2,8 @@
 This file contains prompts for the language model.
 """
 
+from src.constants import SYSTEM_PROMPTS
+
 items = {
     "apple": {
         "name": "apple",
@@ -135,37 +137,12 @@ base_examples = [
     [items["raw meat"], items["knife"], items["sliced raw meat"]],
     [items["sliced raw meat"], items["stove"], items["cooked sliced meat"]],
     [items["cooked meat"], items["knife"], items["sliced cooked meat"]],
-    [items["sliced cooked meat"], items["salt"], items["salted sliced cooked meat"]],
-    [items["sliced cooked meat"], items["salt"], items["too salty sliced cooked meat"]],
-    [items["carrot"], items["water"], items["carrot in water"]],
-    [items["carrot in water"], items["stove"], items["carrot soup"]],
 ]
 
 
-def get_combination_prompt(e1, e2, ic_examples):
-    system_prompt = """
-    You are controlling the dynamics of a cooking game. Given two items, your job is to generate the item you get from combining them, along with its value.
-
-    You should be very literal in your response. For example, "apple" and "flour" should not make "apple pie" since apple pie requires more items. You would have to make a pie crust first. If the two ingredients are both raw, the resulting item should be raw too. If the items are two things that don't clearly combine (like banana and carrot) the resulting item should just be the two things together (like "banana and carrot") but if the items could plausibly be combined to make a dish, the resulting item should be a dish.
-
-    Each item should have a value, representing how good it is to eat. Ingredients that can't be eaten on their own, like raw flour, should have a value of 0.
-
-    Things that sound like real dishes should have much higher values than things that don't. For instance, "tomato soup" should be much more valuable than "tomato" or "sliced tomato and onion." The value of these real dishes should be above 10.
-
-    You should also decide whether the resulting item is consumable or not. Consumable items are used up when you use them once. This is not the same as whether they're safe for human consumption. Kitchen tools like stoves and knives should not be consumable. Items that you only use a little bit of at a time, like salt and spices, should also be non-consumable. Items that you use up when you use them, like tomatoes, should be consumable.
-
-    Finally, you should choose an appropriate string of up to three emoji for the item.
-
-    Your decisions should follow these rules:
-    1. Slicing meat after cooking it should make it better. Cooking sliced meat should not be as good as cooking whole meat.
-    2. You can make soup by slicing things, combining them with water, and cooking them on the stove. Cooking whole items, like meat and tomato, that haven't been sliced should not make a good soup.
-    3. Adding salt should make things better by about 10%, but adding salt more than once should make them worse. Combinining two salted ingredients should make something that's too salty.
-    4. Grains should be combined with water before being placed on the stove. Putting raw grains on the stove should toast them, which makes them a little bit better, but toasted grains combined with water should not make anything good.
-    5. Adding something inedible, like raw rice or raw meat, to something edible should drop the value dramatically. The value should come up again if the dish gets cooked again on the stove.
-    6. If something is already a dish, you should be very judicious in deciding whether adding a new thing improves it. Adding items where the flavor makes sense, or common aromatics like ginger and garlic, should improve it. But in general, a dish with more than 3 major ingredients shouldn't be very good.
-
-    Think step by step about what the resulting item should be, what its value should be, and what emoji to use.
-    """
+def get_combination_prompt(e1, e2, game_type):
+    system_prompt = SYSTEM_PROMPTS[game_type]
+    ic_examples = []
 
     messages = [
         {"role": "system", "content": system_prompt},

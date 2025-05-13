@@ -1,11 +1,11 @@
-from src.environments import CookingGame
+from src.environment import CraftingGame
 import random
 
 # model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"
 model = "gemini/gemini-2.0-flash"
 # model = "openai/gpt-4o"
 # model = "anthropic/claude-3-7-sonnet-20250219"
-game = CookingGame(model)
+game = CraftingGame(model, "cooking")
 game.reset()
 
 

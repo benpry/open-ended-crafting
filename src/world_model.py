@@ -21,32 +21,32 @@ class Inventory(BaseModel):
     items: list[Item]
 
 
-def combine_elements(e1, e2, ic_examples, model):
-    messages = get_combination_prompt(e1, e2, ic_examples)
-    response = completion(
-        model=model,
-        messages=messages,
-        response_format={
-            "type": "json_schema",
-            "json_schema": {
-                "name": "Item",
-                "schema": Item.model_json_schema(),
-            },
-        },
-        max_tokens=1000,
-        temperature=0.8,
-    )
-
-    # Parse the response into a Pydantic model
-    content = response.choices[0].message.content
-    return Item.model_validate_json(content)
-
-
 class MemoizedWorldModel:
 
-    def __init__(self, lm):
+    def __init__(self, lm, world_type):
         self.lm = lm
         self.combinations = {}
+        self.world_type = world_type
+
+    def combine_elements(self, e1, e2):
+        messages = get_combination_prompt(e1, e2, self.world_type)
+        response = completion(
+            model=self.lm,
+            messages=messages,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "Item",
+                    "schema": Item.model_json_schema(),
+                },
+            },
+            max_tokens=2048,
+            temperature=0.6,
+        )
+
+        # Parse the response into a Pydantic model
+        content = response.choices[0].message.content
+        return Item.model_validate_json(content)
 
     def combine(self, e1, e2):
         items = frozenset((e1["name"], e2["name"]))
@@ -54,7 +54,7 @@ class MemoizedWorldModel:
             new_item = self.combinations[items][-1]
         else:
             ic_examples = list(self.combinations.values())
-            new_item = combine_elements(e1, e2, ic_examples, self.lm)
+            new_item = self.combine_elements(e1, e2)
             new_item = dict(new_item.model_copy(update={"exclude": {"reasoning"}}))
             if len(new_item["emoji"]) > 3:
                 new_item["emoji"] = new_item["emoji"][:3]

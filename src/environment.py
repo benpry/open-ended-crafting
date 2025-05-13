@@ -2,7 +2,7 @@ import random
 from typing import Optional
 import gymnasium as gym
 from src.world_model import MemoizedWorldModel
-from src.constants import ITEMS
+from src.constants import TOOLS, INGREDIENTS
 
 
 class CraftingGame(gym.Env):
@@ -14,7 +14,7 @@ class CraftingGame(gym.Env):
         super().__init__()
         self.model = model
         self.setting = setting
-        self.world_model = MemoizedWorldModel(lm=model)
+        self.world_model = MemoizedWorldModel(lm=model, world_type=self.setting)
         self.inventory = []
 
     def reset(self, seed=None, options=None):
@@ -22,8 +22,8 @@ class CraftingGame(gym.Env):
         Get an initial state consisting of basic ingredients.
         """
         # get the item names and delete the reasoning
-        tools = random.sample(ITEMS[self.setting], 5)
-        ingredients = random.sample(ITEMS[self.setting], 5)
+        tools = random.sample(TOOLS[self.setting], 4)
+        ingredients = random.sample(INGREDIENTS[self.setting], 6)
         self.inventory = tools + ingredients
 
         return self.inventory
@@ -40,13 +40,13 @@ class CraftingGame(gym.Env):
         """
         Reset the world model.
         """
-        self.world_model = MemoizedWorldModel(lm=self.model)
+        self.world_model = MemoizedWorldModel(lm=self.model, world_type=self.setting)
 
     def load_world_model(self, filepath: str):
         """
         Load the world model from a file.
         """
-        self.world_model = MemoizedWorldModel(lm=self.model)
+        self.world_model = MemoizedWorldModel(lm=self.model, world_type=self.setting)
         self.world_model.load(filepath)
 
     def save_world_model(self, filepath: str):
@@ -97,9 +97,3 @@ class CraftingGame(gym.Env):
         }
 
         return obs, 0, False, {}
-
-
-class CookingGame(CraftingGame):
-    """
-    An open-ended LM-driven cooking game.
-    """
