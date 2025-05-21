@@ -22,7 +22,7 @@ class CraftingGame(gym.Env):
         Get an initial state consisting of basic ingredients.
         """
         # get the item names and delete the reasoning
-        tools = random.sample(TOOLS[self.setting], 4)
+        tools = TOOLS[self.setting]
         ingredients = random.sample(INGREDIENTS[self.setting], 6)
         self.inventory = tools + ingredients
 
@@ -34,7 +34,7 @@ class CraftingGame(gym.Env):
         """
         print("Inventory:")
         for item in self.inventory:
-            print(f"{item['emoji']} {item['name']}, tastiness: {item['value']}")
+            print(f"{item['emoji']} {item['name']}, value: {item['value']}")
 
     def reset_world_model(self):
         """
@@ -97,3 +97,9 @@ class CraftingGame(gym.Env):
         }
 
         return obs, 0, False, {}
+
+    def get_reward(self):
+        """
+        Get the reward at the end of an epoch.
+        """
+        return max(item["value"] for item in self.inventory)

@@ -7,7 +7,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.environment import CraftingGame
 from pydantic import BaseModel, Field
 from typing import Optional
-from uuid import uuid4
 
 app = FastAPI()
 app.add_middleware(
@@ -23,7 +22,8 @@ games = {}
 
 class InitRequest(BaseModel):
     model: Optional[str] = Field(
-        "gemini/gemini-2.0-flash", description="The model to use for the game"
+        "gemini/gemini-2.5-flash-preview-04-17",
+        description="The model to use for the game",
     )
 
 
@@ -32,25 +32,17 @@ def initialize(request: Optional[InitRequest] = None):
     """
     Get an initial inventory
     """
-    # model = request.model if request else "gemini/gemini-2.0-flash"
-    # model = request.model if request else "gemini/gemini-2.0-flash"
-    # model = (
-    #     request.model
-    #     if request
-    #     else "fireworks_ai/accounts/fireworks/models/qwen3-235b-a22b"
-    # )
-    # model = request.model if request else "gemini/gemini-2.5-flash-preview-04-17"
-    # model = request.model if request else "openai/gpt-4o"
-    model = (
-        request.model
-        if request
-        else "fireworks_ai/accounts/fireworks/models/llama4-maverick-instruct-basic"
-    )
-    world_type = "craft_making"
+    model = request.model if request else "gemini/gemini-2.5-flash-preview-04-17"
+
+    world_type = "cooking"
     game = CraftingGame(model, world_type)
     game.reset()
     game_id = world_type
-    games[game_id] = game
+    if game_id not in games:
+        games[game_id] = game
+    else:
+        game = games[game_id]
+        game.reset()
     return {
         "game_id": game_id,
         "inventory": game.inventory,
