@@ -54,7 +54,7 @@ def get_combination_messages(e1, e2, game_type, ic_examples):
     return messages
 
 
-@backoff.on_exception(backoff.expo, Exception, max_tries=10)
+@backoff.on_exception(backoff.expo, Exception, max_tries=12)
 def call_model(messages: list, lm_string: str) -> str:
     response = completion(
         model=lm_string,
@@ -63,10 +63,16 @@ def call_model(messages: list, lm_string: str) -> str:
         temperature=0.6,
     )
 
-    return response.choices[0].message.content
+    print(response)
+
+    content = response.choices[0].message.content
+    if content is None:
+        raise Exception("No content")
+
+    return content
 
 
-@backoff.on_exception(backoff.expo, Exception, max_tries=10)
+@backoff.on_exception(backoff.expo, Exception, max_tries=12)
 def get_json_response(messages: list, partial_content: str, lm_string: str) -> dict:
 
     rephrase_messages = messages[:-1]

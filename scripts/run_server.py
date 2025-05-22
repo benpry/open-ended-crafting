@@ -32,9 +32,10 @@ def initialize(request: Optional[InitRequest] = None):
     """
     Get an initial inventory
     """
-    model = request.model if request else "gemini/gemini-2.5-flash-preview-04-17"
+    # model = request.model if request else "gemini/gemini-2.5-flash-preview-04-17"
+    model = "openai/gpt-4.1-mini"
 
-    world_type = "cooking"
+    world_type = "potions"
     game = CraftingGame(model, world_type)
     game.reset()
     game_id = world_type

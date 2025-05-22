@@ -84,17 +84,17 @@ class CraftingGame(gym.Env):
         # combine the items
         new_item = self.world_model.combine(item1, item2)
 
-        # if the new item is already in the inventory, don't add it
-        if new_item["name"] in inv_names:
-            return self.inventory, 0, False, {}
-
-        # update the inventory
-        self.inventory.append(new_item)
-
         obs = {
             "inventory": self.inventory,
             "new_item": new_item,
         }
+
+        # if the new item is already in the inventory, don't add it
+        if new_item["name"] in inv_names:
+            return obs, 0, False, {}
+
+        # update the inventory
+        self.inventory.append(new_item)
 
         return obs, 0, False, {}
 

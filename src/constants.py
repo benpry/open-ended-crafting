@@ -93,33 +93,33 @@ genetics_ingredients = [
 
 
 potions_tools = [
-    {"name": "cauldron", "emoji": "🧪", "potency": 0, "durable": True},
-    {"name": "mortar", "emoji": "🏺", "potency": 0, "durable": True},
-    {"name": "wand", "emoji": "🪄", "potency": 0, "durable": True},
-    {"name": "filter", "emoji": "🧫", "potency": 0, "durable": True},
+    {"name": "vial", "emoji": "🧪", "value": 0, "durable": True},
+    {"name": "mortar", "emoji": "🏺", "value": 0, "durable": True},
+    {"name": "wand", "emoji": "🪄", "value": 0, "durable": True},
+    {"name": "filter", "emoji": "🧫", "value": 0, "durable": True},
 ]
 
 potions_ingredients = [
-    {"name": "rose petal", "emoji": "🌹", "durable": False},
-    {"name": "dandelion", "emoji": "🌼", "durable": False},
-    {"name": "mushroom", "emoji": "🍄", "durable": False},
-    {"name": "frog leg", "emoji": "🐸", "durable": False},
-    {"name": "snake skin", "emoji": "🐍", "durable": False},
-    {"name": "bat wing", "emoji": "🦇", "durable": False},
-    {"name": "crystal", "emoji": "💎", "durable": False},
-    {"name": "beetle", "emoji": "🪲", "durable": False},
-    {"name": "morning dew", "emoji": "💧", "durable": False},
-    {"name": "lightning bolt", "emoji": "⚡", "durable": False},
-    {"name": "dragon scale", "emoji": "🐉", "durable": False},
-    {"name": "fairy dust", "emoji": "✨", "durable": False},
-    {"name": "unicorn horn", "emoji": "🦄", "durable": False},
-    {"name": "phoenix feather", "emoji": "🔥", "durable": False},
-    {"name": "moonstone", "emoji": "🌙", "durable": False},
-    {"name": "sunstone", "emoji": "☀️", "durable": False},
-    {"name": "obsidian", "emoji": "⚫", "durable": False},
-    {"name": "quicksilver", "emoji": "💧", "durable": False},
-    {"name": "volcanic ash", "emoji": "🌋", "durable": False},
-    {"name": "crystal", "emoji": "💎", "durable": False},
+    {"name": "frog leg", "emoji": "🐸", "value": 0, "durable": False},
+    {"name": "bat wing", "emoji": "🦇", "value": 0, "durable": False},
+    {"name": "dragon scale", "emoji": "🐉", "value": 0, "durable": False},
+    {"name": "unicorn horn", "emoji": "🦄", "value": 0, "durable": False},
+    {"name": "mandrake root", "emoji": "🌱", "value": 0, "durable": False},
+    {"name": "mushroom", "emoji": "🍄", "value": 0, "durable": False},
+    {"name": "dandelion", "emoji": "🌼", "value": 0, "durable": False},
+    {"name": "rose petal", "emoji": "🌹", "value": 0, "durable": False},
+    {"name": "sunstone", "emoji": "☀️", "value": 0, "durable": False},
+    {"name": "obsidian", "emoji": "⚫", "value": 0, "durable": False},
+    {"name": "amber", "emoji": "🟠", "value": 0, "durable": False},
+    {"name": "whispering wind", "emoji": "🌬️", "value": 0, "durable": False},
+    {"name": "ghostly vapor", "emoji": "👻", "value": 0, "durable": False},
+    {"name": "volcanic fumes", "emoji": "🌋", "value": 0, "durable": False},
+    {"name": "dragon's breath", "emoji": "🔥", "value": 0, "durable": False},
+    {"name": "basilisk venom", "emoji": "⚗️", "value": 0, "durable": False},
+    {"name": "morning dew", "emoji": "💧", "value": 0, "durable": False},
+    {"name": "kraken ink", "emoji": "🦑", "value": 0, "durable": False},
+    {"name": "honey nectar", "emoji": "🍯", "value": 0, "durable": False},
+    {"name": "tree sap", "emoji": "🌳", "value": 0, "durable": False},
 ]
 
 
@@ -127,12 +127,14 @@ TOOLS = {
     "cooking": cooking_tools,
     "decorations": decorations_tools,
     "genetics": genetics_tools,
+    "potions": potions_tools,
 }
 
 INGREDIENTS = {
     "cooking": cooking_ingredients,
     "decorations": decorations_ingredients,
     "genetics": genetics_ingredients,
+    "potions": potions_ingredients,
 }
 
 
@@ -245,30 +247,29 @@ You are controlling the dynamics of a potion brewing game. Given two items, your
 BASIC RULES:
 1. Each potion has a potency (-100 to 100) representing how effective it is.
 2. Basic ingredients that aren't brewed have a potency of 0.
-3. Tools (cauldron, mortar, wand, filter) are used to modify ingredients. They always have a potency of 0.
+3. Tools (vial, mortar, wand, filter) are used to modify ingredients. They always have a potency of 0.
 4. Combining two tools creates a new, potentially very useful tool. But combining non-basic tools doesn't make anything.
 5. Ingredients can be combined to make new potions.
 
 TOOL USE RULES:
-1. Cauldron: Using the cauldron on plant ingredients makes them better. It should get a descriptor like "extract" or "essence." Using it on animal ingredients makes them worse. It should get a descriptor like "spoiled" or "rotten."
-2. Mortar: Using the mortar on hard ingredients (crystals, minerals, shells) makes them better. It should get a descriptor like "ground" or "powdered." Using it on soft ingredients (flowers, leaves) makes them worse. It should get a descriptor like "pulverized" or "crushed."
-3. Wand: First enchantment makes ingredients worse. It should get a descriptor like "flickering" or "unstable." Second enchantment makes them better. It should get a descriptor like "glowing" or "enchanted." Third enchantment makes them much worse. It should get a descriptor like "corrupted" or "twisted."
-4. Filter: Using filter on liquid ingredients makes them better. It should get a descriptor like "purified" or "filtered." Using it on solid ingredients makes them worse. It should get a descriptor like "drained" or "dry."
+1. Vial: Using the vial on plant ingredients makes them better. It should get a descriptor like "extract" or "essence." Using it on non-plant ingredients (or combinations with at least one non-plant ingredient) makes them worse. It should get a descriptor like "spoiled" or "rotten."
+2. Mortar: Using the mortar on hard ingredients (e.g. minerals, scales) makes them better. It should get a descriptor like "ground" or "powdered." Using it on soft ingredients (e.g. flowers, leaves), or combinations with at least one non-hard ingredient, makes them worse. It should get a descriptor like "pulverized" or "crushed."
+3. Wand: Using a wand on anything should make it better and give it a descriptor like "flickering" or "unstable." Using a wand a second time should make it much better and give it a descriptor like "glowing" or "enchanted." Subsequnt uses of the wand should make the item worse. It should get a descriptor like "corrupted" or "twisted."
+4. Filter: Using the filter on liquid ingredients makes them better. It should get a descriptor like "purified" or "filtered." Using it on solid or gaseous ingredients makes them worse. If it is a solid, it should get a descriptor like "drained" or "dry." If it is gaseous, it should get a descriptor like "filtered" or "purified."
 
 COMBINATION RULES:
-1. States of Matter: Combining ingredients of different states (liquid + solid, solid + powder) makes better potions than combining ingredients in the same state.
-2. Magical-Mundane: Combining magical ingredients (unicorn horn, dragon scale) with mundane ingredients (common herbs, stones) makes better potions than combining two magical or two mundane ingredients.
+1. States of Matter: Combining ingredients of different states (liquid + solid, solid + powder) makes better potions than combining ingredients in the same state. Combining items with the same sate of matter should make the result a bit worse.
+2. Magical-Mundane: Combining ingredients that are magical, meaning they don't exist in the real world (like unicorn horn and dragon scale) with mundane ingredients (common herbs, stones) makes better potions than combining two magical or two mundane ingredients. Combining two mundane ingredients should make the result a bit worse.
 3. Overcomplication: Potions with more than three basic ingredients get worse.
 
 VALUE RULES:
-1. Cauldron on plant ingredients should make them better (potency +20-30). Cauldron on animal ingredients should make them worse (potency -20-30).
-2. Mortar on hard ingredients should make them better (potency +15-25). Mortar on soft ingredients should make them worse (potency -15-25).
-3. First wand enchantment should make ingredients worse (potency -10-20). Second enchantment should make them better (potency +20-30). Third enchantment should make them much worse (potency -30-40).
-4. Filter on liquid ingredients should make them better (potency +15-25). Filter on solid ingredients should make them worse (potency -15-25).
-5. Opposing elemental combinations should be more potent than same-element combinations (potency +20-30).
-6. Different states of matter combinations should be more potent (potency +15-25).
-7. Magical-mundane combinations should be more potent (potency +25-35).
-8. Potions with more than 3 basic ingredients should be less potent (potency -10-20 per extra ingredient).
+1. Vial on plant ingredients should make them better (value +20-30). Vial on animal ingredients should make them worse (value -20-30).
+2. Mortar on hard ingredients should make them better (value +15-25). Mortar on soft ingredients should make them worse (value -15-25).
+3. First wand enchantment should make ingredients worse (value -10-20). Second enchantment should make them better (value +20-30). Third enchantment should make them much worse (value -30-40).
+4. Filter on liquid ingredients should make them better (value +15-25). Filter on solid ingredients should make them worse (value -15-25).
+5. Different states of matter combinations should make things more valuable (value +15-25) and same-state combinations should make things a bit worse (value -5-15).
+6. Magical-mundane combinations should make things more valuable (value +25-35) and same-magicalness combinations should make things a bit worse (value -5-15).
+7. Potions with more than 3 basic ingredients should be lower value (value -20-30 per extra ingredient).
 
 Think step by step about what the resulting potion should be, what its potency should be, and what emoji to use. We want a player who is trying to make the most potent potion to be able to learn the rules. In generating the names for the resulting potions, you should use descriptive adjectives and names that help people learn the rules.
 
@@ -289,7 +290,7 @@ cooking_ic_examples = [
             {"name": "raw meat", "emoji": "🥩", "value": 0, "durable": False},
             {"name": "knife", "emoji": "🔪", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the KNIFE RULE, using a knife on raw meat should make it sliced. Since raw meat is inedible (value 0), sliced raw meat should also be inedible. The knife is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for knife, using a knife on raw meat should make it sliced. Since raw meat is inedible (value 0), sliced raw meat should also be inedible. The knife is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "sliced raw meat",
             "value": 0,
@@ -302,7 +303,7 @@ cooking_ic_examples = [
             {"name": "sliced raw meat", "emoji": "🔪🥩", "value": 0, "durable": False},
             {"name": "stove", "emoji": "🔥", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the STOVE RULE and VALUE RULES, cooking sliced meat should make it edible. The rule specifies that sliced and cooked ingredients should be more valuable (value +10-20). I'll set it to 15 to show the improvement.",
+        "reasoning": "Following the tool use rules for stove and the value rules, cooking sliced meat should make it edible. The value rules specify that sliced and cooked ingredients should be more valuable (value +10-20). I'll set it to 15 to show the improvement.",
         "output": {
             "name": "cooked sliced meat",
             "value": 15,
@@ -315,7 +316,7 @@ cooking_ic_examples = [
             {"name": "raw rice", "emoji": "🌾", "value": 0, "durable": False},
             {"name": "water", "emoji": "💧", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the WATER RULE, adding water to rice makes it soaked. The VALUE RULES specify that soaking grains doesn't change value by itself, but prepares them for better cooking later.",
+        "reasoning": "Following the tool use rules for water, adding water to rice makes it soaked. The value rules specify that soaking grains doesn't change value by itself, but prepares them for better cooking later.",
         "output": {
             "name": "soaked rice",
             "value": 0,
@@ -328,7 +329,7 @@ cooking_ic_examples = [
             {"name": "soaked rice", "emoji": "💧🌾", "value": 0, "durable": False},
             {"name": "stove", "emoji": "🔥", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the VALUE RULES, cooking soaked grains should dramatically increase value (+20-30). I'll set it to 25 to show the significant improvement from soaking and cooking.",
+        "reasoning": "Following the value rules, cooking soaked grains should dramatically increase value (+20-30). I'll set it to 25 to show the significant improvement from soaking and cooking.",
         "output": {
             "name": "cooked rice",
             "value": 25,
@@ -341,7 +342,7 @@ cooking_ic_examples = [
             {"name": "cooked rice", "emoji": "🍚", "value": 25, "durable": False},
             {"name": "salt", "emoji": "🧂", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the SALT RULE, adding salt to a dish should improve its value (+10-20). The cooked rice has a value of 25, so adding salt should increase it to 35. This is the first use of salt, so it should be a positive change.",
+        "reasoning": "Following the tool use rules for salt, adding salt to a dish should improve its value (+10-20). The cooked rice has a value of 25, so adding salt should increase it to 35. This is the first use of salt, so it should be a positive change.",
         "output": {
             "name": "salted rice",
             "value": 35,
@@ -357,7 +358,7 @@ decorations_ic_examples = [
             {"name": "pen", "emoji": "🖊️", "value": 0, "durable": True},
             {"name": "paper", "emoji": "📄", "value": 0, "durable": False},
         ],
-        "reasoning": "Following the PEN RULE and VALUE RULES, using a pen on an artificial item like paper should make it more valuable. The rule specifies a value increase of +20-30. I'll set it to 25 to show the significant improvement. The pen is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for pen and the value rules, using a pen on an artificial item like paper should make it more valuable. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement. The pen is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "drawn paper",
             "value": 25,
@@ -370,7 +371,7 @@ decorations_ic_examples = [
             {"name": "pen", "emoji": "🖊️", "value": 0, "durable": True},
             {"name": "leaf", "emoji": "🍃", "value": 0, "durable": False},
         ],
-        "reasoning": "Following the PEN RULE and VALUE RULES, using a pen on a natural item like a leaf should make it less valuable. The rule specifies a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The pen is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for pen and the value rules, using a pen on a natural item like a leaf should make it less valuable. The value rules specify a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The pen is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "defaced leaf",
             "value": -25,
@@ -383,7 +384,7 @@ decorations_ic_examples = [
             {"name": "saw", "emoji": "🪚", "value": 0, "durable": True},
             {"name": "wood", "emoji": "🪵", "value": 0, "durable": False},
         ],
-        "reasoning": "Following the SAW RULE and VALUE RULES, using a saw on wood should make it more valuable. The rule specifies a value increase of +15-25. I'll set it to 20 to show the improvement. The saw is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for saw and the value rules, using a saw on wood should make it more valuable. The value rules specify a value increase of +15-25. I'll set it to 20 to show the improvement. The saw is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "cut wood",
             "value": 20,
@@ -396,7 +397,7 @@ decorations_ic_examples = [
             {"name": "cardboard", "emoji": "📦", "value": 0, "durable": False},
             {"name": "leaf", "emoji": "🍃", "value": 0, "durable": False},
         ],
-        "reasoning": "Following the NATURAL + ARTIFICIAL RULE and VALUE RULES, combining an artificial item (cardboard) with a natural item (leaf) should create a more valuable decoration. The rule specifies a value increase of +20-30. I'll set it to 25 to show the significant improvement.",
+        "reasoning": "Following the combination rules for Natural + Artificial and the value rules, combining an artificial item (cardboard) with a natural item (leaf) should create a more valuable decoration. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement.",
         "output": {
             "name": "leaf-covered box",
             "value": 25,
@@ -409,7 +410,7 @@ decorations_ic_examples = [
             {"name": "paint", "emoji": "🎨", "value": 0, "durable": True},
             {"name": "painted acorn", "emoji": "🎨🌰", "value": 15, "durable": False},
         ],
-        "reasoning": "Following the PAINT RULE and VALUE RULES, adding paint a second time should make the item messy and reduce its value. The rule specifies a value decrease of -20-30. Since the current value is 15, I'll set it to -10 to show the significant negative effect. The paint is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for paint and the value rules, adding paint a second time should make the item messy and reduce its value. The value rules specify a value decrease of -20-30. Since the current value is 15, I'll set it to -10 to show the significant negative effect. The paint is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "messy over-painted acorn",
             "value": -10,
@@ -425,7 +426,7 @@ genetics_ic_examples = [
             {"name": "frog", "emoji": "🐸", "value": 2, "durable": False},
             {"name": "growth serum", "emoji": "🌡️", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the GROWTH RULE and VALUE RULES, using growth serum on a small animal like a frog should make it better. The rule specifies a value increase of +20-30. I'll set it to 25 to show the significant improvement. The growth serum is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for growth serum and the value rules, using growth serum on a small animal like a frog should make it better. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement. The growth serum is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "mega-frog",
             "value": 25,
@@ -438,7 +439,7 @@ genetics_ic_examples = [
             {"name": "elephant", "emoji": "🐘", "value": 2, "durable": False},
             {"name": "growth serum", "emoji": "🌡️", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the GROWTH RULE and VALUE RULES, using growth serum on a large animal like an elephant should make it worse. The rule specifies a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The growth serum is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for growth serum and the value rules, using growth serum on a large animal like an elephant should make it worse. The value rules specify a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The growth serum is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "overgrown elephant",
             "value": -25,
@@ -451,7 +452,7 @@ genetics_ic_examples = [
             {"name": "tiger", "emoji": "🐯", "value": 2, "durable": False},
             {"name": "mutation catalyst", "emoji": "🧬", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the MUTATION RULE and VALUE RULES, the first mutation should make the animal worse. The rule specifies a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The mutation catalyst is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for mutation catalyst and the value rules, the first mutation should make the animal worse. The value rules specify a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The mutation catalyst is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "mutant tiger",
             "value": -25,
@@ -464,7 +465,7 @@ genetics_ic_examples = [
             {"name": "mutant tiger", "emoji": "🧬🐯", "value": -25, "durable": False},
             {"name": "mutation catalyst", "emoji": "🧬", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the MUTATION RULE and VALUE RULES, the second mutation should make the animal better than the original. The rule specifies a value increase of +30-40 from the first mutation. Since the current value is -25, I'll set it to 35 to show the significant improvement. The mutation catalyst is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for mutation catalyst and the value rules, the second mutation should make the animal better than the original. The value rules specify a value increase of +30-40 from the first mutation. Since the current value is -25, I'll set it to 35 to show the significant improvement. The mutation catalyst is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "super-mutant tiger",
             "value": 35,
@@ -477,7 +478,7 @@ genetics_ic_examples = [
             {"name": "lizard", "emoji": "🦎", "value": 2, "durable": False},
             {"name": "koala", "emoji": "🐨", "value": 2, "durable": False},
         ],
-        "reasoning": "Following the FAMILY RULE and VALUE RULES, combining animals from different families (reptile + mammal) should make a better hybrid. The rule specifies a value increase of +20-30. I'll set it to 25 to show the significant improvement.",
+        "reasoning": "Following the combination rules for Family Crossing and the value rules, combining animals from different families (reptile + mammal) should make a better hybrid. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement.",
         "output": {
             "name": "lizoala",
             "value": 25,
@@ -487,12 +488,6 @@ genetics_ic_examples = [
     },
 ]
 
-IC_EXAMPLES = {
-    "cooking": cooking_ic_examples,
-    "decorations": decorations_ic_examples,
-    "genetics": genetics_ic_examples,
-}
-
 
 potions_ic_examples = [
     {
@@ -500,19 +495,15 @@ potions_ic_examples = [
             {
                 "name": "rose petal",
                 "emoji": "🌹",
-                "potency": 0,
+                "value": 0,
                 "durable": False,
-                "type": "plant",
-                "element": "earth",
-                "state": "solid",
-                "magical": False,
             },
-            {"name": "cauldron", "emoji": "🧪", "potency": 0, "durable": True},
+            {"name": "vial", "emoji": "🧪", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the CAULDRON RULE and VALUE RULES, using a cauldron on a plant ingredient like rose petal should make it better. The rule specifies a potency increase of +20-30. I'll set it to 25 to show the significant improvement. The cauldron is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for vial and the value rules, using a vial on a plant ingredient like rose petal should make it better. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement. The vial is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "rose extract",
-            "potency": 25,
+            "value": 25,
             "durable": False,
             "emoji": "🧪🌹",
         },
@@ -522,19 +513,15 @@ potions_ic_examples = [
             {
                 "name": "frog leg",
                 "emoji": "🐸",
-                "potency": 0,
+                "value": 0,
                 "durable": False,
-                "type": "animal",
-                "element": "water",
-                "state": "solid",
-                "magical": False,
             },
-            {"name": "cauldron", "emoji": "🧪", "potency": 0, "durable": True},
+            {"name": "vial", "emoji": "🧪", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the CAULDRON RULE and VALUE RULES, using a cauldron on an animal ingredient like frog leg should make it worse. The rule specifies a potency decrease of -20-30. I'll set it to -25 to show the significant negative effect. The cauldron is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for vial and the value rules, using a vial on an animal ingredient like frog leg should make it worse. The value rules specify a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The vial is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "spoiled frog leg",
-            "potency": -25,
+            "value": -25,
             "durable": False,
             "emoji": "🧪🐸",
         },
@@ -544,41 +531,33 @@ potions_ic_examples = [
             {
                 "name": "crystal",
                 "emoji": "💎",
-                "potency": 0,
+                "value": 0,
                 "durable": False,
-                "type": "mineral",
-                "element": "earth",
-                "state": "solid",
-                "magical": False,
             },
-            {"name": "mortar", "emoji": "🏺", "potency": 0, "durable": True},
+            {"name": "mortar", "emoji": "🏺", "value": 0, "durable": True},
         ],
-        "reasoning": "Following the MORTAR RULE and VALUE RULES, using a mortar on a hard ingredient like crystal should make it better. The rule specifies a potency increase of +15-25. I'll set it to 20 to show the improvement. The mortar is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for mortar and the value rules, using a mortar on a hard ingredient like crystal should make it better. The value rules specify a value increase of +15-25. I'll set it to 20 to show the improvement. The mortar is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "ground crystal",
-            "potency": 20,
+            "value": 20,
             "durable": False,
             "emoji": "🏺💎",
         },
     },
     {
         "input": [
-            {"name": "wand", "emoji": "🪄", "potency": 0, "durable": True},
+            {"name": "wand", "emoji": "🪄", "value": 0, "durable": True},
             {
                 "name": "fairy dust",
                 "emoji": "✨",
-                "potency": 0,
+                "value": 0,
                 "durable": False,
-                "type": "magical",
-                "element": "air",
-                "state": "gas",
-                "magical": True,
             },
         ],
-        "reasoning": "Following the WAND RULE and VALUE RULES, the first enchantment should make the ingredient worse. The rule specifies a potency decrease of -10-20. I'll set it to -15 to show the negative effect. The wand is a tool, so it should be preserved in the emoji.",
+        "reasoning": "Following the tool use rules for wand and the value rules, the first enchantment should make the ingredient worse. The value rules specify a value decrease of -10-20. I'll set it to -15 to show the negative effect. The wand is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "flickering fairy dust",
-            "potency": -15,
+            "value": -15,
             "durable": False,
             "emoji": "🪄✨",
         },
@@ -588,30 +567,29 @@ potions_ic_examples = [
             {
                 "name": "sea water",
                 "emoji": "🌊",
-                "potency": 0,
+                "value": 0,
                 "durable": False,
-                "type": "liquid",
-                "element": "water",
-                "state": "liquid",
-                "magical": False,
             },
             {
                 "name": "phoenix feather",
                 "emoji": "🔥",
-                "potency": 0,
+                "value": 0,
                 "durable": False,
-                "type": "animal",
-                "element": "fire",
-                "state": "solid",
-                "magical": True,
             },
         ],
-        "reasoning": "Following the ELEMENTAL RULE and MAGICAL-MUNDANE RULE and VALUE RULES, combining opposing elements (water + fire) and a magical ingredient (phoenix feather) with a mundane ingredient (sea water) should make it more potent. The elemental opposition adds +20-30, and the magical-mundane combination adds +25-35. I'll set the total to 55 to show the significant improvement.",
+        "reasoning": "Following the combination rules for Magical-Mundane and the value rules, combining a magical ingredient (phoenix feather) with a mundane ingredient (sea water) should make it more valuable. The value rules specify a combination adds +25-35. I'll set it to 30 to show the significant improvement.",
         "output": {
             "name": "steaming phoenix potion",
-            "potency": 55,
+            "value": 30,
             "durable": False,
             "emoji": "🌊🔥",
         },
     },
 ]
+
+IC_EXAMPLES = {
+    "cooking": cooking_ic_examples,
+    "decorations": decorations_ic_examples,
+    "genetics": genetics_ic_examples,
+    "potions": potions_ic_examples,
+}
