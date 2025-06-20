@@ -85,7 +85,7 @@ def cooking_apply_tool(tool, item):
         if item["water_level"] == 1:
             # you can't burn a soaked thing
             new_item["cook_level"] = min(
-                item["cook_level"] + 1, len(cooking_feature_names["cook_level"])
+                item["cook_level"] + 1, len(cooking_feature_names["cook_level"]) - 1
             )
         else:
             # otherwise, cooking increases the cook level by 1, up to the max
@@ -97,13 +97,13 @@ def cooking_apply_tool(tool, item):
     elif tool["name"] == "knife" and item["water_level"] == 0:
         # increase the chop level
         new_item["chop_level"] = min(
-            item["chop_level"] + 1, len(cooking_feature_names["chop_level"])
+            item["chop_level"] + 1, len(cooking_feature_names["chop_level"]) - 1
         )
 
     elif tool["name"] == "salt":
         # increase the salt level
         new_item["salt_level"] = min(
-            item["salt_level"] + 1, len(cooking_feature_names["salt_level"])
+            item["salt_level"] + 1, len(cooking_feature_names["salt_level"]) - 1
         )
 
     return new_item
