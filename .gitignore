@@ -175,3 +175,7 @@ cython_debug/
 
 # VSCode
 .vscode
+figures/
+
+# We're using jupytext to convert notebooks to python scripts
+*.ipynb
