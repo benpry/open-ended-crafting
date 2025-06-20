@@ -1,8 +1,10 @@
 import random
 from typing import Optional
+
 import gymnasium as gym
+
+from src.constants import cooking_ingredients, cooking_tools
 from src.world_model import MemoizedWorldModel
-from src.constants import TOOLS, INGREDIENTS
 
 
 class CraftingGame(gym.Env):
@@ -10,11 +12,13 @@ class CraftingGame(gym.Env):
     An open-ended LM-driven crafting game.
     """
 
-    def __init__(self, model: str, setting: str):
+    def __init__(self, model: str, domain: str, assign_names: bool = False):
         super().__init__()
         self.model = model
-        self.setting = setting
-        self.world_model = MemoizedWorldModel(lm=model, world_type=self.setting)
+        self.domain = domain
+        self.world_model = MemoizedWorldModel(
+            lm=model, domain=self.domain, assign_names=assign_names
+        )
         self.inventory = []
 
     def reset(self, seed=None, options=None):
@@ -22,8 +26,10 @@ class CraftingGame(gym.Env):
         Get an initial state consisting of basic ingredients.
         """
         # get the item names and delete the reasoning
-        tools = TOOLS[self.setting]
-        ingredients = random.sample(INGREDIENTS[self.setting], 6)
+        # tools = TOOLS[self.domain]
+        # ingredients = random.sample(INGREDIENTS[self.domain], 5)
+        tools = cooking_tools
+        ingredients = random.sample(cooking_ingredients, 5)
         self.inventory = tools + ingredients
 
         return self.inventory
@@ -40,13 +46,13 @@ class CraftingGame(gym.Env):
         """
         Reset the world model.
         """
-        self.world_model = MemoizedWorldModel(lm=self.model, world_type=self.setting)
+        self.world_model = MemoizedWorldModel(lm=self.model, domain=self.domain)
 
     def load_world_model(self, filepath: str):
         """
         Load the world model from a file.
         """
-        self.world_model = MemoizedWorldModel(lm=self.model, world_type=self.setting)
+        self.world_model = MemoizedWorldModel(lm=self.model, domain=self.domain)
         self.world_model.load(filepath)
 
     def save_world_model(self, filepath: str):
@@ -75,10 +81,11 @@ class CraftingGame(gym.Env):
         item1 = next(item for item in self.inventory if item["name"] == name1)
         item2 = next(item for item in self.inventory if item["name"] == name2)
 
-        # remove non-durable items
-        if not item1["durable"]:
+        # remove non-tool items (ingredients get consumed)
+        # Tools are durable and stay in inventory, ingredients are consumed
+        if not item1.get("tool", False):
             self.inventory.remove(item1)
-        if not item2["durable"]:
+        if not item2.get("tool", False):
             self.inventory.remove(item2)
 
         # combine the items
@@ -90,7 +97,7 @@ class CraftingGame(gym.Env):
         }
 
         # if the new item is already in the inventory, don't add it
-        if new_item["name"] in inv_names:
+        if new_item is None or new_item["name"] in inv_names:
             return obs, 0, False, {}
 
         # update the inventory

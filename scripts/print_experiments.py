@@ -34,7 +34,7 @@ if __name__ == "__main__":
         messages.append(
             {
                 "role": "user",
-                "content": f"Please generate a new experimental setting.",
+                "content": "Please generate a new experimental setting.",
             }
         )
 

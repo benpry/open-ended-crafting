@@ -2,73 +2,65 @@
 This file handles interfacing with the language model to get new crafting instructions.
 """
 
-from litellm import completion
-from src.prompts import get_combination_messages, get_item_from_lm
-from src.constants import IC_EXAMPLES
-from pydantic import BaseModel
-from ast import literal_eval
-import networkx as nx
-import random
 import json
+import random
+import string
+from ast import literal_eval
 
+import networkx as nx
 
-class Item(BaseModel):
-    reasoning: str
-    name: str
-    emoji: str
-    value: int
-    durable: bool
-
-
-class Inventory(BaseModel):
-    reasoning: str
-    items: list[Item]
+from src.combo_functions import COMBO_FUNCTIONS
+from src.prompts import get_item_semantics_from_lm
 
 
 class MemoizedWorldModel:
-
-    def __init__(self, lm, world_type):
+    def __init__(self, lm, domain, assign_names=False):
         self.lm = lm
+        self.ic_examples = []
+        self.domain = domain
         self.combinations = {}
-        self.base_ic_examples = IC_EXAMPLES[world_type]
-        self.generated_ic_examples = []
-        self.world_type = world_type
+        self.combo_function = COMBO_FUNCTIONS[self.domain]
+        self.assign_names = assign_names
 
     def combine_elements(self, e1, e2):
+        new_item = self.combo_function(e1, e2)
+        if new_item is None:
+            return None
 
-        # take at most 5 self-generated examples
-        if len(self.generated_ic_examples) < 5:
-            ic_examples = self.base_ic_examples + self.generated_ic_examples
-        else:
-            ic_examples = self.base_ic_examples + random.sample(
-                self.generated_ic_examples, 5
+        if self.assign_names:
+            semantics = get_item_semantics_from_lm(
+                [e1, e2], new_item, self.domain, self.lm, self.ic_examples
+            )
+            self.ic_examples.append(
+                {
+                    "input": [e1, e2],
+                    "outcome": new_item.copy(),
+                    "semantics": semantics,
+                }
             )
 
-        # get the resulting item and reasoning for it
-        messages = get_combination_messages(e1, e2, self.world_type, ic_examples)
-        item, reasoning = get_item_from_lm(messages, self.lm)
+            new_item["name"] = semantics["name"]
+            new_item["emoji"] = semantics["emoji"]
 
-        # make sure we respect the invariants
-        item["durable"] = e1["durable"] and e2["durable"]
-        if item["durable"]:
-            item["value"] = 0
-        if len(item["emoji"]) > 3:
-            item["emoji"] = item["emoji"][:3]
+        else:
+            new_item["name"] = "".join(
+                random.choice(string.ascii_uppercase + string.digits) for _ in range(10)
+            )
+            new_item["emoji"] = "❓"
 
-        # update the in-context examples with the new item
-        self.generated_ic_examples.append(
-            {"input": [e1, e2], "reasoning": reasoning, "output": item}
-        )
-
-        return item
+        return new_item
 
     def combine(self, e1, e2):
         items = frozenset((e1["name"], e2["name"]))
+
+        # check if we've already combined these items
         if items in self.combinations:
             new_item = self.combinations[items][-1]
         else:
+            # otherwise, actually combine the items
             new_item = self.combine_elements(e1, e2)
-            self.combinations[items] = (e1, e2, new_item)
+            if new_item is not None:
+                self.combinations[items] = (e1, e2, new_item)
 
         return new_item
 
@@ -81,7 +73,7 @@ class MemoizedWorldModel:
         world_model_dict = {
             "lm": self.lm,
             "combinations": combinations_lsts,
-            "ic_examples": self.generated_ic_examples,
+            "examples": self.ic_examples,
         }
 
         with open(filepath, "w") as f:
@@ -91,7 +83,7 @@ class MemoizedWorldModel:
         with open(filepath, "r") as f:
             world_model_dict = json.load(f)
         self.lm = world_model_dict["lm"]
-        self.generated_ic_examples = world_model_dict["ic_examples"]
+        self.ic_examples = world_model_dict["ic_examples"]
         self.combinations = {}
         for combo, result in world_model_dict["combinations"].items():
             self.combinations[frozenset(literal_eval(combo))] = literal_eval(result)

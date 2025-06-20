@@ -2,23 +2,33 @@
 This file contains prompts for the language model.
 """
 
-import json
-from src.constants import SYSTEM_PROMPTS
-from litellm import completion
-from ast import literal_eval
+from typing import Annotated
+
 import backoff
+from litellm import completion
 from pydantic import BaseModel
+from pydantic.types import StringConstraints
+
+from src.combo_functions import FEATURE_NAMES
+from src.constants import SYSTEM_PROMPTS
 
 
-class Item(BaseModel):
+class ItemSemantics(BaseModel):
+    emoji: Annotated[str, StringConstraints(min_length=1, max_length=3)]
     name: str
-    emoji: str
-    value: int
-    durable: bool
 
 
-def get_combination_messages(e1, e2, game_type, ic_examples):
-    system_prompt = SYSTEM_PROMPTS[game_type]
+def apply_feature_names(item: dict, feature_names: dict) -> dict:
+    updated_item = item.copy()
+    for feature, value in item.items():
+        if feature in feature_names:
+            updated_item[feature] = feature_names[feature][value]
+    return updated_item
+
+
+def get_combination_messages(e1, e2, o, domain, ic_examples):
+    system_prompt = SYSTEM_PROMPTS[domain]
+    feature_names = FEATURE_NAMES[domain]
 
     messages = [
         {"role": "system", "content": system_prompt},
@@ -29,26 +39,28 @@ def get_combination_messages(e1, e2, game_type, ic_examples):
         ic_examples = ic_examples[:5] + ic_examples[-15:]
 
     for example in ic_examples:
-
         item1, item2 = example["input"]
-        reasoning = example["reasoning"]
-        outcome = example["output"]
+        outcome = example["outcome"]
+        item1 = apply_feature_names(item1, feature_names)
+        item2 = apply_feature_names(item2, feature_names)
+        outcome = apply_feature_names(outcome, feature_names)
+        semantics = example["semantics"]
 
         messages.append(
             {
                 "role": "user",
-                "content": f"Item 1: {item1}\nItem 2: {item2}",
+                "content": f"Item 1: {item1}\nItem 2: {item2}\nOutcome: {outcome}",
             }
         )
         messages.append(
             {
                 "role": "assistant",
-                "content": f"<reasoning>\n{reasoning}\n</reasoning>\n<output>\n{outcome}\n</output>",
+                "content": f"{semantics}",
             }
         )
 
     messages += [
-        {"role": "user", "content": f"Item 1: {e1}\nItem 2: {e2}"},
+        {"role": "user", "content": f"Item 1: {e1}\nItem 2: {e2}\nOutcome: {o}"},
     ]
 
     return messages
@@ -56,72 +68,44 @@ def get_combination_messages(e1, e2, game_type, ic_examples):
 
 @backoff.on_exception(backoff.expo, Exception, max_tries=12)
 def call_model(messages: list, lm_string: str) -> str:
-    response = completion(
-        model=lm_string,
-        messages=messages,
-        max_tokens=2048,
-        temperature=0.6,
-    )
+    try:
+        response = completion(
+            model=lm_string,
+            messages=messages,
+            response_format=ItemSemantics,
+            max_completion_tokens=1024,
+            temperature=0.2,
+        )
+    except Exception as e:
+        print(f"Error type: {type(e).__name__}")
+        print(f"Error message: {str(e)}")
+        print(f"Full error: {repr(e)}")
+        raise e
 
+    print("response:")
     print(response)
 
     content = response.choices[0].message.content
     if content is None:
+        print("No content")
+        print(messages)
+        print(lm_string)
         raise Exception("No content")
 
-    return content
+    semantics = ItemSemantics.model_validate_json(content).model_dump()
+
+    return semantics
 
 
-@backoff.on_exception(backoff.expo, Exception, max_tries=12)
-def get_json_response(messages: list, partial_content: str, lm_string: str) -> dict:
+def get_item_semantics_from_lm(
+    inputs: list, outcome: dict, domain: str, lm_string: str, ic_examples: list
+) -> dict:
+    # compile a list of messages to send to the LM
 
-    rephrase_messages = messages[:-1]
-    last_message = messages[-1]
-    last_message_content = last_message["content"]
-    last_message["content"] = (
-        f"You, but you did not produce valid JSON. Please provide a valid JSON object based on the reasoning you have provided.\n{last_message_content}\nreasoning:\n {partial_content}"
-    )
-    rephrase_messages.append(last_message)
-
-    response = completion(
-        model=lm_string,
-        messages=rephrase_messages,
-        response_format=Item,
-        max_tokens=2048,
-        temperature=0.6,
+    messages = get_combination_messages(
+        inputs[0], inputs[1], outcome, domain, ic_examples
     )
 
-    return response.choices[0].message.content
+    semantics = call_model(messages, lm_string)
 
-
-def get_item_from_lm(messages: list, lm_string: str) -> dict:
-    content = call_model(messages, lm_string)
-
-    print("response:")
-    print(content)
-
-    reasoning = None
-    outcome = None
-    item = None
-
-    # get only the stuff between the <reasoning> and </reasoning> tags
-    try:
-        reasoning = content.split("<reasoning>")[1].split("</reasoning>")[0]
-        outcome = content.split("<output>")[1].split("</output>")[0]
-        item = literal_eval(outcome)
-        if item is None:
-            raise ValueError("Item is None")
-    except (IndexError, SyntaxError, ValueError):
-        print("Got index error")
-        # the reasoning got cut off,
-        if reasoning is None:
-            reasoning = content
-        outcome = get_json_response(messages, reasoning, lm_string)
-        print(f"outcome:\n{outcome}")
-        print(type(outcome))
-        item = json.loads(outcome)
-
-    print("item:")
-    print(item)
-
-    return item, reasoning
+    return semantics

@@ -1,6 +1,8 @@
-from src.environment import CraftingGame
-from pyprojroot import here
 import random
+
+from pyprojroot import here
+
+from src.environment import CraftingGame
 
 # model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"
 # model = "fireworks_ai/accounts/fireworks/models/llama4-maverick-instruct-basic"
@@ -8,8 +10,8 @@ model = "gemini/gemini-2.5-flash-preview-04-17"
 # model = "openai/gpt-4.1-mini"
 # model = "anthropic/claude-3-7-sonnet-20250219"
 
-GAME_TYPE = "cooking"
-game = CraftingGame(model, GAME_TYPE)
+DOMAIN = "cooking"
+game = CraftingGame(model, DOMAIN, assign_names=True)
 game.reset()
 
 
@@ -19,14 +21,13 @@ def get_action(inv):
 
 
 rewards = []
-for run in range(20):
+for run in range(1):
     game.reset()
     for i in range(10):
         print(f"Step {i}")
         game.render()
         action = get_action(game.inventory)
         game.step(action)
-        game.world_model.save(str(here(f"data/world-models/{GAME_TYPE}_random.json")))
 
     print(f"Game {run} finished")
     reward = game.get_reward()
@@ -34,8 +35,9 @@ for run in range(20):
     rewards.append(reward)
 
 print(f"Rewards: {rewards}")
+
 print(f"Average reward: {sum(rewards) / len(rewards)}")
 short_model_name = model.split("/")[-1].replace(".", "-")
 game.world_model.save(
-    str(here(f"data/world-models/{GAME_TYPE}_{short_model_name}_random.json"))
+    str(here(f"data/world-models/{DOMAIN}_{short_model_name}_random.json"))
 )

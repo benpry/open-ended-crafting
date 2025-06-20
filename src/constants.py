@@ -1,31 +1,258 @@
 cooking_ingredients = [
-    {"name": "apple", "emoji": "🍎", "value": 2, "durable": False},
-    {"name": "banana", "emoji": "🍌", "value": 2, "durable": False},
-    {"name": "carrot", "emoji": "🥕", "value": 2, "durable": False},
-    {"name": "egg", "emoji": "🥚", "value": 0, "durable": False},
-    {"name": "raw fish", "emoji": "🐟", "value": 2, "durable": False},
-    {"name": "raw meat", "emoji": "🥩", "value": 0, "durable": False},
-    {"name": "raw rice", "emoji": "🌾", "value": 0, "durable": False},
-    {"name": "wheat", "emoji": "🌾", "value": 0, "durable": False},
-    {"name": "milk", "emoji": "🥛", "value": 2, "durable": False},
-    {"name": "cheese", "emoji": "🧀", "value": 2, "durable": False},
-    {"name": "lettuce", "emoji": "🥬", "value": 2, "durable": False},
-    {"name": "tomato", "emoji": "🍅", "value": 2, "durable": False},
-    {"name": "onion", "emoji": "🧅", "value": 1, "durable": False},
-    {"name": "garlic", "emoji": "🧄", "value": 0, "durable": False},
-    {"name": "ginger", "emoji": "🫚", "value": 0, "durable": False},
-    {"name": "mushroom", "emoji": "🍄", "value": 2, "durable": False},
-    {"name": "pepper", "emoji": "🌶️", "value": 2, "durable": False},
-    {"name": "potato", "emoji": "🥔", "value": 2, "durable": False},
-    {"name": "coconut", "emoji": "🥥", "value": 2, "durable": False},
-    {"name": "pineapple", "emoji": "🍍", "value": 2, "durable": False},
+    {
+        "name": "apple",
+        "emoji": "🍎",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["fruit"],
+        "all_ingredients": ["apple"],
+    },
+    {
+        "name": "banana",
+        "emoji": "🍌",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["fruit"],
+        "all_ingredients": ["banana"],
+    },
+    {
+        "name": "carrot",
+        "emoji": "🥕",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["vegetable"],
+        "all_ingredients": ["carrot"],
+    },
+    {
+        "name": "egg",
+        "emoji": "🥚",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": False,
+        "ingredient_types": ["eggs_dairy"],
+        "all_ingredients": ["egg"],
+    },
+    {
+        "name": "raw fish",
+        "emoji": "🐟",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": False,
+        "ingredient_types": ["meat"],
+        "all_ingredients": ["raw fish"],
+    },
+    {
+        "name": "raw meat",
+        "emoji": "🥩",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": False,
+        "ingredient_types": ["meat"],
+        "all_ingredients": ["raw meat"],
+    },
+    {
+        "name": "raw rice",
+        "emoji": "🌾",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": False,
+        "ingredient_types": ["grain"],
+        "all_ingredients": ["raw rice"],
+    },
+    {
+        "name": "wheat",
+        "emoji": "🌾",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": False,
+        "ingredient_types": ["grain"],
+        "all_ingredients": ["wheat"],
+    },
+    {
+        "name": "milk",
+        "emoji": "🥛",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["eggs_dairy"],
+        "all_ingredients": ["milk"],
+    },
+    {
+        "name": "cheese",
+        "emoji": "🧀",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["eggs_dairy"],
+        "all_ingredients": ["cheese"],
+    },
+    {
+        "name": "lettuce",
+        "emoji": "🥬",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["vegetable"],
+        "all_ingredients": ["lettuce"],
+    },
+    {
+        "name": "tomato",
+        "emoji": "🍅",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["vegetable"],
+        "all_ingredients": ["tomato"],
+    },
+    {
+        "name": "onion",
+        "emoji": "🧅",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["aromatic"],
+        "all_ingredients": ["onion"],
+    },
+    {
+        "name": "ginger",
+        "emoji": "🫚",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["aromatic"],
+        "all_ingredients": ["ginger"],
+    },
+    {
+        "name": "potato",
+        "emoji": "🥔",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["vegetable"],
+        "all_ingredients": ["potato"],
+    },
+    {
+        "name": "mushroom",
+        "emoji": "🍄",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["vegetable"],
+        "all_ingredients": ["mushroom"],
+    },
+    {
+        "name": "pepper",
+        "emoji": "🌶️",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["aromatic"],
+        "all_ingredients": ["pepper"],
+    },
+    {
+        "name": "coconut",
+        "emoji": "🥥",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["fruit"],
+        "all_ingredients": ["coconut"],
+    },
+    {
+        "name": "pineapple",
+        "emoji": "🍍",
+        "value": 0,
+        "tool": False,
+        "salt_level": 0,
+        "cook_level": 0,
+        "water_level": 0,
+        "chop_level": 0,
+        "edible": True,
+        "ingredient_types": ["fruit"],
+        "all_ingredients": ["pineapple"],
+    },
 ]
 
 cooking_tools = [
-    {"name": "water", "emoji": "💧", "value": 0, "durable": True},
-    {"name": "knife", "emoji": "🔪", "value": 0, "durable": True},
-    {"name": "stove", "emoji": "🔥", "value": 0, "durable": True},
-    {"name": "salt", "emoji": "🧂", "value": 0, "durable": True},
+    {"name": "water", "emoji": "💧", "value": 0, "tool": True},
+    {"name": "knife", "emoji": "🔪", "value": 0, "tool": True},
+    {"name": "stove", "emoji": "🔥", "value": 0, "tool": True},
+    {"name": "salt", "emoji": "🧂", "value": 0, "tool": True},
 ]
 
 decorations_tools = [
@@ -139,37 +366,9 @@ INGREDIENTS = {
 
 
 cooking_system_prompt = """
-You are controlling the dynamics of a cooking game. Given two items, your job is to generate the item you get from combining them, along with its value.
+You are controlling the semantics of a cooking game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. Please respond in JSON format.
 
-BASIC RULES:
-1. Each item has a value (-100 to 100) representing how good it is to eat.
-2. Basic ingredients that can be eaten raw have a value of 0.
-3. Tools (water, knife, stove, salt) are used to modify ingredients. They always have a value of 0.
-4. Combining two tools creates a new, potentially very useful tool. But combining non-basic tools doesn't make anything.
-5. Ingredients can be combined to make new dishes.
-
-TOOL USE RULES:
-1. Knife: Using the knife on an item makes it chopped. It should get an adjective like "chopped," "sliced," or "diced," depending on what is appropriate. Combining it with the knife again should make it finely chopped. It should get an adjective like "finely chopped," "thinly sliced," or "minced," depending on what is appropriate.
-2. Water: Adding water to an item makes it soaked. It should get a descriptor like "soaked" or "in water," depending on what is appropriate. Adding water to something that is already soaked should not change the item.
-3. Stove: Cooking an item on the stove makes it cooked. It should get a descriptor like "cooked." Cooking something that is finely chopped (e.g. a minced onion) that isn't combined with anything else should burn it. Cooking something that is already cooked should make it overcooked. Cooking something overcooked should make it burnt, unless it is a soup.
-4. Salt: Adding salt to an item makes it salted. It should get a descriptor like "salted." Adding salt to something that is already salted, or where one of the ingredients is already salted, should make it over-salted.
-
-COMBINATION RULES:
-1. Soup: Cooked soup is good, but ingredients should be chopped first. Soup with non-chopped ingredients should be worse than soup with chopped ingredients.
-2. Grains: Grains can be toasted on the stove or soaked in water, then cooked on the stove. Soaking the grains in water first should make them much more valuable.
-3. Inedible: Adding something inedible to something edible should make the result inedible (i.e. have a value of 0). Cooking the result should make it edible again.
-4. Overcomplication: Dishes should start to get worse when they have more than 3 basic ingredients in them.
-
-VALUE RULES:
-1. Grains that are soaked and toasted should be much more valuable than grains that are just toasted or soaked. Soaking should not change the value in and of itself, but cooking something soaked should increase value dramatically (value +20-30) while toasting should increase value moderately (value +5-10). 
-2. Ingredients that are sliced and cooked on the stove should be more valuable than ingredients that are just cooked or just sliced (value +10-20).
-3. Salted dishes should be more valuable than unsalted dishes (value +10-20), but over-salting should make dishes worse (value -20-30).
-4. Inedible dishes should be worth 0 (value 0).
-5. Dishes with more than 3 basic ingredients should be less valuable than dishes with fewer than 3 basic ingredients (value -10-20 per extra ingredient).
-
-Think step by step about what the resulting item should be, what its value should be, and what emoji to use. We want a player who is trying to make the most valuable dish to be able to learn the rules. In generating the names for the resulting dishes, you should use descriptive adjectives and names that help people learn the rules.
-
-You should always respond with your reasoning between the <reasoning> and </reasoning> tags, and valid JSON between the <output> and </output> tags.
+The names should be informative and make it possible for the player to know the relevant features so they can learn the rules.
 """
 
 decorations_system_prompt = """
