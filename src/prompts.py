@@ -2,19 +2,16 @@
 This file contains prompts for the language model.
 """
 
-from typing import Annotated
-
 import backoff
 from litellm import completion
 from pydantic import BaseModel
-from pydantic.types import StringConstraints
 
 from src.combo_functions import FEATURE_NAMES
 from src.constants import SYSTEM_PROMPTS
 
 
 class ItemSemantics(BaseModel):
-    emoji: Annotated[str, StringConstraints(min_length=1, max_length=3)]
+    emoji: str
     name: str
 
 
@@ -35,8 +32,8 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
     ]
 
     # Only use the last 10 examples for the prompt
-    if len(ic_examples) > 20:
-        ic_examples = ic_examples[:5] + ic_examples[-15:]
+    if len(ic_examples) > 10:
+        ic_examples = ic_examples[:5] + ic_examples[-5:]
 
     for example in ic_examples:
         item1, item2 = example["input"]
@@ -66,14 +63,14 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
     return messages
 
 
-@backoff.on_exception(backoff.expo, Exception, max_tries=12)
+@backoff.on_exception(backoff.expo, Exception, max_tries=8)
 def call_model(messages: list, lm_string: str) -> str:
     try:
         response = completion(
             model=lm_string,
             messages=messages,
             response_format=ItemSemantics,
-            max_completion_tokens=1024,
+            max_completion_tokens=4096,
             temperature=0.2,
         )
     except Exception as e:
@@ -93,6 +90,8 @@ def call_model(messages: list, lm_string: str) -> str:
         raise Exception("No content")
 
     semantics = ItemSemantics.model_validate_json(content).model_dump()
+    if len(semantics["emoji"]) > 3:
+        semantics["emoji"] = semantics["emoji"][:3]
 
     return semantics
 

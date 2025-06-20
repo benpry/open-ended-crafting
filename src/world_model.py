@@ -73,7 +73,8 @@ class MemoizedWorldModel:
         world_model_dict = {
             "lm": self.lm,
             "combinations": combinations_lsts,
-            "examples": self.ic_examples,
+            "ic_examples": self.ic_examples,
+            "assign_names": self.assign_names,
         }
 
         with open(filepath, "w") as f:
@@ -83,10 +84,35 @@ class MemoizedWorldModel:
         with open(filepath, "r") as f:
             world_model_dict = json.load(f)
         self.lm = world_model_dict["lm"]
+        self.assign_names = world_model_dict["assign_names"]
         self.ic_examples = world_model_dict["ic_examples"]
         self.combinations = {}
         for combo, result in world_model_dict["combinations"].items():
             self.combinations[frozenset(literal_eval(combo))] = literal_eval(result)
+
+    def loads(self, data: str):
+        world_model_dict = json.loads(data)
+        self.lm = world_model_dict["lm"]
+        self.assign_names = world_model_dict["assign_names"]
+        self.ic_examples = world_model_dict["ic_examples"]
+        self.combinations = {}
+        for combo, result in world_model_dict["combinations"].items():
+            self.combinations[frozenset(literal_eval(combo))] = literal_eval(result)
+
+    def dumps(self):
+        combinations_lsts = {}
+        for combo, result in self.combinations.items():
+            inps = tuple(combo)
+            combinations_lsts[str(inps)] = result
+
+        world_model_dict = {
+            "lm": self.lm,
+            "combinations": combinations_lsts,
+            "ic_examples": self.ic_examples,
+            "assign_names": self.assign_names,
+        }
+
+        return json.dumps(world_model_dict)
 
     def make_graph(self):
         G = nx.DiGraph()

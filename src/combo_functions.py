@@ -8,9 +8,8 @@ def cooking_value_function(item):
 
     value = 0
 
-    # sliced things are worth +5
-    if item["chop_level"] == 1:
-        value += 5
+    # +5 per chop level
+    value += item["chop_level"] * 5
 
     # cooked things are worth +5
     if item["cook_level"] == 1:
@@ -56,9 +55,9 @@ def cooking_value_function(item):
 
 cooking_feature_names = {
     "water_level": ["dry", "soaked"],
-    "chop_level": ["unchopped", "chopped", "eviscerated"],
+    "chop_level": ["unchopped", "chopped", "minced"],
     "salt_level": ["unsalted", "salted", "oversalted"],
-    "cook_level": ["raw", "cooked", "burnt"],
+    "cook_level": ["raw", "cooked", "overcooked"],
 }
 
 
@@ -93,6 +92,13 @@ def cooking_apply_tool(tool, item):
             new_item["cook_level"] = min(
                 item["cook_level"] + 1, len(cooking_feature_names["cook_level"]) - 1
             )
+
+    # Knife increases chop level. You can't chop a soaked thing.
+    elif tool["name"] == "knife" and item["water_level"] == 0:
+        # increase the chop level
+        new_item["chop_level"] = min(
+            item["chop_level"] + 1, len(cooking_feature_names["chop_level"])
+        )
 
     elif tool["name"] == "salt":
         # increase the salt level
