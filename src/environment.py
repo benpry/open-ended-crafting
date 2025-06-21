@@ -3,7 +3,7 @@ from typing import Optional
 
 import gymnasium as gym
 
-from src.constants import cooking_ingredients, cooking_tools
+from src.constants import INGREDIENTS, TOOLS
 from src.world_model import MemoizedWorldModel
 
 
@@ -26,10 +26,10 @@ class CraftingGame(gym.Env):
         Get an initial state consisting of basic ingredients.
         """
         # get the item names and delete the reasoning
-        # tools = TOOLS[self.domain]
-        # ingredients = random.sample(INGREDIENTS[self.domain], 5)
-        tools = cooking_tools
-        ingredients = random.sample(cooking_ingredients, 5)
+        tools = TOOLS[self.domain]
+        ingredients = random.sample(INGREDIENTS[self.domain], 5)
+        # tools = cooking_tools
+        # ingredients = random.sample(cooking_ingredients, 5)
         self.inventory = tools + ingredients
 
         return self.inventory
@@ -67,7 +67,11 @@ class CraftingGame(gym.Env):
         """
         if action is None:
             best_value = max(item["value"] for item in self.inventory)
-            return self.inventory, best_value, True, {}
+            obs = {
+                "inventory": self.inventory,
+                "new_item": None,
+            }
+            return obs, best_value, True, {}
         else:
             name1, name2 = action
 

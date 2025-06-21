@@ -176,6 +176,8 @@ cython_debug/
 # VSCode
 .vscode
 figures/
+data/simulations/
 
 # We're using jupytext to convert notebooks to python scripts
 *.ipynb
+.aider*
