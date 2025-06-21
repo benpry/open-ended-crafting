@@ -2,7 +2,7 @@ cooking_ingredients = [
     {
         "name": "apple",
         "emoji": "🍎",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -15,7 +15,7 @@ cooking_ingredients = [
     {
         "name": "banana",
         "emoji": "🍌",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -28,7 +28,7 @@ cooking_ingredients = [
     {
         "name": "carrot",
         "emoji": "🥕",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -106,7 +106,7 @@ cooking_ingredients = [
     {
         "name": "milk",
         "emoji": "🥛",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -119,7 +119,7 @@ cooking_ingredients = [
     {
         "name": "cheese",
         "emoji": "🧀",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -132,7 +132,7 @@ cooking_ingredients = [
     {
         "name": "lettuce",
         "emoji": "🥬",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -145,7 +145,7 @@ cooking_ingredients = [
     {
         "name": "tomato",
         "emoji": "🍅",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -158,7 +158,7 @@ cooking_ingredients = [
     {
         "name": "onion",
         "emoji": "🧅",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -171,7 +171,7 @@ cooking_ingredients = [
     {
         "name": "ginger",
         "emoji": "🫚",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -184,7 +184,7 @@ cooking_ingredients = [
     {
         "name": "potato",
         "emoji": "🥔",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -197,7 +197,7 @@ cooking_ingredients = [
     {
         "name": "mushroom",
         "emoji": "🍄",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -210,7 +210,7 @@ cooking_ingredients = [
     {
         "name": "pepper",
         "emoji": "🌶️",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -223,7 +223,7 @@ cooking_ingredients = [
     {
         "name": "coconut",
         "emoji": "🥥",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -236,7 +236,7 @@ cooking_ingredients = [
     {
         "name": "pineapple",
         "emoji": "🍍",
-        "value": 0,
+        "value": 2,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
