@@ -611,5 +611,18 @@ def run_oracle_agent(
             step_log["run_idx"] = run_idx
             step_log["final_reward"] = result["final_reward"]
             all_logs.append(step_log)
+        
+        # If no steps were taken, still record the run
+        if not result["episode_log"]:
+            all_logs.append({
+                "run_idx": run_idx,
+                "step": 0,
+                "action": None,
+                "new_item": None,
+                "inventory_size": len(result["initial_inventory"]),
+                "max_value": max(item["value"] for item in result["initial_inventory"]) if result["initial_inventory"] else 0,
+                "inventory": result["initial_inventory"],
+                "final_reward": result["final_reward"]
+            })
 
     return pd.DataFrame(all_logs)
