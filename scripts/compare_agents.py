@@ -30,16 +30,10 @@ if __name__ == "__main__":
             planning_method="beam_search",
         ).assign(agent="oracle", domain=domain)
 
-        # Check what columns we have
-        print(f"Random columns: {df_random.columns.tolist()}")
-        print(f"Oracle columns: {df_oracle.columns.tolist()}")
-        
         # Get the final scores for each run
-        df_random_final = df_random.groupby('run_idx')['reward'].last().reset_index()
-        df_random_final.columns = ['run_idx', 'final_reward']
-        
-        df_oracle_final = df_oracle.groupby('run_idx')['reward'].last().reset_index()
-        df_oracle_final.columns = ['run_idx', 'final_reward']
+        # Both agents should have 'final_reward' column
+        df_random_final = df_random.groupby('run_idx')['final_reward'].last().reset_index()
+        df_oracle_final = df_oracle.groupby('run_idx')['final_reward'].last().reset_index()
         
         print(f"Random agent score: {df_random_final['final_reward'].mean():.2f}")
         print(f"Oracle agent score: {df_oracle_final['final_reward'].mean():.2f}")
