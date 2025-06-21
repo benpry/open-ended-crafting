@@ -2,7 +2,7 @@ cooking_ingredients = [
     {
         "name": "apple",
         "emoji": "🍎",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -15,7 +15,7 @@ cooking_ingredients = [
     {
         "name": "banana",
         "emoji": "🍌",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -28,7 +28,7 @@ cooking_ingredients = [
     {
         "name": "carrot",
         "emoji": "🥕",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -106,7 +106,7 @@ cooking_ingredients = [
     {
         "name": "milk",
         "emoji": "🥛",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -119,7 +119,7 @@ cooking_ingredients = [
     {
         "name": "cheese",
         "emoji": "🧀",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -132,7 +132,7 @@ cooking_ingredients = [
     {
         "name": "lettuce",
         "emoji": "🥬",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -145,7 +145,7 @@ cooking_ingredients = [
     {
         "name": "tomato",
         "emoji": "🍅",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -158,7 +158,7 @@ cooking_ingredients = [
     {
         "name": "onion",
         "emoji": "🧅",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -171,7 +171,7 @@ cooking_ingredients = [
     {
         "name": "ginger",
         "emoji": "🫚",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -184,7 +184,7 @@ cooking_ingredients = [
     {
         "name": "potato",
         "emoji": "🥔",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -197,7 +197,7 @@ cooking_ingredients = [
     {
         "name": "mushroom",
         "emoji": "🍄",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -210,7 +210,7 @@ cooking_ingredients = [
     {
         "name": "pepper",
         "emoji": "🌶️",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -223,7 +223,7 @@ cooking_ingredients = [
     {
         "name": "coconut",
         "emoji": "🥥",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -236,7 +236,7 @@ cooking_ingredients = [
     {
         "name": "pineapple",
         "emoji": "🍍",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -537,7 +537,7 @@ genetics_ingredients = [
     {
         "name": "fish",
         "emoji": "🐟",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -552,7 +552,7 @@ genetics_ingredients = [
     {
         "name": "shark",
         "emoji": "🦈",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -567,7 +567,7 @@ genetics_ingredients = [
     {
         "name": "octopus",
         "emoji": "🐙",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -582,7 +582,7 @@ genetics_ingredients = [
     {
         "name": "squid",
         "emoji": "🦑",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -597,7 +597,7 @@ genetics_ingredients = [
     {
         "name": "snake",
         "emoji": "🐍",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -612,7 +612,7 @@ genetics_ingredients = [
     {
         "name": "frog",
         "emoji": "🐸",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -627,7 +627,7 @@ genetics_ingredients = [
     {
         "name": "bird",
         "emoji": "🐦‍⬛",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -642,7 +642,7 @@ genetics_ingredients = [
     {
         "name": "lizard",
         "emoji": "🦎",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -657,7 +657,7 @@ genetics_ingredients = [
     {
         "name": "turtle",
         "emoji": "🐢",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -672,7 +672,7 @@ genetics_ingredients = [
     {
         "name": "elephant",
         "emoji": "🐘",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -687,7 +687,7 @@ genetics_ingredients = [
     {
         "name": "whale",
         "emoji": "🐳",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -702,7 +702,7 @@ genetics_ingredients = [
     {
         "name": "penguin",
         "emoji": "🐧",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -717,7 +717,7 @@ genetics_ingredients = [
     {
         "name": "panda",
         "emoji": "🐼",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -732,7 +732,7 @@ genetics_ingredients = [
     {
         "name": "koala",
         "emoji": "🐨",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -747,7 +747,7 @@ genetics_ingredients = [
     {
         "name": "kangaroo",
         "emoji": "🦘",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -762,7 +762,7 @@ genetics_ingredients = [
     {
         "name": "tiger",
         "emoji": "🐯",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -777,7 +777,7 @@ genetics_ingredients = [
     {
         "name": "lion",
         "emoji": "🦁",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -792,7 +792,7 @@ genetics_ingredients = [
     {
         "name": "giraffe",
         "emoji": "🦒",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -807,7 +807,7 @@ genetics_ingredients = [
     {
         "name": "zebra",
         "emoji": "🦓",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -822,7 +822,7 @@ genetics_ingredients = [
     {
         "name": "monkey",
         "emoji": "🐒",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -837,7 +837,7 @@ genetics_ingredients = [
     {
         "name": "bear",
         "emoji": "🐻",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -852,7 +852,7 @@ genetics_ingredients = [
     {
         "name": "wolf",
         "emoji": "🐺",
-        "value": 2,
+        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,

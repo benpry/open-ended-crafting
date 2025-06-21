@@ -8,70 +8,73 @@ def cooking_value_function(item):
 
     value = 0
 
-    # Base value for edible items
-    value += 2
+    # No base value for just being edible
 
     # CORE COOKING PRINCIPLES (high rewards for understanding these)
 
-    # Perfect Preparation Bonus: Chopped (1) + Cooked (1) = +40 points
+    # Perfect Preparation Bonus: Chopped (1) + Cooked (1) = +50 points
     if item["chop_level"] == 1 and item["cook_level"] == 1:
+        value += 50
+
+    # Soup Mastery: Cooked (1) + Water (1) = +45 points
+    if item["cook_level"] == 1 and item["water_level"] == 1:
+        value += 45
+
+    # Seasoning Mastery: Salt (1) + any preparation = +40 points
+    if item["salt_level"] == 1 and (item["chop_level"] > 0 or item["cook_level"] > 0):
         value += 40
 
-    # Soup Mastery: Cooked (1) + Water (1) = +35 points
-    if item["cook_level"] == 1 and item["water_level"] == 1:
-        value += 35
-
-    # Seasoning Mastery: Salt (1) + any preparation = +30 points
-    if item["salt_level"] == 1 and (item["chop_level"] > 0 or item["cook_level"] > 0):
-        value += 30
-
-    # Ultimate Dish: Chopped + Cooked + Water + Salt = +80 points total
+    # Ultimate Dish: Chopped + Cooked + Water + Salt = +100 points total
     if (
         item["chop_level"] == 1
         and item["cook_level"] == 1
         and item["water_level"] == 1
         and item["salt_level"] == 1
     ):
-        value += 25  # Additional bonus on top of individual bonuses
+        value += 35  # Additional bonus on top of individual bonuses
 
-    # Ingredient Harmony: Exactly 2 different ingredient types = +20
+    # Ingredient Harmony: Exactly 2 different ingredient types = +30
     ingredient_type_count = len(item["ingredient_types"])
     if ingredient_type_count == 2:
-        value += 20
+        value += 30
+
+    # Simple cooking bonus for single ingredients
+    if len(item["all_ingredients"]) == 1 and item["cook_level"] == 1:
+        value += 15
 
     # HARSH PENALTIES FOR POOR UNDERSTANDING
 
     # Raw disasters
     if item["cook_level"] == 0 and len(item["all_ingredients"]) > 1:
-        value -= 25  # Raw mixed dishes are terrible
+        value -= 35  # Raw mixed dishes are terrible
 
     # Water misuse
     if item["water_level"] == 1 and item["cook_level"] == 0:
-        value -= 35  # Raw soggy food is awful
+        value -= 45  # Raw soggy food is awful
 
     # Overcooking disasters
     if item["cook_level"] == 2:  # burnt
-        value -= 40  # Burnt food is really bad
+        value -= 50  # Burnt food is really bad
 
     # Over-seasoning disasters
     if item["salt_level"] >= 2:  # oversalted
-        value -= 35
+        value -= 45
 
     # Over-chopping disasters
     if item["chop_level"] == 2:  # eviscerated
-        value -= 25
+        value -= 35
 
     # Ingredient chaos - too many types
     if ingredient_type_count > 2:
-        value -= 20 * (ingredient_type_count - 2)
+        value -= 30 * (ingredient_type_count - 2)
 
     # Too many total ingredients
     if len(item["all_ingredients"]) > 3:
-        value -= 25 * (len(item["all_ingredients"]) - 3)
+        value -= 35 * (len(item["all_ingredients"]) - 3)
 
     # Single ingredient type penalty (no harmony)
     if ingredient_type_count == 1 and len(item["all_ingredients"]) > 1:
-        value -= 15
+        value -= 20
 
     return max(value, 0)
 
@@ -198,73 +201,81 @@ decorations_feature_names = {
 
 def decorations_value_function(item):
     """Calculate the value of a decoration based on its features."""
-    value = 1  # Base value
+    value = 0  # No base value
 
     # MASTERY BONUSES (high rewards for understanding material properties)
 
-    # Artistic Mastery: Pen on artificial materials = +35
+    # Artistic Mastery: Pen on artificial materials = +45
     if (
         item.get("material_type") == "artificial"
         and item.get("decorated_level", 0) == 1
     ):
-        value += 35
+        value += 45
 
-    # Woodworking Mastery: Saw on wood = +40
+    # Woodworking Mastery: Saw on wood = +50
     if item.get("material_type") == "wood" and item.get("cut_level", 0) == 1:
-        value += 40
+        value += 50
 
-    # Precision Cutting: Scissors on soft materials = +35
+    # Precision Cutting: Scissors on soft materials = +45
     if (
         item.get("hardness") == "soft"
         and item.get("cut_level", 0) == 1
         and item.get("material_type") != "wood"
     ):  # Not wood (that's for saw)
-        value += 35
+        value += 45
 
-    # Perfect Paint Job: First paint application = +25
+    # Perfect Paint Job: First paint application = +35
     if item.get("paint_level", 0) == 1:
-        value += 25
+        value += 35
 
     # COMBINATION MASTERY BONUSES
 
-    # Nature-Art Fusion: Natural + Artificial materials = +40
+    # Nature-Art Fusion: Natural + Artificial materials = +50
     if item.get("has_natural", False) and item.get("has_artificial", False):
-        value += 40
+        value += 50
 
-    # Texture Harmony: Soft + Hard materials = +35
+    # Texture Harmony: Soft + Hard materials = +45
     if item.get("has_soft", False) and item.get("has_hard", False):
-        value += 35
+        value += 45
 
     # ULTIMATE CREATION BONUS
-    # Multi-process masterpiece: Cut + Painted + Decorated = +50
+    # Multi-process masterpiece: Cut + Painted + Decorated = +65
     if (
         item.get("cut_level", 0) >= 1
         and item.get("paint_level", 0) >= 1
         and item.get("decorated_level", 0) >= 1
     ):
-        value += 50
+        value += 65
+
+    # Simple processing bonus for single items
+    if item.get("basic_item_count", 0) == 1 and (
+        item.get("cut_level", 0) >= 1 or 
+        item.get("paint_level", 0) >= 1 or 
+        item.get("decorated_level", 0) >= 1
+    ):
+        value += 10
 
     # HARSH PENALTIES FOR POOR UNDERSTANDING
 
     # Wrong tool penalties
     if item.get("material_type") == "natural" and item.get("decorated_level", 0) == 1:
-        value -= 40  # Pen on natural is bad
+        value -= 50  # Pen on natural is bad
 
     if (
         item.get("material_type") != "wood"
         and item.get("cut_level", 0) == 1
         and item.get("hardness") == "hard"
     ):
-        value -= 40  # Wrong cutting tool
+        value -= 50  # Wrong cutting tool
 
     # Overprocessing penalties
     if item.get("paint_level", 0) >= 2:
-        value -= 50  # Over-painted is terrible
+        value -= 60  # Over-painted is terrible
 
     # Material chaos - too many basic items
     basic_count = item.get("basic_item_count", 0)
     if basic_count > 2:
-        value -= 35 * (basic_count - 2)  # Harsh penalty for clutter
+        value -= 45 * (basic_count - 2)  # Harsh penalty for clutter
 
     # No processing penalty (raw materials aren't valuable)
     if (
@@ -273,7 +284,7 @@ def decorations_value_function(item):
         and item.get("decorated_level", 0) == 0
         and basic_count > 1
     ):
-        value -= 25  # Multiple raw materials combined badly
+        value -= 35  # Multiple raw materials combined badly
 
     return max(value, 0)
 
@@ -405,50 +416,50 @@ genetics_feature_names = {
 
 def genetics_value_function(item):
     """Calculate the value of a genetic creation based on its features."""
-    value = 3  # Base value for all animals
+    value = 0  # No base value for animals
 
     # EVOLUTION MASTERY BONUSES (high rewards for understanding genetics)
 
-    # Optimal Growth: Growth serum on small animals = +45
+    # Optimal Growth: Growth serum on small animals = +55
     if item.get("growth_applied", False) and item.get("original_size") == "small":
-        value += 45
+        value += 55
 
-    # Perfect Mutation: Second-level mutation = +40
+    # Perfect Mutation: Second-level mutation = +50
     if item.get("mutation_level", 0) == 2:
-        value += 40
+        value += 50
 
-    # Metabolic Enhancement: Accelerator on carnivores/omnivores = +35
+    # Metabolic Enhancement: Accelerator on carnivores/omnivores = +45
     if item.get("metabolic_level", 0) == 1 and item.get("diet_type") in [
         "carnivore",
         "omnivore",
     ]:
-        value += 35
+        value += 45
 
     # ULTIMATE EVOLUTION BONUSES
 
-    # Amphibious Mastery: Gills + Lungs + Mutation + Reconfiguration = +60
+    # Amphibious Mastery: Gills + Lungs + Mutation + Reconfiguration = +75
     if (
         item.get("has_gills_animal", False)
         and item.get("has_lungs_animal", False)
         and item.get("reconfigured_respiratory", False)
         and item.get("mutation_level", 0) >= 1
     ):
-        value += 60
+        value += 75
 
-    # Perfect Hybrid: Exactly 2 families from same habitat = +50
+    # Perfect Hybrid: Exactly 2 families from same habitat = +65
     if (
         item.get("families")
         and len(set(item["families"])) == 2
         and "habitats" in item
         and len(set(item["habitats"])) == 1
     ):
-        value += 50
+        value += 65
 
-    # Size Perfection: Same-size breeding = +25
+    # Size Perfection: Same-size breeding = +35
     if item.get("size_variance", 1) == 0:  # No size difference
-        value += 25
+        value += 35
 
-    # MEGA EVOLUTION: Growth + Mutation + Metabolic + Perfect Hybrid = +80
+    # MEGA EVOLUTION: Growth + Mutation + Metabolic + Perfect Hybrid = +100
     if (
         item.get("growth_applied", False)
         and item.get("mutation_level", 0) >= 2
@@ -456,39 +467,43 @@ def genetics_value_function(item):
         and item.get("families")
         and len(set(item["families"])) == 2
     ):
-        value += 80
+        value += 100
+
+    # Simple breeding bonus for basic hybrids
+    if item.get("basic_animal_count", 0) == 2 and len(set(item.get("families", []))) == 2:
+        value += 15
 
     # HARSH PENALTIES FOR POOR BREEDING
 
     # Wrong growth application
     if item.get("growth_applied", False) and item.get("original_size") == "large":
-        value -= 45  # Growth on large animals is terrible
+        value -= 55  # Growth on large animals is terrible
 
     # Mutation disasters
     if item.get("mutation_level", 0) == 1:
-        value -= 35  # First mutation is unstable
+        value -= 45  # First mutation is unstable
     if item.get("mutation_level", 0) >= 3:
-        value -= 60  # Over-mutation is catastrophic
+        value -= 75  # Over-mutation is catastrophic
 
     # Metabolic mismatch
     if item.get("metabolic_level", 0) == 1 and item.get("diet_type") == "herbivore":
-        value -= 40  # Metabolic boost on herbivores is bad
+        value -= 50  # Metabolic boost on herbivores is bad
 
     # Size incompatibility disaster
     if item.get("size_variance", 0) >= 2:  # Large vs small
-        value -= 50  # Terrible genetic mismatch
+        value -= 65  # Terrible genetic mismatch
 
     # Habitat chaos
     if "habitats" in item and len(set(item["habitats"])) > 2:
-        value -= 40 * (len(set(item["habitats"])) - 2)
+        value -= 50 * (len(set(item["habitats"])) - 2)
 
     # Family chaos
     if item.get("families") and len(set(item["families"])) > 3:
-        value -= 35 * (len(set(item["families"])) - 3)
+        value -= 45 * (len(set(item["families"])) - 3)
 
     # Too many animals penalty
     if item.get("basic_animal_count", 0) > 2:
-        value -= 45 * (item.get("basic_animal_count", 0) - 2)
+        value -= 55 * (item.get("basic_animal_count", 0) - 2)
 
     # Random mixing penalty
     if item.get("basic_animal_count", 0) > 1 and not any(
@@ -499,7 +514,7 @@ def genetics_value_function(item):
             item.get("reconfigured_respiratory", False),
         ]
     ):
-        value -= 35  # Raw breeding without enhancement
+        value -= 45  # Raw breeding without enhancement
 
     return max(value, 0)
 
@@ -691,50 +706,50 @@ potions_feature_names = {
 
 def potions_value_function(item):
     """Calculate the potency of a potion based on its features."""
-    value = 2  # Base value for all potions
+    value = 0  # No base value for potions
 
     # ALCHEMICAL MASTERY BONUSES (high rewards for understanding alchemy)
 
-    # Plant Extraction Mastery: Vial on plant ingredients = +40
+    # Plant Extraction Mastery: Vial on plant ingredients = +50
     if item.get("extraction_level", 0) == 1 and item.get("ingredient_type") == "plant":
-        value += 40
+        value += 50
 
-    # Mineral Grinding Mastery: Mortar on hard minerals = +40
+    # Mineral Grinding Mastery: Mortar on hard minerals = +50
     if (
         item.get("ground", False)
         and item.get("hardness") == "hard"
         and item.get("ingredient_type") == "mineral"
     ):
-        value += 40
+        value += 50
 
-    # Perfect Enchantment: Second-level enchantment = +45
+    # Perfect Enchantment: Second-level enchantment = +55
     if item.get("enchantment_level", 0) == 2:
-        value += 45
+        value += 55
 
-    # Liquid Purification: Filter on liquid potions = +35
+    # Liquid Purification: Filter on liquid potions = +45
     if item.get("filtered", False) and item.get("state_of_matter") == "liquid":
-        value += 35
+        value += 45
 
     # ULTIMATE ALCHEMY BONUSES
 
-    # State Transformation Mastery: 3+ different states combined = +55
+    # State Transformation Mastery: 3+ different states combined = +70
     if "states_of_matter" in item and len(set(item["states_of_matter"])) >= 3:
-        value += 55
+        value += 70
 
-    # Magical-Mundane Fusion: Both magical and mundane = +50
+    # Magical-Mundane Fusion: Both magical and mundane = +65
     if item.get("has_magical", False) and item.get("has_mundane", False):
-        value += 50
+        value += 65
 
-    # Perfect Processing: Extracted + Ground + Enchanted + Filtered = +65
+    # Perfect Processing: Extracted + Ground + Enchanted + Filtered = +85
     if (
         item.get("extraction_level", 0) >= 1
         and item.get("ground", False)
         and item.get("enchantment_level", 0) >= 1
         and item.get("filtered", False)
     ):
-        value += 65
+        value += 85
 
-    # GRAND ELIXIR: All mastery bonuses combined = +80
+    # GRAND ELIXIR: All mastery bonuses combined = +100
     if (
         item.get("extraction_level", 0) >= 1
         and item.get("ground", False)
@@ -744,27 +759,36 @@ def potions_value_function(item):
         and item.get("has_mundane", False)
         and len(set(item.get("states_of_matter", []))) >= 3
     ):
-        value += 80
+        value += 100
+
+    # Simple processing bonus
+    if item.get("basic_ingredient_count", 0) == 1 and (
+        item.get("extraction_level", 0) > 0 or
+        item.get("ground", False) or
+        item.get("enchantment_level", 0) > 0 or
+        item.get("filtered", False)
+    ):
+        value += 10
 
     # HARSH PENALTIES FOR POOR ALCHEMY
 
     # Wrong extraction target
     if item.get("extraction_level", 0) == 1 and item.get("ingredient_type") != "plant":
-        value -= 40  # Vial on non-plant is wasteful
+        value -= 50  # Vial on non-plant is wasteful
 
     # Wrong grinding target
     if item.get("ground", False) and item.get("hardness") == "soft":
-        value -= 40  # Mortar on soft materials is wrong
+        value -= 50  # Mortar on soft materials is wrong
 
     # Enchantment disasters
     if item.get("enchantment_level", 0) == 1:
-        value -= 25  # First enchantment is unstable
+        value -= 35  # First enchantment is unstable
     if item.get("enchantment_level", 0) >= 3:
-        value -= 55  # Over-enchantment is catastrophic
+        value -= 70  # Over-enchantment is catastrophic
 
     # Wrong filtration
     if item.get("filtered", False) and item.get("state_of_matter") in ["solid", "gas"]:
-        value -= 40  # Can't filter solids/gases properly
+        value -= 50  # Can't filter solids/gases properly
 
     # State monotony penalty
     if (
@@ -772,7 +796,7 @@ def potions_value_function(item):
         and len(set(item["states_of_matter"])) == 1
         and len(item["states_of_matter"]) > 1
     ):
-        value -= 35  # Boring same-state combinations
+        value -= 45  # Boring same-state combinations
 
     # Magical monotony penalty
     if (
@@ -780,11 +804,11 @@ def potions_value_function(item):
         and len(set(item["magical_levels"])) == 1
         and len(item["magical_levels"]) > 1
     ):
-        value -= 25  # All same magical level is bland
+        value -= 35  # All same magical level is bland
 
     # Too many ingredients chaos
     if item.get("basic_ingredient_count", 0) > 3:
-        value -= 40 * (item.get("basic_ingredient_count", 0) - 3)
+        value -= 50 * (item.get("basic_ingredient_count", 0) - 3)
 
     # Raw ingredient mixing penalty
     if item.get("basic_ingredient_count", 0) > 1 and not any(
@@ -795,7 +819,7 @@ def potions_value_function(item):
             item.get("filtered", False),
         ]
     ):
-        value -= 35  # Raw mixing is amateur alchemy
+        value -= 45  # Raw mixing is amateur alchemy
 
     return max(value, 0)
 
