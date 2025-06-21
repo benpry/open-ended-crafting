@@ -30,10 +30,19 @@ if __name__ == "__main__":
             planning_method="beam_search",
         ).assign(agent="oracle", domain=domain)
 
-        df_random_trials = df_random[["run_idx", "final_reward"]].drop_duplicates()
-        df_oracle_trials = df_oracle[["run_idx", "final_reward"]].drop_duplicates()
-        print(f"Random agent score: {df_random_trials['final_reward'].mean():.2f}")
-        print(f"Oracle agent score: {df_oracle_trials['final_reward'].mean():.2f}")
+        # Check what columns we have
+        print(f"Random columns: {df_random.columns.tolist()}")
+        print(f"Oracle columns: {df_oracle.columns.tolist()}")
+        
+        # Get the final scores for each run
+        df_random_final = df_random.groupby('run_idx')['reward'].last().reset_index()
+        df_random_final.columns = ['run_idx', 'final_reward']
+        
+        df_oracle_final = df_oracle.groupby('run_idx')['reward'].last().reset_index()
+        df_oracle_final.columns = ['run_idx', 'final_reward']
+        
+        print(f"Random agent score: {df_random_final['final_reward'].mean():.2f}")
+        print(f"Oracle agent score: {df_oracle_final['final_reward'].mean():.2f}")
         df = pd.concat([df, df_random, df_oracle])
 
     df.to_csv(here("data/simulations/agent_comparison.csv"), index=False)
