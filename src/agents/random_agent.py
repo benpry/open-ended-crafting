@@ -31,7 +31,10 @@ def run_random_agent(domain: str, n_runs: int = 10, n_steps: int = 10) -> pd.Dat
             obs, score, done, info = env.step((item1["name"], item2["name"]))
             new_item = obs["new_item"]
             inventory = obs["inventory"]
-            score = sum([item["value"] for item in inventory]) / (len(inventory) - 4)
+            print(f"inventory: {inventory}")
+            ingredients = [item for item in inventory if not item["tool"]]
+            print(f"ingredients: {ingredients}")
+            score = sum([item["value"] for item in ingredients]) / len(ingredients)
 
             step_log = {
                 "run_idx": run_idx,

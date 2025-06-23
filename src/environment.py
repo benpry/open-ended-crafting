@@ -116,9 +116,8 @@ class CraftingGame(gym.Env):
         """
         Get the reward at the end of an epoch.
         """
-        reward = sum(
-            item["value"] if item["tool"] not in item else 0 for item in self.inventory
-        ) / (len(self.inventory) - len(TOOLS[self.domain]))
+        ingredients = [item for item in self.inventory if not item["tool"]]
+        reward = sum(item["value"] for item in ingredients) / len(ingredients)
 
         # overall reward can't go below 0
         return max(reward, 0)

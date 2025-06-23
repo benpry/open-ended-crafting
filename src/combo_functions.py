@@ -181,7 +181,7 @@ def cooking_combination_function(item1, item2):
 decorations_feature_names = {
     "paint_level": ["unpainted", "painted", "over-painted"],
     "cut_level": ["uncut", "cut"],
-    "decorated_level": ["undecorated", "decorated"],
+    "drawn_level": ["undrawn", "drawn"],
 }
 
 
@@ -189,110 +189,51 @@ def decorations_value_function(item):
     """Calculate the value of a decoration based on its features."""
     value = 0  # No base value
 
-    # MASTERY BONUSES (high rewards for understanding material properties)
+    # POSITIVE UTILITY
 
-    # Artistic Mastery: Pen on artificial materials = +55
-    if (
-        item.get("material_type") == "artificial"
-        and item.get("decorated_level", 0) == 1
-    ):
-        value += 55
+    # Drawing on artificial materials is good
+    if "artificial" in item["material_types"] and item["drawn_level"] == 1:
+        value += 20
 
-    # Woodworking Mastery: Saw on wood = +60
-    if item.get("material_type") == "wood" and item.get("cut_level", 0) == 1:
-        value += 60
+    # Cutting soft materials is good
+    if item["hardness"] == "soft" and item["cut_level"] == 1:
+        value += 20
 
-    # Precision Cutting: Scissors on soft materials = +55
-    if (
-        item.get("hardness") == "soft"
-        and item.get("cut_level", 0) == 1
-        and item.get("material_type") != "wood"
-    ):  # Not wood (that's for saw)
-        value += 55
+    # Painting is good
+    if item["paint_level"] == 1:
+        value += 15
 
-    # Perfect Paint Job: First paint application = +45
-    if item.get("paint_level", 0) == 1:
-        value += 45
+    # framing helps, provided we didn't mess with something after framing
+    if item["framed"] and not item["post_frame_messed_with"]:
+        value += 15
 
-    # COMBINATION MASTERY BONUSES
+    # combining natural and artificial materials is good
+    if "natural" in item["material_types"] and "artificial" in item["material_types"]:
+        value += 35
 
-    # Nature-Art Fusion: Natural + Artificial materials = +60
-    if item.get("has_natural", False) and item.get("has_artificial", False):
-        value += 60
+    # NEGATIVE UTILITY
 
-    # Texture Harmony: Soft + Hard materials = +55
-    if item.get("has_soft", False) and item.get("has_hard", False):
-        value += 55
+    # messing with things after framing is bad
+    if item["post_frame_messed_with"]:
+        value -= 50
 
-    # ULTIMATE CREATION BONUS
-    # Multi-process masterpiece: Cut + Painted + Decorated = +80
-    if (
-        item.get("cut_level", 0) >= 1
-        and item.get("paint_level", 0) >= 1
-        and item.get("decorated_level", 0) >= 1
-    ):
-        value += 80
+    # over-painting is bad
+    if item["paint_level"] == 2:
+        value -= 20
 
-    # Remove simple processing bonus to reduce random scores
+    # cutting hard materials is bad
+    if item["hardness"] == "hard" and item["cut_level"] == 1:
+        value -= 25
 
-    # HARSH PENALTIES FOR POOR UNDERSTANDING
+    # combining artificial and natural materials is bad
+    if "artificial" not in item["material_types"] and item["drawn_level"] == 1:
+        value -= 25
 
-    # Penalty 0: Single unprocessed items = -120
-    basic_count = item.get("basic_item_count", 0)
-    if (
-        basic_count == 1
-        and item.get("cut_level", 0) == 0
-        and item.get("paint_level", 0) == 0
-        and item.get("decorated_level", 0) == 0
-    ):
-        value -= 120
+    # combining more than 2 basic items is bad
+    if len(item["basic_items"]) > 2:
+        value -= 30
 
-    # Any unprocessed item
-    if (
-        item.get("cut_level", 0) == 0
-        and item.get("paint_level", 0) == 0
-        and item.get("decorated_level", 0) == 0
-    ):
-        value -= 120
-
-    # Wrong tool penalties
-    if item.get("material_type") == "natural" and item.get("decorated_level", 0) == 1:
-        value -= 60  # Pen on natural is bad
-
-    if (
-        item.get("material_type") != "wood"
-        and item.get("cut_level", 0) == 1
-        and item.get("hardness") == "hard"
-    ):
-        value -= 60  # Wrong cutting tool
-
-    # Overprocessing penalties
-    if item.get("paint_level", 0) >= 2:
-        value -= 70  # Over-painted is terrible
-
-    # Material chaos - too many basic items
-    basic_count = item.get("basic_item_count", 0)
-    if basic_count > 2:
-        value -= 120 * (basic_count - 2)  # Ultra-harsh penalty for clutter
-
-    # No processing penalty (raw materials aren't valuable)
-    if (
-        item.get("cut_level", 0) == 0
-        and item.get("paint_level", 0) == 0
-        and item.get("decorated_level", 0) == 0
-        and basic_count > 1
-    ):
-        value -= 180  # Multiple raw materials combined badly
-
-    # Penalty 6: Any combination without proper technique = -200
-    if (
-        item.get("cut_level", 0) == 0
-        and item.get("paint_level", 0) == 0
-        and basic_count >= 1
-    ):
-        value -= 200
-
-    return max(value, 0)
+    return value
 
 
 def decorations_apply_tool(tool, item):
@@ -310,23 +251,22 @@ def decorations_apply_tool(tool, item):
     # Ensure tool field is set to False for the result
     new_item["tool"] = False
 
-    if tool["name"] == "pen":
-        new_item["decorated_level"] = 1
+    new_item["post_frame_messed_with"] = item["framed"]
 
-    elif tool["name"] == "saw":
-        new_item["cut_level"] = 1
+    if tool["name"] == "pen":
+        new_item["drawn_level"] = 1
+
+    elif tool["name"] == "frame":
+        new_item["framed"] = True
 
     elif tool["name"] == "scissors":
         # Only cut soft items, not hard ones
-        if item.get("hardness") == "soft":
-            new_item["cut_level"] = 1
-        else:
-            new_item["cut_level"] = (
-                1  # Still mark as cut but value function handles penalty
-            )
+        new_item["cut_level"] = 1
 
     elif tool["name"] == "paint":
-        new_item["paint_level"] = min(item.get("paint_level", 0) + 1, 2)
+        new_item["paint_level"] = min(
+            item["paint_level"] + 1, len(decorations_feature_names["paint_level"]) - 1
+        )
 
     return new_item
 
@@ -347,63 +287,28 @@ def decorations_combination_function(item1, item2):
         # Combine two non-tool items
         new_item = {}
 
-        # Track material types for combination bonuses
-        new_item["has_natural"] = (
-            item1.get("material_type") == "natural" or item1.get("has_natural", False)
-        ) or (
-            item2.get("material_type") == "natural" or item2.get("has_natural", False)
-        )
-        new_item["has_artificial"] = (
-            item1.get("material_type") == "artificial"
-            or item1.get("has_artificial", False)
-        ) or (
-            item2.get("material_type") == "artificial"
-            or item2.get("has_artificial", False)
-        )
-        new_item["has_soft"] = (
-            item1.get("hardness") == "soft" or item1.get("has_soft", False)
-        ) or (item2.get("hardness") == "soft" or item2.get("has_soft", False))
-        new_item["has_hard"] = (
-            item1.get("hardness") == "hard" or item1.get("has_hard", False)
-        ) or (item2.get("hardness") == "hard" or item2.get("has_hard", False))
-
-        # Determine primary material type (prefer artificial if mixed)
-        if (
-            item1.get("material_type") == "artificial"
-            or item2.get("material_type") == "artificial"
-        ):
-            new_item["material_type"] = "artificial"
-        elif (
-            item1.get("material_type") == "wood" or item2.get("material_type") == "wood"
-        ):
-            new_item["material_type"] = "wood"
-        else:
-            new_item["material_type"] = "natural"
-
-        # Determine hardness (prefer hard if mixed)
-        if item1.get("hardness") == "hard" or item2.get("hardness") == "hard":
-            new_item["hardness"] = "hard"
-        else:
-            new_item["hardness"] = "soft"
-
-        # Preserve highest levels
-        new_item["paint_level"] = max(
-            item1.get("paint_level", 0), item2.get("paint_level", 0)
-        )
-        new_item["cut_level"] = max(
-            item1.get("cut_level", 0), item2.get("cut_level", 0)
-        )
-        new_item["decorated_level"] = max(
-            item1.get("decorated_level", 0), item2.get("decorated_level", 0)
+        # the hardness is the harder of the two
+        new_item["hardness"] = (
+            "hard"
+            if item1["hardness"] == "hard" or item2["hardness"] == "hard"
+            else "soft"
         )
 
-        # Combine basic items
-        new_item["basic_items"] = item1.get("basic_items", []) + item2.get(
-            "basic_items", []
-        )
-        new_item["basic_item_count"] = item1.get("basic_item_count", 0) + item2.get(
-            "basic_item_count", 0
-        )
+        # the paint level is the highest of the two
+        new_item["paint_level"] = max(item1["paint_level"], item2["paint_level"])
+
+        # the cut level the lowest of the two
+        new_item["cut_level"] = min(item1["cut_level"], item2["cut_level"])
+
+        # the drawn level is the highest of the two
+        new_item["drawn_level"] = max(item1["drawn_level"], item2["drawn_level"])
+
+        new_item["material_types"] = item1["material_types"] + item2["material_types"]
+        new_item["basic_items"] = item1["basic_items"] + item2["basic_items"]
+
+        # if either is framed, the result is framed, but also messed with
+        new_item["framed"] = item1["framed"] or item2["framed"]
+        new_item["post_frame_messed_with"] = item1["framed"] or item2["framed"]
 
     # Calculate value
     new_item["tool"] = False

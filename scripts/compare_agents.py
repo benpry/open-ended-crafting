@@ -9,7 +9,9 @@ from src.agents.oracle_agent import run_oracle_agent
 from src.agents.random_agent import run_random_agent
 
 if __name__ == "__main__":
-    domains = ["cooking"]  # , "decorations", "genetics", "potions"]
+    # domains = ["cooking", "decorations", "genetics", "potions"]
+    domains = ["decorations"]
+    # domains = ["cooking"]
     df = pd.DataFrame()
 
     for domain in domains:

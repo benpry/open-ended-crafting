@@ -2,7 +2,6 @@ cooking_ingredients = [
     {
         "name": "apple",
         "emoji": "🍎",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -15,7 +14,6 @@ cooking_ingredients = [
     {
         "name": "banana",
         "emoji": "🍌",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -28,7 +26,6 @@ cooking_ingredients = [
     {
         "name": "carrot",
         "emoji": "🥕",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -41,7 +38,6 @@ cooking_ingredients = [
     {
         "name": "egg",
         "emoji": "🥚",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -54,7 +50,6 @@ cooking_ingredients = [
     {
         "name": "raw fish",
         "emoji": "🐟",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -67,7 +62,6 @@ cooking_ingredients = [
     {
         "name": "raw meat",
         "emoji": "🥩",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -80,7 +74,6 @@ cooking_ingredients = [
     {
         "name": "raw rice",
         "emoji": "🌾",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -93,7 +86,6 @@ cooking_ingredients = [
     {
         "name": "wheat",
         "emoji": "🌾",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -106,7 +98,6 @@ cooking_ingredients = [
     {
         "name": "milk",
         "emoji": "🥛",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -119,7 +110,6 @@ cooking_ingredients = [
     {
         "name": "cheese",
         "emoji": "🧀",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -132,7 +122,6 @@ cooking_ingredients = [
     {
         "name": "lettuce",
         "emoji": "🥬",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -145,7 +134,6 @@ cooking_ingredients = [
     {
         "name": "tomato",
         "emoji": "🍅",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -158,7 +146,6 @@ cooking_ingredients = [
     {
         "name": "onion",
         "emoji": "🧅",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -171,7 +158,6 @@ cooking_ingredients = [
     {
         "name": "ginger",
         "emoji": "🫚",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -184,7 +170,6 @@ cooking_ingredients = [
     {
         "name": "potato",
         "emoji": "🥔",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -197,7 +182,6 @@ cooking_ingredients = [
     {
         "name": "mushroom",
         "emoji": "🍄",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -210,7 +194,6 @@ cooking_ingredients = [
     {
         "name": "pepper",
         "emoji": "🌶️",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -223,7 +206,6 @@ cooking_ingredients = [
     {
         "name": "coconut",
         "emoji": "🥥",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -236,7 +218,6 @@ cooking_ingredients = [
     {
         "name": "pineapple",
         "emoji": "🍍",
-        "value": 0,
         "tool": False,
         "salt_level": 0,
         "cook_level": 0,
@@ -249,287 +230,287 @@ cooking_ingredients = [
 ]
 
 cooking_tools = [
-    {"name": "water", "emoji": "💧", "value": 0, "tool": True},
-    {"name": "knife", "emoji": "🔪", "value": 0, "tool": True},
-    {"name": "stove", "emoji": "🔥", "value": 0, "tool": True},
-    {"name": "salt", "emoji": "🧂", "value": 0, "tool": True},
+    {"name": "water", "emoji": "💧", "tool": True},
+    {"name": "knife", "emoji": "🔪", "tool": True},
+    {"name": "stove", "emoji": "🔥", "tool": True},
+    {"name": "salt", "emoji": "🧂", "tool": True},
 ]
 
 decorations_tools = [
-    {"name": "scissors", "emoji": "✂️", "value": 0, "tool": True},
-    {"name": "paint", "emoji": "🎨", "value": 0, "tool": True},
-    {"name": "saw", "emoji": "🪚", "value": 0, "tool": True},
-    {"name": "pen", "emoji": "🖊️", "value": 0, "tool": True},
+    {"name": "scissors", "emoji": "✂️", "tool": True},
+    {"name": "paint", "emoji": "🎨", "tool": True},
+    {"name": "frame", "emoji": "🖼️", "tool": True},
+    {"name": "pen", "emoji": "🖊️", "tool": True},
 ]
 
 decorations_ingredients = [
     {
         "name": "leaf",
         "emoji": "🍃",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["leaf"],
-        "basic_item_count": 1,
     },
     {
         "name": "rock",
         "emoji": "🪨",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "hard",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["rock"],
-        "basic_item_count": 1,
     },
     {
         "name": "wood",
         "emoji": "🪵",
-        "value": 0,
         "tool": False,
-        "material_type": "wood",
         "hardness": "hard",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["wood"],
         "basic_items": ["wood"],
-        "basic_item_count": 1,
     },
     {
         "name": "paper",
         "emoji": "📄",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["paper"],
-        "basic_item_count": 1,
     },
     {
         "name": "yarn",
         "emoji": "🧶",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["yarn"],
-        "basic_item_count": 1,
     },
     {
         "name": "flower",
         "emoji": "🌸",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["flower"],
-        "basic_item_count": 1,
     },
     {
         "name": "sunflower",
         "emoji": "🌻",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["sunflower"],
-        "basic_item_count": 1,
     },
     {
         "name": "thread",
         "emoji": "🧵",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["thread"],
-        "basic_item_count": 1,
     },
     {
         "name": "mushroom",
         "emoji": "🍄",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["mushroom"],
-        "basic_item_count": 1,
     },
     {
         "name": "feather",
         "emoji": "🪶",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["feather"],
-        "basic_item_count": 1,
     },
     {
         "name": "shell",
         "emoji": "🐚",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "hard",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["shell"],
-        "basic_item_count": 1,
     },
     {
         "name": "pinecone",
         "emoji": "🌲",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "hard",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["pinecone"],
-        "basic_item_count": 1,
     },
     {
         "name": "acorn",
         "emoji": "🌰",
-        "value": 0,
         "tool": False,
-        "material_type": "natural",
         "hardness": "hard",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["acorn"],
-        "basic_item_count": 1,
     },
     {
         "name": "bark",
         "emoji": "🪵",
-        "value": 0,
         "tool": False,
-        "material_type": "wood",
         "hardness": "hard",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["natural"],
         "basic_items": ["bark"],
-        "basic_item_count": 1,
     },
     {
         "name": "beads",
         "emoji": "📿",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "hard",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["beads"],
-        "basic_item_count": 1,
     },
     {
         "name": "ribbon",
         "emoji": "🎀",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["ribbon"],
-        "basic_item_count": 1,
     },
     {
         "name": "cardboard",
         "emoji": "📦",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["cardboard"],
-        "basic_item_count": 1,
     },
     {
         "name": "newspaper",
         "emoji": "📰",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["newspaper"],
-        "basic_item_count": 1,
     },
     {
         "name": "buttons",
         "emoji": "🔘",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "hard",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["buttons"],
-        "basic_item_count": 1,
     },
     {
         "name": "glitter",
         "emoji": "✨",
-        "value": 0,
         "tool": False,
-        "material_type": "artificial",
         "hardness": "soft",
         "paint_level": 0,
         "cut_level": 0,
-        "decorated_level": 0,
+        "drawn_level": 0,
+        "framed": False,
+        "post_frame_messed_with": False,
+        "material_types": ["artificial"],
         "basic_items": ["glitter"],
-        "basic_item_count": 1,
     },
 ]
 
 genetics_tools = [
-    {"name": "growth serum", "emoji": "🌡️", "value": 0, "tool": True},
-    {"name": "mutation catalyst", "emoji": "🧬", "value": 0, "tool": True},
-    {"name": "respiratory reconfigurer", "emoji": "🌀", "value": 0, "tool": True},
-    {"name": "metabolic accelerator", "emoji": "⚡", "value": 0, "tool": True},
+    {"name": "growth serum", "emoji": "🌡️", "tool": True},
+    {"name": "mutation catalyst", "emoji": "🧬", "tool": True},
+    {"name": "respiratory reconfigurer", "emoji": "🌀", "tool": True},
+    {"name": "metabolic accelerator", "emoji": "⚡", "tool": True},
 ]
 
 
@@ -537,7 +518,6 @@ genetics_ingredients = [
     {
         "name": "fish",
         "emoji": "🐟",
-        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -552,7 +532,6 @@ genetics_ingredients = [
     {
         "name": "shark",
         "emoji": "🦈",
-        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -567,7 +546,6 @@ genetics_ingredients = [
     {
         "name": "octopus",
         "emoji": "🐙",
-        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -582,7 +560,6 @@ genetics_ingredients = [
     {
         "name": "squid",
         "emoji": "🦑",
-        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -597,7 +574,6 @@ genetics_ingredients = [
     {
         "name": "snake",
         "emoji": "🐍",
-        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -612,7 +588,6 @@ genetics_ingredients = [
     {
         "name": "frog",
         "emoji": "🐸",
-        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -627,7 +602,6 @@ genetics_ingredients = [
     {
         "name": "bird",
         "emoji": "🐦‍⬛",
-        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -642,7 +616,6 @@ genetics_ingredients = [
     {
         "name": "lizard",
         "emoji": "🦎",
-        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -657,7 +630,6 @@ genetics_ingredients = [
     {
         "name": "turtle",
         "emoji": "🐢",
-        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -672,7 +644,6 @@ genetics_ingredients = [
     {
         "name": "elephant",
         "emoji": "🐘",
-        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -687,7 +658,6 @@ genetics_ingredients = [
     {
         "name": "whale",
         "emoji": "🐳",
-        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -702,7 +672,6 @@ genetics_ingredients = [
     {
         "name": "penguin",
         "emoji": "🐧",
-        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -717,7 +686,6 @@ genetics_ingredients = [
     {
         "name": "panda",
         "emoji": "🐼",
-        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -732,7 +700,6 @@ genetics_ingredients = [
     {
         "name": "koala",
         "emoji": "🐨",
-        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -747,7 +714,6 @@ genetics_ingredients = [
     {
         "name": "kangaroo",
         "emoji": "🦘",
-        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -762,7 +728,6 @@ genetics_ingredients = [
     {
         "name": "tiger",
         "emoji": "🐯",
-        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -777,7 +742,6 @@ genetics_ingredients = [
     {
         "name": "lion",
         "emoji": "🦁",
-        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -792,7 +756,6 @@ genetics_ingredients = [
     {
         "name": "giraffe",
         "emoji": "🦒",
-        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -807,7 +770,6 @@ genetics_ingredients = [
     {
         "name": "zebra",
         "emoji": "🦓",
-        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -822,7 +784,6 @@ genetics_ingredients = [
     {
         "name": "monkey",
         "emoji": "🐒",
-        "value": 0,
         "tool": False,
         "size": "small",
         "mutation_level": 0,
@@ -837,7 +798,6 @@ genetics_ingredients = [
     {
         "name": "bear",
         "emoji": "🐻",
-        "value": 0,
         "tool": False,
         "size": "large",
         "mutation_level": 0,
@@ -852,7 +812,6 @@ genetics_ingredients = [
     {
         "name": "wolf",
         "emoji": "🐺",
-        "value": 0,
         "tool": False,
         "size": "medium",
         "mutation_level": 0,
@@ -868,17 +827,16 @@ genetics_ingredients = [
 
 
 potions_tools = [
-    {"name": "vial", "emoji": "🧪", "value": 0, "tool": True},
-    {"name": "mortar", "emoji": "🏺", "value": 0, "tool": True},
-    {"name": "wand", "emoji": "🪄", "value": 0, "tool": True},
-    {"name": "filter", "emoji": "🧫", "value": 0, "tool": True},
+    {"name": "vial", "emoji": "🧪", "tool": True},
+    {"name": "mortar", "emoji": "🏺", "tool": True},
+    {"name": "wand", "emoji": "🪄", "tool": True},
+    {"name": "filter", "emoji": "🧫", "tool": True},
 ]
 
 potions_ingredients = [
     {
         "name": "frog leg",
         "emoji": "🐸",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "soft",
@@ -893,7 +851,6 @@ potions_ingredients = [
     {
         "name": "bat wing",
         "emoji": "🦇",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "soft",
@@ -908,7 +865,6 @@ potions_ingredients = [
     {
         "name": "dragon scale",
         "emoji": "🐉",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "hard",
@@ -923,7 +879,6 @@ potions_ingredients = [
     {
         "name": "unicorn horn",
         "emoji": "🦄",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "hard",
@@ -938,7 +893,6 @@ potions_ingredients = [
     {
         "name": "mandrake root",
         "emoji": "🌱",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "soft",
@@ -953,7 +907,6 @@ potions_ingredients = [
     {
         "name": "mushroom",
         "emoji": "🍄",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "soft",
@@ -968,7 +921,6 @@ potions_ingredients = [
     {
         "name": "dandelion",
         "emoji": "🌼",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "soft",
@@ -983,7 +935,6 @@ potions_ingredients = [
     {
         "name": "rose petal",
         "emoji": "🌹",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "soft",
@@ -998,7 +949,6 @@ potions_ingredients = [
     {
         "name": "sunstone",
         "emoji": "☀️",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "hard",
@@ -1013,7 +963,6 @@ potions_ingredients = [
     {
         "name": "obsidian",
         "emoji": "⚫",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "hard",
@@ -1028,7 +977,6 @@ potions_ingredients = [
     {
         "name": "amber",
         "emoji": "🟠",
-        "value": 0,
         "tool": False,
         "state_of_matter": "solid",
         "hardness": "hard",
@@ -1043,7 +991,6 @@ potions_ingredients = [
     {
         "name": "whispering wind",
         "emoji": "🌬️",
-        "value": 0,
         "tool": False,
         "state_of_matter": "gas",
         "hardness": "soft",
@@ -1058,7 +1005,6 @@ potions_ingredients = [
     {
         "name": "ghostly vapor",
         "emoji": "👻",
-        "value": 0,
         "tool": False,
         "state_of_matter": "gas",
         "hardness": "soft",
@@ -1073,7 +1019,6 @@ potions_ingredients = [
     {
         "name": "volcanic fumes",
         "emoji": "🌋",
-        "value": 0,
         "tool": False,
         "state_of_matter": "gas",
         "hardness": "soft",
@@ -1088,7 +1033,6 @@ potions_ingredients = [
     {
         "name": "dragon's breath",
         "emoji": "🔥",
-        "value": 0,
         "tool": False,
         "state_of_matter": "gas",
         "hardness": "soft",
@@ -1103,7 +1047,6 @@ potions_ingredients = [
     {
         "name": "basilisk venom",
         "emoji": "⚗️",
-        "value": 0,
         "tool": False,
         "state_of_matter": "liquid",
         "hardness": "soft",
@@ -1118,7 +1061,6 @@ potions_ingredients = [
     {
         "name": "morning dew",
         "emoji": "💧",
-        "value": 0,
         "tool": False,
         "state_of_matter": "liquid",
         "hardness": "soft",
@@ -1133,7 +1075,6 @@ potions_ingredients = [
     {
         "name": "kraken ink",
         "emoji": "🦑",
-        "value": 0,
         "tool": False,
         "state_of_matter": "liquid",
         "hardness": "soft",
@@ -1148,7 +1089,6 @@ potions_ingredients = [
     {
         "name": "honey nectar",
         "emoji": "🍯",
-        "value": 0,
         "tool": False,
         "state_of_matter": "liquid",
         "hardness": "soft",
@@ -1163,7 +1103,6 @@ potions_ingredients = [
     {
         "name": "tree sap",
         "emoji": "🌳",
-        "value": 0,
         "tool": False,
         "state_of_matter": "liquid",
         "hardness": "soft",
@@ -1314,21 +1253,20 @@ SYSTEM_PROMPTS = {
 cooking_ic_examples = [
     {
         "input": [
-            {"name": "raw meat", "emoji": "🥩", "value": 0, "durable": False},
-            {"name": "knife", "emoji": "🔪", "value": 0, "durable": True},
+            {"name": "raw meat", "emoji": "🥩", "durable": False},
+            {"name": "knife", "emoji": "🔪", "durable": True},
         ],
         "reasoning": "Following the tool use rules for knife, using a knife on raw meat should make it sliced. Since raw meat is inedible (value 0), sliced raw meat should also be inedible. The knife is a tool, so it should be preserved in the emoji.",
         "output": {
             "name": "sliced raw meat",
-            "value": 0,
             "durable": False,
             "emoji": "🔪🥩",
         },
     },
     {
         "input": [
-            {"name": "sliced raw meat", "emoji": "🔪🥩", "value": 0, "durable": False},
-            {"name": "stove", "emoji": "🔥", "value": 0, "durable": True},
+            {"name": "sliced raw meat", "emoji": "🔪🥩", "durable": False},
+            {"name": "stove", "emoji": "🔥", "durable": True},
         ],
         "reasoning": "Following the tool use rules for stove and the value rules, cooking sliced meat should make it edible. The value rules specify that sliced and cooked ingredients should be more valuable (value +10-20). I'll set it to 15 to show the improvement.",
         "output": {
@@ -1340,21 +1278,20 @@ cooking_ic_examples = [
     },
     {
         "input": [
-            {"name": "raw rice", "emoji": "🌾", "value": 0, "durable": False},
-            {"name": "water", "emoji": "💧", "value": 0, "durable": True},
+            {"name": "raw rice", "emoji": "🌾", "durable": False},
+            {"name": "water", "emoji": "💧", "durable": True},
         ],
         "reasoning": "Following the tool use rules for water, adding water to rice makes it soaked. The value rules specify that soaking grains doesn't change value by itself, but prepares them for better cooking later.",
         "output": {
             "name": "soaked rice",
-            "value": 0,
             "durable": False,
             "emoji": "💧🌾",
         },
     },
     {
         "input": [
-            {"name": "soaked rice", "emoji": "💧🌾", "value": 0, "durable": False},
-            {"name": "stove", "emoji": "🔥", "value": 0, "durable": True},
+            {"name": "soaked rice", "emoji": "💧🌾", "durable": False},
+            {"name": "stove", "emoji": "🔥", "durable": True},
         ],
         "reasoning": "Following the value rules, cooking soaked grains should dramatically increase value (+20-30). I'll set it to 25 to show the significant improvement from soaking and cooking.",
         "output": {
@@ -1367,7 +1304,7 @@ cooking_ic_examples = [
     {
         "input": [
             {"name": "cooked rice", "emoji": "🍚", "value": 25, "durable": False},
-            {"name": "salt", "emoji": "🧂", "value": 0, "durable": True},
+            {"name": "salt", "emoji": "🧂", "durable": True},
         ],
         "reasoning": "Following the tool use rules for salt, adding salt to a dish should improve its value (+10-20). The cooked rice has a value of 25, so adding salt should increase it to 35. This is the first use of salt, so it should be a positive change.",
         "output": {
@@ -1382,8 +1319,8 @@ cooking_ic_examples = [
 decorations_ic_examples = [
     {
         "input": [
-            {"name": "pen", "emoji": "🖊️", "value": 0, "durable": True},
-            {"name": "paper", "emoji": "📄", "value": 0, "durable": False},
+            {"name": "pen", "emoji": "🖊️", "durable": True},
+            {"name": "paper", "emoji": "📄", "durable": False},
         ],
         "reasoning": "Following the tool use rules for pen and the value rules, using a pen on an artificial item like paper should make it more valuable. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement. The pen is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1395,8 +1332,8 @@ decorations_ic_examples = [
     },
     {
         "input": [
-            {"name": "pen", "emoji": "🖊️", "value": 0, "durable": True},
-            {"name": "leaf", "emoji": "🍃", "value": 0, "durable": False},
+            {"name": "pen", "emoji": "🖊️", "durable": True},
+            {"name": "leaf", "emoji": "🍃", "durable": False},
         ],
         "reasoning": "Following the tool use rules for pen and the value rules, using a pen on a natural item like a leaf should make it less valuable. The value rules specify a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The pen is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1408,8 +1345,8 @@ decorations_ic_examples = [
     },
     {
         "input": [
-            {"name": "saw", "emoji": "🪚", "value": 0, "durable": True},
-            {"name": "wood", "emoji": "🪵", "value": 0, "durable": False},
+            {"name": "saw", "emoji": "🪚", "durable": True},
+            {"name": "wood", "emoji": "🪵", "durable": False},
         ],
         "reasoning": "Following the tool use rules for saw and the value rules, using a saw on wood should make it more valuable. The value rules specify a value increase of +15-25. I'll set it to 20 to show the improvement. The saw is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1421,8 +1358,8 @@ decorations_ic_examples = [
     },
     {
         "input": [
-            {"name": "cardboard", "emoji": "📦", "value": 0, "durable": False},
-            {"name": "leaf", "emoji": "🍃", "value": 0, "durable": False},
+            {"name": "cardboard", "emoji": "📦", "durable": False},
+            {"name": "leaf", "emoji": "🍃", "durable": False},
         ],
         "reasoning": "Following the combination rules for Natural + Artificial and the value rules, combining an artificial item (cardboard) with a natural item (leaf) should create a more valuable decoration. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement.",
         "output": {
@@ -1434,7 +1371,7 @@ decorations_ic_examples = [
     },
     {
         "input": [
-            {"name": "paint", "emoji": "🎨", "value": 0, "durable": True},
+            {"name": "paint", "emoji": "🎨", "durable": True},
             {"name": "painted acorn", "emoji": "🎨🌰", "value": 15, "durable": False},
         ],
         "reasoning": "Following the tool use rules for paint and the value rules, adding paint a second time should make the item messy and reduce its value. The value rules specify a value decrease of -20-30. Since the current value is 15, I'll set it to -10 to show the significant negative effect. The paint is a tool, so it should be preserved in the emoji.",
@@ -1451,7 +1388,7 @@ genetics_ic_examples = [
     {
         "input": [
             {"name": "frog", "emoji": "🐸", "value": 2, "durable": False},
-            {"name": "growth serum", "emoji": "🌡️", "value": 0, "durable": True},
+            {"name": "growth serum", "emoji": "🌡️", "durable": True},
         ],
         "reasoning": "Following the tool use rules for growth serum and the value rules, using growth serum on a small animal like a frog should make it better. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement. The growth serum is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1464,7 +1401,7 @@ genetics_ic_examples = [
     {
         "input": [
             {"name": "elephant", "emoji": "🐘", "value": 2, "durable": False},
-            {"name": "growth serum", "emoji": "🌡️", "value": 0, "durable": True},
+            {"name": "growth serum", "emoji": "🌡️", "durable": True},
         ],
         "reasoning": "Following the tool use rules for growth serum and the value rules, using growth serum on a large animal like an elephant should make it worse. The value rules specify a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The growth serum is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1477,7 +1414,7 @@ genetics_ic_examples = [
     {
         "input": [
             {"name": "tiger", "emoji": "🐯", "value": 2, "durable": False},
-            {"name": "mutation catalyst", "emoji": "🧬", "value": 0, "durable": True},
+            {"name": "mutation catalyst", "emoji": "🧬", "durable": True},
         ],
         "reasoning": "Following the tool use rules for mutation catalyst and the value rules, the first mutation should make the animal worse. The value rules specify a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The mutation catalyst is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1490,7 +1427,7 @@ genetics_ic_examples = [
     {
         "input": [
             {"name": "mutant tiger", "emoji": "🧬🐯", "value": -25, "durable": False},
-            {"name": "mutation catalyst", "emoji": "🧬", "value": 0, "durable": True},
+            {"name": "mutation catalyst", "emoji": "🧬", "durable": True},
         ],
         "reasoning": "Following the tool use rules for mutation catalyst and the value rules, the second mutation should make the animal better than the original. The value rules specify a value increase of +30-40 from the first mutation. Since the current value is -25, I'll set it to 35 to show the significant improvement. The mutation catalyst is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1522,10 +1459,9 @@ potions_ic_examples = [
             {
                 "name": "rose petal",
                 "emoji": "🌹",
-                "value": 0,
                 "durable": False,
             },
-            {"name": "vial", "emoji": "🧪", "value": 0, "durable": True},
+            {"name": "vial", "emoji": "🧪", "durable": True},
         ],
         "reasoning": "Following the tool use rules for vial and the value rules, using a vial on a plant ingredient like rose petal should make it better. The value rules specify a value increase of +20-30. I'll set it to 25 to show the significant improvement. The vial is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1540,10 +1476,9 @@ potions_ic_examples = [
             {
                 "name": "frog leg",
                 "emoji": "🐸",
-                "value": 0,
                 "durable": False,
             },
-            {"name": "vial", "emoji": "🧪", "value": 0, "durable": True},
+            {"name": "vial", "emoji": "🧪", "durable": True},
         ],
         "reasoning": "Following the tool use rules for vial and the value rules, using a vial on an animal ingredient like frog leg should make it worse. The value rules specify a value decrease of -20-30. I'll set it to -25 to show the significant negative effect. The vial is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1558,10 +1493,9 @@ potions_ic_examples = [
             {
                 "name": "crystal",
                 "emoji": "💎",
-                "value": 0,
                 "durable": False,
             },
-            {"name": "mortar", "emoji": "🏺", "value": 0, "durable": True},
+            {"name": "mortar", "emoji": "🏺", "durable": True},
         ],
         "reasoning": "Following the tool use rules for mortar and the value rules, using a mortar on a hard ingredient like crystal should make it better. The value rules specify a value increase of +15-25. I'll set it to 20 to show the improvement. The mortar is a tool, so it should be preserved in the emoji.",
         "output": {
@@ -1573,11 +1507,10 @@ potions_ic_examples = [
     },
     {
         "input": [
-            {"name": "wand", "emoji": "🪄", "value": 0, "durable": True},
+            {"name": "wand", "emoji": "🪄", "durable": True},
             {
                 "name": "fairy dust",
                 "emoji": "✨",
-                "value": 0,
                 "durable": False,
             },
         ],
@@ -1594,13 +1527,11 @@ potions_ic_examples = [
             {
                 "name": "sea water",
                 "emoji": "🌊",
-                "value": 0,
                 "durable": False,
             },
             {
                 "name": "phoenix feather",
                 "emoji": "🔥",
-                "value": 0,
                 "durable": False,
             },
         ],
