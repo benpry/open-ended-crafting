@@ -2,83 +2,72 @@ import math
 
 
 def cooking_value_function(item):
-    # inedible things are worth 0
+    # Base value: only edible things have value
     if not item["edible"]:
         return 0
 
     value = 0
 
-    # No base value for just being edible
+    # Positive utility:
+    if item["cook_level"] == 1:  # Cooked things are good
+        value += 15
 
-    # CORE COOKING PRINCIPLES (high rewards for understanding these)
-
-    # Perfect Preparation Bonus: Chopped (1) + Cooked (1) = +60 points
-    if item["chop_level"] == 1 and item["cook_level"] == 1:
-        value += 60
-
-    # Soup Mastery: Cooked (1) + Water (1) = +55 points
-    if item["cook_level"] == 1 and item["water_level"] == 1:
-        value += 55
-
-    # Seasoning Mastery: Salt (1) + any preparation = +50 points
-    if item["salt_level"] == 1 and (item["chop_level"] > 0 or item["cook_level"] > 0):
-        value += 50
-
-    # Ultimate Dish: Chopped + Cooked + Water + Salt = +120 points total
-    if (
-        item["chop_level"] == 1
-        and item["cook_level"] == 1
-        and item["water_level"] == 1
-        and item["salt_level"] == 1
-    ):
-        value += 45  # Additional bonus on top of individual bonuses
-
-    # Ingredient Harmony: Exactly 2 different ingredient types = +40
-    ingredient_type_count = len(item["ingredient_types"])
-    if ingredient_type_count == 2:
+    if item["water_level"] == 1 and item["cook_level"] == 1:  # Soup is good
         value += 40
 
-    # Simple cooking bonus for single ingredients - removed to reduce random scores
+    if (
+        item["water_level"] == 1 and item["chop_level"] >= 1
+    ):  # Chopped and soaked things are good
+        value += 20
 
-    # HARSH PENALTIES FOR POOR UNDERSTANDING
+    if (
+        item["cook_level"] == 1 and item["chop_level"] == 1
+    ):  # Cooked and chopped things are good
+        value += 10
 
-    # Any unprepared food (no cooking, chopping, or seasoning)
-    if item["cook_level"] == 0 and item["chop_level"] == 0 and item["salt_level"] == 0:
-        value -= 10
+    if item["chop_level"] == 1:  # Chopped things are good
+        value += 5
 
-    # Raw disasters
-    if item["cook_level"] == 0 and len(item["all_ingredients"]) > 1:
-        value -= 45  # Raw mixed dishes are terrible
+    if item["salt_level"] == 1:  # Salted things are good
+        value += 20
 
-    # Water misuse
-    if item["water_level"] == 1 and item["cook_level"] == 0:
-        value -= 55  # Raw soggy food is awful
+    # cooked meats are extra good
+    if "meat" in item["ingredient_types"] and item["cook_level"] == 1:
+        value += 30
 
-    # Overcooking disasters
-    if item["cook_level"] == 2:  # burnt
-        value -= 60  # Burnt food is really bad
+    # chopped and eviscerated aromatic things are extra good
+    if "aromatic" in item["ingredient_types"] and item["chop_level"] >= 2:
+        value += 15
 
-    # Over-seasoning disasters
-    if item["salt_level"] >= 2:  # oversalted
-        value -= 55
+    # combining up to 3 different ingredient types is good
+    distinct_ingredient_types = min(len(set(item["ingredient_types"])), 3)
+    if distinct_ingredient_types == 2:
+        value += 10
+    elif distinct_ingredient_types == 3:
+        value += 20
 
-    # Over-chopping disasters
-    if item["chop_level"] == 2:  # eviscerated
-        value -= 45
+    # Negative utility:
+    if item["cook_level"] == 2:  # Overcooked things are bad
+        value -= 40
 
-    # Ingredient chaos - too many types
-    if ingredient_type_count > 2:
-        value -= 40 * (ingredient_type_count - 2)
+    if item["salt_level"] == 2:  # Over-salted things are bad
+        value -= 40
 
-    # Too many total ingredients
-    if len(item["all_ingredients"]) > 3:
-        value -= 45 * (len(item["all_ingredients"]) - 3)
+    if (
+        item["water_level"] == 1 and item["cook_level"] == 0
+    ):  # Uncooked soaked things are bad
+        value -= 20
 
-    # Single ingredient type penalty (no harmony)
-    if ingredient_type_count == 1 and len(item["all_ingredients"]) > 1:
-        value -= 30
+    # salting fruit is bad
+    if set(item["ingredient_types"]) == {"fruit"}:
+        value -= 15
 
-    return max(value, 0)
+    # more than one ingredient of the same type is bad
+    for ingredient_type in item["ingredient_types"]:
+        if item["ingredient_types"].count(ingredient_type) > 1:
+            value -= 30
+
+    return value
 
 
 cooking_feature_names = {
@@ -106,22 +95,18 @@ def cooking_apply_tool(tool, item):
     if tool["name"] == "water":
         # adding water always soaks something
         new_item["water_level"] = 1
-        if item["cook_level"] < 2:
+        # If the item is cooked, soaking un-cooks it (but doesn't rescue burnt things)
+        if item["cook_level"] == 1:
             new_item["cook_level"] = 0
 
     elif tool["name"] == "stove":
         # adjust the cook level
-        new_item["edible"] = True
-        if item["water_level"] == 1:
-            # you can't burn a soaked thing
-            new_item["cook_level"] = min(
-                item["cook_level"] + 1, len(cooking_feature_names["cook_level"]) - 1
-            )
-        else:
-            # otherwise, cooking increases the cook level by 1, up to the max
-            new_item["cook_level"] = min(
-                item["cook_level"] + 1, len(cooking_feature_names["cook_level"]) - 1
-            )
+        new_item["edible"] = True  # cooking makes inedible things edible
+
+        # otherwise, cooking increases the cook level by 1, up to the max
+        new_item["cook_level"] = min(
+            item["cook_level"] + 1, len(cooking_feature_names["cook_level"]) - 1
+        )
 
     # Knife increases chop level. You can't chop a soaked thing.
     elif tool["name"] == "knife" and item["water_level"] == 0:
@@ -155,7 +140,6 @@ def cooking_combination_function(item1, item2):
         new_item = cooking_apply_tool(item2, item1)
     else:
         # combine two non-tool items
-
         new_item = {}
 
         # the new salt level is the average of the two salt levels (rounding up)
@@ -178,8 +162,8 @@ def cooking_combination_function(item1, item2):
         # anything inedible makes the whole thing inedible
         new_item["edible"] = item1["edible"] and item2["edible"]
 
-        new_item["ingredient_types"] = list(
-            set(item1["ingredient_types"]) | set(item2["ingredient_types"])
+        new_item["ingredient_types"] = (
+            item1["ingredient_types"] + item2["ingredient_types"]
         )
         new_item["all_ingredients"] = (
             item1["all_ingredients"] + item2["all_ingredients"]
@@ -253,13 +237,23 @@ def decorations_value_function(item):
 
     # HARSH PENALTIES FOR POOR UNDERSTANDING
 
+    # Penalty 0: Single unprocessed items = -120
+    basic_count = item.get("basic_item_count", 0)
+    if (
+        basic_count == 1
+        and item.get("cut_level", 0) == 0
+        and item.get("paint_level", 0) == 0
+        and item.get("decorated_level", 0) == 0
+    ):
+        value -= 120
+
     # Any unprocessed item
     if (
         item.get("cut_level", 0) == 0
         and item.get("paint_level", 0) == 0
         and item.get("decorated_level", 0) == 0
     ):
-        value -= 10
+        value -= 120
 
     # Wrong tool penalties
     if item.get("material_type") == "natural" and item.get("decorated_level", 0) == 1:
@@ -279,7 +273,7 @@ def decorations_value_function(item):
     # Material chaos - too many basic items
     basic_count = item.get("basic_item_count", 0)
     if basic_count > 2:
-        value -= 55 * (basic_count - 2)  # Harsh penalty for clutter
+        value -= 120 * (basic_count - 2)  # Ultra-harsh penalty for clutter
 
     # No processing penalty (raw materials aren't valuable)
     if (
@@ -288,7 +282,15 @@ def decorations_value_function(item):
         and item.get("decorated_level", 0) == 0
         and basic_count > 1
     ):
-        value -= 45  # Multiple raw materials combined badly
+        value -= 180  # Multiple raw materials combined badly
+
+    # Penalty 6: Any combination without proper technique = -200
+    if (
+        item.get("cut_level", 0) == 0
+        and item.get("paint_level", 0) == 0
+        and basic_count >= 1
+    ):
+        value -= 200
 
     return max(value, 0)
 
@@ -477,14 +479,26 @@ def genetics_value_function(item):
 
     # HARSH PENALTIES FOR POOR BREEDING
 
+    # Penalty 0: Single unmodified animals = -120
+    if (
+        item.get("basic_animal_count", 0) == 1
+        and not item.get("growth_applied", False)
+        and item.get("mutation_level", 0) == 0
+        and item.get("metabolic_level", 0) == 0
+        and not item.get("reconfigured_respiratory", False)
+    ):
+        value -= 120
+
     # Any unmodified animal combination
-    if item.get("basic_animal_count", 0) > 1 and not any([
-        item.get("growth_applied", False),
-        item.get("mutation_level", 0) > 0,
-        item.get("metabolic_level", 0) > 0,
-        item.get("reconfigured_respiratory", False),
-    ]):
-        value -= 10
+    if item.get("basic_animal_count", 0) > 1 and not any(
+        [
+            item.get("growth_applied", False),
+            item.get("mutation_level", 0) > 0,
+            item.get("metabolic_level", 0) > 0,
+            item.get("reconfigured_respiratory", False),
+        ]
+    ):
+        value -= 120
 
     # Wrong growth application
     if item.get("growth_applied", False) and item.get("original_size") == "large":
@@ -514,7 +528,15 @@ def genetics_value_function(item):
 
     # Too many animals penalty
     if item.get("basic_animal_count", 0) > 2:
-        value -= 65 * (item.get("basic_animal_count", 0) - 2)
+        value -= 150 * (item.get("basic_animal_count", 0) - 2)
+
+    # Penalty 8: Any animal without proper enhancement = -200
+    if (
+        item.get("basic_animal_count", 0) >= 1
+        and not item.get("growth_applied", False)
+        and item.get("mutation_level", 0) == 0
+    ):
+        value -= 200
 
     return max(value, 0)
 
@@ -765,14 +787,26 @@ def potions_value_function(item):
 
     # HARSH PENALTIES FOR POOR ALCHEMY
 
+    # Penalty 0: Single unprocessed ingredients = -120
+    if (
+        item.get("basic_ingredient_count", 0) == 1
+        and item.get("extraction_level", 0) == 0
+        and not item.get("ground", False)
+        and item.get("enchantment_level", 0) == 0
+        and not item.get("filtered", False)
+    ):
+        value -= 120
+
     # Any unprocessed ingredient combination
-    if item.get("basic_ingredient_count", 0) > 1 and not any([
-        item.get("extraction_level", 0) > 0,
-        item.get("ground", False),
-        item.get("enchantment_level", 0) > 0,
-        item.get("filtered", False),
-    ]):
-        value -= 10
+    if item.get("basic_ingredient_count", 0) > 1 and not any(
+        [
+            item.get("extraction_level", 0) > 0,
+            item.get("ground", False),
+            item.get("enchantment_level", 0) > 0,
+            item.get("filtered", False),
+        ]
+    ):
+        value -= 120
 
     # Wrong extraction target
     if item.get("extraction_level", 0) == 1 and item.get("ingredient_type") != "plant":
@@ -810,7 +844,24 @@ def potions_value_function(item):
 
     # Too many ingredients chaos
     if item.get("basic_ingredient_count", 0) > 3:
-        value -= 60 * (item.get("basic_ingredient_count", 0) - 3)
+        value -= 150 * (item.get("basic_ingredient_count", 0) - 3)
+
+    # Penalty 7: Multiple ingredients with no processing = -180
+    if (
+        item.get("basic_ingredient_count", 0) > 1
+        and item.get("extraction_level", 0) == 0
+        and not item.get("ground", False)
+        and item.get("enchantment_level", 0) == 0
+    ):
+        value -= 180
+
+    # Penalty 8: Any ingredient without proper processing = -150
+    if (
+        item.get("basic_ingredient_count", 0) >= 1
+        and item.get("extraction_level", 0) == 0
+        and not item.get("ground", False)
+    ):
+        value -= 150
 
     return max(value, 0)
 
@@ -975,4 +1026,11 @@ FEATURE_NAMES = {
     "decorations": decorations_feature_names,
     "genetics": genetics_feature_names,
     "potions": potions_feature_names,
+}
+
+VALUE_FUNCTIONS = {
+    "cooking": cooking_value_function,
+    "decorations": decorations_value_function,
+    "genetics": genetics_value_function,
+    "potions": potions_value_function,
 }

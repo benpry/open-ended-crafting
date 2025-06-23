@@ -31,14 +31,14 @@ def run_random_agent(domain: str, n_runs: int = 10, n_steps: int = 10) -> pd.Dat
             obs, score, done, info = env.step((item1["name"], item2["name"]))
             new_item = obs["new_item"]
             inventory = obs["inventory"]
-            max_value = max([item["value"] for item in inventory]) if inventory else 0
+            score = sum([item["value"] for item in inventory]) / (len(inventory) - 4)
 
             step_log = {
                 "run_idx": run_idx,
                 "step": step,
                 "action": (item1["name"], item2["name"]),
                 "new_item": new_item,
-                "max_value": max_value,
+                "score": score,
                 "inventory_size": len(inventory),
                 "inventory": inventory,
             }

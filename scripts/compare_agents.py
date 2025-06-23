@@ -9,7 +9,7 @@ from src.agents.oracle_agent import run_oracle_agent
 from src.agents.random_agent import run_random_agent
 
 if __name__ == "__main__":
-    domains = ["cooking", "decorations", "genetics", "potions"]
+    domains = ["cooking"]  # , "decorations", "genetics", "potions"]
     df = pd.DataFrame()
 
     for domain in domains:
@@ -32,11 +32,15 @@ if __name__ == "__main__":
 
         # Get the final scores for each run
         # Both agents should have 'final_reward' column
-        df_random_final = df_random.groupby('run_idx')['final_reward'].last().reset_index()
-        df_oracle_final = df_oracle.groupby('run_idx')['final_reward'].last().reset_index()
-        
-        print(f"Random agent score: {df_random_final['final_reward'].mean():.2f}")
-        print(f"Oracle agent score: {df_oracle_final['final_reward'].mean():.2f}")
+        df_random_final = (
+            df_random.groupby("run_idx")["final_reward"].last().reset_index()
+        )
+        df_oracle_final = (
+            df_oracle.groupby("run_idx")["final_reward"].last().reset_index()
+        )
+
+        print(f"Random agent scores: {df_random_final['final_reward'].describe()}")
+        print(f"Oracle agent scores: {df_oracle_final['final_reward'].describe()}")
         df = pd.concat([df, df_random, df_oracle])
 
     df.to_csv(here("data/simulations/agent_comparison.csv"), index=False)

@@ -3,6 +3,7 @@ from typing import Optional
 
 import gymnasium as gym
 
+from src.combo_functions import VALUE_FUNCTIONS
 from src.constants import INGREDIENTS, TOOLS
 from src.world_model import MemoizedWorldModel
 
@@ -27,7 +28,9 @@ class CraftingGame(gym.Env):
         """
         # get the item names and delete the reasoning
         tools = TOOLS[self.domain]
-        ingredients = random.sample(INGREDIENTS[self.domain], 5)
+        ingredients = random.sample(INGREDIENTS[self.domain], 3)
+        for ingredient in ingredients:
+            ingredient["value"] = VALUE_FUNCTIONS[self.domain](ingredient)
         # tools = cooking_tools
         # ingredients = random.sample(cooking_ingredients, 5)
         self.inventory = tools + ingredients
@@ -66,12 +69,12 @@ class CraftingGame(gym.Env):
         Take an action in the environment.
         """
         if action is None:
-            best_value = max(item["value"] for item in self.inventory)
+            reward = self.get_reward()
             obs = {
                 "inventory": self.inventory,
                 "new_item": None,
             }
-            return obs, best_value, True, {}
+            return obs, reward, True, {}
         else:
             name1, name2 = action
 
@@ -113,4 +116,9 @@ class CraftingGame(gym.Env):
         """
         Get the reward at the end of an epoch.
         """
-        return max(item["value"] for item in self.inventory)
+        reward = sum(
+            item["value"] if item["tool"] not in item else 0 for item in self.inventory
+        ) / (len(self.inventory) - len(TOOLS[self.domain]))
+
+        # overall reward can't go below 0
+        return max(reward, 0)

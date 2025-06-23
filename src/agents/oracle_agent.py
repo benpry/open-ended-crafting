@@ -34,6 +34,35 @@ def get_possible_actions(
     return actions
 
 
+def calculate_mean_non_tool_value(
+    inventory: List[Dict[str, Any]], domain: str
+) -> float:
+    """
+    Calculate the mean value of non-tool items in the inventory.
+
+    This matches the reward calculation in the environment.
+
+    Args:
+        inventory: Current inventory items
+        domain: The crafting domain to get tool count
+
+    Returns:
+        Mean value of non-tool items
+    """
+
+    if not inventory:
+        return 0.0
+
+    # Get non-tool items
+    non_tool_items = [item for item in inventory if not item.get("tool", False)]
+
+    if not non_tool_items:
+        return 0.0
+
+    total_value = sum(item["value"] for item in non_tool_items)
+    return total_value / len(non_tool_items)
+
+
 class OracleAgent:
     """
     An oracle agent that uses ground-truth combination functions to plan optimal sequences.
@@ -46,6 +75,9 @@ class OracleAgent:
     reimplementing the game logic, making it more maintainable and consistent with the
     actual game mechanics. It provides optimal planning (BFS), beam search planning,
     and greedy planning methods for comparison.
+
+    The agent now optimizes for mean value of non-tool items to align with the environment's
+    reward function.
 
     Attributes:
         domain: The crafting domain ('cooking', 'decorations', 'genetics', 'potions')
@@ -80,34 +112,32 @@ class OracleAgent:
 
     def _simulate_action(
         self, inventory: List[Dict[str, Any]], action: Optional[Tuple[str, str]]
-    ) -> Optional[Tuple[List[Dict[str, Any]], int]]:
+    ) -> Optional[Tuple[List[Dict[str, Any]], float]]:
         """
         Simulate an action on a given inventory state.
 
         Uses the CraftingGame environment to simulate the action and return the
-        resulting inventory and value change.
+        resulting inventory and mean value change.
 
         Args:
             inventory: Current inventory state
             action: Action tuple (item1_name, item2_name) or None for submit
 
         Returns:
-            Tuple of (new_inventory, value_gain) or None if action is invalid
+            Tuple of (new_inventory, mean_value_gain) or None if action is invalid
         """
         # Create a copy of the environment and set its inventory
         self._sim_env.inventory = [copy.deepcopy(item) for item in inventory]
-        current_max_value = max(item["value"] for item in inventory) if inventory else 0
+        current_mean_value = calculate_mean_non_tool_value(inventory, self.domain)
 
         try:
             # Simulate the action
             obs, reward, done, info = self._sim_env.step(action)
             new_inventory = obs["inventory"]
-            new_max_value = (
-                max(item["value"] for item in new_inventory) if new_inventory else 0
-            )
-            value_gain = new_max_value - current_max_value
+            new_mean_value = calculate_mean_non_tool_value(new_inventory, self.domain)
+            mean_value_gain = new_mean_value - current_mean_value
 
-            return new_inventory, value_gain
+            return new_inventory, mean_value_gain
         except (ValueError, KeyError):
             # Action is invalid (e.g., items not in inventory)
             return None
@@ -129,7 +159,7 @@ class OracleAgent:
 
     def plan_beam_search(
         self, inventory: List[Dict[str, Any]]
-    ) -> Tuple[List[Tuple[str, str]], int]:
+    ) -> Tuple[List[Tuple[str, str]], float]:
         """
         Plan using beam search to balance optimality and efficiency.
 
@@ -141,26 +171,26 @@ class OracleAgent:
             inventory: Current inventory
 
         Returns:
-            Tuple of (best_action_sequence, final_max_value)
+            Tuple of (best_action_sequence, final_mean_value)
         """
         if not inventory:
-            return [], 0
+            return [], 0.0
 
-        # State: (inventory, action_sequence, current_max_value, heuristic_score)
-        initial_max_value = max(item["value"] for item in inventory)
+        # State: (inventory, action_sequence, current_mean_value, heuristic_score)
+        initial_mean_value = calculate_mean_non_tool_value(inventory, self.domain)
 
         # Initialize beam with starting state
-        # Heuristic: use current max value as simple heuristic
-        beam = [(inventory, [], initial_max_value, initial_max_value)]
+        # Heuristic: use current mean value as simple heuristic
+        beam = [(inventory, [], initial_mean_value, initial_mean_value)]
 
         best_sequence = []
-        best_final_value = initial_max_value
+        best_final_value = initial_mean_value
 
         for depth in range(self.max_depth):
             next_beam = []
 
             # Expand each state in current beam
-            for current_inventory, action_sequence, current_max_value, _ in beam:
+            for current_inventory, action_sequence, current_mean_value, _ in beam:
                 possible_actions = get_possible_actions(current_inventory)
 
                 for action in possible_actions:
@@ -173,31 +203,31 @@ class OracleAgent:
                         continue
 
                     new_inventory, value_gain = result
-                    new_max_value = current_max_value + value_gain
+                    new_mean_value = current_mean_value + value_gain
 
-                    # Only keep states that improve value
+                    # Only keep states that improve mean value
                     if value_gain > 0:
                         new_sequence = action_sequence + [action]
 
-                        # Simple heuristic: current max value + potential based on inventory size
+                        # Simple heuristic: current mean value + potential based on inventory diversity
                         inventory_diversity = len(
                             set(item["name"] for item in new_inventory)
                         )
-                        heuristic_score = new_max_value + 0.1 * inventory_diversity
+                        heuristic_score = new_mean_value + 0.1 * inventory_diversity
 
                         next_beam.append(
                             (
                                 new_inventory,
                                 new_sequence,
-                                new_max_value,
+                                new_mean_value,
                                 heuristic_score,
                             )
                         )
 
                         # Update best if this is better
-                        if new_max_value > best_final_value:
+                        if new_mean_value > best_final_value:
                             best_sequence = new_sequence
-                            best_final_value = new_max_value
+                            best_final_value = new_mean_value
 
             # If no beneficial actions found, stop
             if not next_beam:
@@ -211,12 +241,12 @@ class OracleAgent:
 
     def plan_optimal_sequence(
         self, inventory: List[Dict[str, Any]]
-    ) -> Tuple[List[Tuple[str, str]], int]:
+    ) -> Tuple[List[Tuple[str, str]], float]:
         """
         Plan the optimal sequence of actions using breadth-first search.
 
         This method implements exhaustive planning by exploring all possible action sequences
-        up to max_depth and finding the one that leads to the maximum final value.
+        up to max_depth and finding the one that leads to the maximum final mean value.
         Uses BFS with state deduplication to handle the search space efficiently.
 
         Note: This can be very slow for domains with large search spaces. Consider using
@@ -226,26 +256,26 @@ class OracleAgent:
             inventory: Current inventory
 
         Returns:
-            Tuple of (optimal_action_sequence, final_max_value)
+            Tuple of (optimal_action_sequence, final_mean_value)
         """
         if not inventory:
-            return [], 0
+            return [], 0.0
 
         from collections import deque
 
-        # State: (inventory, action_sequence, current_max_value)
-        initial_max_value = max(item["value"] for item in inventory)
-        queue = deque([(inventory, [], initial_max_value)])
+        # State: (inventory, action_sequence, current_mean_value)
+        initial_mean_value = calculate_mean_non_tool_value(inventory, self.domain)
+        queue = deque([(inventory, [], initial_mean_value)])
 
         # Track visited states to avoid cycles
         visited = set()
         visited.add(self._get_inventory_hash(inventory))
 
         best_sequence = []
-        best_final_value = initial_max_value
+        best_final_value = initial_mean_value
 
         while queue:
-            current_inventory, action_sequence, current_max_value = queue.popleft()
+            current_inventory, action_sequence, current_mean_value = queue.popleft()
 
             # Skip if we've reached max depth
             if len(action_sequence) >= self.max_depth:
@@ -267,7 +297,7 @@ class OracleAgent:
                     continue
 
                 new_inventory, value_gain = result
-                new_max_value = current_max_value + value_gain
+                new_mean_value = current_mean_value + value_gain
 
                 # Only continue if this action provides some benefit
                 if value_gain > 0:
@@ -277,28 +307,28 @@ class OracleAgent:
                     new_sequence = action_sequence + [action]
 
                     # Check if this is better than our current best
-                    if new_max_value > best_final_value:
+                    if new_mean_value > best_final_value:
                         best_sequence = new_sequence
-                        best_final_value = new_max_value
+                        best_final_value = new_mean_value
 
                     # Add to queue for further exploration if not visited
                     inventory_hash = self._get_inventory_hash(new_inventory)
                     if inventory_hash not in visited:
                         visited.add(inventory_hash)
-                        queue.append((new_inventory, new_sequence, new_max_value))
+                        queue.append((new_inventory, new_sequence, new_mean_value))
 
             # If no beneficial actions found at this level and we have a sequence,
             # this is a potential terminal state
             if not found_beneficial_action and action_sequence:
-                if current_max_value > best_final_value:
+                if current_mean_value > best_final_value:
                     best_sequence = action_sequence
-                    best_final_value = current_max_value
+                    best_final_value = current_mean_value
 
         return best_sequence, best_final_value
 
     def plan_sequence(
         self, inventory: List[Dict[str, Any]]
-    ) -> Tuple[List[Tuple[str, str]], int]:
+    ) -> Tuple[List[Tuple[str, str]], float]:
         """
         Plan a sequence of actions using the configured planning method.
 
@@ -309,7 +339,7 @@ class OracleAgent:
             inventory: Current inventory
 
         Returns:
-            Tuple of (action_sequence, final_max_value)
+            Tuple of (action_sequence, final_mean_value)
         """
         if self.planning_method == "beam_search":
             return self.plan_beam_search(inventory)
@@ -317,26 +347,24 @@ class OracleAgent:
             return self.plan_optimal_sequence(inventory)
         elif self.planning_method == "greedy":
             greedy_sequence = self.get_greedy_sequence(inventory)
-            # Calculate final value for greedy sequence
+            # Calculate final mean value for greedy sequence
             if not greedy_sequence:
-                return [], max(item["value"] for item in inventory) if inventory else 0
+                return [], calculate_mean_non_tool_value(inventory, self.domain)
 
             current_inventory = [copy.deepcopy(item) for item in inventory]
-            current_max_value = (
-                max(item["value"] for item in current_inventory)
-                if current_inventory
-                else 0
+            current_mean_value = calculate_mean_non_tool_value(
+                current_inventory, self.domain
             )
 
             for action in greedy_sequence:
                 result = self._simulate_action(current_inventory, action)
                 if result is not None:
                     current_inventory, value_gain = result
-                    current_max_value += value_gain
+                    current_mean_value += value_gain
                 else:
                     break
 
-            return greedy_sequence, current_max_value
+            return greedy_sequence, current_mean_value
         else:
             raise ValueError(f"Unknown planning method: {self.planning_method}")
 
@@ -344,10 +372,10 @@ class OracleAgent:
         self, inventory: List[Dict[str, Any]]
     ) -> List[Tuple[str, str]]:
         """
-        Get a greedy sequence of actions that maximizes immediate value gains.
+        Get a greedy sequence of actions that maximizes immediate mean value gains.
 
         This method implements a greedy search that at each step chooses the action
-        that provides the maximum immediate value gain. Uses the CraftingGame
+        that provides the maximum immediate mean value gain. Uses the CraftingGame
         environment for accurate simulation of game mechanics.
 
         Args:
@@ -364,7 +392,7 @@ class OracleAgent:
 
         for _ in range(self.max_depth):
             best_action = None
-            best_value_gain = 0
+            best_value_gain = 0.0
             best_new_inventory = None
 
             possible_actions = get_possible_actions(current_inventory)
@@ -437,28 +465,24 @@ class OracleAgent:
 
         # Test greedy
         greedy_sequence = self.get_greedy_sequence(inventory)
-        greedy_final_value = 0
+        greedy_final_value = 0.0
         if greedy_sequence:
             current_inventory = [copy.deepcopy(item) for item in inventory]
-            current_max_value = (
-                max(item["value"] for item in current_inventory)
-                if current_inventory
-                else 0
+            current_mean_value = calculate_mean_non_tool_value(
+                current_inventory, self.domain
             )
 
             for action in greedy_sequence:
                 result = self._simulate_action(current_inventory, action)
                 if result is not None:
                     current_inventory, value_gain = result
-                    current_max_value += value_gain
+                    current_mean_value += value_gain
                 else:
                     break
 
-            greedy_final_value = current_max_value
+            greedy_final_value = current_mean_value
         else:
-            greedy_final_value = (
-                max(item["value"] for item in inventory) if inventory else 0
-            )
+            greedy_final_value = calculate_mean_non_tool_value(inventory, self.domain)
 
         results["greedy"] = {
             "sequence": greedy_sequence,
@@ -477,7 +501,7 @@ class OracleAgent:
         else:
             results["bfs"] = {
                 "sequence": [],
-                "final_value": 0,
+                "final_value": 0.0,
                 "steps": 0,
                 "note": "Skipped BFS due to large search space",
             }
@@ -534,9 +558,9 @@ class OracleAgent:
                     "action": action,
                     "new_item": new_item,
                     "inventory_size": len(current_inventory),
-                    "max_value": max(item["value"] for item in current_inventory)
-                    if current_inventory
-                    else 0,
+                    "mean_value": calculate_mean_non_tool_value(
+                        current_inventory, self.domain
+                    ),
                     "inventory": current_inventory.copy(),
                 }
             )
@@ -555,9 +579,9 @@ class OracleAgent:
             "steps_taken": len(episode_log),
             "planned_sequence": planned_actions,
             "predicted_final_value": predicted_final_value,
-            "actual_final_value": max(item["value"] for item in current_inventory)
-            if current_inventory
-            else 0,
+            "actual_final_value": calculate_mean_non_tool_value(
+                current_inventory, self.domain
+            ),
             "planning_method": self.planning_method,
         }
 
@@ -611,18 +635,22 @@ def run_oracle_agent(
             step_log["run_idx"] = run_idx
             step_log["final_reward"] = result["final_reward"]
             all_logs.append(step_log)
-        
+
         # If no steps were taken, still record the run
         if not result["episode_log"]:
-            all_logs.append({
-                "run_idx": run_idx,
-                "step": 0,
-                "action": None,
-                "new_item": None,
-                "inventory_size": len(result["initial_inventory"]),
-                "max_value": max(item["value"] for item in result["initial_inventory"]) if result["initial_inventory"] else 0,
-                "inventory": result["initial_inventory"],
-                "final_reward": result["final_reward"]
-            })
+            all_logs.append(
+                {
+                    "run_idx": run_idx,
+                    "step": 0,
+                    "action": None,
+                    "new_item": None,
+                    "inventory_size": len(result["initial_inventory"]),
+                    "mean_value": calculate_mean_non_tool_value(
+                        result["initial_inventory"], domain
+                    ),
+                    "inventory": result["initial_inventory"],
+                    "final_reward": result["final_reward"],
+                }
+            )
 
     return pd.DataFrame(all_logs)
