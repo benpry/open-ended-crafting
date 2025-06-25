@@ -9,9 +9,7 @@ from src.agents.oracle_agent import run_oracle_agent
 from src.agents.random_agent import run_random_agent
 
 if __name__ == "__main__":
-    # domains = ["cooking", "decorations", "genetics", "potions"]
-    domains = ["decorations"]
-    # domains = ["cooking"]
+    domains = ["cooking", "decorations", "animals", "potions"]
     df = pd.DataFrame()
 
     for domain in domains:
@@ -27,8 +25,8 @@ if __name__ == "__main__":
         df_oracle = run_oracle_agent(
             domain,
             n_runs=100,
-            max_steps=10,
-            beam_width=100,
+            max_steps=20,
+            beam_width=500,
             planning_method="beam_search",
         ).assign(agent="oracle", domain=domain)
 

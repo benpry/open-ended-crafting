@@ -80,7 +80,7 @@ class OracleAgent:
     reward function.
 
     Attributes:
-        domain: The crafting domain ('cooking', 'decorations', 'genetics', 'potions')
+        domain: The crafting domain ('cooking', 'decorations', 'animals', 'potions')
         max_depth: Maximum planning depth for action sequences
         beam_width: Width of the beam for beam search (number of best states to keep)
         planning_method: Method to use for planning ('beam_search', 'bfs', or 'greedy')
@@ -98,7 +98,7 @@ class OracleAgent:
         Initialize the oracle agent.
 
         Args:
-            domain: The crafting domain ('cooking', 'decorations', 'genetics', 'potions')
+            domain: The crafting domain ('cooking', 'decorations', 'animals', 'potions')
             max_depth: Maximum search depth for planning sequences
             beam_width: Width of the beam for beam search (number of best states to keep)
             planning_method: Planning method to use ('beam_search', 'bfs', or 'greedy')
@@ -600,7 +600,7 @@ def run_oracle_agent(
     and generate datasets for analysis.
 
     Args:
-        domain: Crafting domain ('cooking', 'decorations', 'genetics', 'potions')
+        domain: Crafting domain ('cooking', 'decorations', 'animals', 'potions')
         n_runs: Number of episodes to run
         max_steps: Maximum steps per episode
         beam_width: Width of the beam for beam search

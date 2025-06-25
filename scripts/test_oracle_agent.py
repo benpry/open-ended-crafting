@@ -92,7 +92,7 @@ def test_detailed_example(domain: str = "cooking"):
 def test_planning_methods():
     """Test different planning methods on various domains."""
 
-    domains = ["cooking", "decorations", "genetics", "potions"]
+    domains = ["cooking", "decorations", "animals", "potions"]
 
     for domain in domains:
         print(f"\n=== Testing domain: {domain} ===")
@@ -190,7 +190,7 @@ def main():
     print("Oracle Agent Test Suite")
     print("=" * 50)
 
-    domains = ["cooking", "decorations", "genetics", "potions"]
+    domains = ["cooking", "decorations", "animals", "potions"]
     results = {}
 
     # Test each domain

@@ -317,136 +317,76 @@ def decorations_combination_function(item1, item2):
     return new_item
 
 
-# GENETICS DOMAIN FUNCTIONS
+# ANIMALS DOMAIN FUNCTIONS
 
-genetics_feature_names = {
+animals_feature_names = {
     "mutation_level": ["normal", "mutant", "super-mutant", "corrupted"],
-    "metabolic_level": ["normal", "enhanced"],
+    "growth_level": ["normal", "jumbo", "colossal"],
+    "metabolic_level": ["normal", "accelerated"],
 }
 
 
-def genetics_value_function(item):
+def animals_value_function(item):
     """Calculate the value of a genetic creation based on its features."""
     value = 0  # No base value for animals
 
-    # EVOLUTION MASTERY BONUSES (high rewards for understanding genetics)
+    # POSITIVE UTILITY
 
-    # Optimal Growth: Growth serum on small animals = +65
-    if item.get("growth_applied", False) and item.get("original_size") == "small":
-        value += 65
+    # small species get better with two levels of growth
+    if item["size"] == "small":
+        value += 15 * item["growth_level"]
+    # medium species get better with one level of growth
+    elif item["size"] == "medium":
+        if item["growth_level"] == 1:
+            value += 15
+        elif item["growth_level"] == 2:
+            value -= 15
+    # large species get worse with any level of growth
+    elif item["size"] == "large":
+        value -= 15 * item["growth_level"]
 
-    # Perfect Mutation: Second-level mutation = +60
-    if item.get("mutation_level", 0) == 2:
-        value += 60
+    # second mutation is good
+    elif item["mutation_level"] == 2:
+        value += 30
 
-    # Metabolic Enhancement: Accelerator on carnivores/omnivores = +55
-    if item.get("metabolic_level", 0) == 1 and item.get("diet_type") in [
-        "carnivore",
-        "omnivore",
-    ]:
-        value += 55
+    # metabolic level is good for carnivores and omnivores
+    if item["diet_type"] in ["carnivore", "omnivore"]:
+        value += 30 * item["metabolic_level"]
 
-    # ULTIMATE EVOLUTION BONUSES
+    # different unique habitats are good
+    n_unique_habitats = len(set(item["habitats"]))
+    value += 20 * (n_unique_habitats - 1)
 
-    # Amphibious Mastery: Gills + Lungs + Mutation + Reconfiguration = +90
-    if (
-        item.get("has_gills_animal", False)
-        and item.get("has_lungs_animal", False)
-        and item.get("reconfigured_respiratory", False)
-        and item.get("mutation_level", 0) >= 1
-    ):
-        value += 90
+    # different original respiratory systems are good
+    n_unique_original_respiratory_types = len(set(item["original_respiratory_types"]))
+    value += 30 * (n_unique_original_respiratory_types - 1)
 
-    # Perfect Hybrid: Exactly 2 families from same habitat = +80
-    if (
-        item.get("families")
-        and len(set(item["families"])) == 2
-        and "habitats" in item
-        and len(set(item["habitats"])) == 1
-    ):
-        value += 80
+    # NEGATIVE UTILITY
 
-    # Size Perfection: Same-size breeding = +45
-    if item.get("size_variance", 1) == 0:  # No size difference
-        value += 45
+    # combining more than two basic animals is bad
+    if len(item["basic_animals"]) > 2:
+        value -= 30 * (len(item["basic_animals"]) - 2)
 
-    # MEGA EVOLUTION: Growth + Mutation + Metabolic + Perfect Hybrid = +120
-    if (
-        item.get("growth_applied", False)
-        and item.get("mutation_level", 0) >= 2
-        and item.get("metabolic_level", 0) >= 1
-        and item.get("families")
-        and len(set(item["families"])) == 2
-    ):
-        value += 120
+    # confused breathing is bad
+    if item["respiratory_type"] == "confused":
+        value -= 30
 
-    # Remove simple breeding bonus to reduce random scores
+    # metabolic acceleration is bad for herbivores
+    elif item["diet_type"] == "herbivore":
+        value -= 20 * item["metabolic_level"]
 
-    # HARSH PENALTIES FOR POOR BREEDING
+    # first mutation is bad
+    if item["mutation_level"] == 1:
+        value -= 15
 
-    # Penalty 0: Single unmodified animals = -120
-    if (
-        item.get("basic_animal_count", 0) == 1
-        and not item.get("growth_applied", False)
-        and item.get("mutation_level", 0) == 0
-        and item.get("metabolic_level", 0) == 0
-        and not item.get("reconfigured_respiratory", False)
-    ):
-        value -= 120
+    # third mutation is bad again
+    elif item["mutation_level"] == 3:
+        value -= 15
 
-    # Any unmodified animal combination
-    if item.get("basic_animal_count", 0) > 1 and not any(
-        [
-            item.get("growth_applied", False),
-            item.get("mutation_level", 0) > 0,
-            item.get("metabolic_level", 0) > 0,
-            item.get("reconfigured_respiratory", False),
-        ]
-    ):
-        value -= 120
-
-    # Wrong growth application
-    if item.get("growth_applied", False) and item.get("original_size") == "large":
-        value -= 65  # Growth on large animals is terrible
-
-    # Mutation disasters
-    if item.get("mutation_level", 0) == 1:
-        value -= 55  # First mutation is unstable
-    if item.get("mutation_level", 0) >= 3:
-        value -= 85  # Over-mutation is catastrophic
-
-    # Metabolic mismatch
-    if item.get("metabolic_level", 0) == 1 and item.get("diet_type") == "herbivore":
-        value -= 60  # Metabolic boost on herbivores is bad
-
-    # Size incompatibility disaster
-    if item.get("size_variance", 0) >= 2:  # Large vs small
-        value -= 75  # Terrible genetic mismatch
-
-    # Habitat chaos
-    if "habitats" in item and len(set(item["habitats"])) > 2:
-        value -= 60 * (len(set(item["habitats"])) - 2)
-
-    # Family chaos
-    if item.get("families") and len(set(item["families"])) > 3:
-        value -= 55 * (len(set(item["families"])) - 3)
-
-    # Too many animals penalty
-    if item.get("basic_animal_count", 0) > 2:
-        value -= 150 * (item.get("basic_animal_count", 0) - 2)
-
-    # Penalty 8: Any animal without proper enhancement = -200
-    if (
-        item.get("basic_animal_count", 0) >= 1
-        and not item.get("growth_applied", False)
-        and item.get("mutation_level", 0) == 0
-    ):
-        value -= 200
-
-    return max(value, 0)
+    return value
 
 
-def genetics_apply_tool(tool, item):
+def animals_apply_tool(tool, item):
     """Apply a genetic tool to an animal."""
     new_item = item.copy()
 
@@ -461,34 +401,30 @@ def genetics_apply_tool(tool, item):
     # Ensure tool field is set to False for the result
     new_item["tool"] = False
 
+    # the growth serum increases the growth level by 1
     if tool["name"] == "growth serum":
-        new_item["growth_applied"] = True
-        new_item["original_size"] = item.get("size", "medium")
+        new_item["growth_level"] = min(item["growth_level"] + 1, 2)
 
+    # the mutation catalyst increases the mutation level by 1
     elif tool["name"] == "mutation catalyst":
-        new_item["mutation_level"] = min(item.get("mutation_level", 0) + 1, 3)
+        new_item["mutation_level"] = min(item["mutation_level"] + 1, 3)
 
+    # the respiratory reconfigurer toggles the respiratory type
     elif tool["name"] == "respiratory reconfigurer":
-        # Toggle respiratory type
-        if item.get("respiratory_type") == "gills":
+        if item["respiratory_type"] == "gills":
             new_item["respiratory_type"] = "lungs"
         else:
             new_item["respiratory_type"] = "gills"
-        new_item["reconfigured_respiratory"] = True
-        # Track the original type for hybrid bonus
-        if item.get("respiratory_type") == "gills":
-            new_item["has_gills_animal"] = True
-        else:
-            new_item["has_lungs_animal"] = True
 
+    # the metabolic accelerator sets the metabolic level to 1
     elif tool["name"] == "metabolic accelerator":
         new_item["metabolic_level"] = 1
 
     return new_item
 
 
-def genetics_combination_function(item1, item2):
-    """The overall combination function for the genetics domain."""
+def animals_combination_function(item1, item2):
+    """The overall combination function for the animals domain."""
 
     # If they're both tools, return None
     if item1["tool"] and item2["tool"]:
@@ -496,128 +432,58 @@ def genetics_combination_function(item1, item2):
 
     # If one item is a tool, apply it to the other item
     if item1["tool"]:
-        new_item = genetics_apply_tool(item1, item2)
+        new_item = animals_apply_tool(item1, item2)
     elif item2["tool"]:
-        new_item = genetics_apply_tool(item2, item1)
+        new_item = animals_apply_tool(item2, item1)
     else:
         # Combine two animals
         new_item = {}
 
-        # Track families for cross-family bonus
-        families1 = (
-            [item1.get("family")] if "family" in item1 else item1.get("families", [])
-        )
-        families2 = (
-            [item2.get("family")] if "family" in item2 else item2.get("families", [])
-        )
-        new_item["families"] = families1 + families2
+        # the habitats are the union of the two
+        new_item["habitats"] = item1["habitats"] + item2["habitats"]
 
-        # Track habitats
-        habitats1 = (
-            [item1.get("habitat")] if "habitat" in item1 else item1.get("habitats", [])
-        )
-        habitats2 = (
-            [item2.get("habitat")] if "habitat" in item2 else item2.get("habitats", [])
-        )
-        new_item["habitats"] = habitats1 + habitats2
-
-        # Calculate size variance
+        # the size is the smaller of the two
         size_map = {"small": 0, "medium": 1, "large": 2}
-        size1 = size_map.get(item1.get("size", "medium"), 1)
-        size2 = size_map.get(item2.get("size", "medium"), 1)
-        new_item["size_variance"] = abs(size1 - size2)
+        inverse_size_map = {v: k for k, v in size_map.items()}
+        new_item["size"] = inverse_size_map[
+            min(size_map[item1["size"]], size_map[item2["size"]])
+        ]
 
-        # Determine result size (average)
-        avg_size = (size1 + size2) / 2
-        if avg_size < 0.5:
-            new_item["size"] = "small"
-        elif avg_size < 1.5:
-            new_item["size"] = "medium"
-        else:
-            new_item["size"] = "large"
+        # the growth level is the average of the two
+        new_item["growth_level"] = (item1["growth_level"] + item2["growth_level"]) / 2
 
-        # Preserve highest levels
+        # the mutation level is the higher of the two
         new_item["mutation_level"] = max(
-            item1.get("mutation_level", 0), item2.get("mutation_level", 0)
+            item1["mutation_level"], item2["mutation_level"]
         )
+
+        # the metabolic level is the higher of the two
         new_item["metabolic_level"] = max(
-            item1.get("metabolic_level", 0), item2.get("metabolic_level", 0)
+            item1["metabolic_level"], item2["metabolic_level"]
         )
 
         # Handle respiratory type
-        if item1.get("reconfigured_respiratory") or item2.get(
-            "reconfigured_respiratory"
-        ):
-            new_item["reconfigured_respiratory"] = True
-            # Track for amphibious bonus
-            new_item["has_gills_animal"] = (
-                item1.get("respiratory_type") == "gills"
-                or item1.get("has_gills_animal", False)
-            ) or (
-                item2.get("respiratory_type") == "gills"
-                or item2.get("has_gills_animal", False)
-            )
-            new_item["has_lungs_animal"] = (
-                item1.get("respiratory_type") == "lungs"
-                or item1.get("has_lungs_animal", False)
-            ) or (
-                item2.get("respiratory_type") == "lungs"
-                or item2.get("has_lungs_animal", False)
-            )
-
-        # Determine respiratory type (prefer gills for water animals)
-        if "water" in new_item["habitats"]:
-            new_item["respiratory_type"] = "gills"
+        if item1["respiratory_type"] == item2["respiratory_type"]:
+            new_item["respiratory_type"] = item1["respiratory_type"]
         else:
-            new_item["respiratory_type"] = "lungs"
+            new_item["respiratory_type"] = "confused"
 
-        # Determine diet type (carnivore dominates, then omnivore, then herbivore)
-        if (
-            item1.get("diet_type") == "carnivore"
-            or item2.get("diet_type") == "carnivore"
-        ):
-            new_item["diet_type"] = "carnivore"
-        elif (
-            item1.get("diet_type") == "omnivore" or item2.get("diet_type") == "omnivore"
-        ):
+        # Determine diet type (carnivore + herbivore makes omnivore)
+        if item1["diet_type"] != item2["diet_type"]:
             new_item["diet_type"] = "omnivore"
         else:
-            new_item["diet_type"] = "herbivore"
-
-        # Preserve growth applied status
-        new_item["growth_applied"] = item1.get("growth_applied", False) or item2.get(
-            "growth_applied", False
-        )
-        if new_item["growth_applied"]:
-            # Use the original size of whichever had growth applied
-            if item1.get("growth_applied", False):
-                new_item["original_size"] = item1.get("original_size", "medium")
-            else:
-                new_item["original_size"] = item2.get("original_size", "medium")
+            new_item["diet_type"] = item1["diet_type"]
 
         # Combine basic animals
-        new_item["basic_animals"] = item1.get("basic_animals", []) + item2.get(
-            "basic_animals", []
-        )
-        new_item["basic_animal_count"] = item1.get("basic_animal_count", 0) + item2.get(
-            "basic_animal_count", 0
-        )
+        new_item["basic_animals"] = item1["basic_animals"] + item2["basic_animals"]
 
-        # Determine primary habitat (water dominates, then air, then land)
-        if "water" in new_item["habitats"]:
-            new_item["habitat"] = "water"
-        elif "air" in new_item["habitats"]:
-            new_item["habitat"] = "air"
-        else:
-            new_item["habitat"] = "land"
-
-        # Set a reasonable family (first one in the list)
-        if new_item["families"]:
-            new_item["family"] = new_item["families"][0]
+        new_item["original_respiratory_types"] = (
+            item1["original_respiratory_types"] + item2["original_respiratory_types"]
+        )
 
     # Calculate value
     new_item["tool"] = False
-    new_item["value"] = genetics_value_function(new_item)
+    new_item["value"] = animals_value_function(new_item)
 
     return new_item
 
@@ -632,143 +498,52 @@ potions_feature_names = {
 
 
 def potions_value_function(item):
-    """Calculate the potency of a potion based on its features."""
+    """Calculate the value of a potion based on its features."""
     value = 0  # No base value for potions
 
-    # ALCHEMICAL MASTERY BONUSES (high rewards for understanding alchemy)
+    # POSITIVE UTILITY
 
-    # Plant Extraction Mastery: Vial on plant ingredients = +60
-    if item.get("extraction_level", 0) == 1 and item.get("ingredient_type") == "plant":
-        value += 60
+    # Extracted, filtered, and ground things are good
+    if item["extraction"] == "extracted":
+        value += 15
+    if item["filtering"] == "filtered":
+        value += 15
+    if item["grind"] == "ground":
+        value += 15
 
-    # Mineral Grinding Mastery: Mortar on hard minerals = +60
-    if (
-        item.get("ground", False)
-        and item.get("hardness") == "hard"
-        and item.get("ingredient_type") == "mineral"
-    ):
-        value += 60
+    # twice enchanted things are good
+    if item["enchantment_level"] == 2:
+        value += 15
 
-    # Perfect Enchantment: Second-level enchantment = +65
-    if item.get("enchantment_level", 0) == 2:
-        value += 65
+    # combining magical and non-magical things is good
+    if True in item["magicalities"] and False in item["magicalities"]:
+        value += 30
 
-    # Liquid Purification: Filter on liquid potions = +55
-    if item.get("filtered", False) and item.get("state_of_matter") == "liquid":
-        value += 55
+    # different states of matter are good
+    if len(item["states_of_matter"]) > 1:
+        value += 15 * (len(item["states_of_matter"]) - 1)
 
-    # ULTIMATE ALCHEMY BONUSES
+    # NEGATIVE UTILITY
 
-    # State Transformation Mastery: 3+ different states combined = +85
-    if "states_of_matter" in item and len(set(item["states_of_matter"])) >= 3:
-        value += 85
+    # botched things are bad
+    if item["extraction"] == "botched":
+        value -= 20
+    if item["filtering"] == "botched":
+        value -= 20
+    if item["grind"] == "botched":
+        value -= 20
 
-    # Magical-Mundane Fusion: Both magical and mundane = +80
-    if item.get("has_magical", False) and item.get("has_mundane", False):
-        value += 80
+    # first and third enchantments is bad
+    if item["enchantment_level"] == 1:
+        value -= 10
+    if item["enchantment_level"] == 3:
+        value -= 20
 
-    # Perfect Processing: Extracted + Ground + Enchanted + Filtered = +100
-    if (
-        item.get("extraction_level", 0) >= 1
-        and item.get("ground", False)
-        and item.get("enchantment_level", 0) >= 1
-        and item.get("filtered", False)
-    ):
-        value += 100
+    # more than two ingredients is bad
+    if len(item["basic_ingredients"]) > 2:
+        value -= 20 * (len(item["basic_ingredients"]) - 2)
 
-    # GRAND ELIXIR: All mastery bonuses combined = +120
-    if (
-        item.get("extraction_level", 0) >= 1
-        and item.get("ground", False)
-        and item.get("enchantment_level", 0) == 2
-        and item.get("filtered", False)
-        and item.get("has_magical", False)
-        and item.get("has_mundane", False)
-        and len(set(item.get("states_of_matter", []))) >= 3
-    ):
-        value += 120
-
-    # Remove simple processing bonus to reduce random scores
-
-    # HARSH PENALTIES FOR POOR ALCHEMY
-
-    # Penalty 0: Single unprocessed ingredients = -120
-    if (
-        item.get("basic_ingredient_count", 0) == 1
-        and item.get("extraction_level", 0) == 0
-        and not item.get("ground", False)
-        and item.get("enchantment_level", 0) == 0
-        and not item.get("filtered", False)
-    ):
-        value -= 120
-
-    # Any unprocessed ingredient combination
-    if item.get("basic_ingredient_count", 0) > 1 and not any(
-        [
-            item.get("extraction_level", 0) > 0,
-            item.get("ground", False),
-            item.get("enchantment_level", 0) > 0,
-            item.get("filtered", False),
-        ]
-    ):
-        value -= 120
-
-    # Wrong extraction target
-    if item.get("extraction_level", 0) == 1 and item.get("ingredient_type") != "plant":
-        value -= 60  # Vial on non-plant is wasteful
-
-    # Wrong grinding target
-    if item.get("ground", False) and item.get("hardness") == "soft":
-        value -= 60  # Mortar on soft materials is wrong
-
-    # Enchantment disasters
-    if item.get("enchantment_level", 0) == 1:
-        value -= 45  # First enchantment is unstable
-    if item.get("enchantment_level", 0) >= 3:
-        value -= 80  # Over-enchantment is catastrophic
-
-    # Wrong filtration
-    if item.get("filtered", False) and item.get("state_of_matter") in ["solid", "gas"]:
-        value -= 60  # Can't filter solids/gases properly
-
-    # State monotony penalty
-    if (
-        "states_of_matter" in item
-        and len(set(item["states_of_matter"])) == 1
-        and len(item["states_of_matter"]) > 1
-    ):
-        value -= 55  # Boring same-state combinations
-
-    # Magical monotony penalty
-    if (
-        "magical_levels" in item
-        and len(set(item["magical_levels"])) == 1
-        and len(item["magical_levels"]) > 1
-    ):
-        value -= 45  # All same magical level is bland
-
-    # Too many ingredients chaos
-    if item.get("basic_ingredient_count", 0) > 3:
-        value -= 150 * (item.get("basic_ingredient_count", 0) - 3)
-
-    # Penalty 7: Multiple ingredients with no processing = -180
-    if (
-        item.get("basic_ingredient_count", 0) > 1
-        and item.get("extraction_level", 0) == 0
-        and not item.get("ground", False)
-        and item.get("enchantment_level", 0) == 0
-    ):
-        value -= 180
-
-    # Penalty 8: Any ingredient without proper processing = -150
-    if (
-        item.get("basic_ingredient_count", 0) >= 1
-        and item.get("extraction_level", 0) == 0
-        and not item.get("ground", False)
-    ):
-        value -= 150
-
-    return max(value, 0)
+    return value
 
 
 def potions_apply_tool(tool, item):
@@ -786,20 +561,33 @@ def potions_apply_tool(tool, item):
     # Ensure tool field is set to False for the result
     new_item["tool"] = False
 
-    if tool["name"] == "vial":
-        new_item["extraction_level"] = 1
+    # the vial extracts plant things and makes them liquid
+    if tool["name"] == "vial" and item["extraction"] is None:
+        if set(item["ingredient_types"]) == {"plant"}:
+            new_item["extraction"] = "extracted"
+        else:
+            new_item["extraction"] = "botched"
 
-    elif tool["name"] == "mortar":
-        new_item["ground"] = True
-        # Change state to powder if solid and hard
-        if item.get("state_of_matter") == "solid" and item.get("hardness") == "hard":
-            new_item["state_of_matter"] = "powder"
+        new_item["states_of_matter"] = ["liquid"]
 
+    # the mortar grinds hard things
+    elif tool["name"] == "mortar" and item["grind"] is None:
+        if item["is_hard"]:
+            # it becomes a ground powder
+            new_item["grind"] = "ground"
+        else:
+            new_item["grind"] = "botched"
+
+    # wand increases enchantment level
     elif tool["name"] == "wand":
         new_item["enchantment_level"] = min(item.get("enchantment_level", 0) + 1, 3)
 
-    elif tool["name"] == "filter":
-        new_item["filtered"] = True
+    # the filter makes liquid things filtered
+    elif tool["name"] == "filter" and item["filtering"] is None:
+        if set(item["states_of_matter"]) == {"liquid"}:
+            new_item["filtering"] = "filtered"
+        else:
+            new_item["filtering"] = "botched"
 
     return new_item
 
@@ -820,97 +608,54 @@ def potions_combination_function(item1, item2):
         # Combine two ingredients
         new_item = {}
 
-        # Track states of matter for combination bonus
-        states1 = [item1.get("state_of_matter")] if "state_of_matter" in item1 else []
-        states2 = [item2.get("state_of_matter")] if "state_of_matter" in item2 else []
-        new_item["states_of_matter"] = states1 + states2
-
-        # Track magical levels
-        new_item["has_magical"] = (
-            item1.get("magical_level") == "magical"
-            or item2.get("magical_level") == "magical"
-            or item1.get("has_magical", False)
-            or item2.get("has_magical", False)
-        )
-        new_item["has_mundane"] = (
-            item1.get("magical_level") == "mundane"
-            or item2.get("magical_level") == "mundane"
-            or item1.get("has_mundane", False)
-            or item2.get("has_mundane", False)
+        # add the states of matter
+        new_item["states_of_matter"] = (
+            item1["states_of_matter"] + item2["states_of_matter"]
         )
 
-        magical_levels1 = (
-            [item1.get("magical_level")] if "magical_level" in item1 else []
-        )
-        magical_levels2 = (
-            [item2.get("magical_level")] if "magical_level" in item2 else []
-        )
-        new_item["magical_levels"] = magical_levels1 + magical_levels2
+        # the result is hard if both ingredients are hard
+        new_item["is_hard"] = item1["is_hard"] and item2["is_hard"]
 
-        # Determine resulting state (liquid dominates, then gas, then powder, then solid)
-        if (
-            item1.get("state_of_matter") == "liquid"
-            or item2.get("state_of_matter") == "liquid"
-        ):
-            new_item["state_of_matter"] = "liquid"
-        elif (
-            item1.get("state_of_matter") == "gas"
-            or item2.get("state_of_matter") == "gas"
-        ):
-            new_item["state_of_matter"] = "gas"
-        elif (
-            item1.get("state_of_matter") == "powder"
-            or item2.get("state_of_matter") == "powder"
-        ):
-            new_item["state_of_matter"] = "powder"
+        # add the ingredient types
+        new_item["ingredient_types"] = (
+            item1["ingredient_types"] + item2["ingredient_types"]
+        )
+
+        # the result is magical if either ingredient is magical
+        new_item["magicalities"] = item1["magicalities"] + item2["magicalities"]
+
+        # the enchantment level is the average of the two, rounded down
+        new_item["enchantment_level"] = math.floor(
+            (item1["enchantment_level"] + item2["enchantment_level"]) / 2
+        )
+
+        # if neither ingredient is filtered, the result is unfiltered
+        if item1["filtering"] is None and item2["filtering"] is None:
+            new_item["filtering"] = None
+        elif item1["filtering"] == "botched" or item2["filtering"] == "botched":
+            new_item["filtering"] = "botched"
         else:
-            new_item["state_of_matter"] = "solid"
+            new_item["filtering"] = "filtered"
 
-        # Determine hardness (soft dominates for mixtures)
-        if item1.get("hardness") == "soft" or item2.get("hardness") == "soft":
-            new_item["hardness"] = "soft"
+        # extraction works like filtering
+        if item1["extraction"] is None and item2["extraction"] is None:
+            new_item["extraction"] = None
+        elif item1["extraction"] == "botched" or item2["extraction"] == "botched":
+            new_item["extraction"] = "botched"
         else:
-            new_item["hardness"] = "hard"
+            new_item["extraction"] = "extracted"
 
-        # Determine ingredient type (animal dominates, then mineral, then essence, then plant)
-        types = [item1.get("ingredient_type"), item2.get("ingredient_type")]
-        if "animal" in types:
-            new_item["ingredient_type"] = "animal"
-        elif "mineral" in types:
-            new_item["ingredient_type"] = "mineral"
-        elif "essence" in types:
-            new_item["ingredient_type"] = "essence"
+        # grind works like extraction
+        if item1["grind"] is None and item2["grind"] is None:
+            new_item["grind"] = None
+        elif item1["grind"] == "botched" or item2["grind"] == "botched":
+            new_item["grind"] = "botched"
         else:
-            new_item["ingredient_type"] = "plant"
+            new_item["grind"] = "ground"
 
-        # Determine magical level (magical dominates)
-        if (
-            item1.get("magical_level") == "magical"
-            or item2.get("magical_level") == "magical"
-        ):
-            new_item["magical_level"] = "magical"
-        else:
-            new_item["magical_level"] = "mundane"
-
-        # Preserve highest levels
-        new_item["enchantment_level"] = max(
-            item1.get("enchantment_level", 0), item2.get("enchantment_level", 0)
+        new_item["basic_ingredients"] = (
+            item1["basic_ingredients"] + item2["basic_ingredients"]
         )
-        new_item["extraction_level"] = max(
-            item1.get("extraction_level", 0), item2.get("extraction_level", 0)
-        )
-        new_item["filtered"] = item1.get("filtered", False) or item2.get(
-            "filtered", False
-        )
-        new_item["ground"] = item1.get("ground", False) or item2.get("ground", False)
-
-        # Combine basic ingredients
-        new_item["basic_ingredients"] = item1.get("basic_ingredients", []) + item2.get(
-            "basic_ingredients", []
-        )
-        new_item["basic_ingredient_count"] = item1.get(
-            "basic_ingredient_count", 0
-        ) + item2.get("basic_ingredient_count", 0)
 
     # Calculate value
     new_item["tool"] = False
@@ -922,20 +667,20 @@ def potions_combination_function(item1, item2):
 COMBO_FUNCTIONS = {
     "cooking": cooking_combination_function,
     "decorations": decorations_combination_function,
-    "genetics": genetics_combination_function,
+    "animals": animals_combination_function,
     "potions": potions_combination_function,
 }
 
 FEATURE_NAMES = {
     "cooking": cooking_feature_names,
     "decorations": decorations_feature_names,
-    "genetics": genetics_feature_names,
+    "animals": animals_feature_names,
     "potions": potions_feature_names,
 }
 
 VALUE_FUNCTIONS = {
     "cooking": cooking_value_function,
     "decorations": decorations_value_function,
-    "genetics": genetics_value_function,
+    "animals": animals_value_function,
     "potions": potions_value_function,
 }

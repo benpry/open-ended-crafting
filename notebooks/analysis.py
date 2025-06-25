@@ -13,19 +13,21 @@
 #     name: python3
 # ---
 
-# %%
-import pandas as pd
-from pyprojroot import here
-import plotnine as p9
+from ast import literal_eval
+
 import matplotlib.pyplot as plt
 import numpy as np
-from ast import literal_eval
+
+# %%
+import pandas as pd
+import plotnine as p9
+from pyprojroot import here
 
 # %%
 EXP_NAME = "pilot1"
 df_trials = pd.read_csv(here(f"data/{EXP_NAME}/trials.csv"))
 df_trials["domain"] = df_trials["domain"].apply(
-    lambda x: "species" if x == "genetics" else x
+    lambda x: "species" if x == "animals" else x
 )
 df_trials["actions"] = df_trials["actions"].apply(literal_eval)
 df_trials["n_actions"] = df_trials["actions"].apply(len)
@@ -41,7 +43,7 @@ baseline_means = (
     .assign(
         timestep=lambda x: x["timestep"] + 1,
         run_idx=lambda x: pd.Categorical(x["run_idx"]),
-        domain=lambda x: np.where(x["domain"] == "genetics", "species", x["domain"]),
+        domain=lambda x: np.where(x["domain"] == "animals", "species", x["domain"]),
     )
     .query("timestep == 10")
     .groupby(["domain"])
@@ -51,7 +53,7 @@ baseline_means = (
 
 # get the trial means
 df_trials = pd.read_csv(here("data/pilot1/trials.csv")).assign(
-    domain=lambda x: np.where(x["domain"] == "genetics", "species", x["domain"]),
+    domain=lambda x: np.where(x["domain"] == "animals", "species", x["domain"]),
 )
 
 # get the message means

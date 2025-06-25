@@ -11,7 +11,7 @@ def run_random_agent(domain: str, n_runs: int = 10, n_steps: int = 10) -> pd.Dat
     Run the random agent for multiple episodes and return results.
 
     Args:
-        domain: Crafting domain ('cooking', 'decorations', 'genetics', 'potions')
+        domain: Crafting domain ('cooking', 'decorations', 'animals', 'potions')
         n_runs: Number of episodes to run
         n_steps: Maximum steps per episode
 
@@ -31,9 +31,7 @@ def run_random_agent(domain: str, n_runs: int = 10, n_steps: int = 10) -> pd.Dat
             obs, score, done, info = env.step((item1["name"], item2["name"]))
             new_item = obs["new_item"]
             inventory = obs["inventory"]
-            print(f"inventory: {inventory}")
             ingredients = [item for item in inventory if not item["tool"]]
-            print(f"ingredients: {ingredients}")
             score = sum([item["value"] for item in ingredients]) / len(ingredients)
 
             step_log = {

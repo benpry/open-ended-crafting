@@ -23,7 +23,7 @@ from pyprojroot import here
 df_baseline = pd.read_csv(here("data/simulations/random_baseline_results.csv")).assign(
     timestep=lambda x: x["timestep"] + 1,
     run_idx=lambda x: pd.Categorical(x["run_idx"]),
-    domain=lambda x: np.where(x["domain"] == "genetics", "species", x["domain"]),
+    domain=lambda x: np.where(x["domain"] == "animals", "species", x["domain"]),
 )
 
 # %%

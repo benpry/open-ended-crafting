@@ -1,6 +1,6 @@
 # Crafting Game Strategy Guide
 
-This guide will help you maximize your score in each of the four crafting domains: Cooking, Decorations, Genetics, and Potions.
+This guide will help you maximize your score in each of the four crafting domains: Cooking, Decorations, Animals, and Potions.
 
 ## General Principles
 
@@ -70,7 +70,7 @@ Create a painted wooden piece combined with paper or ribbon for maximum value!
 
 ---
 
-## 🧬 Genetics Domain
+## 🧬 Animals Domain
 
 ### Goal
 Create amazing hybrid animals through genetic manipulation.
