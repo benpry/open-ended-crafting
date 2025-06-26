@@ -20,8 +20,6 @@ if __name__ == "__main__":
             agent_type="random", domain=domain
         )
 
-        # Run oracle agent with beam search (faster for large search spaces)
-        # Use smaller beam width for decorations to ensure speed
         df_oracle = run_oracle_agent(
             domain,
             n_runs=100,

@@ -181,3 +181,6 @@ data/simulations/
 # We're using jupytext to convert notebooks to python scripts
 *.ipynb
 .aider*
+
+# Mac
+.DS_Store
