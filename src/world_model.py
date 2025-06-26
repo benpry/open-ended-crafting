@@ -3,14 +3,19 @@ This file handles interfacing with the language model to get new crafting instru
 """
 
 import json
-import random
-import string
 from ast import literal_eval
 
 import networkx as nx
 
 from src.combo_functions import COMBO_FUNCTIONS
 from src.prompts import get_item_semantics_from_lm
+
+
+def check_if_same_item(e1, e2):
+    for feature, value in e1.items():
+        if e2[feature] != value:
+            return False
+    return True
 
 
 class MemoizedWorldModel:
@@ -26,6 +31,13 @@ class MemoizedWorldModel:
         new_item = self.combo_function(e1, e2)
         if new_item is None:
             return None
+
+        # If one of the items is a tool and the output features are the same as the input features,
+        # then the output is the same as the input
+        if e1["tool"] and check_if_same_item(new_item, e2):
+            return e2.copy()
+        elif e2["tool"] and check_if_same_item(new_item, e1):
+            return e1.copy()
 
         if self.assign_names:
             semantics = get_item_semantics_from_lm(
@@ -43,9 +55,7 @@ class MemoizedWorldModel:
             new_item["emoji"] = semantics["emoji"]
 
         else:
-            new_item["name"] = "".join(
-                random.choice(string.ascii_uppercase + string.digits) for _ in range(10)
-            )
+            new_item["name"] = e1["name"] + "-" + e2["name"]
             new_item["emoji"] = "❓"
 
         return new_item

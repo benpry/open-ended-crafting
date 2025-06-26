@@ -9,42 +9,29 @@ def cooking_value_function(item):
     value = 0
 
     # Positive utility:
-    if item["cook_level"] == 1:  # Cooked things are good
-        value += 15
-
-    if item["water_level"] == 1 and item["cook_level"] == 1:  # Soup is good
-        value += 40
-
-    if (
-        item["water_level"] == 1 and item["chop_level"] >= 1
-    ):  # Chopped and soaked things are good
+    if item["cook_level"] == 1 and set(item["ingredient_types"]) != {
+        "fruit"
+    }:  # Cooked things are good, unless they're fruit
         value += 20
 
     if (
-        item["cook_level"] == 1 and item["chop_level"] == 1
-    ):  # Cooked and chopped things are good
-        value += 10
+        item["chop_level"] == 1 and "grain" not in item["ingredient_types"]
+    ):  # Chopped things are good, except for meat and grains
+        value += 20
 
-    if item["chop_level"] == 1:  # Chopped things are good
-        value += 5
+    if (
+        item["water_level"] == 1
+        and item["cook_level"] == 1
+        and "fruit" not in item["ingredient_types"]
+    ):  # Soup is gooD
+        value += 40
 
     if item["salt_level"] == 1:  # Salted things are good
         value += 20
 
-    # cooked meats are extra good
-    if "meat" in item["ingredient_types"] and item["cook_level"] == 1:
-        value += 30
-
-    # chopped and eviscerated aromatic things are extra good
-    if "aromatic" in item["ingredient_types"] and item["chop_level"] >= 2:
-        value += 15
-
-    # combining up to 3 different ingredient types is good
-    distinct_ingredient_types = min(len(set(item["ingredient_types"])), 3)
-    if distinct_ingredient_types == 2:
-        value += 10
-    elif distinct_ingredient_types == 3:
-        value += 20
+    # combining two ingredient types is good
+    n_distinct_ingredient_types = len(set(item["ingredient_types"]))
+    value += 20 * (n_distinct_ingredient_types - 1)
 
     # Negative utility:
     if item["cook_level"] == 2:  # Overcooked things are bad
@@ -56,11 +43,11 @@ def cooking_value_function(item):
     if (
         item["water_level"] == 1 and item["cook_level"] == 0
     ):  # Uncooked soaked things are bad
-        value -= 20
+        value -= 25
 
-    # salting fruit is bad
-    if set(item["ingredient_types"]) == {"fruit"}:
-        value -= 15
+    # nobody likes fruit soup
+    if "fruit" in item["ingredient_types"] and "water" in item["ingredient_types"]:
+        value -= 25
 
     # more than one ingredient of the same type is bad
     for ingredient_type in item["ingredient_types"]:
@@ -72,7 +59,7 @@ def cooking_value_function(item):
 
 cooking_feature_names = {
     "water_level": ["dry", "soaked"],
-    "chop_level": ["unchopped", "chopped", "minced"],
+    "chop_level": ["unchopped", "chopped"],
     "salt_level": ["unsalted", "salted", "oversalted"],
     "cook_level": ["raw", "cooked", "overcooked"],
 }
@@ -588,6 +575,8 @@ def potions_apply_tool(tool, item):
             new_item["filtering"] = "filtered"
         else:
             new_item["filtering"] = "botched"
+
+    new_item["value"] = potions_value_function(new_item)
 
     return new_item
 

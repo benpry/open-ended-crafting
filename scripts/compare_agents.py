@@ -19,16 +19,16 @@ if __name__ == "__main__":
         df_random = run_random_agent(domain, n_runs=100, n_steps=5).assign(
             agent="random", domain=domain
         )
+        df_random["agent_type"] = "random"
 
         # Run oracle agent with beam search (faster for large search spaces)
         # Use smaller beam width for decorations to ensure speed
         df_oracle = run_oracle_agent(
             domain,
-            n_runs=100,
-            max_steps=20,
-            beam_width=500,
-            planning_method="beam_search",
+            n_runs=20,
+            max_depth=10,
         ).assign(agent="oracle", domain=domain)
+        df_oracle["agent_type"] = "oracle"
 
         # Get the final scores for each run
         # Both agents should have 'final_reward' column
@@ -41,6 +41,19 @@ if __name__ == "__main__":
 
         print(f"Random agent scores: {df_random_final['final_reward'].describe()}")
         print(f"Oracle agent scores: {df_oracle_final['final_reward'].describe()}")
+
+        oracle_episode_lengths = (
+            df_oracle.groupby(["domain", "run_idx"])["step"]
+            .max()
+            .reset_index()
+            .rename(columns={"step": "episode_length"})["episode_length"]
+        )
+        print(f"Median oracle episode length: {oracle_episode_lengths.median()}")
+        print(f"Mean oracle episode length: {oracle_episode_lengths.mean()}")
+
+        example_oracle_episode = df_oracle[df_oracle["run_idx"] == 0]
+        print(example_oracle_episode["action"])
+
         df = pd.concat([df, df_random, df_oracle])
 
     df.to_csv(here("data/simulations/agent_comparison.csv"), index=False)

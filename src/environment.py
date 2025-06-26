@@ -29,10 +29,11 @@ class CraftingGame(gym.Env):
         # get the item names and delete the reasoning
         tools = TOOLS[self.domain]
         ingredients = random.sample(INGREDIENTS[self.domain], 3)
+
+        # Assign values to all ingredients
         for ingredient in ingredients:
             ingredient["value"] = VALUE_FUNCTIONS[self.domain](ingredient)
-        # tools = cooking_tools
-        # ingredients = random.sample(cooking_ingredients, 5)
+
         self.inventory = tools + ingredients
 
         return self.inventory
@@ -88,27 +89,31 @@ class CraftingGame(gym.Env):
         item1 = next(item for item in self.inventory if item["name"] == name1)
         item2 = next(item for item in self.inventory if item["name"] == name2)
 
+        # if the user tries to combine two tools, do nothing
+        if item1["tool"] and item2["tool"]:
+            obs = {
+                "inventory": self.inventory,
+                "new_item": None,
+            }
+            return obs, 0, False, {}
+
         # remove non-tool items (ingredients get consumed)
         # Tools are durable and stay in inventory, ingredients are consumed
-        if not item1.get("tool", False):
+        if not item1["tool"]:
             self.inventory.remove(item1)
-        if not item2.get("tool", False):
+        if not item2["tool"]:
             self.inventory.remove(item2)
 
         # combine the items
         new_item = self.world_model.combine(item1, item2)
 
+        # update the inventory
+        self.inventory.append(new_item)
+
         obs = {
             "inventory": self.inventory,
             "new_item": new_item,
         }
-
-        # if the new item is already in the inventory, don't add it
-        if new_item is None or new_item["name"] in inv_names:
-            return obs, 0, False, {}
-
-        # update the inventory
-        self.inventory.append(new_item)
 
         return obs, 0, False, {}
 
