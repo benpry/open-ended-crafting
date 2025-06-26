@@ -55,7 +55,7 @@ class MemoizedWorldModel:
             new_item["emoji"] = semantics["emoji"]
 
         else:
-            new_item["name"] = e1["name"] + "-" + e2["name"]
+            new_item["name"] = f"[{e1['name']}]-[{e2['name']}]"
             new_item["emoji"] = "❓"
 
         return new_item

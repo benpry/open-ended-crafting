@@ -12,22 +12,22 @@ def cooking_value_function(item):
     if item["cook_level"] == 1 and set(item["ingredient_types"]) != {
         "fruit"
     }:  # Cooked things are good, unless they're fruit
-        value += 20
+        value += 15
 
     if (
         item["chop_level"] == 1 and "grain" not in item["ingredient_types"]
     ):  # Chopped things are good, except for meat and grains
-        value += 20
+        value += 15
 
     if (
         item["water_level"] == 1
         and item["cook_level"] == 1
         and "fruit" not in item["ingredient_types"]
-    ):  # Soup is gooD
-        value += 40
+    ):  # Soup is good
+        value += 25
 
     if item["salt_level"] == 1:  # Salted things are good
-        value += 20
+        value += 10
 
     # combining two ingredient types is good
     n_distinct_ingredient_types = len(set(item["ingredient_types"]))
@@ -180,11 +180,11 @@ def decorations_value_function(item):
 
     # Drawing on artificial materials is good
     if "artificial" in item["material_types"] and item["drawn_level"] == 1:
-        value += 20
+        value += 25
 
     # Cutting soft materials is good
     if item["hardness"] == "soft" and item["cut_level"] == 1:
-        value += 20
+        value += 25
 
     # Painting is good
     if item["paint_level"] == 1:
@@ -192,11 +192,11 @@ def decorations_value_function(item):
 
     # framing helps, provided we didn't mess with something after framing
     if item["framed"] and not item["post_frame_messed_with"]:
-        value += 15
+        value += 20
 
     # combining natural and artificial materials is good
     if "natural" in item["material_types"] and "artificial" in item["material_types"]:
-        value += 35
+        value += 40
 
     # NEGATIVE UTILITY
 
@@ -206,7 +206,7 @@ def decorations_value_function(item):
 
     # over-painting is bad
     if item["paint_level"] == 2:
-        value -= 20
+        value -= 25
 
     # cutting hard materials is bad
     if item["hardness"] == "hard" and item["cut_level"] == 1:
@@ -492,7 +492,7 @@ def potions_value_function(item):
 
     # Extracted, filtered, and ground things are good
     if item["extraction"] == "extracted":
-        value += 15
+        value += 20
     if item["filtering"] == "filtered":
         value += 15
     if item["grind"] == "ground":
@@ -504,21 +504,20 @@ def potions_value_function(item):
 
     # combining magical and non-magical things is good
     if True in item["magicalities"] and False in item["magicalities"]:
-        value += 30
+        value += 25
 
     # different states of matter are good
-    if len(item["states_of_matter"]) > 1:
-        value += 15 * (len(item["states_of_matter"]) - 1)
+    value += 15 * (len(set(item["states_of_matter"])) - 1)
 
     # NEGATIVE UTILITY
 
     # botched things are bad
     if item["extraction"] == "botched":
-        value -= 20
+        value -= 25
     if item["filtering"] == "botched":
-        value -= 20
+        value -= 25
     if item["grind"] == "botched":
-        value -= 20
+        value -= 25
 
     # first and third enchantments is bad
     if item["enchantment_level"] == 1:

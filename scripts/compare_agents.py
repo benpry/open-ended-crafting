@@ -17,18 +17,16 @@ if __name__ == "__main__":
 
         # Run random agent
         df_random = run_random_agent(domain, n_runs=100, n_steps=5).assign(
-            agent="random", domain=domain
+            agent_type="random", domain=domain
         )
-        df_random["agent_type"] = "random"
 
         # Run oracle agent with beam search (faster for large search spaces)
         # Use smaller beam width for decorations to ensure speed
         df_oracle = run_oracle_agent(
             domain,
-            n_runs=20,
+            n_runs=100,
             max_depth=10,
-        ).assign(agent="oracle", domain=domain)
-        df_oracle["agent_type"] = "oracle"
+        ).assign(agent_type="oracle", domain=domain)
 
         # Get the final scores for each run
         # Both agents should have 'final_reward' column
