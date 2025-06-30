@@ -65,9 +65,6 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
         {"role": "user", "content": f"Item 1: {e1}\nItem 2: {e2}\nOutcome: {o}"},
     ]
 
-    print("full messages:")
-    print(messages)
-
     return messages
 
 
@@ -83,6 +80,9 @@ def call_model(messages: list, lm_string: str) -> str:
             tool_choice="none",
             temperature=0.2,
         )
+
+        print("response:")
+        print(response)
     except Exception as e:
         print(f"Error message: {str(e)}")
         print(f"Response: {response}")
