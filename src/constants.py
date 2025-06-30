@@ -1105,7 +1105,7 @@ INGREDIENTS = {
 
 
 cooking_system_prompt = """
-You are controlling the semantics of a cooking game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. Please respond in JSON format.
+You are controlling the semantics of a cooking game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. Please respond in JSON format, with double quotes around all strings.
 
 The names should be informative and make it possible for the player to know the relevant features so they can learn the rules.
 """

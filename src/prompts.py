@@ -2,12 +2,17 @@
 This file contains prompts for the language model.
 """
 
+from ast import literal_eval
+
 import backoff
+import litellm
 from litellm import completion
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 from src.combo_functions import FEATURE_NAMES
 from src.constants import SYSTEM_PROMPTS
+
+litellm.drop_params = True
 
 
 class ItemSemantics(BaseModel):
@@ -60,6 +65,9 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
         {"role": "user", "content": f"Item 1: {e1}\nItem 2: {e2}\nOutcome: {o}"},
     ]
 
+    print("full messages:")
+    print(messages)
+
     return messages
 
 
@@ -70,27 +78,27 @@ def call_model(messages: list, lm_string: str) -> str:
             model=lm_string,
             messages=messages,
             response_format=ItemSemantics,
-            max_completion_tokens=4096,
-            reasoning_effort="disable",
+            max_completion_tokens=128,
+            # reasoning_effort="disable",
+            tool_choice="none",
             temperature=0.2,
         )
     except Exception as e:
-        print(f"Error type: {type(e).__name__}")
         print(f"Error message: {str(e)}")
-        print(f"Full error: {repr(e)}")
+        print(f"Response: {response}")
         raise e
-
-    print("response:")
-    print(response)
 
     content = response.choices[0].message.content
     if content is None:
-        print("No content")
-        print(messages)
-        print(lm_string)
         raise Exception("No content")
 
-    semantics = ItemSemantics.model_validate_json(content).model_dump()
+    # try validating the json directly. If that doesn't work, parse the response as a dict and validate that
+    try:
+        semantics = ItemSemantics.model_validate_json(content).model_dump()
+    except ValidationError:
+        content = literal_eval(content)
+        semantics = ItemSemantics.model_validate(content).model_dump()
+
     if len(semantics["emoji"]) > 3:
         semantics["emoji"] = semantics["emoji"][:3]
 

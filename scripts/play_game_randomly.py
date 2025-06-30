@@ -6,7 +6,8 @@ from src.environment import CraftingGame
 
 # model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"
 # model = "fireworks_ai/accounts/fireworks/models/llama4-maverick-instruct-basic"
-model = "gemini/gemini-2.5-flash-preview-04-17"
+# model = "gemini/gemini-2.5-flash-preview-04-17"
+model = "groq/llama-3.1-8b-instant"
 # model = "openai/gpt-4.1-mini"
 # model = "anthropic/claude-3-7-sonnet-20250219"
 

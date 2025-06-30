@@ -44,7 +44,10 @@ class CraftingGame(gym.Env):
         """
         print("Inventory:")
         for item in self.inventory:
-            print(f"{item['emoji']} {item['name']}, value: {item['value']}")
+            if item["tool"]:
+                print(f"{item['emoji']} {item['name']}")
+            else:
+                print(f"{item['emoji']} {item['name']}, value: {item['value']}")
 
     def reset_world_model(self):
         """
