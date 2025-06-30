@@ -71,6 +71,7 @@ def call_model(messages: list, lm_string: str) -> str:
             messages=messages,
             response_format=ItemSemantics,
             max_completion_tokens=4096,
+            reasoning_effort="disable",
             temperature=0.2,
         )
     except Exception as e:
