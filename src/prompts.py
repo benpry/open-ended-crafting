@@ -31,9 +31,9 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
         {"role": "system", "content": system_prompt},
     ]
 
-    # Only use the last 10 examples for the prompt
-    if len(ic_examples) > 10:
-        ic_examples = ic_examples[:5] + ic_examples[-5:]
+    # the first and last 2 examples are used for the prompt
+    if len(ic_examples) > 4:
+        ic_examples = ic_examples[:2] + ic_examples[-2:]
 
     for example in ic_examples:
         item1, item2 = example["input"]
