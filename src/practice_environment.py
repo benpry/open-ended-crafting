@@ -6,6 +6,7 @@ import gymnasium as gym
 suit_order = ["clubs", "diamonds", "hearts", "spades"]
 suit_emojis = ["♣", "♢", "♡", "♠"]
 number_order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"]
+number_emojis = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 
 
 def value_fn(item):
@@ -51,7 +52,7 @@ def combo_fn(item1, item2):
         f"{number_order[new_item['number']]} of {suit_order[new_item['suit']]}"
     )
     new_item["emoji"] = (
-        f"{number_order[new_item['number']]}{suit_emojis[new_item['suit']]}"
+        f"{number_emojis[new_item['number']]}{suit_emojis[new_item['suit']]}"
     )
     new_item["tool"] = False
     new_item["value"] = value_fn(new_item)
