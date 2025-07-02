@@ -1105,27 +1105,27 @@ INGREDIENTS = {
 
 
 cooking_system_prompt = """
-You are controlling the semantics of a cooking game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. Please respond in JSON format, with double quotes around all strings.
+You are controlling the semantics of a cooking game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items.
 
-The names should be informative and make it possible for the player to know the relevant features so they can learn the rules.
+Please respond in JSON format, with double quotes around all strings.
 """
 
 decorations_system_prompt = """
-You are controlling the semantics of a decoration-making game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. Please respond in JSON format, with double quotes around all strings.
+You are controlling the semantics of a decoration-making game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items.
 
-The names should be informative and make it possible for the player to know the relevant features so they can learn the rules.
+Please respond in JSON format, with double quotes around all strings.
 """
 
 animals_system_prompt = """
-You are controlling the semantics of a hybrid animal creation game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. Please respond in JSON format, with double quotes around all strings.
+You are controlling the semantics of a hybrid animal creation game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items.
 
-The names should be informative and make it possible for the player to know the relevant features so they can learn the rules.
+Please respond in JSON format, with double quotes around all strings.
 """
 
 potions_system_prompt = """
-You are controlling the semantics of a potion brewing game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. Please respond in JSON format, with double quotes around all strings.
+You are controlling the semantics of a potion brewing game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items.
 
-The names should be informative and make it possible for the player to know the relevant features so they can learn the rules.
+Please respond in JSON format, with double quotes around all strings.
 """
 
 SYSTEM_PROMPTS = {
@@ -1134,70 +1134,3 @@ SYSTEM_PROMPTS = {
     "animals": animals_system_prompt,
     "potions": potions_system_prompt,
 }
-
-
-cooking_ic_examples = [
-    {
-        "input": [
-            {"name": "raw meat", "emoji": "🥩", "durable": False},
-            {"name": "knife", "emoji": "🔪", "durable": True},
-        ],
-        "reasoning": "Following the tool use rules for knife, using a knife on raw meat should make it sliced. Since raw meat is inedible (value 0), sliced raw meat should also be inedible. The knife is a tool, so it should be preserved in the emoji.",
-        "output": {
-            "name": "sliced raw meat",
-            "durable": False,
-            "emoji": "🔪🥩",
-        },
-    },
-    {
-        "input": [
-            {"name": "sliced raw meat", "emoji": "🔪🥩", "durable": False},
-            {"name": "stove", "emoji": "🔥", "durable": True},
-        ],
-        "reasoning": "Following the tool use rules for stove and the value rules, cooking sliced meat should make it edible. The value rules specify that sliced and cooked ingredients should be more valuable (value +10-20). I'll set it to 15 to show the improvement.",
-        "output": {
-            "name": "cooked sliced meat",
-            "value": 15,
-            "durable": False,
-            "emoji": "🔪🍖",
-        },
-    },
-    {
-        "input": [
-            {"name": "raw rice", "emoji": "🌾", "durable": False},
-            {"name": "water", "emoji": "💧", "durable": True},
-        ],
-        "reasoning": "Following the tool use rules for water, adding water to rice makes it soaked. The value rules specify that soaking grains doesn't change value by itself, but prepares them for better cooking later.",
-        "output": {
-            "name": "soaked rice",
-            "durable": False,
-            "emoji": "💧🌾",
-        },
-    },
-    {
-        "input": [
-            {"name": "soaked rice", "emoji": "💧🌾", "durable": False},
-            {"name": "stove", "emoji": "🔥", "durable": True},
-        ],
-        "reasoning": "Following the value rules, cooking soaked grains should dramatically increase value (+20-30). I'll set it to 25 to show the significant improvement from soaking and cooking.",
-        "output": {
-            "name": "cooked rice",
-            "value": 25,
-            "durable": False,
-            "emoji": "🍚",
-        },
-    },
-    {
-        "input": [
-            {"name": "cooked rice", "emoji": "🍚", "value": 25, "durable": False},
-            {"name": "salt", "emoji": "🧂", "durable": True},
-        ],
-        "reasoning": "Following the tool use rules for salt, adding salt to a dish should improve its value (+10-20). The cooked rice has a value of 25, so adding salt should increase it to 35. This is the first use of salt, so it should be a positive change.",
-        "output": {
-            "name": "salted rice",
-            "value": 35,
-            "durable": False,
-            "emoji": "🧂🍚",
-        },
-    },
-]
