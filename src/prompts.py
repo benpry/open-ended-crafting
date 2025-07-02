@@ -2,17 +2,19 @@
 This file contains prompts for the language model.
 """
 
-from ast import literal_eval
+import os
 
-import backoff
-import litellm
-from litellm import completion
-from pydantic import BaseModel, ValidationError
+import instructor
+from groq import Groq
+from pydantic import BaseModel
 
 from src.combo_functions import FEATURE_NAMES
 from src.constants import SYSTEM_PROMPTS
 
-litellm.drop_params = True
+client = Groq(
+    api_key=os.getenv("GROQ_API_KEY"),
+)
+client = instructor.from_groq(client)
 
 
 class ItemSemantics(BaseModel):
@@ -68,36 +70,12 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
     return messages
 
 
-@backoff.on_exception(backoff.expo, Exception, max_tries=8)
-def call_model(messages: list, lm_string: str) -> str:
-    try:
-        response = completion(
-            model=lm_string,
-            messages=messages,
-            response_format=ItemSemantics,
-            max_completion_tokens=128,
-            # reasoning_effort="disable",
-            tool_choice="none",
-            temperature=0.2,
-        )
+def call_model(messages: list, lm_string: str) -> dict:
+    semantics = client.completions.create(
+        model=lm_string, messages=messages, response_model=ItemSemantics, max_retries=5
+    )
 
-        print("response:")
-        print(response)
-    except Exception as e:
-        print(f"Error message: {str(e)}")
-        print(f"Response: {response}")
-        raise e
-
-    content = response.choices[0].message.content
-    if content is None:
-        raise Exception("No content")
-
-    # try validating the json directly. If that doesn't work, parse the response as a dict and validate that
-    try:
-        semantics = ItemSemantics.model_validate_json(content).model_dump()
-    except ValidationError:
-        content = literal_eval(content)
-        semantics = ItemSemantics.model_validate(content).model_dump()
+    semantics = semantics.model_dump()
 
     if len(semantics["emoji"]) > 3:
         semantics["emoji"] = semantics["emoji"][:3]
