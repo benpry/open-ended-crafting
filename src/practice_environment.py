@@ -86,7 +86,7 @@ ingredients = [
         "emoji": "J♡",
         "tool": False,
         "number": 11,
-        "suit": 2,
+        "suit": 3,
     },
 ]
 
