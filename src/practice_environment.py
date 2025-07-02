@@ -49,10 +49,10 @@ def combo_fn(item1, item2):
         new_item["suit"] = max(item1["suit"], item2["suit"])
 
     new_item["name"] = (
-        f"{number_order[new_item['number']]} of {suit_order[new_item['suit']]}"
+        f"{number_order[new_item['number'] - 1]} of {suit_order[new_item['suit']]}"
     )
     new_item["emoji"] = (
-        f"{number_emojis[new_item['number']]}{suit_emojis[new_item['suit']]}"
+        f"{number_emojis[new_item['number'] - 1]}{suit_emojis[new_item['suit']]}"
     )
     new_item["tool"] = False
     new_item["value"] = value_fn(new_item)
