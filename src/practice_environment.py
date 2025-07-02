@@ -10,14 +10,19 @@ number_emojis = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K
 
 
 def value_fn(item):
-    if item["number"] < 12:
-        number_value = math.floor(item["number"] / 3)
-    elif item["number"] == 12:
+    if item["number"] == 11:
         number_value = 10
+    elif item["number"] > 11:
+        number_value = -10 - (item["number"] - 11) * 2
     else:
-        number_value = 0
+        number_value = math.floor(item["number"] / 2)
 
-    suit_value = 10 if item["suit"] == 1 or item["suit"] == 3 else 1
+    if item["suit"] == 3:
+        suit_value = 10
+    elif item["suit"] == 1:
+        suit_value = 5
+    else:
+        suit_value = 0
 
     return number_value + suit_value
 
@@ -76,16 +81,16 @@ tools = [
 ingredients = [
     {
         "name": "7 of clubs",
-        "emoji": "7♣",
+        "emoji": "2♣",
         "tool": False,
-        "number": 7,
+        "number": 2,
         "suit": 0,
     },
     {
         "name": "jack of hearts",
-        "emoji": "J♡",
+        "emoji": "5♡",
         "tool": False,
-        "number": 11,
+        "number": 5,
         "suit": 3,
     },
 ]
