@@ -177,6 +177,7 @@ cython_debug/
 .vscode
 figures/
 data/simulations/
+data/world-models/
 
 # We're using jupytext to convert notebooks to python scripts
 *.ipynb
