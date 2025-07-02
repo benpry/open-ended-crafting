@@ -3,8 +3,8 @@ from typing import Optional
 
 import gymnasium as gym
 
-suit_order = ["clubs", "diamonds", "hearts", "spades"]
-suit_emojis = ["♣", "♢", "♡", "♠"]
+suit_order = ["clubs", "diamonds", "spades", "hearts"]
+suit_emojis = ["♣", "♢", "♠", "♡"]
 number_order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"]
 number_emojis = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 
@@ -82,7 +82,7 @@ ingredients = [
         "suit": 0,
     },
     {
-        "name": "Jack of hearts",
+        "name": "jack of hearts",
         "emoji": "J♡",
         "tool": False,
         "number": 11,
