@@ -1130,6 +1130,7 @@ You are controlling the semantics of a hybrid animal creation game. You will see
 Please keep the following rules in mind:
 - If an animal's respiratory type is not the same as its original respiratory type, its name should include "with gills" or "with lungs", depending on the new respiratory type. If the respiratory type is "confused", it should include "with breathing problems".
 - If an animal is a herbivore and its metabolic level is "accelerated", its name should include "starving".
+- The animal's mutation level is not normal, it should be included in the name. 
 
 Please respond in JSON format, with double quotes around all strings.
 """

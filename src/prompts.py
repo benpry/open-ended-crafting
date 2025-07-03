@@ -63,6 +63,10 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
             }
         )
 
+    e1 = apply_feature_names(e1, feature_names)
+    e2 = apply_feature_names(e2, feature_names)
+    o = apply_feature_names(o, feature_names)
+
     messages += [
         {"role": "user", "content": f"Item 1: {e1}\nItem 2: {e2}\nOutcome: {o}"},
     ]
