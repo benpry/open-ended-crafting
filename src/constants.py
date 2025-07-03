@@ -1107,11 +1107,19 @@ INGREDIENTS = {
 cooking_system_prompt = """
 You are controlling the semantics of a cooking game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items.
 
+Please keep the following rules in mind:
+- If an item is cooked and soaked, it should be called some kind of "soup".
+- If an item has been cooked, it should not include the word "raw" in the name.
+
 Please respond in JSON format, with double quotes around all strings.
 """
 
 decorations_system_prompt = """
 You are controlling the semantics of a decoration-making game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items.
+
+Please keep the following rules in mind:
+- If an item is framed, it should be called "framed"
+- If an item has post-frame-messed-with, it should have "with ruined frame" at the end of the name
 
 Please respond in JSON format, with double quotes around all strings.
 """
@@ -1119,11 +1127,19 @@ Please respond in JSON format, with double quotes around all strings.
 animals_system_prompt = """
 You are controlling the semantics of a hybrid animal creation game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items.
 
+Please keep the following rules in mind:
+- If an animal's respiratory type is not the same as its original respiratory type, its name should include "with gills" or "with lungs", depending on the new respiratory type. If the respiratory type is "confused", it should include "with breathing problems".
+- If an animal is a herbivore and its metabolic level is "accelerated", its name should include "starving".
+
 Please respond in JSON format, with double quotes around all strings.
 """
 
 potions_system_prompt = """
 You are controlling the semantics of a potion brewing game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items.
+
+Please keep the following rules in mind:
+- An item that has an enchantment level other than unenchanted should have its enchantment level in the name.
+- The name of an item that has multiple states of matter should somehow mention that it combines multiple states of matter.
 
 Please respond in JSON format, with double quotes around all strings.
 """
