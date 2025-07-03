@@ -14,7 +14,7 @@ from src.constants import SYSTEM_PROMPTS
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY"),
 )
-client = instructor.from_groq(client)
+client = instructor.from_groq(client, mode=instructor.Mode.JSON)
 
 
 class ItemSemantics(BaseModel):

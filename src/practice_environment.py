@@ -80,14 +80,14 @@ tools = [
 
 ingredients = [
     {
-        "name": "7 of clubs",
+        "name": "2 of clubs",
         "emoji": "2♣",
         "tool": False,
         "number": 2,
         "suit": 0,
     },
     {
-        "name": "jack of hearts",
+        "name": "5 of hearts",
         "emoji": "5♡",
         "tool": False,
         "number": 5,
