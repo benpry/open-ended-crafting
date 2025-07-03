@@ -24,8 +24,10 @@ class ItemSemantics(BaseModel):
 
 def apply_feature_names(item: dict, feature_names: dict) -> dict:
     updated_item = item.copy()
+    print(item)
     for feature, value in item.items():
         if feature in feature_names:
+            print(feature, value)
             updated_item[feature] = feature_names[feature][value]
     return updated_item
 

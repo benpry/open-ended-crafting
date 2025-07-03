@@ -333,7 +333,7 @@ def animals_value_function(item):
         value -= 15 * item["growth_level"]
 
     # second mutation is good
-    elif item["mutation_level"] == 2:
+    if item["mutation_level"] == 2:
         value += 30
 
     # metabolic level is good for carnivores and omnivores
@@ -437,7 +437,9 @@ def animals_combination_function(item1, item2):
         ]
 
         # the growth level is the average of the two
-        new_item["growth_level"] = (item1["growth_level"] + item2["growth_level"]) / 2
+        new_item["growth_level"] = math.floor(
+            (item1["growth_level"] + item2["growth_level"]) / 2
+        )
 
         # the mutation level is the higher of the two
         new_item["mutation_level"] = max(

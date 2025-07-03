@@ -14,7 +14,7 @@ model = "meta-llama/llama-4-maverick-17b-128e-instruct"
 # model = "openai/gpt-4.1-mini"
 # model = "anthropic/claude-3-7-sonnet-20250219"
 
-DOMAIN = "cooking"
+DOMAIN = "decorations"
 game = CraftingGame(model, DOMAIN, assign_names=True)
 game.reset()
 
