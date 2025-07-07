@@ -2,11 +2,24 @@ import math
 from typing import Optional
 
 import gymnasium as gym
+from unicards import unicard
 
 suit_order = ["clubs", "diamonds", "spades", "hearts"]
-suit_emojis = ["♣", "♢", "♠", "♡"]
-number_order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"]
-number_emojis = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+number_order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"]
+
+
+def get_card_emoji(number, suit):
+    print(number, suit)
+    suit = suit_order[suit]
+    suit = suit[0]
+    number = number_order[number]
+    number = "T" if number == 10 else str(number)[0].upper()
+    print(number, suit)
+    card_string = f"{number}{suit}"
+    print(card_string)
+    card_emoji = unicard(card_string)
+    print(card_emoji)
+    return card_emoji
 
 
 def value_fn(item):
@@ -54,11 +67,10 @@ def combo_fn(item1, item2):
         new_item["suit"] = max(item1["suit"], item2["suit"])
 
     new_item["name"] = (
-        f"{number_order[new_item['number'] - 1]} of {suit_order[new_item['suit']]}"
+        f"{number_order[new_item['number']]} of {suit_order[new_item['suit']]}"
     )
-    new_item["emoji"] = (
-        f"{number_emojis[new_item['number'] - 1]}{suit_emojis[new_item['suit']]}"
-    )
+
+    new_item["emoji"] = get_card_emoji(new_item["number"], new_item["suit"])
     new_item["tool"] = False
     new_item["value"] = value_fn(new_item)
 
@@ -81,14 +93,14 @@ tools = [
 ingredients = [
     {
         "name": "2 of clubs",
-        "emoji": "2♣",
+        "emoji": unicard("2c"),
         "tool": False,
         "number": 2,
         "suit": 0,
     },
     {
         "name": "5 of hearts",
-        "emoji": "5♡",
+        "emoji": unicard("5h"),
         "tool": False,
         "number": 5,
         "suit": 3,
