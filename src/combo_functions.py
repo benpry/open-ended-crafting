@@ -481,8 +481,6 @@ def animals_combination_function(item1, item2):
 
 potions_feature_names = {
     "enchantment_level": ["unenchanted", "flickering", "glowing", "corrupted"],
-    "extraction_level": ["unextracted", "extracted"],
-    "filtered": ["unfiltered", "filtered"],
 }
 
 
@@ -502,11 +500,11 @@ def potions_value_function(item):
 
     # twice enchanted things are good
     if item["enchantment_level"] == 2:
-        value += 15
+        value += 20
 
     # combining magical and non-magical things is good
     if True in item["magicalities"] and False in item["magicalities"]:
-        value += 25
+        value += 30
 
     # different states of matter are good
     value += 15 * (len(set(item["states_of_matter"])) - 1)

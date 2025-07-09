@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
         df_oracle = run_oracle_agent(
             domain,
-            n_runs=100,
+            n_runs=50,
             max_depth=10,
         ).assign(agent_type="oracle", domain=domain)
 

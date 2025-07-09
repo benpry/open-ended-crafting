@@ -9,7 +9,7 @@ from groq import Groq
 from pydantic import BaseModel
 
 from src.combo_functions import FEATURE_NAMES
-from src.constants import SYSTEM_PROMPTS
+from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS
 
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY"),
@@ -92,8 +92,10 @@ def get_item_semantics_from_lm(
 ) -> dict:
     # compile a list of messages to send to the LM
 
+    all_ic_examples = IC_EXAMPLES[domain] + ic_examples
+
     messages = get_combination_messages(
-        inputs[0], inputs[1], outcome, domain, ic_examples
+        inputs[0], inputs[1], outcome, domain, all_ic_examples
     )
 
     semantics = call_model(messages, lm_string)

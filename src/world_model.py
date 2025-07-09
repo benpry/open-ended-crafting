@@ -6,9 +6,21 @@ import json
 from ast import literal_eval
 
 import networkx as nx
+from frozendict import frozendict
 
 from src.combo_functions import COMBO_FUNCTIONS
 from src.prompts import get_item_semantics_from_lm
+
+
+def freeze_dict(d):
+    to_freeze = {}
+    for k, v in d.items():
+        if isinstance(v, list):
+            to_freeze[k] = frozenset(v)
+        else:
+            to_freeze[k] = v
+
+    return frozendict(to_freeze)
 
 
 def check_if_same_item(e1, e2):
@@ -61,7 +73,7 @@ class MemoizedWorldModel:
         return new_item
 
     def combine(self, e1, e2):
-        items = frozenset((e1["name"], e2["name"]))
+        items = frozenset((freeze_dict(e1), freeze_dict(e2)))
 
         # check if we've already combined these items
         if items in self.combinations:
