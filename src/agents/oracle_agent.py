@@ -125,23 +125,6 @@ class OracleAgent:
             Tuple[FrozenSet, FrozenSet], Optional[FrozenSet]
         ] = {}
 
-    def _compute_reward(self, consumable_items: FrozenSet[FrozenSet]) -> float:
-        """
-        Compute the value of a given set of consumable items.
-        Tools are stored separately and don't contribute to value.
-        """
-        if not consumable_items:
-            return 0.0
-
-        total_value = 0.0
-        for item_features in consumable_items:
-            # Convert features back to item dict for value computation
-            item_dict = _features_to_item(item_features)
-            value = self.value_function(item_dict)
-            total_value += value
-
-        return max(total_value / len(consumable_items), 0.0)
-
     def _prepare_initial_state(
         self, initial_inventory: List[Dict[str, Any]]
     ) -> Tuple[FrozenSet[FrozenSet], FrozenSet[FrozenSet]]:
@@ -227,16 +210,11 @@ class OracleAgent:
 
     def _compute_reward_from_inventory(self, inventory: List[Dict[str, Any]]) -> float:
         """Compute reward from actual inventory (for compatibility)."""
-        ingredients = [item for item in inventory if not item.get("tool", False)]
-        if not ingredients:
-            return 0.0
+        ingredients = [item for item in inventory if not item["tool"]]
 
-        total_value = 0.0
-        for item in ingredients:
-            value = self.value_function(item)
-            total_value += value
-
-        return max(total_value / len(ingredients), 0.0)
+        # the reward is the value of the most valuable ingredient
+        value = max(item["value"] for item in ingredients)
+        return max(value, 0)
 
     def _get_possible_actions(
         self, inventory: List[Dict[str, Any]]

@@ -125,7 +125,8 @@ class CraftingGame(gym.Env):
         Get the reward at the end of an epoch.
         """
         ingredients = [item for item in self.inventory if not item["tool"]]
-        reward = sum(item["value"] for item in ingredients) / len(ingredients)
+        # the reward is the value of the most valuable ingredient
+        reward = max(item["value"] for item in ingredients)
 
         # overall reward can't go below 0
         return max(reward, 0)

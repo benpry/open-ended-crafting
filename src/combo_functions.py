@@ -24,14 +24,14 @@ def cooking_value_function(item):
         and item["cook_level"] == 1
         and "fruit" not in item["ingredient_types"]
     ):  # Soup is good
-        value += 25
+        value += 30
 
     if item["salt_level"] == 1:  # Salted things are good
-        value += 10
+        value += 15
 
     # combining two ingredient types is good
     n_distinct_ingredient_types = len(set(item["ingredient_types"]))
-    value += 20 * (n_distinct_ingredient_types - 1)
+    value += 25 * (n_distinct_ingredient_types - 1)
 
     # Negative utility:
     if item["cook_level"] == 2:  # Overcooked things are bad
@@ -494,20 +494,20 @@ def potions_value_function(item):
     if item["extraction"] == "extracted":
         value += 20
     if item["filtering"] == "filtered":
-        value += 15
+        value += 20
     if item["grind"] == "ground":
-        value += 15
+        value += 20
 
     # twice enchanted things are good
     if item["enchantment_level"] == 2:
-        value += 20
+        value += 15
 
     # combining magical and non-magical things is good
     if True in item["magicalities"] and False in item["magicalities"]:
         value += 30
 
     # different states of matter are good
-    value += 15 * (len(set(item["states_of_matter"])) - 1)
+    value += 20 * (len(set(item["states_of_matter"])) - 1)
 
     # NEGATIVE UTILITY
 
