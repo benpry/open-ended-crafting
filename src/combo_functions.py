@@ -762,7 +762,7 @@ def potions_get_item_descriptors(item: dict[str, Any]) -> list[str]:
     if set(item["magicalities"]) == {True}:
         descriptors.append("magical")
     elif set(item["magicalities"]) == {False}:
-        descriptors.append("non-magical")
+        descriptors.append("mundane")
     else:
         descriptors.append("mixed-magicality")
 

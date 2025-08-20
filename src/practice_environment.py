@@ -8,6 +8,15 @@ suit_order = ["clubs", "diamonds", "spades", "hearts"]
 number_order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"]
 
 
+def get_item_descriptors(item):
+    descriptors = []
+
+    descriptors.append(number_order[item["number"]])
+    descriptors.append(suit_order[item["suit"]])
+
+    return descriptors
+
+
 def get_card_emoji(number, suit):
     print(number, suit)
     suit = suit_order[suit]
