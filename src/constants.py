@@ -44,7 +44,7 @@ cooking_ingredients = [
         "water_level": 0,
         "chop_level": 0,
         "edible": False,
-        "ingredient_types": ["eggs_dairy"],
+        "ingredient_types": ["eggs and dairy"],
         "all_ingredients": ["egg"],
     },
     {
@@ -104,7 +104,7 @@ cooking_ingredients = [
         "water_level": 0,
         "chop_level": 0,
         "edible": True,
-        "ingredient_types": ["eggs_dairy"],
+        "ingredient_types": ["eggs and dairy"],
         "all_ingredients": ["cheese"],
     },
     {
@@ -116,7 +116,7 @@ cooking_ingredients = [
         "water_level": 0,
         "chop_level": 0,
         "edible": True,
-        "ingredient_types": ["eggs_dairy"],
+        "ingredient_types": ["eggs and dairy"],
         "all_ingredients": ["butter"],
     },
     {
@@ -280,7 +280,7 @@ decorations_ingredients = [
         "drawn_level": 0,
         "framed": False,
         "post_frame_messed_with": False,
-        "material_types": ["wood"],
+        "material_types": ["natural"],
         "basic_items": ["wood"],
     },
     {
@@ -1129,7 +1129,7 @@ Please keep the following rules in mind:
 - If an item's cut level is cut, its name should include "cut"
 - If an item's drawn level is drawn and it is on an artificial material, its name should include "drawn-on." If it is on a natural material, it should include "scribbled-on."
 - If an item is framed, its name should include "framed."
-- If an item has post-frame-messed-with, it should have "with ruined frame" at the end of its name.
+- If an item has post-frame-messed-with, it should not have "framed" in its name anymore and have "with ruined frame" at the end of its name.
 - Combinations of different decoration parts should retain at least parts of the names of the original parts.
 
 In general, the name should give the participant some sense of why the item's value is the way it is.

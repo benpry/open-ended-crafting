@@ -1,11 +1,8 @@
 import math
+from typing import Any
 
 
 def cooking_value_function(item):
-    # Base value: only edible things have value
-    if not item["edible"]:
-        return 0
-
     value = 0
 
     # Positive utility:
@@ -54,6 +51,10 @@ def cooking_value_function(item):
         if item["ingredient_types"].count(ingredient_type) > 1:
             value -= 30
 
+    # inedible things can't have positive value
+    if not item["edible"]:
+        value = min(value, 0)
+
     return value
 
 
@@ -62,6 +63,7 @@ cooking_feature_names = {
     "chop_level": ["unchopped", "chopped"],
     "salt_level": ["unsalted", "salted", "oversalted"],
     "cook_level": ["raw", "cooked", "overcooked"],
+    "edible": {True: "edible", False: "inedible"},
 }
 
 
@@ -167,8 +169,10 @@ def cooking_combination_function(item1, item2):
 
 decorations_feature_names = {
     "paint_level": ["unpainted", "painted", "over-painted"],
-    "cut_level": ["uncut", "cut"],
-    "drawn_level": ["undrawn", "drawn"],
+    "cut_level": ["not cut", "cut"],
+    "drawn_level": ["not drawn", "drawn"],
+    "framed": {True: "framed", False: "not framed"},
+    "post_frame_messed_with": {False: None, True: "ruined frame"},
 }
 
 
@@ -305,11 +309,10 @@ def decorations_combination_function(item1, item2):
 
 
 # ANIMALS DOMAIN FUNCTIONS
-
 animals_feature_names = {
-    "mutation_level": ["normal", "mutant", "super-mutant", "corrupted"],
-    "growth_level": ["normal", "jumbo", "colossal"],
-    "metabolic_level": ["normal", "accelerated"],
+    "mutation_level": ["not mutant", "mutant", "super-mutant", "corrupted"],
+    "growth_level": ["not grown", "grown", "colossally grown"],
+    "metabolic_level": ["normal metabolism", "accelerated metabolism"],
 }
 
 
@@ -355,7 +358,7 @@ def animals_value_function(item):
         value -= 30 * (len(item["basic_animals"]) - 2)
 
     # confused breathing is bad
-    if item["respiratory_type"] == "confused":
+    if item["respiratory_type"] == "confused breathing":
         value -= 30
 
     # metabolic acceleration is bad for herbivores
@@ -455,7 +458,7 @@ def animals_combination_function(item1, item2):
         if item1["respiratory_type"] == item2["respiratory_type"]:
             new_item["respiratory_type"] = item1["respiratory_type"]
         else:
-            new_item["respiratory_type"] = "confused"
+            new_item["respiratory_type"] = "confused breathing"
 
         # Determine diet type (carnivore + herbivore makes omnivore)
         if item1["diet_type"] != item2["diet_type"]:
@@ -652,6 +655,122 @@ def potions_combination_function(item1, item2):
     return new_item
 
 
+def cooking_get_item_descriptors(item: dict[str, Any]) -> list[str]:
+    descriptors = []
+
+    descriptors.append(cooking_feature_names["edible"][item["edible"]])
+    if item["cook_level"] > 0:
+        descriptors.append(cooking_feature_names["cook_level"][item["cook_level"]])
+    if item["water_level"] > 0:
+        descriptors.append(cooking_feature_names["water_level"][item["water_level"]])
+    if item["chop_level"] > 0:
+        descriptors.append(cooking_feature_names["chop_level"][item["chop_level"]])
+    if item["salt_level"] > 0:
+        descriptors.append(cooking_feature_names["salt_level"][item["salt_level"]])
+
+    descriptors.extend([f"contains {x}" for x in set(item["ingredient_types"])])
+
+    return descriptors
+
+
+def decorations_get_item_descriptors(item: dict[str, Any]) -> list[str]:
+    descriptors = []
+
+    if set(item["material_types"]) == {"natural"}:
+        descriptors.append("natural")
+    elif set(item["material_types"]) == {"artificial"}:
+        descriptors.append("artificial")
+    else:
+        descriptors.append("natural and artificial")
+
+    descriptors.append(item["hardness"])
+    if item["paint_level"] > 0:
+        descriptors.append(
+            decorations_feature_names["paint_level"][item["paint_level"]]
+        )
+    if item["cut_level"] > 0:
+        descriptors.append(decorations_feature_names["cut_level"][item["cut_level"]])
+    if item["drawn_level"] > 0:
+        descriptors.append(
+            decorations_feature_names["drawn_level"][item["drawn_level"]]
+        )
+
+    if item["framed"]:
+        descriptors.append("framed")
+
+    if item["post_frame_messed_with"]:
+        descriptors.append("ruined frame")
+
+    return descriptors
+
+
+habitat_descriptors = {
+    "land": "lives on land",
+    "water": "lives in the water",
+    "air": "lives in the air",
+}
+
+
+def animals_get_item_descriptors(item: dict[str, Any]) -> list[str]:
+    descriptors = []
+
+    descriptors.append(item["size"])
+    descriptors.append(item["diet_type"])
+    descriptors.append(item["respiratory_type"])
+    if item["growth_level"] > 0:
+        descriptors.append(animals_feature_names["growth_level"][item["growth_level"]])
+    if item["metabolic_level"] > 0:
+        descriptors.append(
+            animals_feature_names["metabolic_level"][item["metabolic_level"]]
+        )
+    if item["mutation_level"] > 0:
+        descriptors.append(
+            animals_feature_names["mutation_level"][item["mutation_level"]]
+        )
+
+    descriptors.extend([habitat_descriptors[x] for x in set(item["habitats"])])
+
+    return descriptors
+
+
+def potions_get_item_descriptors(item: dict[str, Any]) -> list[str]:
+    descriptors = []
+
+    descriptors.append("and ".join(set(item["states_of_matter"])))
+    descriptors.append("hard" if item["is_hard"] else "soft")
+
+    if item["extraction"] is not None:
+        if item["extraction"] == "botched":
+            descriptors.append("botched extraction")
+        else:
+            descriptors.append("extracted")
+    if item["filtering"] is not None:
+        if item["filtering"] == "botched":
+            descriptors.append("botched filtering")
+        else:
+            descriptors.append("filtered")
+    if item["grind"] is not None:
+        if item["grind"] == "botched":
+            descriptors.append("botched grinding")
+        else:
+            descriptors.append("ground")
+    if item["enchantment_level"] > 0:
+        descriptors.append(
+            potions_feature_names["enchantment_level"][item["enchantment_level"]]
+        )
+
+    if set(item["magicalities"]) == {True}:
+        descriptors.append("magical")
+    elif set(item["magicalities"]) == {False}:
+        descriptors.append("non-magical")
+    else:
+        descriptors.append("mixed-magicality")
+
+    descriptors.extend([f"contains {x}" for x in set(item["ingredient_types"])])
+
+    return descriptors
+
+
 COMBO_FUNCTIONS = {
     "cooking": cooking_combination_function,
     "decorations": decorations_combination_function,
@@ -671,4 +790,11 @@ VALUE_FUNCTIONS = {
     "decorations": decorations_value_function,
     "animals": animals_value_function,
     "potions": potions_value_function,
+}
+
+DESCRIPTOR_FUNCTIONS = {
+    "cooking": cooking_get_item_descriptors,
+    "decorations": decorations_get_item_descriptors,
+    "animals": animals_get_item_descriptors,
+    "potions": potions_get_item_descriptors,
 }
