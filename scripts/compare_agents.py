@@ -9,21 +9,21 @@ from src.agents.oracle_agent import run_oracle_agent
 from src.agents.random_agent import run_random_agent
 
 if __name__ == "__main__":
-    domains = ["cooking", "decorations", "animals", "potions"]
+    domains = ["potions", "cooking", "decorations", "animals"]
     df = pd.DataFrame()
 
     for domain in domains:
         print(f"Running domain: {domain}")
 
         # Run random agent
-        df_random = run_random_agent(domain, n_runs=100, n_steps=5).assign(
+        df_random = run_random_agent(domain, n_runs=100, n_steps=8).assign(
             agent_type="random", domain=domain
         )
 
         df_oracle = run_oracle_agent(
             domain,
             n_runs=100,
-            max_depth=10,
+            max_depth=8,
         ).assign(agent_type="oracle", domain=domain)
 
         # Get the final scores for each run

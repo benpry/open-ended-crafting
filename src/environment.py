@@ -13,13 +13,20 @@ class CraftingGame(gym.Env):
     An open-ended LM-driven crafting game.
     """
 
-    def __init__(self, model: str, domain: str, assign_names: bool = False):
+    def __init__(
+        self,
+        model: str,
+        domain: str,
+        n_starting_ingredients: int = 5,
+        assign_names: bool = False,
+    ):
         super().__init__()
         self.model = model
         self.domain = domain
         self.world_model = MemoizedWorldModel(
             lm=model, domain=self.domain, assign_names=assign_names
         )
+        self.n_starting_ingredients = n_starting_ingredients
         self.inventory = []
 
     def reset(self, seed=None, options=None):
@@ -28,7 +35,9 @@ class CraftingGame(gym.Env):
         """
         # get the item names and delete the reasoning
         tools = TOOLS[self.domain]
-        ingredients = random.sample(INGREDIENTS[self.domain], 3)
+        ingredients = random.sample(
+            INGREDIENTS[self.domain], self.n_starting_ingredients
+        )
 
         # Assign values to all ingredients
         for ingredient in ingredients:

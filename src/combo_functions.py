@@ -495,15 +495,15 @@ def potions_value_function(item):
 
     # Extracted, filtered, and ground things are good
     if item["extraction"] == "extracted":
-        value += 20
+        value += 25
     if item["filtering"] == "filtered":
-        value += 20
+        value += 25
     if item["grind"] == "ground":
-        value += 20
+        value += 25
 
     # twice enchanted things are good
     if item["enchantment_level"] == 2:
-        value += 15
+        value += 20
 
     # combining magical and non-magical things is good
     if True in item["magicalities"] and False in item["magicalities"]:
@@ -554,10 +554,9 @@ def potions_apply_tool(tool, item):
     if tool["name"] == "vial" and item["extraction"] is None:
         if set(item["ingredient_types"]) == {"plant"}:
             new_item["extraction"] = "extracted"
+            new_item["states_of_matter"] = ["liquid"]
         else:
             new_item["extraction"] = "botched"
-
-        new_item["states_of_matter"] = ["liquid"]
 
     # the mortar grinds hard things
     elif tool["name"] == "mortar" and item["grind"] is None:
