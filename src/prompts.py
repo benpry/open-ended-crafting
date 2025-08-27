@@ -3,13 +3,14 @@ This file contains prompts for the language model.
 """
 
 import os
+from dataclasses import asdict
 
 import instructor
 from groq import Groq
 from pydantic import BaseModel
 
 from src.combo_functions import FEATURE_NAMES
-from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS
+from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, Item
 
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY"),
@@ -22,15 +23,17 @@ class ItemSemantics(BaseModel):
     name: str
 
 
-def apply_feature_names(item: dict, feature_names: dict) -> dict:
-    updated_item = item.copy()
-    for feature, value in item.items():
+def item_to_dict(item: Item, feature_names: dict) -> Item:
+    item_dict = asdict(item)
+    for feature, value in item_dict.items():
         if feature in feature_names:
-            updated_item[feature] = feature_names[feature][value]
-    return updated_item
+            item_dict[feature] = feature_names[feature][value]
+    return item_dict
 
 
-def get_combination_messages(e1, e2, o, domain, ic_examples):
+def get_combination_messages(
+    item1: Item, item2: Item, outcome: Item, domain: str, ic_examples: list
+) -> list:
     system_prompt = SYSTEM_PROMPTS[domain]
     feature_names = FEATURE_NAMES[domain]
 
@@ -43,17 +46,17 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
         ic_examples = ic_examples[:2] + ic_examples[-2:]
 
     for example in ic_examples:
-        item1, item2 = example["input"]
-        outcome = example["outcome"]
-        item1 = apply_feature_names(item1, feature_names)
-        item2 = apply_feature_names(item2, feature_names)
-        outcome = apply_feature_names(outcome, feature_names)
+        example_item1, example_item2 = example["input"]
+        example_outcome = example["outcome"]
+        dict_item1 = item_to_dict(example_item1, feature_names)
+        dict_item2 = item_to_dict(example_item2, feature_names)
+        dict_outcome = item_to_dict(example_outcome, feature_names)
         semantics = example["semantics"]
 
         messages.append(
             {
                 "role": "user",
-                "content": f"Item 1: {item1}\nItem 2: {item2}\nOutcome: {outcome}",
+                "content": f"Item 1: {dict_item1}\nItem 2: {dict_item2}\nOutcome: {dict_outcome}",
             }
         )
         messages.append(
@@ -63,12 +66,15 @@ def get_combination_messages(e1, e2, o, domain, ic_examples):
             }
         )
 
-    e1 = apply_feature_names(e1, feature_names)
-    e2 = apply_feature_names(e2, feature_names)
-    o = apply_feature_names(o, feature_names)
+    dict_item1 = item_to_dict(item1, feature_names)
+    dict_item2 = item_to_dict(item2, feature_names)
+    dict_outcome = item_to_dict(outcome, feature_names)
 
     messages += [
-        {"role": "user", "content": f"Item 1: {e1}\nItem 2: {e2}\nOutcome: {o}"},
+        {
+            "role": "user",
+            "content": f"Item 1: {dict_item1}\nItem 2: {dict_item2}\nOutcome: {dict_outcome}",
+        },
     ]
 
     return messages

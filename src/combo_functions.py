@@ -1,59 +1,65 @@
 import math
+from dataclasses import replace
 from typing import Any
 
+from src.constants import CombinedItem, Ingredient, Item, NonTool, Tool
 
-def cooking_value_function(item):
+
+def cooking_value_function(item: NonTool) -> int:
     value = 0
 
-    # Positive utility:
-    if item["cook_level"] == 1 and set(item["ingredient_types"]) != {
-        "fruit"
-    }:  # Cooked things are good, unless they're fruit
+    if isinstance(item, CombinedItem):
+        ingredient_values = [
+            cooking_value_function(ingredient) for ingredient in item.ingredients
+        ]
+
+        # bonus for combining different ingredient types
+        n_ingredients = len(item.ingredients)
+        n_distinct_ingredient_types = len(
+            set(x.features["type"] for x in item.ingredients)
+        )
+        n_duplicate_ingredient_types = n_ingredients - n_distinct_ingredient_types
+
+        bonuses = 20 * (n_distinct_ingredient_types - 1)
+        if n_ingredients > 3:
+            bonuses -= 30 * (n_ingredients - 3)
+        bonuses -= 20 * n_duplicate_ingredient_types
+
+        return sum(ingredient_values) + bonuses
+
+    features = item.features
+
+    # cook level bonuses
+    if features["cook_level"] == 1:
+        if (
+            features["type"] in {"vegetable", "aromatic"}
+            and features["chop_level"] == 1
+        ):
+            value += 10
+        elif features["type"] == "meat" and features["chop_level"] == 0:
+            value += 20
+        elif features["type"] == "grain" and features["water_level"] == 1:
+            value += 25
+        else:
+            value -= 10
+    elif features["cook_level"] == 2:
+        value -= 30
+
+    # chop level bonuses
+    if features["chop_level"] == 1:
+        if features["type"] in {"vegetable", "aromatic"}:
+            value += 10
+        else:
+            value -= 10
+
+    # salt bonuses
+    if features["salt_level"] == 1:
         value += 15
+    elif features["salt_level"] == 2:
+        value -= 20
 
-    if (
-        item["chop_level"] == 1 and "grain" not in item["ingredient_types"]
-    ):  # Chopped things are good, except for meat and grains
-        value += 15
-
-    if (
-        item["water_level"] == 1
-        and item["cook_level"] == 1
-        and "fruit" not in item["ingredient_types"]
-    ):  # Soup is good
-        value += 30
-
-    if item["salt_level"] == 1:  # Salted things are good
-        value += 15
-
-    # combining two ingredient types is good
-    n_distinct_ingredient_types = len(set(item["ingredient_types"]))
-    value += 25 * (n_distinct_ingredient_types - 1)
-
-    # Negative utility:
-    if item["cook_level"] == 2:  # Overcooked things are bad
-        value -= 40
-
-    if item["salt_level"] == 2:  # Over-salted things are bad
-        value -= 40
-
-    if (
-        item["water_level"] == 1 and item["cook_level"] == 0
-    ):  # Uncooked soaked things are bad
-        value -= 25
-
-    # nobody likes fruit soup
-    if "fruit" in item["ingredient_types"] and "water" in item["ingredient_types"]:
-        value -= 25
-
-    # more than one ingredient of the same type is bad
-    for ingredient_type in item["ingredient_types"]:
-        if item["ingredient_types"].count(ingredient_type) > 1:
-            value -= 30
-
-    # inedible things can't have positive value
-    if not item["edible"]:
-        value = min(value, 0)
+    if features["water_level"] == 1 and features["type"] != "grain":
+        value -= 10
 
     return value
 
@@ -63,104 +69,89 @@ cooking_feature_names = {
     "chop_level": ["unchopped", "chopped"],
     "salt_level": ["unsalted", "salted", "oversalted"],
     "cook_level": ["raw", "cooked", "overcooked"],
-    "edible": {True: "edible", False: "inedible"},
 }
 
 
-def cooking_apply_tool(tool, item):
-    new_item = item.copy()
+def cooking_apply_tool(tool: Tool, item: NonTool) -> NonTool:
+    if isinstance(item, CombinedItem):
+        return CombinedItem(
+            ingredients=[
+                cooking_apply_tool(tool, ingredient) for ingredient in item.ingredients
+            ],
+        )
 
-    # remove features that we don't want to carry over
-    if "name" in new_item:
-        del new_item["name"]
-    if "emoji" in new_item:
-        del new_item["emoji"]
-    if "value" in new_item:
-        del new_item["value"]
+    new_features = item.features.copy()
 
-    # ensure tool field is set to False for the result (it's not a tool)
-    new_item["tool"] = False
-
-    if tool["name"] == "water":
+    if tool.name == "water":
         # adding water always soaks something
-        new_item["water_level"] = 1
+        new_features["water_level"] = 1
         # If the item is cooked, soaking un-cooks it (but doesn't rescue burnt things)
-        if item["cook_level"] == 1:
-            new_item["cook_level"] = 0
+        if item.features["cook_level"] == 1:
+            new_features["cook_level"] = 0
 
-    elif tool["name"] == "stove":
+    elif tool.name == "stove":
         # adjust the cook level
-        new_item["edible"] = True  # cooking makes inedible things edible
+        new_features["edible"] = True  # cooking makes inedible things edible
 
         # otherwise, cooking increases the cook level by 1, up to the max
-        new_item["cook_level"] = min(
-            item["cook_level"] + 1, len(cooking_feature_names["cook_level"]) - 1
+        new_features["cook_level"] = min(
+            item.features["cook_level"] + 1,
+            len(cooking_feature_names["cook_level"]) - 1,
         )
 
     # Knife increases chop level. You can't chop a soaked thing.
-    elif tool["name"] == "knife" and item["water_level"] == 0:
+    elif tool.name == "knife" and item.features["water_level"] == 0:
         # increase the chop level
-        new_item["chop_level"] = min(
-            item["chop_level"] + 1, len(cooking_feature_names["chop_level"]) - 1
+        new_features["chop_level"] = min(
+            item.features["chop_level"] + 1,
+            len(cooking_feature_names["chop_level"]) - 1,
         )
 
-    elif tool["name"] == "salt":
+    elif tool.name == "salt":
         # increase the salt level
-        new_item["salt_level"] = min(
-            item["salt_level"] + 1, len(cooking_feature_names["salt_level"]) - 1
+        new_features["salt_level"] = min(
+            item.features["salt_level"] + 1,
+            len(cooking_feature_names["salt_level"]) - 1,
         )
 
-    return new_item
+    return Ingredient(features=new_features)
 
 
-def cooking_combination_function(item1, item2):
+def cooking_combination_function(item1: Item, item2: Item):
     """
     The overall combination function for the cooking domain.
     """
+    print(f"combining {item1} and {item2}")
 
     # if they're both tools, return None:
-    if item1["tool"] and item2["tool"]:
+    if isinstance(item1, Tool) and isinstance(item2, Tool):
         return None
 
     # if one item is a tool, apply it to the other item.
-    if item1["tool"]:
+    if isinstance(item1, Tool):
         new_item = cooking_apply_tool(item1, item2)
-    elif item2["tool"]:
+    elif isinstance(item2, Tool):
         new_item = cooking_apply_tool(item2, item1)
+    elif isinstance(item1, CombinedItem) and isinstance(item2, CombinedItem):
+        # combine two combined items
+        new_item = CombinedItem(
+            ingredients=item1.ingredients + item2.ingredients,
+        )
+    elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
+        new_item = CombinedItem(
+            ingredients=item1.ingredients + [item2],
+        )
+    elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
+        new_item = CombinedItem(
+            ingredients=item2.ingredients + [item1],
+        )
     else:
-        # combine two non-tool items
-        new_item = {}
-
-        # the new salt level is the average of the two salt levels (rounding up)
-        new_item["salt_level"] = math.ceil(
-            (item1["salt_level"] + item2["salt_level"]) / 2
+        # two ingredients
+        new_item = CombinedItem(
+            ingredients=[item1, item2],
         )
 
-        # cooked + raw gives raw, but anything + burnt gives burnt
-        if item1["cook_level"] == 2 or item2["cook_level"] == 2:
-            new_item["cook_level"] = 2
-        else:
-            new_item["cook_level"] = min(item1["cook_level"], item2["cook_level"])
-
-        # the water level is the highest of the two water levels
-        new_item["water_level"] = max(item1["water_level"], item2["water_level"])
-
-        # the chop level is the lowest of the two chop levels
-        new_item["chop_level"] = min(item1["chop_level"], item2["chop_level"])
-
-        # anything inedible makes the whole thing inedible
-        new_item["edible"] = item1["edible"] and item2["edible"]
-
-        new_item["ingredient_types"] = (
-            item1["ingredient_types"] + item2["ingredient_types"]
-        )
-        new_item["all_ingredients"] = (
-            item1["all_ingredients"] + item2["all_ingredients"]
-        )
-
-    # you can't make new tools
-    new_item["tool"] = False
-    new_item["value"] = cooking_value_function(new_item)
+    new_item = replace(new_item, value=cooking_value_function(new_item))
 
     return new_item
 
@@ -654,22 +645,35 @@ def potions_combination_function(item1, item2):
     return new_item
 
 
-def cooking_get_item_descriptors(item: dict[str, Any]) -> list[str]:
+def cooking_get_item_descriptor(item: NonTool) -> str:
     descriptors = []
 
-    descriptors.append(cooking_feature_names["edible"][item["edible"]])
-    if item["cook_level"] > 0:
-        descriptors.append(cooking_feature_names["cook_level"][item["cook_level"]])
-    if item["water_level"] > 0:
-        descriptors.append(cooking_feature_names["water_level"][item["water_level"]])
-    if item["chop_level"] > 0:
-        descriptors.append(cooking_feature_names["chop_level"][item["chop_level"]])
-    if item["salt_level"] > 0:
-        descriptors.append(cooking_feature_names["salt_level"][item["salt_level"]])
+    if isinstance(item, CombinedItem):
+        ingredient_descriptors = [
+            f"{x.emoji} {x.name}: {cooking_get_item_descriptor(x)}"
+            for x in item.ingredients
+        ]
+        return "\n".join(ingredient_descriptors)
 
-    descriptors.extend([f"contains {x}" for x in set(item["ingredient_types"])])
+    if item.features["cook_level"] > 0:
+        descriptors.append(
+            cooking_feature_names["cook_level"][item.features["cook_level"]]
+        )
+    if item.features["water_level"] > 0:
+        descriptors.append(
+            cooking_feature_names["water_level"][item.features["water_level"]]
+        )
+    if item.features["chop_level"] > 0:
+        descriptors.append(
+            cooking_feature_names["chop_level"][item.features["chop_level"]]
+        )
+    if item.features["salt_level"] > 0:
+        descriptors.append(
+            cooking_feature_names["salt_level"][item.features["salt_level"]]
+        )
+    descriptors.append(item.features["type"])
 
-    return descriptors
+    return ", ".join(descriptors)
 
 
 def decorations_get_item_descriptors(item: dict[str, Any]) -> list[str]:
@@ -792,7 +796,7 @@ VALUE_FUNCTIONS = {
 }
 
 DESCRIPTOR_FUNCTIONS = {
-    "cooking": cooking_get_item_descriptors,
+    "cooking": cooking_get_item_descriptor,
     "decorations": decorations_get_item_descriptors,
     "animals": animals_get_item_descriptors,
     "potions": potions_get_item_descriptors,

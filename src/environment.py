@@ -1,10 +1,11 @@
 import random
+from dataclasses import replace
 from typing import Optional
 
 import gymnasium as gym
 
 from src.combo_functions import VALUE_FUNCTIONS
-from src.constants import INGREDIENTS, TOOLS
+from src.constants import INGREDIENTS, TOOLS, Tool
 from src.world_model import MemoizedWorldModel
 
 
@@ -40,8 +41,9 @@ class CraftingGame(gym.Env):
         )
 
         # Assign values to all ingredients
-        for ingredient in ingredients:
-            ingredient["value"] = VALUE_FUNCTIONS[self.domain](ingredient)
+        ingredients = [
+            replace(ing, value=VALUE_FUNCTIONS[self.domain](ing)) for ing in ingredients
+        ]
 
         self.inventory = tools + ingredients
 
@@ -53,7 +55,7 @@ class CraftingGame(gym.Env):
         """
         print("Inventory:")
         for item in self.inventory:
-            if item["tool"]:
+            if isinstance(item, Tool):
                 print(f"{item['emoji']} {item['name']}")
             else:
                 print(f"{item['emoji']} {item['name']}, value: {item['value']}")
