@@ -6,7 +6,6 @@ import json
 from ast import literal_eval
 from dataclasses import asdict, replace
 
-import networkx as nx
 from frozendict import frozendict
 
 from src.combo_functions import COMBO_FUNCTIONS
