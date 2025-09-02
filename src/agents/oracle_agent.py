@@ -1,334 +1,300 @@
 """
-Oracle Agent for the Open-Ended Crafting Game.
+Oracle MCTS Agent for the Open-Ended Crafting Game.
 
-This agent has perfect knowledge of the combination functions and uses BFS
-to find optimal crafting strategies with efficient state representation.
+This agent uses Monte Carlo Tree Search with perfect knowledge of
+the combination and value functions (via the environment's world model)
+to plan crafting actions.
 """
 
-from collections import deque
-from typing import Any, Dict, FrozenSet, List, Optional, Set, Tuple
+from __future__ import annotations
 
-import pandas as pd
+import math
+import random
+from typing import Any, Callable, Dict, List, Optional, Tuple
+
 from tqdm import tqdm
 
-from src.combo_functions import COMBO_FUNCTIONS, VALUE_FUNCTIONS
+from src.constants import Item, Tool
 from src.environment import CraftingGame
-from src.world_model import MemoizedWorldModel
+
+Inventory = List[Item]
+Action = Tuple[str, str]
 
 
-def _extract_essential_features(item: Dict[str, Any]) -> FrozenSet[Tuple[str, Any]]:
+def compute_reward_from_inventory(inventory: Inventory) -> int:
     """
-    Extract only the essential features from an item that matter for
-    combinations and value computation. Names, emojis, and other metadata are ignored.
+    Mirror CraftingGame.get_reward but for an arbitrary inventory snapshot.
+    Reward is the max value among non-tools, floored at 0.
     """
-    essential_keys = {
-        # Core identification
-        "tool",
-        "edible",
-        "value",
-        # Cooking domain features
-        "water_level",
-        "chop_level",
-        "salt_level",
-        "cook_level",
-        "ingredient_types",
-        "all_ingredients",
-        # Decorations domain features
-        "paint_level",
-        "cut_level",
-        "drawn_level",
-        "material_types",
-        "hardness",
-        "framed",
-        "post_frame_messed_with",
-        # Animals domain features
-        "habitat",
-        "diet",
-        "size",
-        "domesticated",
-        "aggressive",
-        "age",
-        "animal_types",
-        # Potions domain features
-        "color",
-        "consistency",
-        "temperature",
-        "magical",
-        "ingredients",
-        "effect",
-    }
-
-    features = []
-    for key, value in item.items():
-        if key in essential_keys:
-            if isinstance(value, list):
-                # Convert lists to tuples for hashability
-                features.append((key, tuple(value)))
-            else:
-                features.append((key, value))
-
-    return frozenset(features)
+    ingredients = [item for item in inventory if not isinstance(item, Tool)]
+    if not ingredients:
+        return 0
+    reward = max(item.value for item in ingredients)
+    return max(reward, 0)
 
 
-def _features_to_item(features: FrozenSet[Tuple[str, Any]]) -> Dict[str, Any]:
-    """Convert feature set back to item dictionary for use with world model."""
-    item = {}
-    for key, value in features:
-        if isinstance(value, tuple) and key in [
-            "ingredient_types",
-            "all_ingredients",
-            "material_types",
-            "animal_types",
-        ]:
-            # Convert tuples back to lists for these specific fields
-            item[key] = list(value)
-        else:
-            item[key] = value
-
-    # Ensure name field exists for world model compatibility
-    if "name" not in item:
-        # Generate a deterministic name based on features for consistency
-        item["name"] = f"item_{hash(features) % 100000}"
-
-    # Ensure emoji field exists
-    if "emoji" not in item:
-        item["emoji"] = "❓"
-
-    return item
-
-
-class OracleAgent:
+def legal_actions_from_inventory(inventory: Inventory) -> List[Tuple[int, int]]:
     """
-    An oracle agent that knows the true combination functions and uses BFS
-    to find optimal solutions with efficient state representation.
+    Return indices (i, j) of legal actions from the given inventory.
+    Legal actions exclude tool-tool pairs. Order is irrelevant; we enforce i < j.
     """
+    actions: List[Optional[Tuple[int, int]]] = [None]
+    n = len(inventory)
+    for i in range(n):
+        for j in range(i + 1, n):
+            a, b = inventory[i], inventory[j]
+            if isinstance(a, Tool) and isinstance(b, Tool):
+                continue
+            actions.append((i, j))
+    return actions
 
+
+def apply_action_to_inventory(
+    inventory: Inventory,
+    action: Optional[tuple[int, int]],
+    combine_fn: Callable[[Item, Item], Item],
+) -> Inventory:
+    """
+    Apply the environment's combination dynamics to a copy of the inventory.
+    Replicates CraftingGame.step consumption rules:
+    - If both are tools: no-op (but we never call this because we filter those actions)
+    - Non-tools are consumed; tools remain
+    - The resulting new item is appended
+    """
+    # Copy first to avoid mutating caller's state
+    next_inventory: Inventory = list(inventory)
+
+    if action is None:
+        return next_inventory
+
+    i, j = action
+
+    # Ensure i < j for stable indexing removal
+    if i > j:
+        i, j = j, i
+
+    item1 = next_inventory[i]
+    item2 = next_inventory[j]
+
+    # Remove non-tools (higher index first to preserve indices)
+    if not isinstance(item2, Tool):
+        del next_inventory[j]
+    if not isinstance(item1, Tool):
+        del next_inventory[i]
+
+    # Combine
+    new_item = combine_fn(item1, item2)
+    next_inventory.append(new_item)
+
+    return next_inventory
+
+
+class MCTSNode:
     def __init__(
-        self, domain: str, max_depth: int = 5, world_model: MemoizedWorldModel = None
-    ):
-        """
-        Initialize the oracle agent.
-
-        Args:
-            domain: The crafting domain ('cooking', 'decorations', 'animals', 'potions')
-            max_depth: Maximum depth for BFS search
-            world_model: The world model to use for combinations
-        """
-        self.domain = domain
-        self.max_depth = max_depth
-        self.combo_function = COMBO_FUNCTIONS[domain]
-        self.value_function = VALUE_FUNCTIONS[domain]
-        self.world_model = world_model
-
-        # Cache for combination results using feature representations
-        self._combination_cache: Dict[
-            Tuple[FrozenSet, FrozenSet], Optional[FrozenSet]
-        ] = {}
-
-    def _prepare_initial_state(
-        self, initial_inventory: List[Dict[str, Any]]
-    ) -> Tuple[FrozenSet[FrozenSet], FrozenSet[FrozenSet]]:
-        """
-        Convert initial inventory to efficient representation.
-        Returns (consumable_items, tools).
-        """
-        consumable_items = set()
-        tools = set()
-
-        for item in initial_inventory:
-            features = _extract_essential_features(item)
-            if item.get("tool", False):
-                tools.add(features)
-            else:
-                consumable_items.add(features)
-
-        return frozenset(consumable_items), frozenset(tools)
-
-    def find_optimal_sequence(
         self,
-        initial_inventory: List[Dict[str, Any]],
-        max_states: int = None,  # Limit to prevent memory explosion
-    ) -> Tuple[List[Tuple[str, str]], float]:
+        inventory: Inventory,
+        parent: Optional[MCTSNode] = None,
+        incoming_action: Optional[Tuple[int, int]] = None,
+        is_end_state: bool = False,
+    ) -> None:
+        self.inventory: Inventory = inventory
+        self.is_end_state: bool = is_end_state
+        self.parent: Optional[MCTSNode] = parent
+        self.incoming_action: Optional[Tuple[int, int]] = incoming_action
+        self.children: Dict[Tuple[int, int], MCTSNode] = {}
+        self.visits: int = 0
+        self.total_value: float = 0.0
+        self._unexpanded_actions: Optional[List[Tuple[int, int]]] = None
+
+    @property
+    def q_value(self) -> float:
+        if self.visits == 0:
+            return 0.0
+        return self.total_value / self.visits
+
+    def is_fully_expanded(self, legal_actions: List[Tuple[int, int]]) -> bool:
+        return len(self.children) >= len(legal_actions)
+
+    def select_child_ucb(self, c: float) -> Tuple[Tuple[int, int], "MCTSNode"]:
+        assert self.children, "No children to select from"
+        log_parent = math.log(self.visits + 1.0)
+        best_score = -float("inf")
+        best_pair: Tuple[Tuple[int, int], MCTSNode] | None = None
+        for action, child in self.children.items():
+            exploration = c * math.sqrt(log_parent / (child.visits + 1e-9))
+            score = child.q_value + exploration
+            if score > best_score:
+                best_score = score
+                best_pair = (action, child)
+        assert best_pair is not None
+        return best_pair
+
+
+class OracleMCTSAgent:
+    def __init__(
+        self,
+        env: CraftingGame,
+        simulations_per_move: int = 200,
+        max_depth: int = 8,
+        exploration_c: float = 1.25,
+        discount_factor: float = 0.98,
+        rng: Optional[random.Random] = None,
+    ) -> None:
+        self.env = env
+        self.simulations_per_move = simulations_per_move
+        self.max_depth = max_depth
+        self.exploration_c = exploration_c
+        self.discount_factor = discount_factor
+        self.rng = rng or random.Random()
+
+        # Use the environment's world model for perfect knowledge
+        self._combine_fn = self.env.world_model.combine
+
+    def plan_action(self, inventory: Inventory) -> Optional[Tuple[int, int]]:
         """
-        Use BFS to find the optimal sequence of combinations.
-        Returns:
-            Tuple of (action_sequence, best_reward)
+        Run MCTS from the given inventory and return the best action as index pair.
+        Returns None if no legal actions are available (i.e., only tool-tool pairs).
         """
-        # We'll do a simpler approach: use the efficient state representation for
-        # visited state tracking, but maintain the actual inventory for action naming
+        legal = legal_actions_from_inventory(inventory)
+        if not legal:
+            return None
 
-        # Initialize BFS queue with (inventory, action_sequence, depth)
-        queue = deque([(initial_inventory, [], 0)])
-        visited: Set[FrozenSet[FrozenSet]] = set()
+        root = MCTSNode(inventory=list(inventory))
 
-        best_reward = self._compute_reward_from_inventory(initial_inventory)
-        best_sequence = []
-        states_explored = 0
+        for _ in range(self.simulations_per_move):
+            node = root
+            depth = 0
 
-        while queue and (max_states is None or states_explored < max_states):
-            current_inventory, action_sequence, depth = queue.popleft()
-            states_explored += 1
-            # Create efficient state representation for visited check
-            consumable_items, tools = self._prepare_initial_state(current_inventory)
-            state_key = consumable_items  # Tools don't change, so just use consumables
+            # SELECTION & EXPANSION
+            while True:
+                legal_here = legal_actions_from_inventory(node.inventory)
+                # Expand if there's an untried action
+                untried = [a for a in legal_here if a not in node.children]
+                if untried:
+                    action = self.rng.choice(untried)
+                    next_inv = apply_action_to_inventory(
+                        node.inventory, action, self._combine_fn
+                    )
+                    child = MCTSNode(
+                        next_inv,
+                        parent=node,
+                        incoming_action=action,
+                        is_end_state=action is None,
+                    )
+                    node.children[action] = child
+                    node = child
+                    depth += 1
+                    break
+                if node.children:
+                    action, node = node.select_child_ucb(self.exploration_c)
+                    depth += 1
+                    if depth >= self.max_depth:
+                        break
+                else:
+                    # No legal actions
+                    break
 
-            # Check if we've seen this state before
-            if state_key in visited:
-                continue
-            visited.add(state_key)
-
-            # Compute reward for current state
-            current_reward = self._compute_reward_from_inventory(current_inventory)
-            if current_reward > best_reward:
-                best_reward = current_reward
-                best_sequence = action_sequence.copy()
-
-            # Stop if we've reached max depth
-            if depth >= self.max_depth:
-                continue
-
-            # Generate all possible combinations from current inventory
-            possible_actions = self._get_possible_actions(current_inventory)
-
-            for action in possible_actions:
-                new_inventory = self._apply_action_to_inventory(
-                    current_inventory, action
+            # SIMULATION
+            if node.is_end_state:
+                rollout_value = compute_reward_from_inventory(node.inventory)
+            else:
+                rollout_value = self._rollout(
+                    node.inventory, remaining_depth=self.max_depth - depth
                 )
-                if new_inventory is None:
-                    continue
 
-                # Check if this new state has been visited
-                new_consumable, _ = self._prepare_initial_state(new_inventory)
-                if new_consumable not in visited:
-                    new_action_sequence = action_sequence + [action]
-                    queue.append((new_inventory, new_action_sequence, depth + 1))
+            # BACKPROPAGATION
+            self._backpropagate(node, rollout_value)
 
-        # add a None action for submitting
-        best_sequence.append(None)
+        # Choose the action leading to the highest mean value
+        if not root.children:
+            return None
+        best_action = max(root.children.items(), key=lambda kv: kv[1].q_value)[0]
+        return best_action
 
-        return best_sequence, best_reward
+    def _rollout(self, inventory: Inventory, remaining_depth: int) -> float:
+        if remaining_depth <= 0:
+            return float(compute_reward_from_inventory(inventory))
 
-    def _compute_reward_from_inventory(self, inventory: List[Dict[str, Any]]) -> float:
-        """Compute reward from actual inventory (for compatibility)."""
-        ingredients = [item for item in inventory if not item["tool"]]
-
-        # the reward is the value of the most valuable ingredient
-        value = max(item["value"] for item in ingredients)
-        return max(value, 0)
-
-    def _get_possible_actions(
-        self, inventory: List[Dict[str, Any]]
-    ) -> List[Tuple[str, str]]:
-        """Get possible actions from actual inventory."""
-        actions = []
-        item_names = [item["name"] for item in inventory]
-
-        # Get unique combinations to avoid duplicates
-        for i, name1 in enumerate(item_names[:-1]):
-            for j, name2 in enumerate(item_names[i + 1 :]):
-                # Skip if both items are tools
-                item1 = inventory[i]
-                item2 = inventory[i + 1 + j]
-                if item1["tool"] and item2["tool"]:
-                    continue
-
-                actions.append((name1, name2))
-
-        return actions
-
-    def _apply_action_to_inventory(
-        self, inventory: List[Dict[str, Any]], action: Tuple[str, str]
-    ) -> Optional[List[Dict[str, Any]]]:
-        """Apply action to actual inventory."""
-        item1_name, item2_name = action
-
-        # Find items
-        item1 = None
-        item2 = None
-        for item in inventory:
-            if item["name"] == item1_name:
-                item1 = item
-            elif item["name"] == item2_name:
-                item2 = item
-            if item1 is not None and item2 is not None:
+        current_inventory = list(inventory)
+        depth = 0
+        inventory_values = [compute_reward_from_inventory(current_inventory)]
+        while depth < remaining_depth:
+            legal = legal_actions_from_inventory(current_inventory)
+            if not legal:
                 break
 
-        if item1 is None or item2 is None:
-            return None
+            action = self.rng.choice(legal)
 
-        # Get the combination result
-        new_item = self.world_model.combine(item1, item2)
-        if new_item is None:
-            return None
+            current_inventory = apply_action_to_inventory(
+                current_inventory, action, self._combine_fn
+            )
+            inventory_values.append(
+                compute_reward_from_inventory(current_inventory)
+                * self.discount_factor ** (depth + 1)
+            )
+            depth += 1
 
-        # Create new inventory
-        new_inventory = []
-        for item in inventory:
-            if item["name"] == item1_name or item["name"] == item2_name:
-                # Check if this item should be preserved (tools are durable)
-                if item.get("tool", False):
-                    new_inventory.append(item.copy())
-                # Skip consumed items (non-tools)
-            else:
-                new_inventory.append(item.copy())
+        return max(inventory_values)
 
-        # Add the new item
-        new_inventory.append(new_item.copy())
-
-        return new_inventory
+    def _backpropagate(self, node: MCTSNode, value: float) -> None:
+        cursor: Optional[MCTSNode] = node
+        total_discount = 1.0
+        while cursor is not None:
+            cursor.visits += 1
+            cursor.total_value += value * total_discount
+            cursor = cursor.parent
+            total_discount *= self.discount_factor
 
 
-def run_oracle_agent(
+def run_oracle_mcts_agent(
     domain: str,
     n_runs: int = 10,
-    max_depth: int = 3,
-) -> pd.DataFrame:
+    n_steps: int = 10,
+    simulations_per_move: int = 200,
+    max_depth: int = 8,
+    exploration_c: float = 1.25,
+    discount_factor: float = 0.98,
+) -> Any:
     """
-    Run the oracle agent for multiple episodes and return results.
-
-    Args:
-        domain: Crafting domain ('cooking', 'decorations', 'animals', 'potions')
-        n_runs: Number of episodes to run
-        n_steps: Maximum steps per episode
-        max_depth: Maximum search depth for BFS
-        beam_width: Beam width for beam search
-
-    Returns:
-        DataFrame with step-by-step episode results
+    Run the Oracle MCTS agent for multiple episodes and return results.
+    Matches the logging format used by the random agent for downstream analysis.
     """
+    import pandas as pd  # Local import to avoid hard dependency at module import
+
     log = []
     env = CraftingGame("none", domain=domain, assign_names=False)
-    oracle = OracleAgent(domain, max_depth=max_depth, world_model=env.world_model)
+    agent = OracleMCTSAgent(
+        env,
+        simulations_per_move=simulations_per_move,
+        max_depth=max_depth,
+        exploration_c=exploration_c,
+        discount_factor=discount_factor,
+    )
 
-    for run_idx in tqdm(range(n_runs), desc=f"Running oracle agent on {domain}"):
+    for run_idx in tqdm(range(n_runs)):
         env.reset()
         inventory = env.inventory
-        run_log = []  # Store logs for this run
+        run_log = []
 
-        optimal_sequence, _ = oracle.find_optimal_sequence(inventory)
+        for step in range(n_steps):
+            action = agent.plan_action(inventory)
 
-        for i, action in enumerate(optimal_sequence):
-            if action is None:
-                # No beneficial action found, stop this episode
-                break
+            if isinstance(action, tuple):
+                i, j = action
+                item1, item2 = inventory[i], inventory[j]
+                action = (item1.name, item2.name)
 
-            # Execute the action
             obs, score, done, info = env.step(action)
             new_item = obs["new_item"]
             inventory = obs["inventory"]
 
-            # Calculate current score
-            ingredients = [item for item in inventory if not item.get("tool", False)]
-            if ingredients:
-                score = sum(item.get("value", 0) for item in ingredients) / len(
-                    ingredients
-                )
-            else:
-                score = 0.0
+            # For compatibility with baseline, compute mean ingredient value
+            ingredients = [item for item in inventory if not isinstance(item, Tool)]
+            score = max([item.value for item in ingredients])
 
             step_log = {
                 "run_idx": run_idx,
-                "step": i,
+                "step": step,
                 "action": action,
                 "new_item": new_item,
                 "score": score,
@@ -340,27 +306,10 @@ def run_oracle_agent(
             if done:
                 break
 
-        # Get final reward for this run
+        # Final reward for this run
         final_reward = env.get_reward()
-
-        # Add final_reward to all steps in this run
         for step_log in run_log:
             step_log["final_reward"] = final_reward
             log.append(step_log)
 
     return pd.DataFrame(log)
-
-
-if __name__ == "__main__":
-    # Test the oracle agent on all domains
-    domains = ["cooking", "decorations", "animals", "potions"]
-
-    for domain in domains:
-        print(f"\nTesting Oracle Agent on {domain} domain:")
-        results = run_oracle_agent(domain, n_runs=5, max_depth=10)
-
-        print("mean final reward: ", results["final_reward"].mean())
-
-        # print an example optimal action sequence
-        example_actions = results[results["run_idx"] == 0]["action"]
-        print(example_actions)

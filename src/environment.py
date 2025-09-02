@@ -56,9 +56,9 @@ class CraftingGame(gym.Env):
         print("Inventory:")
         for item in self.inventory:
             if isinstance(item, Tool):
-                print(f"{item['emoji']} {item['name']}")
+                print(f"{item.emoji} {item.name}")
             else:
-                print(f"{item['emoji']} {item['name']}, value: {item['value']}")
+                print(f"{item.emoji} {item.name}, value: {item.value}")
 
     def reset_world_model(self):
         """
@@ -93,18 +93,18 @@ class CraftingGame(gym.Env):
         else:
             name1, name2 = action
 
-        inv_names = [item["name"] for item in self.inventory]
+        inv_names = [item.name for item in self.inventory]
 
         # check if the items are in the inventory
         if name1 not in inv_names or name2 not in inv_names:
             raise ValueError(f"Item {name1} or {name2} not in inventory")
 
         # get the items
-        item1 = next(item for item in self.inventory if item["name"] == name1)
-        item2 = next(item for item in self.inventory if item["name"] == name2)
+        item1 = next(item for item in self.inventory if item.name == name1)
+        item2 = next(item for item in self.inventory if item.name == name2)
 
         # if the user tries to combine two tools, do nothing
-        if item1["tool"] and item2["tool"]:
+        if isinstance(item1, Tool) and isinstance(item2, Tool):
             obs = {
                 "inventory": self.inventory,
                 "new_item": None,
@@ -113,9 +113,9 @@ class CraftingGame(gym.Env):
 
         # remove non-tool items (ingredients get consumed)
         # Tools are durable and stay in inventory, ingredients are consumed
-        if not item1["tool"]:
+        if not isinstance(item1, Tool):
             self.inventory.remove(item1)
-        if not item2["tool"]:
+        if not isinstance(item2, Tool):
             self.inventory.remove(item2)
 
         # combine the items
@@ -135,9 +135,9 @@ class CraftingGame(gym.Env):
         """
         Get the reward at the end of an epoch.
         """
-        ingredients = [item for item in self.inventory if not item["tool"]]
+        ingredients = [item for item in self.inventory if not isinstance(item, Tool)]
         # the reward is the value of the most valuable ingredient
-        reward = max(item["value"] for item in ingredients)
+        reward = max(item.value for item in ingredients)
 
         # overall reward can't go below 0
         return max(reward, 0)

@@ -1,123 +1,152 @@
-import math
+from dataclasses import replace
 from typing import Optional
 
 import gymnasium as gym
 from unicards import unicard
 
+from src.constants import CombinedItem, Ingredient, Item, NonTool, Tool
+
 suit_order = ["clubs", "diamonds", "spades", "hearts"]
 number_order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"]
 
 
-def get_item_descriptors(item):
+def get_item_descriptor(item: NonTool) -> str:
+    if isinstance(item, CombinedItem):
+        ingredient_descriptors = [
+            f"{x.emoji} {x.name}: {get_item_descriptor(x)}" for x in item.ingredients
+        ]
+        return "\n".join(ingredient_descriptors)
+
     descriptors = []
 
-    descriptors.append(number_order[item["number"]])
-    descriptors.append(suit_order[item["suit"]])
+    descriptors.append(str(number_order[item.features["number"]]))
+    descriptors.append(suit_order[item.features["suit"]])
 
-    return descriptors
+    return ", ".join(descriptors)
 
 
 def get_card_emoji(number, suit):
-    print(number, suit)
     suit = suit_order[suit]
     suit = suit[0]
     number = number_order[number]
     number = "T" if number == 10 else str(number)[0].upper()
-    print(number, suit)
     card_string = f"{number}{suit}"
-    print(card_string)
     card_emoji = unicard(card_string)
-    print(card_emoji)
+
     return card_emoji
 
 
-def value_fn(item):
-    if item["number"] == 11:
-        number_value = 10
-    elif item["number"] > 11:
-        number_value = -10 - (item["number"] - 11) * 2
+def value_fn(item: NonTool) -> int:
+    if isinstance(item, CombinedItem):
+        ingredient_values = [value_fn(x) for x in item.ingredients]
+        n_ingredients = len(item.ingredients)
+        n_distinct_suits = len(set([x.features["suit"] for x in item.ingredients]))
+
+        if n_ingredients == 2 and n_distinct_suits == 1:
+            bonus = 5
+        else:
+            bonus = 0
+
+        return sum(ingredient_values) + bonus
+
+    if item.features["number"] <= 10:
+        number_value = round(0.8 * item.features["number"])
     else:
-        number_value = math.floor(item["number"] / 2)
+        number_value = -5
 
-    if item["suit"] == 3:
-        suit_value = 10
-    elif item["suit"] == 1:
-        suit_value = 5
+    return number_value
+
+
+def apply_tool(tool: Tool, item: NonTool) -> NonTool:
+    if isinstance(item, CombinedItem):
+        return CombinedItem(
+            ingredients=[apply_tool(tool, x) for x in item.ingredients],
+        )
+
+    new_features = item.features.copy()
+
+    if tool.name == "suit swapper":
+        new_features["suit"] = (item.features["suit"] + 1) % len(suit_order)
+
+    elif tool.name == "number increaser":
+        new_features["number"] = min(item.features["number"] + 1, len(number_order) - 1)
+
+    return Ingredient(features=new_features)
+
+
+def get_item_name(item: Item) -> str:
+    if isinstance(item, CombinedItem):
+        ingredient_names = [get_item_name(x) for x in item.ingredients]
+        return f"{', '.join(ingredient_names)}"
     else:
-        suit_value = 0
-
-    return number_value + suit_value
+        return f"{number_order[item.features['number']]} of {suit_order[item.features['suit']]}"
 
 
-def tool_fn(tool, item):
-    new_item = item.copy()
-
-    if tool["name"] == "suit swapper":
-        new_item["suit"] = (item["suit"] + 1) % len(suit_order)
-
-    elif tool["name"] == "number increaser":
-        new_item["number"] = min(item["number"] + 1, len(number_order) - 1)
-
-    return new_item
+def get_item_emoji(item: Item) -> str:
+    if isinstance(item, CombinedItem):
+        ingredient_emojis = [get_item_emoji(x) for x in item.ingredients]
+        return "".join(ingredient_emojis)
+    else:
+        return get_card_emoji(item.features["number"], item.features["suit"])
 
 
-def combo_fn(item1, item2):
-    if item1["tool"] and item2["tool"]:
+def combo_fn(item1: Item, item2: Item) -> NonTool:
+    if isinstance(item1, Tool) and isinstance(item2, Tool):
         return None
 
-    if item1["tool"]:
-        new_item = tool_fn(item1, item2)
-    elif item2["tool"]:
-        new_item = tool_fn(item2, item1)
+    # if one item is a tool, apply it to the other item.
+    if isinstance(item1, Tool):
+        new_item = apply_tool(item1, item2)
+    elif isinstance(item2, Tool):
+        new_item = apply_tool(item2, item1)
+    elif isinstance(item1, CombinedItem) and isinstance(item2, CombinedItem):
+        # combine two combined items
+        new_item = CombinedItem(
+            ingredients=item1.ingredients + item2.ingredients,
+        )
+    elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
+        new_item = CombinedItem(
+            ingredients=item1.ingredients + [item2],
+        )
+    elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
+        new_item = CombinedItem(
+            ingredients=item2.ingredients + [item1],
+        )
     else:
-        new_item = {}
+        # two ingredients
+        new_item = CombinedItem(
+            ingredients=[item1, item2],
+        )
 
-        new_item["number"] = max(item1["number"], item2["number"])
-        new_item["suit"] = max(item1["suit"], item2["suit"])
-
-    new_item["name"] = (
-        f"{number_order[new_item['number']]} of {suit_order[new_item['suit']]}"
+    new_item = replace(
+        new_item,
+        name=get_item_name(new_item),
+        emoji=get_item_emoji(new_item),
+        value=value_fn(new_item),
     )
-
-    new_item["emoji"] = get_card_emoji(new_item["number"], new_item["suit"])
-    new_item["tool"] = False
-    new_item["value"] = value_fn(new_item)
 
     return new_item
 
 
 tools = [
-    {
-        "name": "suit swapper",
-        "emoji": "🃏",
-        "tool": True,
-    },
-    {
-        "name": "number increaser",
-        "emoji": "➕",
-        "tool": True,
-    },
+    Tool(name="suit swapper", emoji="🃏"),
+    Tool(name="number increaser", emoji="➕"),
 ]
 
 ingredients = [
-    {
-        "name": "2 of clubs",
-        "emoji": unicard("2c"),
-        "tool": False,
-        "number": 2,
-        "suit": 0,
-    },
-    {
-        "name": "5 of hearts",
-        "emoji": unicard("5h"),
-        "tool": False,
-        "number": 5,
-        "suit": 3,
-    },
+    Ingredient(
+        name="2 of clubs",
+        emoji=unicard("2c"),
+        features={"number": 2, "suit": 0},
+        value=value_fn(Ingredient(features={"number": 2, "suit": 0})),
+    ),
+    Ingredient(
+        name="5 of hearts",
+        emoji=unicard("5h"),
+        features={"number": 5, "suit": 3},
+        value=value_fn(Ingredient(features={"number": 5, "suit": 3})),
+    ),
 ]
-
-for ingredient in ingredients:
-    ingredient["value"] = value_fn(ingredient)
 
 
 class PracticeCraftingGame(gym.Env):
@@ -152,8 +181,8 @@ class PracticeCraftingGame(gym.Env):
         else:
             name1, name2 = action
 
-        item1 = next(item for item in self.inventory if item["name"] == name1)
-        item2 = next(item for item in self.inventory if item["name"] == name2)
+        item1 = next(item for item in self.inventory if item.name == name1)
+        item2 = next(item for item in self.inventory if item.name == name2)
 
         new_item = combo_fn(item1, item2)
 
@@ -164,9 +193,9 @@ class PracticeCraftingGame(gym.Env):
             }
             return obs, 0, False, {}
 
-        if not item1["tool"]:
+        if not isinstance(item1, Tool):
             self.inventory.remove(item1)
-        if not item2["tool"]:
+        if not isinstance(item2, Tool):
             self.inventory.remove(item2)
 
         self.inventory.append(new_item)

@@ -16,14 +16,13 @@ from src.utils import dict_to_dataclass
 
 
 def freeze_item(item: Item) -> Item:
-    print(f"freezing item: {item}")
     if isinstance(item, Tool):
         return item
 
     if isinstance(item, CombinedItem):
-        return CombinedItem(
-            **asdict(item),
-            ingredients=[freeze_item(ing) for ing in item.ingredients],
+        return replace(
+            item,
+            ingredients=tuple([freeze_item(ing) for ing in item.ingredients]),
             features=frozendict(item.features),
         )
     else:
@@ -188,8 +187,6 @@ class MemoizedWorldModel:
 
         self.combinations = {}
         for combo, result in world_model_dict["combinations"].items():
-            print(f"combo: {combo}")
-            print(f"type of combo: {type(combo)}")
             combo = frozenset(
                 freeze_item(dict_to_dataclass(x)) for x in literal_eval(combo)
             )
@@ -198,11 +195,6 @@ class MemoizedWorldModel:
     def dumps(self):
         combinations_lsts = {}
         for combo, result in self.combinations.items():
-            print("in dumps")
-            print(f"combo: {combo}")
-            print(f"type of combo: {type(combo)}")
-            print(f"result: {result}")
-            print(f"type of result: {type(result)}")
             inps = tuple(asdict(thaw_item(x)) for x in combo)
             combinations_lsts[str(inps)] = tuple(asdict(x) for x in result)
 
