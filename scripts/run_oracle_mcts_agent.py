@@ -2,9 +2,9 @@
 Run the Oracle MCTS agent across all domains and save results.
 """
 
+import os
 from argparse import ArgumentParser
 
-import pandas as pd
 from pyprojroot import here
 
 from src.agents.oracle_agent import run_oracle_mcts_agent
@@ -19,7 +19,6 @@ if __name__ == "__main__":
     parser.add_argument("--discount_factor", type=float, default=0.98)
     args = parser.parse_args()
 
-    df_all = pd.DataFrame()
     df_domain = run_oracle_mcts_agent(
         args.domain,
         n_runs=args.n_runs,
@@ -30,8 +29,8 @@ if __name__ == "__main__":
         discount_factor=args.discount_factor,
     )
     df_domain["domain"] = args.domain
-    df_all = pd.concat([df_all, df_domain])
 
-    df_all.to_csv(
+    os.makedirs(here("data/simulations"), exist_ok=True)
+    df_domain.to_csv(
         here(f"data/simulations/oracle_mcts_results_{args.domain}.csv"), index=False
     )
