@@ -33,11 +33,11 @@ def cooking_value_function(item: NonTool) -> int:
             features["type"] in {"vegetable", "aromatic"}
             and features["chop_level"] == 1
         ):
-            value += 10
-        elif features["type"] == "meat" and features["chop_level"] == 0:
-            value += 20
-        elif features["type"] == "grain" and features["water_level"] == 1:
             value += 25
+        elif features["type"] == "meat" and features["chop_level"] == 0:
+            value += 25
+        elif features["type"] == "grain" and features["water_level"] == 1:
+            value += 30
         else:
             value -= 10
     elif features["cook_level"] == 2:
@@ -46,18 +46,18 @@ def cooking_value_function(item: NonTool) -> int:
     # chop level bonuses
     if features["chop_level"] == 1:
         if features["type"] in {"vegetable", "aromatic"}:
-            value += 10
+            value += 15
         else:
             value -= 10
 
     # salt bonuses
     if features["salt_level"] == 1:
-        value += 15
+        value += 20
     elif features["salt_level"] == 2:
         value -= 20
 
     if features["water_level"] == 1 and features["type"] != "grain":
-        value -= 10
+        value -= 15
 
     return value
 
@@ -99,7 +99,7 @@ def cooking_apply_tool(tool: Tool, item: NonTool) -> NonTool:
         )
 
     # Knife increases chop level. You can't chop a soaked thing.
-    elif tool.name == "knife" and item.features["water_level"] == 0:
+    elif tool.name == "knife":
         # increase the chop level
         new_features["chop_level"] = min(
             item.features["chop_level"] + 1,
@@ -178,7 +178,7 @@ def decorations_value_function(item):
         bonuses = 0
         ingredient_types = set(x.features["type"] for x in item.ingredients)
         if "natural" in ingredient_types and "artificial" in ingredient_types:
-            bonuses += 20
+            bonuses += 30
 
         if len(item.ingredients) > 2:
             bonuses -= 30 * (len(item.ingredients) - 2)
@@ -208,7 +208,7 @@ def decorations_value_function(item):
         if features["post_frame_messed_with"]:
             value -= 50
         else:
-            value += 20
+            value += 25
 
     return value
 
@@ -329,9 +329,6 @@ def animals_value_function(item):
 
         # bonus for combining different ingredient types
         n_unique_habitats = len(set(x.features["habitat"] for x in item.ingredients))
-        n_unique_original_respiratory_types = len(
-            set(x.features["original_respiratory_type"] for x in item.ingredients)
-        )
         # respiratory types should be the same
         n_unique_respiratory_types = len(
             set(x.features["respiratory_type"] for x in item.ingredients)
@@ -342,10 +339,8 @@ def animals_value_function(item):
         # different habitats are good
         bonuses += 20 * (n_unique_habitats - 1)
 
-        # different original respiratory systems are good
-        if n_unique_respiratory_types == 1:
-            bonuses += 30 * (n_unique_original_respiratory_types - 1)
-        else:
+        # different respiratory systems are bad
+        if n_unique_respiratory_types > 1:
             bonuses -= 30
 
         # combining more than two basic animals is bad
@@ -366,7 +361,7 @@ def animals_value_function(item):
             value -= 15
     elif features["growth_level"] == 2:
         if features["size"] == "small":
-            value += 30
+            value += 25
         elif features["size"] == "medium":
             value -= 15
         else:
@@ -376,7 +371,7 @@ def animals_value_function(item):
     if features["mutation_level"] == 1:
         value -= 15
     elif features["mutation_level"] == 2:
-        value += 25
+        value += 20
     elif features["mutation_level"] == 3:
         value -= 25
 
@@ -489,7 +484,7 @@ def potions_value_function(item: Item) -> int:
             bonus += 30
 
         # different states of matter are good
-        bonus += 20 * (n_states_of_matter - 1)
+        bonus += 15 * (n_states_of_matter - 1)
 
         # combining more than two ingredients is bad
         if n_ingredients > 3:
@@ -503,23 +498,23 @@ def potions_value_function(item: Item) -> int:
 
     # Extracted, filtered, and ground things are good
     if features["extraction"] == "extracted":
-        value += 25
+        value += 20
     elif features["extraction"] == "botched":
-        value -= 25
+        value -= 20
     if features["filtering"] == "filtered":
-        value += 25
+        value += 20
     elif features["extraction"] == "botched":
-        value -= 25
+        value -= 20
     if features["grind"] == "ground":
-        value += 25
+        value += 20
     elif features["grind"] == "botched":
-        value -= 25
+        value -= 20
 
     # twice enchanted things are good
     if features["enchantment_level"] == 1:
-        value -= 10
+        value -= 15
     elif features["enchantment_level"] == 2:
-        value += 20
+        value += 15
     elif features["enchantment_level"] == 3:
         value -= 20
 

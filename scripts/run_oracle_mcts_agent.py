@@ -14,7 +14,7 @@ if __name__ == "__main__":
             domain,
             n_runs=30,
             n_steps=15,
-            simulations_per_move=10000,
+            simulations_per_move=5000,
             max_depth=15,
             exploration_c=1.25,
             discount_factor=0.98,
