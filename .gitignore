@@ -185,3 +185,6 @@ data/world-models/
 
 # Mac
 .DS_Store
+
+# cluster
+slurm-output
