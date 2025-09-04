@@ -181,7 +181,7 @@ def decorations_value_function(item):
             bonuses += 30
 
         if len(item.ingredients) > 2:
-            bonuses -= 30 * (len(item.ingredients) - 2)
+            bonuses -= 35 * (len(item.ingredients) - 2)
 
         return sum(ingredient_values) + bonuses
 
@@ -191,13 +191,13 @@ def decorations_value_function(item):
         if features["hardness"] == "soft":
             value += 20
         else:
-            value -= 20
+            value -= 30
 
     if features["drawn_level"] == 1:
         if features["type"] == "artificial":
             value += 20
         else:
-            value -= 20
+            value -= 30
 
     if features["paint_level"] == 1:
         value += 15
