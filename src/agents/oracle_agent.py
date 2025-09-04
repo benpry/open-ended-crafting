@@ -17,7 +17,7 @@ from tqdm import tqdm
 from src.constants import Item, Tool
 from src.environment import CraftingGame
 
-Inventory = List[Item]
+Inventory = Tuple[Item, ...]
 Action = Tuple[str, str]
 
 
@@ -33,7 +33,9 @@ def compute_reward_from_inventory(inventory: Inventory) -> int:
     return max(reward, 0)
 
 
-def legal_actions_from_inventory(inventory: Inventory) -> List[Tuple[int, int]]:
+def legal_actions_from_inventory(
+    inventory: Inventory,
+) -> List[Optional[Tuple[int, int]]]:
     """
     Return indices (i, j) of legal actions from the given inventory.
     Legal actions exclude tool-tool pairs. Order is irrelevant; we enforce i < j.
@@ -62,10 +64,10 @@ def apply_action_to_inventory(
     - The resulting new item is appended
     """
     # Copy first to avoid mutating caller's state
-    next_inventory: Inventory = list(inventory)
+    next_inventory: List[Item] = list(inventory)
 
     if action is None:
-        return next_inventory
+        return tuple(next_inventory)
 
     i, j = action
 
@@ -86,10 +88,20 @@ def apply_action_to_inventory(
     new_item = combine_fn(item1, item2)
     next_inventory.append(new_item)
 
-    return next_inventory
+    return tuple(next_inventory)
 
 
 class MCTSNode:
+    __slots__ = (
+        "inventory",
+        "is_end_state",
+        "parent",
+        "incoming_action",
+        "children",
+        "visits",
+        "total_value",
+    )
+
     def __init__(
         self,
         inventory: Inventory,
@@ -101,10 +113,9 @@ class MCTSNode:
         self.is_end_state: bool = is_end_state
         self.parent: Optional[MCTSNode] = parent
         self.incoming_action: Optional[Tuple[int, int]] = incoming_action
-        self.children: Dict[Tuple[int, int], MCTSNode] = {}
+        self.children: Optional[Dict[Optional[Tuple[int, int]], MCTSNode]] = None
         self.visits: int = 0
         self.total_value: float = 0.0
-        self._unexpanded_actions: Optional[List[Tuple[int, int]]] = None
 
     @property
     def q_value(self) -> float:
@@ -113,13 +124,17 @@ class MCTSNode:
         return self.total_value / self.visits
 
     def is_fully_expanded(self, legal_actions: List[Tuple[int, int]]) -> bool:
+        if not self.children:
+            return False
         return len(self.children) >= len(legal_actions)
 
-    def select_child_ucb(self, c: float) -> Tuple[Tuple[int, int], "MCTSNode"]:
+    def select_child_ucb(
+        self, c: float
+    ) -> Tuple[Optional[Tuple[int, int]], "MCTSNode"]:
         assert self.children, "No children to select from"
         log_parent = math.log(self.visits + 1.0)
         best_score = -float("inf")
-        best_pair: Tuple[Tuple[int, int], MCTSNode] | None = None
+        best_pair: Tuple[Optional[Tuple[int, int]], MCTSNode] | None = None
         for action, child in self.children.items():
             exploration = c * math.sqrt(log_parent / (child.visits + 1e-9))
             score = child.q_value + exploration
@@ -155,11 +170,11 @@ class OracleMCTSAgent:
         Run MCTS from the given inventory and return the best action as index pair.
         Returns None if no legal actions are available (i.e., only tool-tool pairs).
         """
-        legal = legal_actions_from_inventory(inventory)
+        legal = legal_actions_from_inventory(tuple(inventory))
         if not legal:
             return None
 
-        root = MCTSNode(inventory=list(inventory))
+        root = MCTSNode(inventory=tuple(inventory))
 
         for _ in range(self.simulations_per_move):
             node = root
@@ -169,7 +184,10 @@ class OracleMCTSAgent:
             while True:
                 legal_here = legal_actions_from_inventory(node.inventory)
                 # Expand if there's an untried action
-                untried = [a for a in legal_here if a not in node.children]
+                if node.children is None:
+                    untried = legal_here
+                else:
+                    untried = [a for a in legal_here if a not in node.children]
                 if untried:
                     action = self.rng.choice(untried)
                     next_inv = apply_action_to_inventory(
@@ -181,6 +199,8 @@ class OracleMCTSAgent:
                         incoming_action=action,
                         is_end_state=action is None,
                     )
+                    if node.children is None:
+                        node.children = {}
                     node.children[action] = child
                     node = child
                     depth += 1
@@ -215,26 +235,34 @@ class OracleMCTSAgent:
         if remaining_depth <= 0:
             return float(compute_reward_from_inventory(inventory))
 
-        current_inventory = list(inventory)
+        current_inventory: Inventory = inventory
         depth = 0
-        inventory_values = [compute_reward_from_inventory(current_inventory)]
+        best_value = float(compute_reward_from_inventory(current_inventory))
         while depth < remaining_depth:
             legal = legal_actions_from_inventory(current_inventory)
             if not legal:
                 break
 
             action = self.rng.choice(legal)
+            if action is None:
+                # Terminal action: evaluate and stop rollout
+                terminal_value = float(compute_reward_from_inventory(current_inventory))
+                discounted = terminal_value * (self.discount_factor ** (depth + 1))
+                if discounted > best_value:
+                    best_value = discounted
+                break
 
             current_inventory = apply_action_to_inventory(
                 current_inventory, action, self._combine_fn
             )
-            inventory_values.append(
-                compute_reward_from_inventory(current_inventory)
-                * self.discount_factor ** (depth + 1)
+            discounted = float(compute_reward_from_inventory(current_inventory)) * (
+                self.discount_factor ** (depth + 1)
             )
+            if discounted > best_value:
+                best_value = discounted
             depth += 1
 
-        return max(inventory_values)
+        return best_value
 
     def _backpropagate(self, node: MCTSNode, value: float) -> None:
         cursor: Optional[MCTSNode] = node
@@ -296,10 +324,14 @@ def run_oracle_mcts_agent(
                 "run_idx": run_idx,
                 "step": step,
                 "action": action,
-                "new_item": new_item,
+                "new_item": (new_item.name, new_item.value) if new_item else None,
                 "score": score,
                 "inventory_size": len(inventory),
-                "inventory": inventory,
+                "ingredients": [
+                    (item.name, item.value)
+                    for item in inventory
+                    if not isinstance(item, Tool)
+                ],
             }
             run_log.append(step_log)
 
