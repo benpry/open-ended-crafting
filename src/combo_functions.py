@@ -361,7 +361,7 @@ def animals_value_function(item):
             value -= 15
     elif features["growth_level"] == 2:
         if features["size"] == "small":
-            value += 25
+            value += 30
         elif features["size"] == "medium":
             value -= 15
         else:
@@ -481,7 +481,7 @@ def potions_value_function(item: Item) -> int:
         magicalities = set(x.features["magical"] for x in item.ingredients)
         bonus = 0
         if len(magicalities) == 2:
-            bonus += 30
+            bonus += 20
 
         # different states of matter are good
         bonus += 15 * (n_states_of_matter - 1)
@@ -514,7 +514,7 @@ def potions_value_function(item: Item) -> int:
     if features["enchantment_level"] == 1:
         value -= 15
     elif features["enchantment_level"] == 2:
-        value += 15
+        value += 20
     elif features["enchantment_level"] == 3:
         value -= 20
 
