@@ -71,7 +71,11 @@ def apply_tool(tool: Tool, item: NonTool) -> NonTool:
     elif tool.name == "number increaser":
         new_features["number"] = min(item.features["number"] + 1, len(number_order) - 1)
 
-    return Ingredient(features=new_features)
+    new_name = (
+        f"{number_order[new_features['number']]} of {suit_order[new_features['suit']]}"
+    )
+    new_emoji = get_card_emoji(new_features["number"], new_features["suit"])
+    return Ingredient(features=new_features, name=new_name, emoji=new_emoji)
 
 
 def get_item_name(item: Item) -> str:

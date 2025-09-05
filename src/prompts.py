@@ -3,14 +3,14 @@ This file contains prompts for the language model.
 """
 
 import os
-from dataclasses import asdict
+from dataclasses import asdict, replace
 
 import instructor
 from groq import Groq
 from pydantic import BaseModel
 
 from src.combo_functions import FEATURE_NAMES
-from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, Item
+from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
 
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY"),
@@ -25,9 +25,19 @@ class ItemSemantics(BaseModel):
 
 def item_to_dict(item: Item, feature_names: dict) -> Item:
     item_dict = asdict(item)
-    for feature, value in item_dict.items():
+
+    # if the item is a tool, we don't need to do anything else
+    if isinstance(item, Tool):
+        return item_dict
+
+    # convert the item's features to strings
+    for feature, value in item_dict["features"].items():
         if feature in feature_names:
-            item_dict[feature] = feature_names[feature][value]
+            item_dict["features"][feature] = feature_names[feature][value]
+    if isinstance(item, CombinedItem):
+        item_dict["ingredients"] = [
+            item_to_dict(x, feature_names) for x in item.ingredients
+        ]
     return item_dict
 
 
@@ -68,6 +78,8 @@ def get_combination_messages(
 
     dict_item1 = item_to_dict(item1, feature_names)
     dict_item2 = item_to_dict(item2, feature_names)
+    # make sure the outcome doesn't have a name or emoji
+    outcome = replace(outcome, name="", emoji="")
     dict_outcome = item_to_dict(outcome, feature_names)
 
     messages += [
@@ -103,6 +115,8 @@ def get_item_semantics_from_lm(
     messages = get_combination_messages(
         inputs[0], inputs[1], outcome, domain, all_ic_examples
     )
+
+    print(f"last message: {messages[-1]}")
 
     semantics = call_model(messages, lm_string)
 

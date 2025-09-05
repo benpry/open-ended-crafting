@@ -73,21 +73,6 @@ class MemoizedWorldModel:
             return e1
 
         if self.assign_names:
-            semantics = get_item_semantics_from_lm(
-                [e1, e2], new_item, self.domain, self.lm, self.ic_examples
-            )
-            self.ic_examples.append(
-                {
-                    "input": [e1, e2],
-                    "outcome": new_item,
-                    "semantics": semantics,
-                }
-            )
-
-            new_item = replace(
-                new_item, name=semantics["name"], emoji=semantics["emoji"]
-            )
-
             # if we applied a tool to a combined item, we need to assign names to the updated ingredients
             if isinstance(e1, CombinedItem) and isinstance(e2, Tool):
                 for i in range(len(new_item.ingredients)):
@@ -106,9 +91,22 @@ class MemoizedWorldModel:
                         emoji=named_ingredient.emoji,
                     )
 
-        else:
-            new_item = replace(new_item, name=f"[{e1.name}]-[{e2.name}]", emoji="❓")
+            semantics = get_item_semantics_from_lm(
+                [e1, e2], new_item, self.domain, self.lm, self.ic_examples
+            )
+            self.ic_examples.append(
+                {
+                    "input": [e1, e2],
+                    "outcome": new_item,
+                    "semantics": semantics,
+                }
+            )
 
+            new_item = replace(
+                new_item, name=semantics["name"], emoji=semantics["emoji"]
+            )
+
+        else:
             if isinstance(e1, CombinedItem) and isinstance(e2, Tool):
                 for i in range(len(new_item.ingredients)):
                     new_item.ingredients[i] = replace(
@@ -123,6 +121,8 @@ class MemoizedWorldModel:
                         name=f"[{e1.name}-{e2.ingredients[i].name}]",
                         emoji="❓",
                     )
+
+            new_item = replace(new_item, name=f"[{e1.name}]-[{e2.name}]", emoji="❓")
 
         return new_item
 
