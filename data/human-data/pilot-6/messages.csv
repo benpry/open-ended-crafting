@@ -1,0 +1,50 @@
+player_id,domain,message,time
+54543d00-7261-47f6-9de9-917eb012db7e,practice,"You want to get each card to 10, make them the same suit, then combine them. Don't go past 10 because the face cards drastically reduce the score. ",2025-09-05 16:12:01.089
+c32885f9-7ce7-4273-bdd2-b78803010114,practice,"You can change suits of the cards before you combine them, which will help you get a higher score. You can also change the value, and increasing the value also increases the points",2025-09-05 16:14:10.523
+39cd213f-4a63-46c3-97c7-e55cfa849486,practice,choose hearts for better results,2025-09-05 16:22:35.596
+c32885f9-7ce7-4273-bdd2-b78803010114,decorations,,2025-09-05 16:22:40.479
+54543d00-7261-47f6-9de9-917eb012db7e,animals,"I increased the size of each animal to colossal and looked for the two that had positive values. Then I increased each of them to super mutants. I can't remember the name of it, but then I used the tool that made them ""energetic"" and then combined the two animals. Going past super mutant seemed to lower the value by a lot. ",2025-09-05 16:23:25.444
+54543d00-7261-47f6-9de9-917eb012db7e,decorations,"I got the highest scores when I tried the following:
+
+Cut the soft objects once. Paint them all once. Frame them all once. Combine them all.
+
+Paint the hard objects once. Frame them all once. Combine them all.
+
+Then combine the soft and hard at the end.
+
+Sometimes the combining objects that had frames would reduce the score and say it's ruined. Might be better to not frame them until after combining. Didn't have enough time to test that.",2025-09-05 16:33:09.107
+39cd213f-4a63-46c3-97c7-e55cfa849486,decorations,focus on the combo,2025-09-05 16:33:33.182
+601c8b25-8354-4852-bebd-d0f4f494abbd,practice,Cards of the same suit are more points when combined together. So have suits match before increasing the value.,2025-09-05 16:38:52.068
+54543d00-7261-47f6-9de9-917eb012db7e,animals,"Increase the size of the small animals twice.
+Increase the size of the medium animals once.
+Don't increase the size of the large animals.
+
+Mutate each animal twice to super mutant. 
+
+Use the metabolize option on the ones with gills to make them energetic.
+
+Then you can combine certain ones to get a higher score, but I'm not sure about that part.",2025-09-05 16:43:39.495
+39cd213f-4a63-46c3-97c7-e55cfa849486,cooking,"cooking is hard, just make a dish ",2025-09-05 16:44:52.776
+601c8b25-8354-4852-bebd-d0f4f494abbd,potions,I don't know what works. I tried solid objects with the stone.,2025-09-05 16:45:16.196
+601c8b25-8354-4852-bebd-d0f4f494abbd,decorations,"Scissors and paper go together well, that's about all I know so far. Paint seems to combine well with paper, too.",2025-09-05 16:49:46.334
+54543d00-7261-47f6-9de9-917eb012db7e,decorations,"Cut the soft objects once.
+Paint each object.
+Don't use the pen on natural objects. 
+Combine the hard and soft ones.
+Don't frame until the end.",2025-09-05 16:50:16.589
+319ce1c2-905f-46ed-9560-250c899d9183,practice,"Increase the number only until 10, put the card back and put the other card in and make that up to 10 also with the number increaser. Then make sure both cards are the same suit, this will give you the most points.",2025-09-05 16:52:47.214
+601c8b25-8354-4852-bebd-d0f4f494abbd,potions,I just know that solid things like a rood go with the whetstone or whatever it is called.,2025-09-05 16:54:46.862
+39cd213f-4a63-46c3-97c7-e55cfa849486,decorations,soft things are easily cut while hard things are easily painted.,2025-09-05 16:55:10.558
+601c8b25-8354-4852-bebd-d0f4f494abbd,decorations,"I just combined paper stuff with paint, that usually worked out well. Beyond that, I didn't know what I was doing.",2025-09-05 16:59:47.960
+319ce1c2-905f-46ed-9560-250c899d9183,potions,"Perhaps adding plants with plants, solids with solids might work",2025-09-05 16:59:51.052
+39cd213f-4a63-46c3-97c7-e55cfa849486,cooking,its all about the combinations.,2025-09-05 17:00:43.808
+319ce1c2-905f-46ed-9560-250c899d9183,decorations,Do what would seem natural to you in making crafts,2025-09-05 17:03:47.747
+319ce1c2-905f-46ed-9560-250c899d9183,potions,"Still thinking you put mundane with mundane, use wand on magical and don't use volcanic ash much",2025-09-05 17:08:44.810
+978ff6c1-e230-44e5-982f-a64a92e75fcf,practice,Pay attention to rather the suit match if it does not match them and then increase it.,2025-09-05 17:10:23.381
+319ce1c2-905f-46ed-9560-250c899d9183,decorations,Sunflowers did well. Hard things should go together like shell and beads. ,2025-09-05 17:12:28.705
+6c35d673-2c1a-494a-bf57-60aff5b819dc,practice,"The highest score you can achieve is 21. You get this score by first changing one card (ingredient) to the same suit as the other. For example, change each of them to diamond. Then, before combining the two cards (ingredients) use the increase number tool to individually get each card up to a 10. Don't go above a 10 because the card values will then reset to 0 points. Once you've individually gotten each card up to 10 (one before Jack), combine the two cards by dropping one onto the other.",2025-09-05 17:21:08.976
+978ff6c1-e230-44e5-982f-a64a92e75fcf,cooking,Only use ingredients that you would usually use.,2025-09-05 17:21:23.875
+6c35d673-2c1a-494a-bf57-60aff5b819dc,cooking,Just combine the ingredients in a way that makes the most sense as if you were actually cooking them.,2025-09-05 17:29:32.745
+978ff6c1-e230-44e5-982f-a64a92e75fcf,decorations,combine it the best that you can.,2025-09-05 17:32:18.590
+978ff6c1-e230-44e5-982f-a64a92e75fcf,cooking,USE ingredients that make sense.,2025-09-05 17:41:09.996
+978ff6c1-e230-44e5-982f-a64a92e75fcf,decorations,try different combinations with paper or cardboard.,2025-09-05 17:48:39.847

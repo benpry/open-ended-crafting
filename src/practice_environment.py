@@ -50,7 +50,7 @@ def value_fn(item: NonTool) -> int:
         return sum(ingredient_values) + bonus
 
     if item.features["number"] <= 10:
-        number_value = round(0.8 * item.features["number"])
+        number_value = item.features["number"]
     else:
         number_value = -5
 
