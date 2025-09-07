@@ -45,8 +45,6 @@ def cooking_value_function(item: NonTool) -> int:
 
 
 cooking_feature_names = {
-    "water_level": ["dry", "soaked"],
-    "chop_level": ["unchopped", "chopped"],
     "salt_level": ["unsalted", "salted", "oversalted"],
     "cook_level": ["raw", "cooked", "overcooked"],
 }
@@ -137,9 +135,7 @@ def cooking_combination_function(item1: Item, item2: Item):
 
 
 decorations_feature_names = {
-    "paint_level": ["unpainted", "painted", "over-painted"],
     "cut_level": ["not cut", "cut"],
-    "drawn_level": ["not drawn", "drawn"],
     "framed": {True: "framed", False: "not framed"},
     "post_frame_messed_with": {False: None, True: "ruined frame"},
 }
@@ -161,7 +157,7 @@ def decorations_value_function(item):
             bonuses += 30
 
         if len(item.ingredients) > 2:
-            bonuses -= 35 * (len(item.ingredients) - 2)
+            bonuses -= 100
 
         return sum(ingredient_values) + bonuses
 
@@ -273,7 +269,6 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
 animals_feature_names = {
     "mutation_level": ["not mutant", "mutant", "super-mutant", "corrupted"],
     "growth_level": ["not grown", "grown", "colossally grown"],
-    "metabolic_level": ["normal metabolism", "accelerated metabolism"],
 }
 
 
@@ -295,7 +290,7 @@ def animals_value_function(item):
 
         # combining more than two basic animals is bad
         if len(item.ingredients) > 3:
-            bonuses -= 35 * (len(item.ingredients) - 2)
+            bonuses -= 100
 
         return sum(ingredient_values) + bonuses
 
@@ -393,9 +388,7 @@ def animals_combination_function(item1, item2):
 
 # POTIONS DOMAIN FUNCTIONS
 
-potions_feature_names = {
-    "enchantment_level": ["unenchanted", "flickering", "glowing", "corrupted"],
-}
+potions_feature_names = {}
 
 
 def potions_value_function(item: Item) -> int:
@@ -520,14 +513,6 @@ def cooking_get_item_descriptor(item: NonTool) -> str:
         descriptors.append(
             cooking_feature_names["cook_level"][item.features["cook_level"]]
         )
-    if item.features["water_level"] > 0:
-        descriptors.append(
-            cooking_feature_names["water_level"][item.features["water_level"]]
-        )
-    if item.features["chop_level"] > 0:
-        descriptors.append(
-            cooking_feature_names["chop_level"][item.features["chop_level"]]
-        )
     if item.features["salt_level"] > 0:
         descriptors.append(
             cooking_feature_names["salt_level"][item.features["salt_level"]]
@@ -587,15 +572,11 @@ def animals_get_item_descriptor(item: NonTool) -> str:
         return "\n".join(ingredient_descriptors)
 
     descriptors.append(item.features["size"])
-    descriptors.append(item.features["diet_type"])
     if item.features["growth_level"] > 0:
         descriptors.append(
             animals_feature_names["growth_level"][item.features["growth_level"]]
         )
-    if item.features["metabolic_level"] > 0:
-        descriptors.append(
-            animals_feature_names["metabolic_level"][item.features["metabolic_level"]]
-        )
+
     if item.features["mutation_level"] > 0:
         descriptors.append(
             animals_feature_names["mutation_level"][item.features["mutation_level"]]
