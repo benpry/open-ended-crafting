@@ -1,11 +1,10 @@
-import random
 from dataclasses import replace
 from typing import Optional
 
 import gymnasium as gym
 
-from src.combo_functions import VALUE_FUNCTIONS
-from src.constants import INGREDIENTS, TOOLS, Tool
+from src.constants import TOOLS, Tool
+from src.functions import GET_INVENTORY_FUNCTIONS, VALUE_FUNCTIONS
 from src.world_model import MemoizedWorldModel
 
 
@@ -36,9 +35,7 @@ class CraftingGame(gym.Env):
         """
         # get the item names and delete the reasoning
         tools = TOOLS[self.domain]
-        ingredients = random.sample(
-            INGREDIENTS[self.domain], self.n_starting_ingredients
-        )
+        ingredients = GET_INVENTORY_FUNCTIONS[self.domain](self.n_starting_ingredients)
 
         # Assign values to all ingredients
         ingredients = [

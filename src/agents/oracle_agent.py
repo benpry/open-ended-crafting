@@ -289,7 +289,7 @@ def run_oracle_mcts_agent(
     """
     import pandas as pd  # Local import to avoid hard dependency at module import
 
-    log = []
+    logs = []
     env = CraftingGame("none", domain=domain, assign_names=False)
     agent = OracleMCTSAgent(
         env,
@@ -320,6 +320,8 @@ def run_oracle_mcts_agent(
             ingredients = [item for item in inventory if not isinstance(item, Tool)]
             score = max([item.value for item in ingredients])
 
+            # print(f"obs: {obs}")
+
             step_log = {
                 "run_idx": run_idx,
                 "step": step,
@@ -335,6 +337,8 @@ def run_oracle_mcts_agent(
             }
             run_log.append(step_log)
 
+            # print(f"step_log: {step_log}")
+
             if done:
                 break
 
@@ -342,6 +346,6 @@ def run_oracle_mcts_agent(
         final_reward = env.get_reward()
         for step_log in run_log:
             step_log["final_reward"] = final_reward
-            log.append(step_log)
+            logs.append(step_log)
 
-    return pd.DataFrame(log)
+    return pd.DataFrame(logs)

@@ -1,7 +1,7 @@
 import random
 
-from src.combo_functions import cooking_apply_tool, cooking_combination_function
 from src.constants import cooking_ingredients, cooking_tools
+from src.functions import cooking_apply_tool, cooking_combination_function
 
 cooking_inv = cooking_ingredients + cooking_tools
 

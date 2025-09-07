@@ -8,8 +8,8 @@ from dataclasses import asdict, replace
 
 from frozendict import frozendict
 
-from src.combo_functions import COMBO_FUNCTIONS
 from src.constants import CombinedItem, Item, NonTool, Tool
+from src.functions import COMBO_FUNCTIONS
 from src.prompts import get_item_semantics_from_lm
 from src.utils import dict_to_dataclass
 

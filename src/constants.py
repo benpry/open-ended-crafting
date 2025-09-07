@@ -42,8 +42,6 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "fruit",
         },
     ),
@@ -54,8 +52,6 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "fruit",
         },
     ),
@@ -66,21 +62,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "vegetable",
-        },
-    ),
-    Ingredient(
-        name="egg",
-        emoji="🥚",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
-            "type": "eggs and dairy",
         },
     ),
     Ingredient(
@@ -90,8 +72,6 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "meat",
         },
     ),
@@ -102,57 +82,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "meat",
-        },
-    ),
-    Ingredient(
-        name="rice",
-        emoji="🌾",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
-            "type": "grain",
-        },
-    ),
-    Ingredient(
-        name="wheat",
-        emoji="🌾",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
-            "type": "grain",
-        },
-    ),
-    Ingredient(
-        name="cheese",
-        emoji="🧀",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
-            "type": "eggs and dairy",
-        },
-    ),
-    Ingredient(
-        name="butter",
-        emoji="🧈",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
-            "type": "eggs and dairy",
         },
     ),
     Ingredient(
@@ -162,8 +92,6 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "vegetable",
         },
     ),
@@ -174,33 +102,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "vegetable",
-        },
-    ),
-    Ingredient(
-        name="onion",
-        emoji="🧅",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
-            "type": "aromatic",
-        },
-    ),
-    Ingredient(
-        name="ginger",
-        emoji="🫚",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
-            "type": "aromatic",
         },
     ),
     Ingredient(
@@ -210,8 +112,6 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "vegetable",
         },
     ),
@@ -222,21 +122,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "vegetable",
-        },
-    ),
-    Ingredient(
-        name="pepper",
-        emoji="🌶️",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
-            "type": "aromatic",
         },
     ),
     Ingredient(
@@ -246,8 +132,6 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "fruit",
         },
     ),
@@ -258,25 +142,19 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "water_level": 0,
-            "chop_level": 0,
             "type": "fruit",
         },
     ),
 ]
 
 cooking_tools = [
-    Tool(name="water", emoji="💧"),
-    Tool(name="knife", emoji="🔪"),
     Tool(name="stove", emoji="🔥"),
     Tool(name="salt", emoji="🧂"),
 ]
 
 decorations_tools = [
     Tool(name="scissors", emoji="✂️"),
-    Tool(name="paint", emoji="🎨"),
     Tool(name="frame", emoji="🖼️"),
-    Tool(name="pen", emoji="🖊️"),
 ]
 
 decorations_ingredients = [
@@ -286,9 +164,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -300,9 +176,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "hard",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -314,9 +188,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "hard",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -328,9 +200,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "artificial",
@@ -342,9 +212,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "artificial",
@@ -356,9 +224,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -370,9 +236,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -384,9 +248,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "artificial",
@@ -398,9 +260,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -412,9 +272,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -426,9 +284,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "hard",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -440,9 +296,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "hard",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -454,9 +308,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "hard",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -468,9 +320,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "hard",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "natural",
@@ -482,9 +332,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "hard",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "artificial",
@@ -496,9 +344,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "artificial",
@@ -510,9 +356,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "artificial",
@@ -524,9 +368,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "soft",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "artificial",
@@ -538,23 +380,7 @@ decorations_ingredients = [
         value=0,
         features={
             "hardness": "hard",
-            "paint_level": 0,
             "cut_level": 0,
-            "drawn_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
-            "type": "artificial",
-        },
-    ),
-    Ingredient(
-        name="glitter",
-        emoji="✨",
-        value=0,
-        features={
-            "hardness": "soft",
-            "paint_level": 0,
-            "cut_level": 0,
-            "drawn_level": 0,
             "framed": False,
             "post_frame_messed_with": False,
             "type": "artificial",
@@ -565,10 +391,7 @@ decorations_ingredients = [
 animals_tools = [
     Tool(name="growth serum", emoji="🌡️"),
     Tool(name="mutation catalyst", emoji="🧬"),
-    Tool(name="respiratory reconfigurer", emoji="🌀"),
-    Tool(name="metabolic accelerator", emoji="⚡"),
 ]
-
 
 animals_ingredients = [
     Ingredient(
@@ -578,10 +401,7 @@ animals_ingredients = [
         features={
             "size": "small",
             "mutation_level": 0,
-            "respiratory_type": "gills",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "water",
         },
     ),
@@ -592,10 +412,7 @@ animals_ingredients = [
         features={
             "size": "large",
             "mutation_level": 0,
-            "respiratory_type": "gills",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "water",
         },
     ),
@@ -606,10 +423,7 @@ animals_ingredients = [
         features={
             "size": "medium",
             "mutation_level": 0,
-            "respiratory_type": "gills",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "water",
         },
     ),
@@ -620,10 +434,7 @@ animals_ingredients = [
         features={
             "size": "medium",
             "mutation_level": 0,
-            "respiratory_type": "gills",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "water",
         },
     ),
@@ -634,10 +445,7 @@ animals_ingredients = [
         features={
             "size": "medium",
             "mutation_level": 0,
-            "respiratory_type": "gills",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "water",
         },
     ),
@@ -648,10 +456,7 @@ animals_ingredients = [
         features={
             "size": "small",
             "mutation_level": 0,
-            "respiratory_type": "gills",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "water",
         },
     ),
@@ -662,10 +467,7 @@ animals_ingredients = [
         features={
             "size": "medium",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "land",
         },
     ),
@@ -676,10 +478,7 @@ animals_ingredients = [
         features={
             "size": "small",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "land",
         },
     ),
@@ -690,10 +489,7 @@ animals_ingredients = [
         features={
             "size": "small",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "omnivore",
             "habitat": "air",
         },
     ),
@@ -704,10 +500,7 @@ animals_ingredients = [
         features={
             "size": "small",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "herbivore",
             "habitat": "air",
         },
     ),
@@ -718,10 +511,7 @@ animals_ingredients = [
         features={
             "size": "small",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "herbivore",
             "habitat": "air",
         },
     ),
@@ -732,10 +522,7 @@ animals_ingredients = [
         features={
             "size": "small",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "land",
         },
     ),
@@ -746,10 +533,7 @@ animals_ingredients = [
         features={
             "size": "large",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "herbivore",
             "habitat": "land",
         },
     ),
@@ -760,10 +544,7 @@ animals_ingredients = [
         features={
             "size": "large",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "water",
         },
     ),
@@ -774,10 +555,7 @@ animals_ingredients = [
         features={
             "size": "large",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "herbivore",
             "habitat": "land",
         },
     ),
@@ -788,10 +566,7 @@ animals_ingredients = [
         features={
             "size": "medium",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "herbivore",
             "habitat": "land",
         },
     ),
@@ -802,10 +577,7 @@ animals_ingredients = [
         features={
             "size": "large",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "carnivore",
             "habitat": "land",
         },
     ),
@@ -816,10 +588,7 @@ animals_ingredients = [
         features={
             "size": "large",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "herbivore",
             "habitat": "land",
         },
     ),
@@ -830,10 +599,7 @@ animals_ingredients = [
         features={
             "size": "medium",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "herbivore",
             "habitat": "land",
         },
     ),
@@ -844,10 +610,7 @@ animals_ingredients = [
         features={
             "size": "medium",
             "mutation_level": 0,
-            "respiratory_type": "lungs",
-            "metabolic_level": 0,
             "growth_level": 0,
-            "diet_type": "omnivore",
             "habitat": "land",
         },
     ),
@@ -856,8 +619,6 @@ animals_ingredients = [
 
 potions_tools = [
     Tool(name="vial", emoji="🧪"),
-    Tool(name="mortar", emoji="🏺"),
-    Tool(name="wand", emoji="🪄"),
     Tool(name="filter", emoji="🧫"),
 ]
 
@@ -870,10 +631,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "animal",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -884,10 +643,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "animal",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -898,10 +655,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "animal",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -912,10 +667,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "animal",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -926,10 +679,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "plant",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -940,10 +691,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "plant",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -954,10 +703,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "plant",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -968,10 +715,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "plant",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -982,10 +727,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "mineral",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -996,10 +739,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "mineral",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1010,10 +751,8 @@ potions_ingredients = [
             "state_of_matter": "solid",
             "type": "mineral",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1024,10 +763,8 @@ potions_ingredients = [
             "state_of_matter": "gas",
             "type": "essence",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1038,10 +775,8 @@ potions_ingredients = [
             "state_of_matter": "gas",
             "type": "essence",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1052,10 +787,8 @@ potions_ingredients = [
             "state_of_matter": "gas",
             "type": "essence",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1066,10 +799,8 @@ potions_ingredients = [
             "state_of_matter": "gas",
             "type": "essence",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1080,10 +811,8 @@ potions_ingredients = [
             "state_of_matter": "liquid",
             "type": "animal",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1094,10 +823,8 @@ potions_ingredients = [
             "state_of_matter": "liquid",
             "type": "essence",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1108,10 +835,8 @@ potions_ingredients = [
             "state_of_matter": "liquid",
             "type": "animal",
             "magical": True,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1122,10 +847,8 @@ potions_ingredients = [
             "state_of_matter": "liquid",
             "type": "plant",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
     Ingredient(
@@ -1136,10 +859,8 @@ potions_ingredients = [
             "state_of_matter": "liquid",
             "type": "plant",
             "magical": False,
-            "enchantment_level": 0,
             "filtering": None,
             "extraction": None,
-            "grind": None,
         },
     ),
 ]

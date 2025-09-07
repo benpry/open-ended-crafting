@@ -9,8 +9,8 @@ import instructor
 from groq import Groq
 from pydantic import BaseModel
 
-from src.combo_functions import FEATURE_NAMES
 from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
+from src.functions import FEATURE_NAMES
 
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY"),
