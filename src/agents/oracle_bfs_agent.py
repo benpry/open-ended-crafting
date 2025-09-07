@@ -99,7 +99,17 @@ def item_feature_signature(item: Item):
     # Avoid importing dataclass classes directly to keep coupling low
     # Detect CombinedItem by attribute presence
     if hasattr(item, "ingredients"):
-        combined_features = tuple(sorted(getattr(item, "features", {}).items()))
+
+        def _norm(v):
+            if v is None:
+                return "<NONE>"
+            if isinstance(v, (int, float, bool, str)):
+                return v
+            return str(v)
+
+        combined_features = tuple(
+            sorted((k, _norm(v)) for k, v in getattr(item, "features", {}).items())
+        )
         ingredient_sigs = tuple(
             sorted(
                 item_feature_signature(ing) for ing in getattr(item, "ingredients", [])
@@ -108,7 +118,16 @@ def item_feature_signature(item: Item):
         return ("C", combined_features, ingredient_sigs)
 
     # Base non-tool (Ingredient)
-    features = tuple(sorted(getattr(item, "features", {}).items()))
+    def _norm(v):
+        if v is None:
+            return "<NONE>"
+        if isinstance(v, (int, float, bool, str)):
+            return v
+        return str(v)
+
+    features = tuple(
+        sorted((k, _norm(v)) for k, v in getattr(item, "features", {}).items())
+    )
     return ("N", features)
 
 
