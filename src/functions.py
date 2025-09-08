@@ -28,11 +28,8 @@ def cooking_value_function(item: NonTool) -> int:
 
     # cook level bonuses
     if features["cook_level"] == 1:
-        if (
-            features["type"] == "grain"
-            and features["water_level"] == 1
-            or features["grain"] == "wheat"
-            and features["water_level"] == 0
+        if (features["type"] == "grain" and features["water_level"] == 1) or (
+            features["type"] != "grain" and features["water_level"] == 0
         ):
             value += 20
         else:
