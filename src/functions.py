@@ -222,23 +222,62 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
     elif isinstance(item2, Tool):
         new_item = decorations_apply_tool(item2, item1)
     elif isinstance(item1, CombinedItem) and isinstance(item2, CombinedItem):
-        # combine two combined items
+        if item1.features["framed"] or item2.features["framed"]:
+            new_features = {"framed": True, "post_frame_messed_with": True}
+        else:
+            new_features = {"framed": False, "post_frame_messed_with": False}
+
         new_item = CombinedItem(
             ingredients=item1.ingredients + item2.ingredients,
-            features={"framed": False, "post_frame_messed_with": False},
+            features=new_features,
         )
+
     elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
+        if item1.features["framed"]:
+            new_features = {"framed": True, "post_frame_messed_with": True}
+        else:
+            new_features = {"framed": False, "post_frame_messed_with": False}
+
+        if item2.features["framed"]:
+            item2_features = item2.features.copy()
+            item2_features["framed"] = True
+            item2_features["post_frame_messed_with"] = True
+            item2 = replace(item2, features=item2_features)
+
         new_item = CombinedItem(
             ingredients=item1.ingredients + [item2],
-            features={"framed": False, "post_frame_messed_with": False},
+            features=new_features,
         )
+
     elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
+        if item1.features["framed"]:
+            item1_features = item1.features.copy()
+            item1_features["framed"] = True
+            item1_features["post_frame_messed_with"] = True
+            item1 = replace(item1, features=item1_features)
+
+        if item2.features["framed"]:
+            new_features = {"framed": True, "post_frame_messed_with": True}
+        else:
+            new_features = {"framed": False, "post_frame_messed_with": False}
+
         new_item = CombinedItem(
             ingredients=item2.ingredients + [item1],
-            features={"framed": False, "post_frame_messed_with": False},
+            features=new_features,
         )
     else:
-        # two ingredients
+        if item1.features["framed"]:
+            item1_features = item1.features.copy()
+            item1_features["framed"] = True
+            item1_features["post_frame_messed_with"] = True
+            item1 = replace(item1, features=item1_features)
+
+        if item2.features["framed"]:
+            item2_features = item2.features.copy()
+            item2_features["framed"] = True
+            item2_features["post_frame_messed_with"] = True
+            item2 = replace(item2, features=item2_features)
+
         new_item = CombinedItem(
             ingredients=[item1, item2],
             features={"framed": False, "post_frame_messed_with": False},
