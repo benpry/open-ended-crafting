@@ -17,7 +17,7 @@ def cooking_value_function(item: NonTool) -> int:
             set(x.features["type"] for x in item.ingredients)
         )
 
-        bonuses = (13 + 1 / 3) * (n_distinct_ingredient_types - 1)
+        bonuses = 20 * (n_distinct_ingredient_types - 1)
         if n_ingredients > 3:
             bonuses -= 100
 
@@ -35,7 +35,7 @@ def cooking_value_function(item: NonTool) -> int:
         else:
             value -= 15
 
-    return value
+    return round(value)
 
 
 cooking_feature_names = {
@@ -108,7 +108,7 @@ def cooking_combination_function(item1: Item, item2: Item):
 
 
 decorations_feature_names = {
-    "cut_level": ["not cut", "cut"],
+    "cut_level": ["not cut", "cut", "finely cut"],
     "framed": {True: "framed", False: "not framed"},
     "post_frame_messed_with": {False: None, True: "ruined frame"},
 }
@@ -128,6 +128,12 @@ def decorations_value_function(item):
         ingredient_types = set(x.features["type"] for x in item.ingredients)
         if "natural" in ingredient_types and "artificial" in ingredient_types:
             bonuses += 30
+
+        if item.features["framed"]:
+            if item.features["post_frame_messed_with"]:
+                bonuses -= 50
+            else:
+                bonuses += 20
 
         if len(item.ingredients) > 2:
             bonuses -= 100
@@ -185,7 +191,10 @@ def decorations_apply_tool(tool: Tool, item: NonTool) -> NonTool:
 
     elif tool.name == "scissors":
         # Only cut soft items, not hard ones
-        new_features["cut_level"] = 1
+        new_features["cut_level"] = min(
+            item.features["cut_level"] + 1,
+            len(decorations_feature_names["cut_level"]) - 1,
+        )
 
     return Ingredient(features=new_features)
 
@@ -431,7 +440,10 @@ def potions_apply_tool(tool: Tool, item: NonTool) -> NonTool:
 
     # the vial extracts plant things and makes them liquid
     if tool.name == "vial" and item.features["extraction"] is None:
-        if item.features["type"] == "plant" and item.features["filtering"] is None:
+        if (
+            item.features["state_of_matter"] == "solid"
+            and item.features["filtering"] is None
+        ):
             new_features["extraction"] = "extracted"
             new_features["state_of_matter"] = "liquid"
         else:
@@ -595,24 +607,11 @@ def potions_get_item_descriptor(item: dict[str, Any]) -> list[str]:
             descriptors.append("botched filtering")
         else:
             descriptors.append("filtered")
-    if item.features["grind"] is not None:
-        if item.features["grind"] == "botched":
-            descriptors.append("botched grinding")
-        else:
-            descriptors.append("ground")
-    if item.features["enchantment_level"] > 0:
-        descriptors.append(
-            potions_feature_names["enchantment_level"][
-                item.features["enchantment_level"]
-            ]
-        )
 
     if item.features["magical"]:
         descriptors.append("magical")
     else:
         descriptors.append("mundane")
-
-    descriptors.append(item.features["type"])
 
     return ", ".join(descriptors)
 
@@ -677,7 +676,7 @@ def animals_get_inventory(n_items: int):
 
     if n_items > 3:
         remaining_ingredients = [item for item in ingredients if item not in inventory]
-        remaining_ingredients = random.sample(remaining_ingredients, n_items - 4)
+        remaining_ingredients = random.sample(remaining_ingredients, n_items - 3)
         inventory += remaining_ingredients
 
     return inventory

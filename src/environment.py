@@ -17,7 +17,7 @@ class CraftingGame(gym.Env):
         self,
         model: str,
         domain: str,
-        n_starting_ingredients: int = 5,
+        n_starting_ingredients: int = 4,
         assign_names: bool = False,
     ):
         super().__init__()

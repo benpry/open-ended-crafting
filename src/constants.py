@@ -629,7 +629,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "animal",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -641,7 +640,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "animal",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -653,7 +651,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "animal",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -665,7 +662,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "animal",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -677,7 +673,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "plant",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -689,7 +684,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "plant",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -701,7 +695,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "plant",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -713,7 +706,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "plant",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -725,7 +717,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "mineral",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -737,7 +728,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "mineral",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -749,7 +739,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "type": "mineral",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -761,7 +750,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "gas",
-            "type": "essence",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -773,7 +761,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "gas",
-            "type": "essence",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -785,7 +772,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "gas",
-            "type": "essence",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -797,7 +783,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "gas",
-            "type": "essence",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -809,7 +794,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "type": "animal",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -821,7 +805,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "type": "essence",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -833,7 +816,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "type": "animal",
             "magical": True,
             "filtering": None,
             "extraction": None,
@@ -845,7 +827,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "type": "plant",
             "magical": False,
             "filtering": None,
             "extraction": None,
@@ -857,7 +838,6 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "type": "plant",
             "magical": False,
             "filtering": None,
             "extraction": None,
