@@ -625,7 +625,7 @@ def cooking_get_inventory(n_items: int):
     ingredients = INGREDIENTS["cooking"]
     vegetables = [item for item in ingredients if item.features["type"] == "vegetable"]
     meats = [item for item in ingredients if item.features["type"] == "meat"]
-    grains = [item for item in ingredients if item.features["type"] == "grains"]
+    grains = [item for item in ingredients if item.features["type"] == "grain"]
 
     # sample a vegetable, a meat, and a fruit
     vegetable = random.sample(vegetables, 1)[0]
