@@ -56,8 +56,18 @@ cooking_ingredients = [
         },
     ),
     Ingredient(
-        name="raw meat",
+        name="raw beef",
         emoji="🥩",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "meat",
+        },
+    ),
+    Ingredient(
+        name="raw bacon",
+        emoji="🥓",
         value=0,
         features={
             "cook_level": 0,
@@ -133,6 +143,26 @@ cooking_ingredients = [
             "cook_level": 0,
             "water_level": 0,
             "type": "grain",
+        },
+    ),
+    Ingredient(
+        name="cucumber",
+        emoji="🥒",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "vegetable",
+        },
+    ),
+    Ingredient(
+        name="broccoli",
+        emoji="🥦",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "vegetable",
         },
     ),
 ]
