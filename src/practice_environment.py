@@ -65,10 +65,7 @@ def apply_tool(tool: Tool, item: NonTool) -> NonTool:
 
     new_features = item.features.copy()
 
-    if tool.name == "suit swapper":
-        new_features["suit"] = (item.features["suit"] + 1) % len(suit_order)
-
-    elif tool.name == "number increaser":
+    if tool.name == "number increaser":
         new_features["number"] = min(item.features["number"] + 1, len(number_order) - 1)
 
     new_name = (
@@ -133,7 +130,6 @@ def combo_fn(item1: Item, item2: Item) -> NonTool:
 
 
 tools = [
-    Tool(name="suit swapper", emoji="🃏"),
     Tool(name="number increaser", emoji="➕"),
 ]
 
@@ -149,6 +145,12 @@ ingredients = [
         emoji=unicard("5h"),
         features={"number": 5, "suit": 3},
         value=value_fn(Ingredient(features={"number": 5, "suit": 3})),
+    ),
+    Ingredient(
+        name="4 of clubs",
+        emoji=unicard("4c"),
+        features={"number": 4, "suit": 0},
+        value=value_fn(Ingredient(features={"number": 4, "suit": 0})),
     ),
 ]
 
