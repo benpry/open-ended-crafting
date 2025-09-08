@@ -665,21 +665,17 @@ def decorations_get_inventory(n_items: int):
 def animals_get_inventory(n_items: int):
     # one small, one large, two medium. At least one of each habitat.
     ingredients = INGREDIENTS["animals"]
-    inventory = random.sample(ingredients, 4)
-    n_habitats = len(set([item.features["habitat"] for item in inventory]))
-    n_small = len([item for item in inventory if item.features["size"] == "small"])
-    n_large = len([item for item in inventory if item.features["size"] == "large"])
-    n_medium = len([item for item in inventory if item.features["size"] == "medium"])
-    while n_habitats < 3 or n_small < 1 or n_large < 1 or n_medium < 2:
-        inventory = random.sample(ingredients, 4)
-        n_habitats = len(set([item.features["habitat"] for item in inventory]))
-        n_small = len([item for item in inventory if item.features["size"] == "small"])
-        n_large = len([item for item in inventory if item.features["size"] == "large"])
-        n_medium = len(
-            [item for item in inventory if item.features["size"] == "medium"]
-        )
+    land_animals = [item for item in ingredients if item.features["habitat"] == "land"]
+    water_animals = [
+        item for item in ingredients if item.features["habitat"] == "water"
+    ]
+    air_animals = [item for item in ingredients if item.features["habitat"] == "air"]
 
-    if n_items > 4:
+    inventory = random.sample(land_animals, 1)
+    inventory += random.sample(water_animals, 1)
+    inventory += random.sample(air_animals, 1)
+
+    if n_items > 3:
         remaining_ingredients = [item for item in ingredients if item not in inventory]
         remaining_ingredients = random.sample(remaining_ingredients, n_items - 4)
         inventory += remaining_ingredients
@@ -690,47 +686,14 @@ def animals_get_inventory(n_items: int):
 def potions_get_inventory(n_items: int):
     # one plant, one non-plant solid, one gas, one magical, one mundane
     ingredients = INGREDIENTS["potions"]
-    inventory = random.sample(ingredients, 3)
-    n_plants = len([item for item in inventory if item.features["type"] == "plant"])
-    n_non_plant_solids = len(
-        [
-            item
-            for item in inventory
-            if item.features["type"] != "plant"
-            and item.features["state_of_matter"] == "solid"
-        ]
-    )
-    n_gases = len(
-        [item for item in inventory if item.features["state_of_matter"] == "gas"]
-    )
-    n_magical = len([item for item in inventory if item.features["magical"]])
-    n_mundane = len([item for item in inventory if not item.features["magical"]])
-    while (
-        n_plants < 1
-        or n_non_plant_solids < 1
-        or n_gases < 1
-        or n_magical < 1
-        or n_mundane < 1
-    ):
-        inventory = random.sample(ingredients, 3)
-        n_plants = len([item for item in inventory if item.features["type"] == "plant"])
-        n_non_plant_solids = len(
-            [
-                item
-                for item in inventory
-                if item.features["type"] != "plant"
-                and item.features["state_of_matter"] == "solid"
-            ]
-        )
-        n_gases = len(
-            [item for item in inventory if item.features["state_of_matter"] == "gas"]
-        )
-        n_magical = len([item for item in inventory if item.features["magical"]])
-        n_mundane = len([item for item in inventory if not item.features["magical"]])
+    magical_ingredients = [item for item in ingredients if item.features["magical"]]
+    mundane_ingredients = [item for item in ingredients if not item.features["magical"]]
+    inventory = random.sample(magical_ingredients, 1)
+    inventory += random.sample(mundane_ingredients, 1)
 
-    if n_items > 3:
+    if n_items > 2:
         remaining_ingredients = [item for item in ingredients if item not in inventory]
-        remaining_ingredients = random.sample(remaining_ingredients, n_items - 3)
+        remaining_ingredients = random.sample(remaining_ingredients, n_items - 2)
         inventory += remaining_ingredients
 
     return inventory

@@ -42,6 +42,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "vegetable",
         },
     ),
@@ -52,6 +53,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "meat",
         },
     ),
@@ -62,6 +64,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "meat",
         },
     ),
@@ -72,6 +75,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "vegetable",
         },
     ),
@@ -82,6 +86,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "vegetable",
         },
     ),
@@ -92,6 +97,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "vegetable",
         },
     ),
@@ -102,6 +108,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "vegetable",
         },
     ),
@@ -112,6 +119,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "grain",
         },
     ),
@@ -122,6 +130,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "grain",
         },
     ),
@@ -132,6 +141,7 @@ cooking_ingredients = [
         features={
             "salt_level": 0,
             "cook_level": 0,
+            "water_level": 0,
             "type": "grain",
         },
     ),
