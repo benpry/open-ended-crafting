@@ -108,16 +108,10 @@ def call_model(messages: list, lm_string: str) -> dict:
 def get_item_semantics_from_lm(
     inputs: list, outcome: dict, domain: str, lm_string: str, ic_examples: list
 ) -> dict:
-    # compile a list of messages to send to the LM
-
     all_ic_examples = IC_EXAMPLES[domain] + ic_examples
-
     messages = get_combination_messages(
         inputs[0], inputs[1], outcome, domain, all_ic_examples
     )
-
-    print(f"last message: {messages[-1]}")
-
     semantics = call_model(messages, lm_string)
 
     return semantics

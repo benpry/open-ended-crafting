@@ -74,7 +74,7 @@ class MemoizedWorldModel:
 
         if self.assign_names:
             # if we applied a tool to a combined item, we need to assign names to the updated ingredients
-            if isinstance(e1, CombinedItem) and isinstance(e2, Tool):
+            if isinstance(e1, CombinedItem) and isinstance(e2, Tool) and e2.name != "frame":
                 for i in range(len(new_item.ingredients)):
                     named_ingredient = self.combine(e1.ingredients[i], e2)
                     new_item.ingredients[i] = replace(
@@ -82,7 +82,7 @@ class MemoizedWorldModel:
                         name=named_ingredient.name,
                         emoji=named_ingredient.emoji,
                     )
-            elif isinstance(e2, CombinedItem) and isinstance(e1, Tool):
+            elif isinstance(e2, CombinedItem) and isinstance(e1, Tool) and e1.name != "frame":
                 for i in range(len(new_item.ingredients)):
                     named_ingredient = self.combine(e1, e2.ingredients[i])
                     new_item.ingredients[i] = replace(
@@ -215,17 +215,6 @@ class MemoizedWorldModel:
         }
 
         return json.dumps(world_model_dict)
-
-    def make_graph(self):
-        G = nx.DiGraph()
-        for inputs, output in self.combinations.items():
-            G.add_node(output)
-            for inp in inputs:
-                G.add_node(inp)
-                G.add_edge(inp, output)
-
-        return G
-
 
 if __name__ == "__main__":
     model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"

@@ -2,7 +2,8 @@ import random
 from dataclasses import replace
 from typing import Any
 
-from src.constants import INGREDIENTS, CombinedItem, Ingredient, Item, NonTool, Tool
+from src.constants import (INGREDIENTS, CombinedItem, Ingredient, Item,
+                           NonTool, Tool)
 
 
 def cooking_value_function(item: NonTool) -> int:
@@ -242,7 +243,7 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
             item2_features = item2.features.copy()
             item2_features["framed"] = True
             item2_features["post_frame_messed_with"] = True
-            item2 = replace(item2, features=item2_features)
+            item2 = replace(item2, features=item2_features, name=item2.name.replace("framed", "") + " with ruined frame")
 
         new_item = CombinedItem(
             ingredients=item1.ingredients + [item2],
@@ -254,7 +255,7 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
             item1_features = item1.features.copy()
             item1_features["framed"] = True
             item1_features["post_frame_messed_with"] = True
-            item1 = replace(item1, features=item1_features)
+            item1 = replace(item1, features=item1_features, name=item1.name.replace("framed", "") + " with ruined frame")
 
         if item2.features["framed"]:
             new_features = {"framed": True, "post_frame_messed_with": True}
@@ -270,13 +271,13 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
             item1_features = item1.features.copy()
             item1_features["framed"] = True
             item1_features["post_frame_messed_with"] = True
-            item1 = replace(item1, features=item1_features)
+            item1 = replace(item1, features=item1_features, name=item1.name.replace("framed", "") + " with ruined frame")
 
         if item2.features["framed"]:
             item2_features = item2.features.copy()
             item2_features["framed"] = True
             item2_features["post_frame_messed_with"] = True
-            item2 = replace(item2, features=item2_features)
+            item2 = replace(item2, features=item2_features, name=item2.name.replace("framed", "") + " with ruined frame")
 
         new_item = CombinedItem(
             ingredients=[item1, item2],

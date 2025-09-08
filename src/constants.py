@@ -40,7 +40,6 @@ cooking_ingredients = [
         emoji="🥕",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "vegetable",
@@ -51,7 +50,6 @@ cooking_ingredients = [
         emoji="🐟",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "meat",
@@ -62,7 +60,6 @@ cooking_ingredients = [
         emoji="🥩",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "meat",
@@ -73,7 +70,6 @@ cooking_ingredients = [
         emoji="🥬",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "vegetable",
@@ -84,7 +80,6 @@ cooking_ingredients = [
         emoji="🍅",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "vegetable",
@@ -95,7 +90,6 @@ cooking_ingredients = [
         emoji="🥔",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "vegetable",
@@ -106,7 +100,6 @@ cooking_ingredients = [
         emoji="🍄",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "vegetable",
@@ -117,7 +110,6 @@ cooking_ingredients = [
         emoji="🌽",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "grain",
@@ -128,7 +120,6 @@ cooking_ingredients = [
         emoji="🌾",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "grain",
@@ -139,7 +130,6 @@ cooking_ingredients = [
         emoji="🌾",
         value=0,
         features={
-            "salt_level": 0,
             "cook_level": 0,
             "water_level": 0,
             "type": "grain",
@@ -862,17 +852,18 @@ INGREDIENTS = {
 
 
 cooking_system_prompt = """
-You are controlling the semantics of a cooking game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items. If the new item has different features than any of the original items, it must get a new name.
+You are controlling the semantics of a cooking game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji to describe the item. The name should be informative and reasonable given the inputs and features. The emoji should describe the item. If the new item has different features than either of the items that combine to make it, it must get a new name.
 
 Please keep the following rules in mind:
-- If an item's salt level is salted, its name should include "salted". If it is oversalted, it should include "oversalted".
 - If an item's cook level is cooked, its name should include "cooked". If it is overcooked, it should include "overcooked".
 - If an item's water level is soaked, its name should include "soaked".
-- If an item's chop level is chopped, its name should include "chopped".
 - If an item has been cooked, it should not include the word "raw" in the name.
-- Give complex dishes descriptive names rather than just listing their ingredients.
+- Give complex dishes descriptive names rather than just a list of their ingredients.
+- Combined dishes with more than 3 basic ingredients should have the word "overcomplicated" in the name.
 
-In general, the name should give the participant some sense of why the item's value is the way it is.
+Keep in mind that these rules only apply to the main item. For instance, if a dish has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
+
+In general, the name should give the player some sense of why the item's value is the way it is.
 
 Please respond in JSON format, with double quotes around all strings.
 """
@@ -881,14 +872,15 @@ decorations_system_prompt = """
 You are controlling the semantics of a decoration-making game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items. If the new item has different features than any of the original items, it must get a new name.
 
 Please keep the following rules in mind:
-- If an item's paint level is painted, its name should include "painted". If it is overpainted, it should include "messy".
 - If an item's cut level is cut, its name should include "cut"
-- If an item's drawn level is drawn and it is on an artificial material, its name should include "drawn-on." If it is on a natural material, it should include "scribbled-on."
 - If an item is framed, its name should include "framed."
 - If an item has post-frame-messed-with, it should not have "framed" in its name anymore and have "with ruined frame" at the end of its name.
-- Combinations of different decoration parts should retain at least parts of the names of the original parts.
+- Combined decorations should have descriptive names rather than just a list of their ingredients.
+- Combined decorations with more than 2 ingredients should have the word "overcomplicated" in the name.
 
-In general, the name should give the participant some sense of why the item's value is the way it is.
+Keep in mind that these rules only apply to the main item. For instance, if a decoration has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
+
+In general, the name should give the player some sense of why the item's value is the way it is.
 
 Please respond in JSON format, with double quotes around all strings.
 """
@@ -897,14 +889,15 @@ animals_system_prompt = """
 You are controlling the semantics of a hybrid animal creation game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items. If the new item has different features than any of the original items, it must get a new name.
 
 Please keep the following rules in mind:
-- If an animal's respiratory type is not the same as its original respiratory type, its name should include "with gills" or "with lungs", depending on the new respiratory type. If the respiratory type is "confused", it should include "with breathing problems".
-- The animal's mutation level is mutant, super-mutant, or corrupted, it should be included in the name.
-- If an animal's growth level is jumbo or colossal, its name should include the growth level.
-- If an animal is a herbivore and its metabolic level is "accelerated", its name should include "starving". If it is a carnivore or omnivore, it should include "energetic".
-- If an animal's list of habitats includes both land and water, its name should include "amphibious".
-- Combinations of different animals should retain at least parts of the names of the original animals.
+- The animal's mutation level is "mutant", "super-mutant", or "corrupted", it should be included in the name.
+- If an animal's growth level is "grown", "super-grown", or "ultra-grown", it should be included in the name.
+- If an animal's list of habitats includes both land and water, its name should include "amphibious". If it includes air and something other than air, it should include "flying".
+- Combined animals should have descriptive names rather than just a list of their ingredients.
+- Combined animals with more than 3 basic ingredients should have the word "overcomplicated" in the name.
 
-In general, the name should give the participant some sense of why the item's value is the way it is.
+Keep in mind that these rules only apply to the main item. For instance, if an animal has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
+
+In general, the name should give the player some sense of why the item's value is the way it is.
 
 Please respond in JSON format, with double quotes around all strings.
 """
@@ -913,13 +906,14 @@ potions_system_prompt = """
 You are controlling the semantics of a potion brewing game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items. If the new item has different features than any of the original items, it must get a new name.
 
 Please keep the following rules in mind:
-- An item that has an enchantment level of "flickering," "glowing," or "corrupted" should have its enchantment level in the name.
-- If an item's filtering is "filtered," its name should include "filtered." If it is "botched," its name should include "with failed filtering"
-- If an item's extraction is "extracted," its name should include "extracted." If it is "botched," its name should include "with botched extraction"
-- If an item's grind is "ground," its name should include "ground". If it is "botched," its name should include "poorly ground"
-- Combinations of different ingredients should retain at least parts of the names of the original ingredients.
+- If an item's filtering is "filtered," its name should include "filtered." If it is "botched," its name should include "poorly-filtered"
+- If an item's extraction is "extracted," its name should include the word "extract" or "extracted". If it is "botched," its name should include "with failed extraction"
+- Combined potions should have descriptive names rather than just a list of their ingredients.
+- Combined potions with more than 2 basic ingredients should have the word "overcomplicated" in the name.
 
-In general, the name should give the participant some sense of why the item's value is the way it is.
+Keep in mind that these rules only apply to the main item. For instance, if a potion has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
+
+In general, the name should give the player some sense of why the item's value is the way it is.
 
 Please respond in JSON format, with double quotes around all strings.
 """
@@ -935,61 +929,53 @@ cooking_ic_examples = [
     {
         "input": [
             Ingredient(
-                name="Chopped Potato",
-                emoji="🔪🥔",
-                value=0,
+                name="cooked fish",
+                emoji="🔥🐟",
+                value=20,
                 features={
-                    "salt_level": 0,
-                    "cook_level": 0,
+                    "cook_level": 1,
                     "water_level": 0,
-                    "chop_level": 1,
-                    "type": "vegetable",
+                    "type": "meat",
                 },
             ),
             Ingredient(
-                name="Chopped Onion",
-                emoji="🔪🧅",
-                value=0,
+                name="cooked rice",
+                emoji="🍚",
+                value=20,
                 features={
-                    "salt_level": 0,
-                    "cook_level": 0,
-                    "water_level": 0,
-                    "chop_level": 1,
-                    "type": "aromatic",
+                    "cook_level": 1,
+                    "water_level": 1,
+                    "type": "grain",
                 },
             ),
         ],
         "outcome": CombinedItem(
             ingredients=[
                 Ingredient(
-                    name="Chopped Potato",
-                    emoji="🔪🥔",
-                    value=0,
+                    name="cooked fish",
+                    emoji="🔥🐟",
+                    value=20,
                     features={
-                        "salt_level": 0,
-                        "cook_level": 0,
+                        "cook_level": 1,
                         "water_level": 0,
-                        "chop_level": 1,
-                        "type": "vegetable",
+                        "type": "meat",
                     },
                 ),
                 Ingredient(
-                    name="Chopped Onion",
-                    emoji="🔪🧅",
-                    value=0,
+                    name="cooked rice",
+                    emoji="🍚",
+                    value=20,
                     features={
-                        "salt_level": 0,
-                        "cook_level": 0,
-                        "water_level": 0,
-                        "chop_level": 1,
-                        "type": "aromatic",
+                        "cook_level": 1,
+                        "water_level": 1,
+                        "type": "grain",
                     },
                 ),
             ],
             features={},
-            value=0,
+            value=60,
         ),
-        "semantics": {"emoji": "🥔🧅", "name": "Chopped potato and onion"},
+        "semantics": {"emoji": "🐟🍚", "name": "fish and rice dish"},
     },
     {
         "input": [
@@ -998,59 +984,27 @@ cooking_ic_examples = [
                 emoji="🔥",
             ),
             Ingredient(
-                name="Chopped Carrot",
-                emoji="🔪🥕",
+                name="carrot",
+                emoji="🥕",
                 value=0,
                 features={
-                    "salt_level": 0,
-                    "cook_level": 0,
+                    "cook_level": 1,
                     "water_level": 0,
-                    "chop_level": 1,
                     "type": "vegetable",
                 },
             ),
         ],
         "outcome": Ingredient(
+            name="",
+            emoji="",
             features={
-                "salt_level": 0,
                 "cook_level": 1,
                 "water_level": 0,
-                "chop_level": 1,
                 "type": "vegetable",
             },
-            value=50,
+            value=20,
         ),
-        "semantics": {"emoji": "🥕🔥", "name": "Cooked Chopped Carrot"},
-    },
-    {
-        "input": [
-            Tool(
-                name="water",
-                emoji="💧",
-            ),
-            Ingredient(
-                name="Rice",
-                emoji="🌾",
-                value=0,
-                features={
-                    "salt_level": 0,
-                    "cook_level": 0,
-                    "water_level": 0,
-                    "chop_level": 0,
-                    "type": "grain",
-                },
-            ),
-        ],
-        "outcome": Ingredient(
-            features={
-                "salt_level": 0,
-                "cook_level": 0,
-                "water_level": 1,
-                "chop_level": 0,
-                "type": "grain",
-            },
-        ),
-        "semantics": {"emoji": "🌾💧", "name": "Soaked Rice"},
+        "semantics": {"emoji": "🔥🥕", "name": "cooked carrot"},
     },
 ]
 
@@ -1064,10 +1018,7 @@ animals_ic_examples = [
                 features={
                     "size": "large",
                     "mutation_level": 0,
-                    "respiratory_type": "lungs",
-                    "metabolic_level": 0,
                     "growth_level": 0,
-                    "diet_type": "herbivore",
                     "habitat": "land",
                 },
             ),
@@ -1078,10 +1029,7 @@ animals_ic_examples = [
                 features={
                     "size": "large",
                     "mutation_level": 0,
-                    "respiratory_type": "lungs",
-                    "metabolic_level": 0,
                     "growth_level": 0,
-                    "diet_type": "herbivore",
                     "habitat": "land",
                 },
             ),
@@ -1095,10 +1043,7 @@ animals_ic_examples = [
                     features={
                         "size": "large",
                         "mutation_level": 0,
-                        "respiratory_type": "lungs",
-                        "metabolic_level": 0,
                         "growth_level": 0,
-                        "diet_type": "herbivore",
                         "habitat": "land",
                     },
                 ),
@@ -1109,10 +1054,7 @@ animals_ic_examples = [
                     features={
                         "size": "large",
                         "mutation_level": 0,
-                        "respiratory_type": "lungs",
-                        "metabolic_level": 0,
                         "growth_level": 0,
-                        "diet_type": "herbivore",
                         "habitat": "land",
                     },
                 ),
@@ -1127,15 +1069,12 @@ animals_ic_examples = [
             Tool(name="growth serum", emoji="🌡️"),
             Ingredient(
                 name="mutant whale",
-                emoji="🐳🧬",
+                emoji="🧬🐳",
                 value=-15,
                 features={
                     "size": "large",
                     "mutation_level": 1,
-                    "respiratory_type": "lungs",
-                    "metabolic_level": 0,
                     "growth_level": 0,
-                    "diet_type": "carnivore",
                     "habitat": "water",
                 },
             ),
@@ -1144,15 +1083,12 @@ animals_ic_examples = [
             features={
                 "size": "large",
                 "mutation_level": 1,
-                "respiratory_type": "lungs",
-                "metabolic_level": 0,
                 "growth_level": 1,
-                "diet_type": "carnivore",
                 "habitat": "water",
             },
-            value=-30,
+            value=-10,
         ),
-        "semantics": {"emoji": "🐳🧬🌡", "name": "overgrown mutant whale"},
+        "semantics": {"emoji": "⬆️🧬🐳", "name": "giant mutant whale"},
     },
 ]
 
@@ -1165,12 +1101,9 @@ potions_ic_examples = [
                 value=0,
                 features={
                     "state_of_matter": "solid",
-                    "type": "mineral",
                     "magical": False,
-                    "enchantment_level": 0,
                     "filtering": None,
                     "extraction": None,
-                    "grind": None,
                 },
             ),
             Tool(name="filter", emoji="🧫"),
@@ -1178,31 +1111,25 @@ potions_ic_examples = [
         "outcome": Ingredient(
             features={
                 "state_of_matter": "solid",
-                "type": "mineral",
                 "magical": False,
-                "enchantment_level": 0,
                 "filtering": "botched",
                 "extraction": None,
-                "grind": None,
             },
-            value=-25,
+            value=-20,
         ),
-        "semantics": {"emoji": "🧫⚫", "name": "obsidian with failed filtering"},
+        "semantics": {"emoji": "🧫⚫", "name": "poorly-filtered obsidian"},
     },
     {
         "input": [
             Ingredient(
-                name="botched rose petal residue",
-                emoji="🧫🌹",
-                value=-25,
+                name="rose petal extract",
+                emoji="🧪🌹",
+                value=30,
                 features={
-                    "state_of_matter": "solid",
-                    "type": "plant",
+                    "state_of_matter": "liquid",
                     "magical": False,
-                    "enchantment_level": 0,
-                    "filtering": "botched",
-                    "extraction": None,
-                    "grind": None,
+                    "filtering": None,
+                    "extraction": "extracted",
                 },
             ),
             Ingredient(
@@ -1211,29 +1138,23 @@ potions_ic_examples = [
                 value=0,
                 features={
                     "state_of_matter": "solid",
-                    "type": "animal",
                     "magical": True,
-                    "enchantment_level": 0,
                     "filtering": None,
                     "extraction": None,
-                    "grind": None,
                 },
             ),
         ],
         "outcome": CombinedItem(
-            ingredients=[
+            ingredients=[ 
                 Ingredient(
-                    name="botched rose petal residue",
-                    emoji="🧫🌹",
-                    value=-25,
+                    name="rose petal extract",
+                    emoji="🧪🌹",
+                    value=30,
                     features={
-                        "state_of_matter": "solid",
-                        "type": "plant",
+                        "state_of_matter": "liquid",
                         "magical": False,
-                        "enchantment_level": 0,
-                        "filtering": "botched",
-                        "extraction": None,
-                        "grind": None,
+                        "filtering": None,
+                        "extraction": "extracted",
                     },
                 ),
                 Ingredient(
@@ -1242,21 +1163,18 @@ potions_ic_examples = [
                     value=0,
                     features={
                         "state_of_matter": "solid",
-                        "type": "animal",
                         "magical": True,
-                        "enchantment_level": 0,
                         "filtering": None,
                         "extraction": None,
-                        "grind": None,
                     },
                 ),
             ],
             features={},
-            value=0,
+            value=-30,
         ),
         "semantics": {
             "emoji": "🌹🦄",
-            "name": "unicorn potion with botched rose petal residue",
+            "name": "rose potion with chunks of unicorn horn",
         },
     },
 ]
@@ -1265,15 +1183,13 @@ decorations_ic_examples = [
     {
         "input": [
             Ingredient(
-                name="drawn-on beads",
+                name="finely-cut beads",
                 emoji="📿🖊️",
                 value=25,
                 features={
                     "type": "artificial",
                     "hardness": "hard",
-                    "paint_level": 0,
-                    "cut_level": 0,
-                    "drawn_level": 1,
+                    "cut_level": 2,
                     "framed": False,
                     "post_frame_messed_with": False,
                 },
@@ -1285,9 +1201,7 @@ decorations_ic_examples = [
                 features={
                     "type": "artificial",
                     "hardness": "soft",
-                    "paint_level": 0,
                     "cut_level": 0,
-                    "drawn_level": 0,
                     "framed": False,
                     "post_frame_messed_with": False,
                 },
@@ -1296,15 +1210,13 @@ decorations_ic_examples = [
         "outcome": CombinedItem(
             ingredients=[
                 Ingredient(
-                    name="drawn-on beads",
+                    name="finely-cut beads",
                     emoji="📿🖊️",
                     value=25,
                     features={
                         "type": "artificial",
                         "hardness": "hard",
-                        "paint_level": 0,
-                        "cut_level": 0,
-                        "drawn_level": 1,
+                        "cut_level": 2,
                         "framed": False,
                         "post_frame_messed_with": False,
                     },
@@ -1316,9 +1228,7 @@ decorations_ic_examples = [
                     features={
                         "type": "artificial",
                         "hardness": "soft",
-                        "paint_level": 0,
                         "cut_level": 0,
-                        "drawn_level": 0,
                         "framed": False,
                         "post_frame_messed_with": False,
                     },
@@ -1329,7 +1239,7 @@ decorations_ic_examples = [
         ),
         "semantics": {
             "emoji": "📿📰🖊",
-            "name": "newspaper decoration with drawn-on beads",
+            "name": "newspaper dotted with finely-cut beads",
         },
     },
     {
@@ -1341,28 +1251,24 @@ decorations_ic_examples = [
                 features={
                     "type": "natural",
                     "hardness": "soft",
-                    "paint_level": 0,
                     "cut_level": 0,
-                    "drawn_level": 0,
                     "framed": False,
                     "post_frame_messed_with": False,
                 },
             ),
-            Tool(name="pen", emoji="🖊️"),
+            Tool(name="frame", emoji="🖼️"),
         ],
         "outcome": Ingredient(
             features={
                 "type": "natural",
                 "hardness": "soft",
-                "paint_level": 0,
                 "cut_level": 0,
-                "drawn_level": 1,
                 "framed": False,
                 "post_frame_messed_with": False,
             },
-            value=-25,
+            value=20,
         ),
-        "semantics": {"emoji": "🌻🖊️", "name": "scribbled-on sunflower"},
+        "semantics": {"emoji": "🖼️🌻", "name": "framed sunflower"},
     },
 ]
 
