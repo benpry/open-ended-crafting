@@ -17,7 +17,7 @@ def cooking_value_function(item: NonTool) -> int:
             set(x.features["type"] for x in item.ingredients)
         )
 
-        bonuses = 25 * (n_distinct_ingredient_types - 1)
+        bonuses = (13 + 1 / 3) * (n_distinct_ingredient_types - 1)
         if n_ingredients > 3:
             bonuses -= 100
 
@@ -28,24 +28,21 @@ def cooking_value_function(item: NonTool) -> int:
 
     # cook level bonuses
     if features["cook_level"] == 1:
-        if features["type"] != "fruit":
+        if (
+            features["type"] == "grain"
+            and features["water_level"] == 1
+            or features["grain"] == "wheat"
+            and features["water_level"] == 0
+        ):
             value += 20
         else:
             value -= 15
-    elif features["cook_level"] == 2:
-        value -= 30
-
-    # salt bonuses
-    if features["salt_level"] == 1:
-        value += 20
-    elif features["salt_level"] == 2:
-        value -= 20
 
     return value
 
 
 cooking_feature_names = {
-    "salt_level": ["unsalted", "salted", "oversalted"],
+    "water_level": ["dry", "soaked"],
     "cook_level": ["raw", "cooked", "overcooked"],
 }
 
@@ -64,33 +61,12 @@ def cooking_apply_tool(tool: Tool, item: NonTool) -> NonTool:
     if tool.name == "water":
         # adding water always soaks something
         new_features["water_level"] = 1
-        # If the item is cooked, soaking un-cooks it (but doesn't rescue burnt things)
-        if item.features["cook_level"] == 1:
-            new_features["cook_level"] = 0
 
     elif tool.name == "stove":
-        # adjust the cook level
-        new_features["edible"] = True  # cooking makes inedible things edible
-
         # otherwise, cooking increases the cook level by 1, up to the max
         new_features["cook_level"] = min(
             item.features["cook_level"] + 1,
             len(cooking_feature_names["cook_level"]) - 1,
-        )
-
-    # Knife increases chop level. You can't chop a soaked thing.
-    elif tool.name == "knife":
-        # increase the chop level
-        new_features["chop_level"] = min(
-            item.features["chop_level"] + 1,
-            len(cooking_feature_names["chop_level"]) - 1,
-        )
-
-    elif tool.name == "salt":
-        # increase the salt level
-        new_features["salt_level"] = min(
-            item.features["salt_level"] + 1,
-            len(cooking_feature_names["salt_level"]) - 1,
         )
 
     return Ingredient(features=new_features)
@@ -165,7 +141,12 @@ def decorations_value_function(item):
 
     if features["cut_level"] == 1:
         if features["hardness"] == "soft":
-            value += 20
+            value += 25
+        else:
+            value -= 30
+    elif features["cut_level"] == 2:
+        if features["hardness"] == "hard":
+            value += 25
         else:
             value -= 30
 
@@ -173,7 +154,7 @@ def decorations_value_function(item):
         if features["post_frame_messed_with"]:
             value -= 50
         else:
-            value += 25
+            value += 20
 
     return value
 
@@ -268,7 +249,7 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
 # ANIMALS DOMAIN FUNCTIONS
 animals_feature_names = {
     "mutation_level": ["not mutant", "mutant", "super-mutant", "corrupted"],
-    "growth_level": ["not grown", "grown", "colossally grown"],
+    "growth_level": ["not grown", "grown", "super-grown", "ultra-grown"],
 }
 
 
@@ -286,7 +267,7 @@ def animals_value_function(item):
         bonuses = 0
 
         # different habitats are good
-        bonuses += 20 * (n_unique_habitats - 1)
+        bonuses += 5 * (n_unique_habitats - 1)
 
         # combining more than two basic animals is bad
         if len(item.ingredients) > 3:
@@ -298,25 +279,34 @@ def animals_value_function(item):
     value = 0  # No base value for animals
 
     if features["growth_level"] == 1:
-        if features["size"] == "small":
+        if features["size"] == "large":
             value += 15
         elif features["size"] == "medium":
-            value += 15
+            value += 10
         else:
-            value -= 15
+            value += 5
+
     elif features["growth_level"] == 2:
-        if features["size"] == "small":
-            value += 30
+        if features["size"] == "large":
+            value -= 15
+        elif features["size"] == "medium":
+            value += 15
+        else:
+            value += 10
+
+    elif features["growth_level"] == 3:
+        if features["size"] == "large":
+            value -= 25
         elif features["size"] == "medium":
             value -= 15
         else:
-            value -= 30
+            value += 15
 
     # second mutation is good
     if features["mutation_level"] == 1:
         value -= 15
     elif features["mutation_level"] == 2:
-        value += 20
+        value += 15
     elif features["mutation_level"] == 3:
         value -= 25
 
@@ -399,19 +389,15 @@ def potions_value_function(item: Item) -> int:
             potions_value_function(ingredient) for ingredient in item.ingredients
         ]
         n_ingredients = len(item.ingredients)
-        n_states_of_matter = len(
-            set(x.features["state_of_matter"] for x in item.ingredients)
-        )
+        states_of_matter = set(x.features["state_of_matter"] for x in item.ingredients)
         magicalities = set(x.features["magical"] for x in item.ingredients)
         bonus = 0
+
         if len(magicalities) == 2:
-            bonus += 20
+            bonus += 40
 
-        # different states of matter are good
-        bonus += 15 * (n_states_of_matter - 1)
-
-        # combining more than two ingredients is bad
-        if n_ingredients > 3:
+        # including non-liquid things is bad
+        if states_of_matter != {"liquid"} or n_ingredients > 2:
             bonus -= 100
 
         return sum(ingredient_values) + bonus
@@ -422,11 +408,11 @@ def potions_value_function(item: Item) -> int:
 
     # Extracted, filtered, and ground things are good
     if features["extraction"] == "extracted":
-        value += 20
+        value += 30
     elif features["extraction"] == "botched":
         value -= 20
     if features["filtering"] == "filtered":
-        value += 20
+        value += 30
     elif features["extraction"] == "botched":
         value -= 20
 
@@ -448,16 +434,20 @@ def potions_apply_tool(tool: Tool, item: NonTool) -> NonTool:
 
     # the vial extracts plant things and makes them liquid
     if tool.name == "vial" and item.features["extraction"] is None:
-        if item.features["type"] == "plant":
+        if item.features["type"] == "plant" and item.features["filtering"] is None:
             new_features["extraction"] = "extracted"
             new_features["state_of_matter"] = "liquid"
         else:
             new_features["extraction"] = "botched"
 
-    # the filter makes liquid things filtered
+    # the filter filters things and makes them liquid
     elif tool.name == "filter" and item.features["filtering"] is None:
-        if item.features["state_of_matter"] == "liquid":
+        if (
+            item.features["state_of_matter"] in ("liquid", "gas")
+            and item.features["extraction"] is None
+        ):
             new_features["filtering"] = "filtered"
+            new_features["state_of_matter"] = "liquid"
         else:
             new_features["filtering"] = "botched"
 
@@ -631,21 +621,21 @@ def potions_get_item_descriptor(item: dict[str, Any]) -> list[str]:
 
 
 def cooking_get_inventory(n_items: int):
-    # make sure that there is at least one meat, one vegetable, and one fruit
+    # make sure that there is at least one meat, one vegetable, and one grain
     ingredients = INGREDIENTS["cooking"]
     vegetables = [item for item in ingredients if item.features["type"] == "vegetable"]
     meats = [item for item in ingredients if item.features["type"] == "meat"]
-    fruits = [item for item in ingredients if item.features["type"] == "fruit"]
+    grains = [item for item in ingredients if item.features["type"] == "grains"]
 
     # sample a vegetable, a meat, and a fruit
     vegetable = random.sample(vegetables, 1)[0]
     meat = random.sample(meats, 1)[0]
-    fruit = random.sample(fruits, 1)[0]
-    inventory = [vegetable, meat, fruit]
+    grain = random.sample(grains, 1)[0]
+    inventory = [vegetable, meat, grain]
     if n_items > 3:
         # sample some more ingredients
         remaining_ingredients = [
-            item for item in ingredients if item not in [vegetable, meat, fruit]
+            item for item in ingredients if item not in [vegetable, meat, grain]
         ]
         remaining_ingredients = random.sample(remaining_ingredients, n_items - 3)
         inventory += remaining_ingredients
@@ -654,33 +644,22 @@ def cooking_get_inventory(n_items: int):
 
 
 def decorations_get_inventory(n_items: int):
-    # 2 soft things, 2 hard things. 2 natural things, 2 artificial things
     ingredients = INGREDIENTS["decorations"]
-    inventory = random.sample(ingredients, 4)
-    n_natural = len([item for item in inventory if item.features["type"] == "natural"])
-    n_artificial = len(
-        [item for item in inventory if item.features["type"] == "artificial"]
-    )
-    n_soft = len([item for item in inventory if item.features["hardness"] == "soft"])
-    n_hard = len([item for item in inventory if item.features["hardness"] == "hard"])
-    while n_natural < 2 or n_artificial < 2 or n_soft < 2 or n_hard < 2:
-        inventory = random.sample(ingredients, 4)
-        n_natural = len(
-            [item for item in inventory if item.features["type"] == "natural"]
-        )
-        n_artificial = len(
-            [item for item in inventory if item.features["type"] == "artificial"]
-        )
-        n_soft = len(
-            [item for item in inventory if item.features["hardness"] == "soft"]
-        )
-        n_hard = len(
-            [item for item in inventory if item.features["hardness"] == "hard"]
-        )
 
-    if n_items > 4:
+    natural_ingredients = [
+        item for item in ingredients if item.features["type"] == "natural"
+    ]
+    artificial_ingredients = [
+        item for item in ingredients if item.features["type"] == "artificial"
+    ]
+
+    # at least one natural and one artificial
+    inventory = random.sample(natural_ingredients, 1)
+    inventory += random.sample(artificial_ingredients, 1)
+
+    if n_items > 2:
         remaining_ingredients = [item for item in ingredients if item not in inventory]
-        remaining_ingredients = random.sample(remaining_ingredients, n_items - 4)
+        remaining_ingredients = random.sample(remaining_ingredients, n_items - 2)
         inventory += remaining_ingredients
 
     return inventory

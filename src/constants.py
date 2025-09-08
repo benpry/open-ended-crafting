@@ -36,26 +36,6 @@ class CombinedItem(NonTool):
 
 cooking_ingredients = [
     Ingredient(
-        name="apple",
-        emoji="🍎",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "type": "fruit",
-        },
-    ),
-    Ingredient(
-        name="banana",
-        emoji="🍌",
-        value=0,
-        features={
-            "salt_level": 0,
-            "cook_level": 0,
-            "type": "fruit",
-        },
-    ),
-    Ingredient(
         name="carrot",
         emoji="🥕",
         value=0,
@@ -126,30 +106,40 @@ cooking_ingredients = [
         },
     ),
     Ingredient(
-        name="coconut",
-        emoji="🥥",
+        name="corn",
+        emoji="🌽",
         value=0,
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "type": "fruit",
+            "type": "grain",
         },
     ),
     Ingredient(
-        name="pineapple",
-        emoji="🍍",
+        name="wheat",
+        emoji="🌾",
         value=0,
         features={
             "salt_level": 0,
             "cook_level": 0,
-            "type": "fruit",
+            "type": "grain",
+        },
+    ),
+    Ingredient(
+        name="rice",
+        emoji="🌾",
+        value=0,
+        features={
+            "salt_level": 0,
+            "cook_level": 0,
+            "type": "grain",
         },
     ),
 ]
 
 cooking_tools = [
     Tool(name="stove", emoji="🔥"),
-    Tool(name="salt", emoji="🧂"),
+    Tool(name="water", emoji="💧"),
 ]
 
 decorations_tools = [
