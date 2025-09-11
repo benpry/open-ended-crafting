@@ -889,7 +889,7 @@ Please keep the following rules in mind:
 - If an item's water level is soaked, its name should include "soaked".
 - If an item has been cooked, it should not include the word "raw" in the name.
 - Give complex dishes descriptive names rather than just a list of their ingredients.
-- A combined dish that has at least 3 ingredients in its ingredient list and has a negative value should have the word "overcomplicated" in the name. Overcomplication is only about the number of ingredients, not the number of tools that have been applied to them.
+- A combined dish that has 4 or more ingredients in its ingredient list should have the word "overcomplicated" in the name.
 
 Keep in mind that these rules only apply to the main item. For instance, if a dish has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
 
@@ -906,7 +906,7 @@ Please keep the following rules in mind:
 - If an item is framed, its name should include "framed."
 - If an item has post-frame-messed-with, it should not have "framed" in its name anymore and have "with ruined frame" at the end of its name.
 - Combined decorations should have descriptive names rather than just a list of their ingredients.
-- A combined decoration that has at least 2 ingredients in its ingredient list and has a negative value should have the word "overcomplicated" in the name. Overcomplication is only about the number of ingredients, not the number of tools that have been applied to them.
+- A combined decoration that has 3 or more ingredients in its ingredient list should have the word "overcomplicated" in the name.
 
 Keep in mind that these rules only apply to the main item. For instance, if a decoration has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
 
@@ -923,7 +923,7 @@ Please keep the following rules in mind:
 - If an animal's growth level is "grown", "super-grown", or "ultra-grown", it should be included in the name.
 - If an animal's list of habitats includes both land and water, its name should include "amphibious". If it includes air and something other than air, it should include "flying".
 - Combined animals should have descriptive names rather than just a list of their ingredients.
-- A combined animal that has at least 3 ingredients in its ingredient list and has a negative value should have the word "overcomplicated" in the name. Overcomplication is only about the number of ingredients, not the number of tools that have been applied to them.
+- A combined animal that has 4 or more ingredients in its ingredient list should have the word "overcomplicated" in the name.
 
 Keep in mind that these rules only apply to the main item. For instance, if an animal has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
 
@@ -939,7 +939,7 @@ Please keep the following rules in mind:
 - If an item's filtering is "filtered," its name should include "filtered." If it is "botched," its name should include "poorly-filtered"
 - If an item's extraction is "extracted," its name should include the word "extract" or "extracted". If it is "botched," its name should include "with failed extraction"
 - Combined potions should have descriptive names rather than just a list of their ingredients.
-- A combined potion that has at least 2 ingredients in its ingredient list and has a negative value should have the word "overcomplicated" in the name. Overcomplication is only about the number of ingredients, not the number of tools that have been applied to them.
+- A combined potion that has 3 or more ingredients in its ingredient list should have the word "overcomplicated" in the name.
 
 Keep in mind that these rules only apply to the main item. For instance, if a potion has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
 
@@ -1175,7 +1175,7 @@ potions_ic_examples = [
             ),
         ],
         "outcome": CombinedItem(
-            ingredients=[ 
+            ingredients=[
                 Ingredient(
                     name="rose petal extract",
                     emoji="🧪🌹",

@@ -74,7 +74,11 @@ class MemoizedWorldModel:
 
         if self.assign_names:
             # if we applied a tool to a combined item, we need to assign names to the updated ingredients
-            if isinstance(e1, CombinedItem) and isinstance(e2, Tool) and e2.name != "frame":
+            if (
+                isinstance(e1, CombinedItem)
+                and isinstance(e2, Tool)
+                and e2.name != "frame"
+            ):
                 for i in range(len(new_item.ingredients)):
                     named_ingredient = self.combine(e1.ingredients[i], e2)
                     new_item.ingredients[i] = replace(
@@ -82,7 +86,11 @@ class MemoizedWorldModel:
                         name=named_ingredient.name,
                         emoji=named_ingredient.emoji,
                     )
-            elif isinstance(e2, CombinedItem) and isinstance(e1, Tool) and e1.name != "frame":
+            elif (
+                isinstance(e2, CombinedItem)
+                and isinstance(e1, Tool)
+                and e1.name != "frame"
+            ):
                 for i in range(len(new_item.ingredients)):
                     named_ingredient = self.combine(e1, e2.ingredients[i])
                     new_item.ingredients[i] = replace(
@@ -215,6 +223,3 @@ class MemoizedWorldModel:
         }
 
         return json.dumps(world_model_dict)
-
-if __name__ == "__main__":
-    model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"

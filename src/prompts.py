@@ -93,8 +93,12 @@ def get_combination_messages(
 
 
 def call_model(messages: list, lm_string: str) -> dict:
-    semantics = client.completions.create(
-        model=lm_string, messages=messages, response_model=ItemSemantics, max_retries=5
+    semantics, completion = client.completions.create_with_completion(
+        model=lm_string,
+        messages=messages,
+        response_model=ItemSemantics,
+        max_retries=5,
+        reasoning_effort="medium",
     )
 
     semantics = semantics.model_dump()

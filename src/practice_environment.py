@@ -43,16 +43,16 @@ def value_fn(item: NonTool) -> int:
         n_distinct_suits = len(set([x.features["suit"] for x in item.ingredients]))
 
         if n_ingredients == 2 and n_distinct_suits == 1:
-            bonus = 5
+            bonus = 20
         else:
-            bonus = 0
+            bonus = -20
 
         return sum(ingredient_values) + bonus
 
     if item.features["number"] <= 10:
-        number_value = item.features["number"]
+        number_value = item.features["number"] * 4
     else:
-        number_value = -5
+        number_value = -20
 
     return number_value
 
