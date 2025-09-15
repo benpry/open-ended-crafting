@@ -32,8 +32,8 @@ def cooking_value_function(item: NonTool) -> int:
             features["type"] != "grain" and features["water_level"] == 0
         ):
             value += 20
-        else:
-            value -= 15
+    elif features["cook_level"] == 2:
+        value -= 15
 
     return round(value)
 
