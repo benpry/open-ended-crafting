@@ -5,7 +5,6 @@ This file contains prompts for the language model.
 import os
 from dataclasses import asdict, replace
 
-import httpx
 import instructor
 from groq import Groq
 from pydantic import BaseModel
@@ -13,10 +12,7 @@ from pydantic import BaseModel
 from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
 from src.functions import FEATURE_NAMES
 
-http_client = httpx.Client()
-
 client = Groq(
-    http_client=http_client,
     api_key=os.getenv("GROQ_API_KEY"),
 )
 client = instructor.from_groq(client, mode=instructor.Mode.JSON)
