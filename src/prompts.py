@@ -12,10 +12,17 @@ from pydantic import BaseModel
 from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
 from src.functions import FEATURE_NAMES
 
-client = Groq(
-    api_key=os.getenv("GROQ_API_KEY"),
-)
-client = instructor.from_groq(client, mode=instructor.Mode.JSON)
+client = None
+
+
+def get_client():
+    global client
+    if client is None:
+        client = Groq(
+            api_key=os.getenv("GROQ_API_KEY"),
+        )
+        client = instructor.from_groq(client, mode=instructor.Mode.JSON)
+    return client
 
 
 class ItemSemantics(BaseModel):
@@ -93,6 +100,7 @@ def get_combination_messages(
 
 
 def call_model(messages: list, lm_string: str) -> dict:
+    client = get_client()
     semantics, completion = client.completions.create_with_completion(
         model=lm_string,
         messages=messages,
