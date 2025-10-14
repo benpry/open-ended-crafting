@@ -5,6 +5,8 @@ This file contains prompts for the language model.
 import os
 from dataclasses import asdict, replace
 
+# from groq import Groq
+import httpx
 import instructor
 from groq import Groq
 from pydantic import BaseModel
@@ -12,17 +14,12 @@ from pydantic import BaseModel
 from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
 from src.functions import FEATURE_NAMES
 
-client = None
-
-
-def get_client():
-    global client
-    if client is None:
-        client = Groq(
-            api_key=os.getenv("GROQ_API_KEY"),
-        )
-        client = instructor.from_groq(client, mode=instructor.Mode.JSON)
-    return client
+client = Groq(
+    http_client=httpx.Client(),
+    base_url="https://api.groq.com/openai/v1",
+    api_key=os.getenv("GROQ_API_KEY"),
+)
+client = instructor.from_openai(client, mode=instructor.Mode.JSON)
 
 
 class ItemSemantics(BaseModel):
