@@ -52,13 +52,22 @@ def check_if_same_item(e1: NonTool, e2: NonTool) -> bool:
 
 
 class MemoizedWorldModel:
-    def __init__(self, lm, domain, assign_names=False):
+    def __init__(
+        self,
+        lm,
+        domain,
+        assign_names=False,
+        reasoning_effort="medium",
+        groq_api_key=None,
+    ):
         self.lm = lm
         self.ic_examples = []
         self.domain = domain
         self.combinations = {}
         self.combo_function = COMBO_FUNCTIONS[self.domain]
         self.assign_names = assign_names
+        self.reasoning_effort = reasoning_effort
+        self.groq_api_key = groq_api_key
 
     def combine_elements(self, e1: Item, e2: Item):
         new_item = self.combo_function(e1, e2)
@@ -100,7 +109,13 @@ class MemoizedWorldModel:
                     )
 
             semantics = get_item_semantics_from_lm(
-                [e1, e2], new_item, self.domain, self.lm, self.ic_examples
+                [e1, e2],
+                new_item,
+                self.domain,
+                self.lm,
+                self.ic_examples,
+                self.reasoning_effort,
+                self.groq_api_key,
             )
             self.ic_examples.append(
                 {

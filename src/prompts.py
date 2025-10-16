@@ -2,24 +2,90 @@
 This file contains prompts for the language model.
 """
 
+import json
 import os
 from dataclasses import asdict, replace
+from typing import Optional
 
-# from groq import Groq
-import httpx
-import instructor
-from groq import Groq
+import requests
 from pydantic import BaseModel
 
 from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
 from src.functions import FEATURE_NAMES
 
-client = Groq(
-    http_client=httpx.Client(),
-    base_url="https://api.groq.com/openai/v1",
-    api_key=os.getenv("GROQ_API_KEY"),
-)
-client = instructor.from_openai(client, mode=instructor.Mode.JSON)
+
+def get_completion(
+    model: str,
+    messages: list,
+    response_model: BaseModel,
+    max_retries: int = 5,
+    groq_api_key: Optional[str] = None,
+    reasoning_effort: str = "medium",
+) -> dict:
+    last_error = None
+
+    if groq_api_key is None:
+        groq_api_key = os.getenv("GROQ_API_KEY")
+
+    for attempt in range(max_retries):
+        try:
+            # Get the schema and prepare it for Groq
+            schema = response_model.model_json_schema()
+
+            # Remove 'title' field if present and add required fields for structured outputs
+            if "title" in schema:
+                schema = {k: v for k, v in schema.items() if k != "title"}
+
+            # Add additionalProperties: false for strict mode
+            if "additionalProperties" not in schema:
+                schema["additionalProperties"] = False
+
+            response = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={"Authorization": f"Bearer {groq_api_key}"},
+                json={
+                    "model": model,
+                    "messages": messages,
+                    "response_format": {
+                        "type": "json_schema",
+                        "json_schema": {
+                            "name": "ItemSemantics",
+                            "strict": True,
+                            "schema": schema,
+                        },
+                    },
+                    "reasoning_effort": reasoning_effort,
+                },
+            )
+
+            # Check if the response is successful
+            response.raise_for_status()
+
+            # Try to parse the JSON response
+            result = response.json()
+
+            # Check if the response contains an error
+            if "error" in result:
+                last_error = result["error"]
+                continue
+
+            semantics = json.loads(result["choices"][0]["message"]["content"])
+
+            # If we got a valid response, return it
+            return semantics
+
+        except (requests.RequestException, ValueError) as e:
+            last_error = str(e)
+            if attempt == max_retries - 1:
+                # This was the last attempt, raise the error
+                raise RuntimeError(
+                    f"Failed to get valid completion after {max_retries} attempts. Last error: {last_error}"
+                )
+
+    # If we exhausted all retries due to API errors (not exceptions)
+    raise RuntimeError(
+        f"Failed to get valid completion after {max_retries} attempts. Last error: {last_error}"
+    )
 
 
 class ItemSemantics(BaseModel):
@@ -97,16 +163,13 @@ def get_combination_messages(
 
 
 def call_model(messages: list, lm_string: str) -> dict:
-    client = get_client()
-    semantics, completion = client.completions.create_with_completion(
+    semantics = get_completion(
         model=lm_string,
         messages=messages,
         response_model=ItemSemantics,
         max_retries=5,
         reasoning_effort="medium",
     )
-
-    semantics = semantics.model_dump()
 
     if len(semantics["emoji"]) > 3:
         semantics["emoji"] = semantics["emoji"][:3]
@@ -115,12 +178,24 @@ def call_model(messages: list, lm_string: str) -> dict:
 
 
 def get_item_semantics_from_lm(
-    inputs: list, outcome: dict, domain: str, lm_string: str, ic_examples: list
+    inputs: list,
+    outcome: dict,
+    domain: str,
+    lm_string: str,
+    ic_examples: list,
+    reasoning_effort: str = "medium",
+    groq_api_key: Optional[str] = None,
 ) -> dict:
     all_ic_examples = IC_EXAMPLES[domain] + ic_examples
     messages = get_combination_messages(
-        inputs[0], inputs[1], outcome, domain, all_ic_examples
+        inputs[0],
+        inputs[1],
+        outcome,
+        domain,
+        all_ic_examples,
+        reasoning_effort,
+        groq_api_key,
     )
-    semantics = call_model(messages, lm_string)
+    semantics = call_model(messages, lm_string, reasoning_effort, groq_api_key)
 
     return semantics
