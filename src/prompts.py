@@ -162,13 +162,19 @@ def get_combination_messages(
     return messages
 
 
-def call_model(messages: list, lm_string: str) -> dict:
+def call_model(
+    messages: list,
+    lm_string: str,
+    reasoning_effort: str = "medium",
+    groq_api_key: Optional[str] = None,
+) -> dict:
     semantics = get_completion(
         model=lm_string,
         messages=messages,
         response_model=ItemSemantics,
         max_retries=5,
-        reasoning_effort="medium",
+        reasoning_effort=reasoning_effort,
+        groq_api_key=groq_api_key,
     )
 
     if len(semantics["emoji"]) > 3:
@@ -193,8 +199,6 @@ def get_item_semantics_from_lm(
         outcome,
         domain,
         all_ic_examples,
-        reasoning_effort,
-        groq_api_key,
     )
     semantics = call_model(messages, lm_string, reasoning_effort, groq_api_key)
 
