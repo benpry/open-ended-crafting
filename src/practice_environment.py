@@ -42,7 +42,7 @@ def value_fn(item: NonTool) -> int:
         n_ingredients = len(item.ingredients)
         n_distinct_suits = len(set([x.features["suit"] for x in item.ingredients]))
 
-        if n_ingredients == 2 and n_distinct_suits == 1:
+        if n_ingredients > 1 and n_distinct_suits == 1:
             bonus = 20
         else:
             bonus = -20
