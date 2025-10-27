@@ -1,0 +1,22 @@
+vars,id,creation_time,token,kind,message,traceback,participant_id,network_id,node_id,trial_id,response_id,asset_id,process_id,type,class,object_type
+{},1,2025-10-21 12:58:04,e1c1dce9,ZeroDivisionError,division by zero,"Traceback (most recent call last):
+  File ""/Users/ben/mambaforge/envs/psynet/lib/python3.12/site-packages/psynet/experiment.py"", line 1861, in process_response
+    self.timeline.advance_page(self, participant)
+  File ""/Users/ben/mambaforge/envs/psynet/lib/python3.12/site-packages/psynet/utils.py"", line 215, in wrapper
+    res = fun(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/ben/mambaforge/envs/psynet/lib/python3.12/site-packages/psynet/timeline.py"", line 1706, in advance_page
+    new_elt.consume(experiment, participant)
+  File ""/Users/ben/mambaforge/envs/psynet/lib/python3.12/site-packages/psynet/timeline.py"", line 233, in consume
+    call_function_with_context(
+  File ""/Users/ben/mambaforge/envs/psynet/lib/python3.12/site-packages/psynet/utils.py"", line 161, in call_function_with_context
+    return call_function(function, *args, **new_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/ben/mambaforge/envs/psynet/lib/python3.12/site-packages/psynet/utils.py"", line 94, in call_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/private/tmp/dallinger_develop/experiment.py"", line 94, in assign_to_condition
+    p_chain = chain_participants_needed / total_needed
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+",7,,,,,,,ErrorRecord,ErrorRecord,ErrorRecord

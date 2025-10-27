@@ -1,0 +1,70 @@
+trial_id,participant_id,chain_id,domain,message,chain_pos,condition
+2,2,1,cooking,lhkj,1,chain
+3,2,3,animals,animals are bulsh.,1,chain
+4,2,2,decorations,asdfokpo,1,chain
+5,2,4,potions,asdfjaskljkl;,1,chain
+7,4,3,animals,animals are bulsh.,2,chain
+8,4,2,decorations,"asdfokpo asdfasdf asdfaskl;j
+asdjklfj
+asdfkl;jasd
+flkasdjf
+fkl;ja
+sdlf",2,chain
+9,4,4,potions,"asdfjaskljkl;
+
+jtiow3qap;jdklf",2,chain
+10,4,1,cooking,"lhkj
+
+message 2",2,chain
+13,9,3,animals,"animals are bulsh.
+
+message #3",3,chain
+14,9,4,potions,"asdfjaskljkl;
+
+jtiow3qap;jdklf
+
+potions #3",3,chain
+15,9,1,cooking,"lhkj
+
+message 2
+
+message 3",3,chain
+16,9,2,decorations,"asdfokpo asdfasdf asdfaskl;j
+asdjklfj
+asdfkl;jasd
+flkasdjf
+fkl;ja
+sdlf
+
+message 3",3,chain
+17,10,3,animals,"animals are bulsh.
+
+message #4!!!",4,chain
+18,10,1,cooking,"lhkj
+
+message 2
+
+message 3
+
+message 4",4,chain
+19,10,4,potions,"asdfjaskljkl;
+
+jtiow3qap;jdklf
+
+potions #3
+
+potions #4",4,chain
+20,10,2,decorations,"asdfokpo asdfasdf asdfaskl;j
+asdjklfj
+asdfkl;jasd
+flkasdjf
+fkl;ja
+sdlf
+
+message 3
+
+message 4",4,chain
+1,1,5,cooking,sadkfjlas;dklfja;,,individual
+6,3,7,animals,jkluiojiol;,,individual
+11,5,6,decorations,asdkl;fj,,individual
+12,6,8,potions,asdafasdfasdfasdf,,individual

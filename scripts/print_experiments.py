@@ -2,8 +2,9 @@
 This script just prints the system prompts and in-context examples for all the experiments.
 """
 
-from src.constants import SYSTEM_PROMPTS, TOOLS, INGREDIENTS, IC_EXAMPLES
 from litellm import completion
+
+from src.constants import IC_EXAMPLES, INGREDIENTS, SYSTEM_PROMPTS, TOOLS
 
 instruction = """I am developing a paradigm for a psychology experiment, which is an AI-powered crafting game.
 I want the task to have rules that participants can learn over multiple trials of crafting things together and trying to make the best item they can.
@@ -12,7 +13,6 @@ I wan the rules to be learnable, but not immediately obvious. Participants shoul
 Here are the settings I have so far. Could you please generate another for me?"""
 
 if __name__ == "__main__":
-
     for experiment_name in SYSTEM_PROMPTS.keys():
         print(instruction, "\n\n")
         print(f"Experiment: {experiment_name}")

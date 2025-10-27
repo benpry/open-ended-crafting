@@ -45,7 +45,7 @@ def value_fn(item: NonTool) -> int:
         if n_ingredients > 1 and n_distinct_suits == 1:
             bonus = 20
         else:
-            bonus = -20
+            bonus = -45
 
         return sum(ingredient_values) + bonus
 

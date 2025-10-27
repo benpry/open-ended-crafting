@@ -2,7 +2,8 @@ import random
 from dataclasses import replace
 from typing import Any
 
-from src.constants import INGREDIENTS, CombinedItem, Ingredient, Item, NonTool, Tool
+from src.constants import (INGREDIENTS, CombinedItem, Ingredient, Item,
+                           NonTool, Tool)
 
 
 def cooking_value_function(item: NonTool) -> int:
@@ -668,21 +669,21 @@ def potions_get_item_descriptor(item: dict[str, Any]) -> list[str]:
 
 
 def cooking_get_inventory(n_items: int):
-    # make sure that there is at least one meat, one vegetable, and one grain
+    # make sure that there is at least one protein, one vegetable, and one grain
     ingredients = INGREDIENTS["cooking"]
     vegetables = [item for item in ingredients if item.features["type"] == "vegetable"]
-    meats = [item for item in ingredients if item.features["type"] == "meat"]
+    proteins = [item for item in ingredients if item.features["type"] == "protein"]
     grains = [item for item in ingredients if item.features["type"] == "grain"]
 
-    # sample a vegetable, a meat, and a fruit
+    # sample a vegetable, a protein, and a grain
     vegetable = random.sample(vegetables, 1)[0]
-    meat = random.sample(meats, 1)[0]
+    protein = random.sample(proteins, 1)[0]
     grain = random.sample(grains, 1)[0]
-    inventory = [vegetable, meat, grain]
+    inventory = [vegetable, protein, grain]
     if n_items > 3:
         # sample some more ingredients
         remaining_ingredients = [
-            item for item in ingredients if item not in [vegetable, meat, grain]
+            item for item in ingredients if item not in [vegetable, protein, grain]
         ]
         remaining_ingredients = random.sample(remaining_ingredients, n_items - 3)
         inventory += remaining_ingredients

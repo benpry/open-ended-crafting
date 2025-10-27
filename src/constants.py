@@ -36,23 +36,13 @@ class CombinedItem(NonTool):
 
 cooking_ingredients = [
     Ingredient(
-        name="carrot",
-        emoji="🥕",
-        value=0,
-        features={
-            "cook_level": 0,
-            "water_level": 0,
-            "type": "vegetable",
-        },
-    ),
-    Ingredient(
         name="raw fish",
         emoji="🐟",
         value=0,
         features={
             "cook_level": 0,
             "water_level": 0,
-            "type": "meat",
+            "type": "protein",
         },
     ),
     Ingredient(
@@ -62,7 +52,7 @@ cooking_ingredients = [
         features={
             "cook_level": 0,
             "water_level": 0,
-            "type": "meat",
+            "type": "protein",
         },
     ),
     Ingredient(
@@ -72,7 +62,37 @@ cooking_ingredients = [
         features={
             "cook_level": 0,
             "water_level": 0,
-            "type": "meat",
+            "type": "protein",
+        },
+    ),
+    Ingredient(
+        name="raw beans",
+        emoji="🫘",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "protein",
+        },
+    ),
+    Ingredient(
+        name="raw egg",
+        emoji="🥚",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "protein",
+        },
+    ),
+    Ingredient(
+        name="carrot",
+        emoji="🥕",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "vegetable",
         },
     ),
     Ingredient(
@@ -116,6 +136,56 @@ cooking_ingredients = [
         },
     ),
     Ingredient(
+        name="cucumber",
+        emoji="🥒",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "vegetable",
+        },
+    ),
+    Ingredient(
+        name="broccoli",
+        emoji="🥦",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "vegetable",
+        },
+    ),
+    Ingredient(
+        name="green beans",
+        emoji="🫛",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "vegetable",
+        },
+    ),
+    Ingredient(
+        name="beet",
+        emoji="🫜",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "vegetable",
+        },
+    ),
+    Ingredient(
+        name="pepper",
+        emoji="🫑",
+        value=0,
+        features={
+            "cook_level": 0,
+            "water_level": 0,
+            "type": "vegetable",
+        },
+    ),
+    Ingredient(
         name="corn",
         emoji="🌽",
         value=0,
@@ -146,23 +216,23 @@ cooking_ingredients = [
         },
     ),
     Ingredient(
-        name="cucumber",
-        emoji="🥒",
+        name="tortilla",
+        emoji="🫓",
         value=0,
         features={
             "cook_level": 0,
             "water_level": 0,
-            "type": "vegetable",
+            "type": "grain",
         },
     ),
     Ingredient(
-        name="broccoli",
-        emoji="🥦",
+        name="bread",
+        emoji="🍞",
         value=0,
         features={
             "cook_level": 0,
             "water_level": 0,
-            "type": "vegetable",
+            "type": "grain",
         },
     ),
 ]
@@ -406,6 +476,18 @@ decorations_ingredients = [
             "type": "artificial",
         },
     ),
+    Ingredient(
+        name="sponge",
+        emoji="🧽",
+        value=0,
+        features={
+            "hardness": "soft",
+            "cut_level": 0,
+            "framed": False,
+            "post_frame_messed_with": False,
+            "type": "artificial",
+        },
+    )
 ]
 
 animals_tools = [
@@ -965,7 +1047,7 @@ cooking_ic_examples = [
                 features={
                     "cook_level": 1,
                     "water_level": 0,
-                    "type": "meat",
+                    "type": "protein",
                 },
             ),
             Ingredient(
@@ -988,7 +1070,7 @@ cooking_ic_examples = [
                     features={
                         "cook_level": 1,
                         "water_level": 0,
-                        "type": "meat",
+                        "type": "protein",
                     },
                 ),
                 Ingredient(
