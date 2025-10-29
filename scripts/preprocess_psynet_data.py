@@ -15,6 +15,8 @@ def process_gameplay(data_dir: str, trial_type: str):
     Transform from one row per trial to one row per round.
     """
     df_trial = pd.read_csv(here(f"{data_dir}/{trial_type}.csv"))
+    # filter out failed trials
+    df_trial = df_trial[~df_trial["failed"]]
     df_trial["vars"] = df_trial["vars"].apply(json.loads)
 
     # Calculate chain positions for chain trials
@@ -74,6 +76,9 @@ def process_messages(data_dir: str, trial_type: str):
     Extract messages from the messages column (if it exists) and link them to trials.
     """
     df_trial = pd.read_csv(here(f"{data_dir}/{trial_type}.csv"))
+    # filter out failed trials
+    df_trial = df_trial[~df_trial["failed"]]
+
     df_trial["vars"] = df_trial["vars"].apply(json.loads)
 
     # Calculate chain positions for chain trials
@@ -115,7 +120,7 @@ def process_messages(data_dir: str, trial_type: str):
 
 
 def main():
-    DATA_DIR = "data/human-data/psynet-self-pilot"
+    DATA_DIR = "data/human-data/pilot-9"
 
     df_gameplay_chain = process_gameplay(DATA_DIR, "CraftingGameChainTrial")
     df_gameplay_chain["condition"] = "chain"

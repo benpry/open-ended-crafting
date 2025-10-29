@@ -1,0 +1,93 @@
+trial_id,participant_id,chain_id,domain,message,chain_pos,condition
+2,2,4,decorations,I didn't have much luck.  Stay away from buttons,1,chain
+3,2,5,animals,Didn't do too well.  try to mutate different animals,1,chain
+4,2,1,cooking,stay away from brocolli.  cook everything seperate and then add ingredients,1,chain
+5,3,2,cooking,Do not overcook the food or add too many ingredients as that will make you lose points. You do not need to use all of the ingredients. Only the rice and wheat need to be soaked and cooked.,1,chain
+7,4,3,decorations,Be careful about what you combine with the frame as hard objects tend to ruin it and you lose out on points,2,chain
+8,2,7,potions,"filter ghostly vapor
+
+no ghostly vapor in vial
+
+leave ghost vapor alone",1,chain
+10,4,4,decorations,"I didn't have much luck.  Stay away from buttons. The frame is delicate to hard objects, use caution.",2,chain
+11,4,5,animals,Didn't do too well.  try to mutate different animals. Be careful when trying to mutate.,3,chain
+12,3,7,potions,"can only filter: ghost, honey, morning dew, basilisk, tree sap
+3 ingredients makes you lose points. 2 is good
+vials and filtered items can be combined",2,chain
+13,8,1,cooking,dont overcomplicate the ingredient and stay away from brocolli.,2,chain
+14,3,5,animals,"Mutation is tricky and haven't figured out how to use it. So far when used, it was all bad and gave negative points. 3 ingredients might overcomplicate, so be careful.
+Triple growth only: bird, puffer, butterfly, frog, fish
+Double growth only: zebra, crab, snake, squid, octo
+One growth only: elephant, lion, shark, squid, kangaroo",2,chain
+15,8,2,cooking,dont over cook dont use too many ingredient as it will make you lose points,2,chain
+16,8,3,decorations,dont overcomplicate it and hard objects will cause you problems,3,chain
+18,13,4,decorations,Refine objects and combine them.  Don't combine frames with hard objects.  Don't put too many things together as it overcomplicates.,3,chain
+19,3,3,decorations,"use only 2 ingredients
+don't cut hard objects. cardboard is fine to cut and use.
+cutting flat or soft objects and then framed gives 100 although only yarn and ribbon combo didn't work well.",1,chain
+21,13,8,potions,The 2 same states of matter with one magical and one mundane and then vial was best I got.  Too many things together overcomplicates.,1,chain
+23,13,5,animals,"mutate same size and combine and then grow to max if not 65 then try mutate 
+
+too many things combined overcomplicates and too much mutating corrupts which i did not seem to get to be a positive
+
+65 was highest i got
+3x grow and 2x mutate seem to be limit",4,chain
+25,13,1,cooking,"80 was highest I got: cook two non meat then combine, cook a meat and combine the non meat mix and meat
+
+too many ingredients overcomplicates, overcooking seems negative
+couldnt get water to help",3,chain
+26,18,2,cooking,"Don't use all 4 ingredients in a single dish
+Soak wheat/rice
+Only use stove once per item to avoid overcooking",3,chain
+27,18,3,decorations,"use only 2 ingredients
+don't cut hard objects. cardboard is fine to cut and use.
+cutting flat or soft objects and then framed gives 100 although only yarn and ribbon combo didn't work well.",4,chain
+28,18,4,decorations,"Refine objects and combine them.  Don't combine frames with hard objects.  Don't put too many things together as it overcomplicates.
+2 cut soft combined+framed generally gives a high score, but avoid yarn+ribbon.",4,chain
+29,18,8,potions,"The 2 same states of matter with one magical and one mundane and then vial was best I got. Only combine 2 items. If the value is still low after combining+vialing, try filtering.
+Don't filter solids on their own. Don't filter ghost vapor, most others were fine.",2,chain
+30,17,7,potions,"*Short Guide To Combining Ingredient's* 
+Solids combine with vial
+Liquids combine with filter
+Gas/ Vapor combine with filter
+Combine the same type of ingredients together
+(Example: Liquid magical + Liquid magical= New Item)
+
+Some ingredients can combine even if one is a solid, liquid or gas as long as its the same type.
+(Example: Solid mundane + vial = Mundane vial and 
+Gas mundane + filter = gas filtered. Mundane vial + Gas Mundane= 100% Item
+
+Combine two filtered or two vial ingredients together to get a 100% item! Good luck y'all!",3,chain
+31,19,8,potions,"The 2 solids with one magical and one mundane and then vial was best I got. Only combine 2 items. If the value is still low after combining+vialing, try filtering.
+Don't filter solids on their own. Don't filter ghost vapor, most others were fine.",3,chain
+32,19,6,animals,Lives the same area add 1 growth serum,1,chain
+33,19,2,cooking,"Don't use all 4 ingredients in a single dish
+Soak wheat/rice
+Only use stove once per item to avoid overcooking",4,chain
+34,21,6,animals,"Don't over complicate, combine 2 then add growth serum. The mutation catalyst always gets negative after combining.",2,chain
+35,21,1,cooking,"80 was highest I got: cook two non meat then combine, cook a meat and combine the non meat mix and meat
+
+too many ingredients overcomplicates, overcooking seems negative
+couldnt get water to help
+
+This advice is solid, I used it after, 80 points all the time",4,chain
+36,22,6,animals,Don't try to combine more than 2 animals. Just add growth serum after that but not more than 2 times normally. The mutation catalyst always gets negative after combining.,3,chain
+37,21,8,potions,"I was able to achieve 100 a couple of times, if you get two dragon parts, add vial separately, then combine them
+
+If you see sun stone and obsidian, apply vial separately, then combine
+
+If it seems like you can filter two separate items (eg vapor or dew), filter them both separately, then combine, I was able to achieve 100 one time as well",4,chain
+38,22,7,potions,"*Short Guide To Combining Ingredient's* 
+Solids combine with vial
+Liquids combine with filter
+Gas/ Vapor combine with filter
+
+Go for the combinations below to get 100%
+
+Liquid extracted magical + liquid extracted mundane = 100%
+Liquid filtered magical + liquid extracted mundane = 100%
+Liquid filtered mundane + liquid filtered magical = 100%",4,chain
+9,6,9,cooking,Do not add too many ingredients or stack all of them together. It produces a complicated dish.,,individual
+17,10,11,animals,"I tried to combine the animals based on similar habitation. Then I used the growth serum for smaller animals first before the mutation catalyst. With the larger animals, I used the mutation catalyst twice, before using the growth serum.",,individual
+20,12,12,potions,It's very hard to come up with combinations. Try mixing one with vial to get 30. Most mixes lead to negatives,,individual
+22,14,10,decorations,"Cut the ingredients such as flower, yarn, or thread before combining with other ingredients such as paper or leaf. Don't combine hard and soft altogether. My best combination was cut flower with cut yarn and then put it in the frame. Just combine two ingredients and not more.",,individual

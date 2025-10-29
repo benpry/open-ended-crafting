@@ -1,0 +1,5 @@
+vars,id,creation_time,failed,failed_reason,time_of_death,type,network_id,participant_id,trial_maker_id,module_id,module_state_id,is_global,on_deploy_complete,async_on_deploy_required,async_on_deploy_requested,async_on_deploy_complete,async_on_deploy_failed,key,degree,target_n_trials,ready_to_spawn,child_id,parent_id,seed,definition,context,participant_group,block,propagate_failure,n_viable_trials,class,object_type
+{},22,2025-10-28 19:44:59,False,,,StaticNode,9,,individual_task,individual_task,,,True,False,False,False,False,,1,1,False,,9,{},{},,default,cooking,True,0,StaticNode,Node
+{},30,2025-10-28 20:22:21,False,,,StaticNode,10,,individual_task,individual_task,,,True,False,False,False,False,,1,1,False,,10,{},{},,default,decorations,True,0,StaticNode,Node
+{},31,2025-10-28 20:25:39,False,,,StaticNode,12,,individual_task,individual_task,,,True,False,False,False,False,,1,1,False,,12,{},{},,default,potions,True,0,StaticNode,Node
+{},32,2025-10-28 20:32:35,False,,,StaticNode,11,,individual_task,individual_task,,,True,False,False,False,False,,1,1,False,,11,{},{},,default,animals,True,0,StaticNode,Node
