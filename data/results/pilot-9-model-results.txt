@@ -1,0 +1,128 @@
+MARGINAL EFFECTS
+            term estimate_type   condition  estimate  lower_2.5%  upper_97.5%
+0  round_num_abs          dydx       chain  0.883817    0.191932     1.574454
+1  round_num_abs          dydx  individual  0.462384   -0.206559     1.114464
+INTERACTION
+mean           -0.407
+sd              0.469
+hdi_2.5%       -1.348
+hdi_97.5%       0.537
+mcse_mean       0.006
+mcse_sd         0.005
+ess_bulk     6259.000
+ess_tail     4416.000
+r_hat           1.000
+SUMMARY
+                                                                            mean      sd  hdi_2.5%  hdi_97.5%  mcse_mean  mcse_sd  ess_bulk  ess_tail  r_hat
+sigma                                                                     28.637   0.953    26.737     30.472      0.010    0.009    8870.0    4660.0   1.00
+Intercept                                                                 27.394  10.028     5.462     47.720      0.246    0.256    1976.0     991.0   1.00
+round_num_abs                                                              0.844   0.402     0.011      1.650      0.025    0.045     564.0     126.0   1.01
+condition:round_num_abs[individual]                                       -0.407   0.469    -1.348      0.537      0.006    0.005    6259.0    4416.0   1.00
+1|domain_sigma                                                            13.958  12.718     0.001     40.267      0.339    0.452    2223.0    1215.0   1.00
+1|domain:participant_or_chain_id_sigma                                    19.954   6.303     9.410     32.294      0.086    0.084    4578.0    4444.0   1.00
+round_num_abs|domain_sigma                                                 0.449   0.531     0.000      1.443      0.047    0.111     573.0     138.0   1.01
+round_num_abs|domain:participant_or_chain_id_sigma                         0.646   0.249     0.208      1.139      0.004    0.004    4003.0    4564.0   1.00
+1|domain[animals]                                                         -3.440  10.933   -29.011     17.578      0.279    0.402    2065.0    1689.0   1.00
+1|domain[cooking]                                                          7.007  11.612   -13.836     34.109      0.292    0.362    2279.0    1080.0   1.00
+1|domain[decorations]                                                     -3.308  10.454   -26.749     18.008      0.214    0.244    2708.0    2646.0   1.00
+1|domain[potions]                                                          0.498  10.052   -20.524     24.409      0.220    0.229    2537.0    1292.0   1.00
+1|domain:participant_or_chain_id[animals:chain_1]                          0.284  20.284   -38.588     42.618      0.199    0.213    9743.0   11676.0   1.00
+1|domain:participant_or_chain_id[animals:chain_2]                          0.467  21.105   -40.748     43.641      0.479    0.257    1874.0     882.0   1.00
+1|domain:participant_or_chain_id[animals:chain_3]                          0.315  21.298   -42.952     44.532      0.289    0.303    5721.0    3584.0   1.00
+1|domain:participant_or_chain_id[animals:chain_4]                          0.820  20.947   -39.681     43.173      0.387    0.241    2612.0    7902.0   1.00
+1|domain:participant_or_chain_id[animals:chain_5]                        -18.120  11.538   -40.887      5.443      0.156    0.132    5568.0    3901.0   1.00
+1|domain:participant_or_chain_id[animals:chain_6]                        -14.412  11.270   -36.531      7.914      0.125    0.094    7968.0    9539.0   1.00
+1|domain:participant_or_chain_id[animals:chain_7]                         -0.184  20.720   -40.940     42.884      0.217    0.215    8339.0   11670.0   1.00
+1|domain:participant_or_chain_id[animals:chain_8]                          0.101  20.640   -41.876     40.844      0.184    0.235   11007.0   10400.0   1.00
+1|domain:participant_or_chain_id[animals:participant_10]                  19.748  11.327    -1.544     43.341      0.204    0.103    2985.0    3207.0   1.00
+1|domain:participant_or_chain_id[animals:participant_12]                   0.546  20.903   -40.979     41.838      0.488    0.230    1722.0    1634.0   1.00
+1|domain:participant_or_chain_id[animals:participant_14]                   0.277  21.163   -44.385     41.014      0.322    0.233    3816.0    9000.0   1.00
+1|domain:participant_or_chain_id[animals:participant_6]                    0.055  20.570   -40.544     42.486      0.188    0.226   10423.0   10738.0   1.00
+1|domain:participant_or_chain_id[cooking:chain_1]                          3.163  11.801   -19.066     27.303      0.206    0.254    3850.0    3296.0   1.00
+1|domain:participant_or_chain_id[cooking:chain_2]                          7.250  11.713   -15.719     30.652      0.251    0.180    2206.0    3040.0   1.00
+1|domain:participant_or_chain_id[cooking:chain_3]                         -0.021  20.946   -43.732     40.739      0.261    0.238    5942.0    4787.0   1.00
+1|domain:participant_or_chain_id[cooking:chain_4]                          0.616  21.314   -40.137     44.843      0.401    0.246    2536.0    5046.0   1.00
+1|domain:participant_or_chain_id[cooking:chain_5]                         -0.056  20.606   -42.403     39.711      0.244    0.223    6370.0    4840.0   1.00
+1|domain:participant_or_chain_id[cooking:chain_6]                         -0.159  20.985   -44.205     39.775      0.201    0.247   10188.0    9604.0   1.00
+1|domain:participant_or_chain_id[cooking:chain_7]                         -0.583  20.901   -40.785     40.950      0.488    0.254    1688.0    2570.0   1.00
+1|domain:participant_or_chain_id[cooking:chain_8]                          0.126  20.813   -40.802     42.324      0.186    0.246   12190.0    9712.0   1.00
+1|domain:participant_or_chain_id[cooking:participant_10]                   0.298  21.005   -41.182     43.029      0.404    0.337    2698.0    1964.0   1.00
+1|domain:participant_or_chain_id[cooking:participant_12]                   0.337  20.626   -40.834     41.214      0.224    0.218    7482.0   11826.0   1.00
+1|domain:participant_or_chain_id[cooking:participant_14]                  -0.349  21.053   -43.042     41.256      0.248    0.245    6962.0    6109.0   1.00
+1|domain:participant_or_chain_id[cooking:participant_6]                   12.561  11.975   -11.062     36.440      0.152    0.135    6292.0    3206.0   1.00
+1|domain:participant_or_chain_id[decorations:chain_1]                     -0.113  20.588   -43.562     40.094      0.228    0.239    8063.0    4803.0   1.00
+1|domain:participant_or_chain_id[decorations:chain_2]                      0.058  20.664   -38.617     44.451      0.190    0.224   11250.0   12074.0   1.00
+1|domain:participant_or_chain_id[decorations:chain_3]                      6.381  11.291   -16.244     28.458      0.158    0.155    5428.0    4228.0   1.00
+1|domain:participant_or_chain_id[decorations:chain_4]                    -20.574  11.727   -43.068      2.670      0.169    0.117    4661.0    7646.0   1.00
+1|domain:participant_or_chain_id[decorations:chain_5]                     -0.543  20.982   -41.830     42.293      0.238    0.244    6789.0    5484.0   1.00
+1|domain:participant_or_chain_id[decorations:chain_6]                      0.006  20.907   -42.157     41.523      0.211    0.233    8978.0   10825.0   1.00
+1|domain:participant_or_chain_id[decorations:chain_7]                      0.119  20.663   -42.647     40.713      0.188    0.220   11046.0   10793.0   1.00
+1|domain:participant_or_chain_id[decorations:chain_8]                      0.108  20.929   -40.394     43.055      0.312    0.238    4025.0   10429.0   1.00
+1|domain:participant_or_chain_id[decorations:participant_10]               1.058  21.488   -40.296     47.523      0.693    0.567    1078.0     454.0   1.00
+1|domain:participant_or_chain_id[decorations:participant_12]               0.173  20.592   -40.981     41.113      0.173    0.237   13543.0   10087.0   1.00
+1|domain:participant_or_chain_id[decorations:participant_14]               2.588  11.188   -19.187     24.918      0.166    0.098    4355.0    7867.0   1.00
+1|domain:participant_or_chain_id[decorations:participant_6]               -0.094  20.994   -40.427     43.343      0.248    0.227    6391.0    8738.0   1.00
+1|domain:participant_or_chain_id[potions:chain_1]                         -0.511  21.000   -42.197     42.910      0.195    0.236    9721.0    9909.0   1.00
+1|domain:participant_or_chain_id[potions:chain_2]                          0.158  20.303   -40.362     41.084      0.210    0.200    8991.0   11465.0   1.00
+1|domain:participant_or_chain_id[potions:chain_3]                         -0.266  20.891   -40.500     42.281      0.198    0.217    9903.0   11695.0   1.00
+1|domain:participant_or_chain_id[potions:chain_4]                          0.637  21.296   -41.207     44.482      0.501    0.253    1684.0    2581.0   1.00
+1|domain:participant_or_chain_id[potions:chain_5]                         -0.403  21.179   -42.212     43.023      0.307    0.317    4715.0    3581.0   1.00
+1|domain:participant_or_chain_id[potions:chain_6]                          0.012  20.668   -41.539     41.555      0.176    0.223   13079.0   10701.0   1.00
+1|domain:participant_or_chain_id[potions:chain_7]                         -4.546  11.647   -28.338     18.370      0.163    0.141    5248.0    3200.0   1.00
+1|domain:participant_or_chain_id[potions:chain_8]                         21.163  11.441    -0.623     44.274      0.190    0.122    3507.0    4070.0   1.00
+1|domain:participant_or_chain_id[potions:participant_10]                  -0.240  20.656   -42.370     41.379      0.244    0.280    7198.0    3346.0   1.00
+1|domain:participant_or_chain_id[potions:participant_12]                 -16.568  11.304   -39.089      5.288      0.172    0.131    4386.0    4143.0   1.00
+1|domain:participant_or_chain_id[potions:participant_14]                   0.356  21.028   -44.283     39.504      0.476    0.256    1776.0    2333.0   1.00
+1|domain:participant_or_chain_id[potions:participant_6]                   -0.210  20.760   -41.436     42.083      0.183    0.244   12031.0    9426.0   1.00
+round_num_abs|domain[animals]                                             -0.079   0.353    -0.831      0.699      0.011    0.009    1055.0     523.0   1.00
+round_num_abs|domain[cooking]                                              0.005   0.343    -0.736      0.797      0.012    0.010    1124.0     594.0   1.01
+round_num_abs|domain[decorations]                                          0.138   0.389    -0.658      1.047      0.028    0.053     571.0     117.0   1.01
+round_num_abs|domain[potions]                                              0.031   0.399    -0.851      0.796      0.038    0.084     526.0     117.0   1.01
+round_num_abs|domain:participant_or_chain_id[animals:chain_1]              0.004   0.699    -1.336      1.416      0.011    0.020    5030.0    3684.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:chain_2]              0.007   0.687    -1.349      1.417      0.013    0.009    2353.0    7096.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:chain_3]              0.009   0.687    -1.373      1.398      0.008    0.008    7149.0    8395.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:chain_4]              0.005   0.688    -1.371      1.436      0.007    0.010   10221.0    6844.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:chain_5]             -0.191   0.447    -1.049      0.725      0.016    0.013     889.0     356.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:chain_6]             -0.102   0.479    -1.014      0.875      0.010    0.008    2208.0    1999.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:chain_7]              0.020   0.682    -1.388      1.342      0.013    0.008    2605.0    5907.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:chain_8]              0.027   0.708    -1.396      1.520      0.019    0.015    1479.0     753.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:participant_10]       0.024   0.504    -0.938      1.127      0.023    0.020     662.0     113.0   1.01
+round_num_abs|domain:participant_or_chain_id[animals:participant_12]       0.014   0.714    -1.481      1.456      0.026    0.021     873.0     411.0   1.01
+round_num_abs|domain:participant_or_chain_id[animals:participant_14]      -0.009   0.708    -1.385      1.413      0.007    0.014    8082.0    6719.0   1.00
+round_num_abs|domain:participant_or_chain_id[animals:participant_6]       -0.004   0.693    -1.357      1.419      0.010    0.010    4754.0    2203.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:chain_1]             -0.178   0.425    -1.037      0.663      0.009    0.005    2004.0    2431.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:chain_2]             -0.188   0.419    -1.035      0.665      0.006    0.006    4523.0    3307.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:chain_3]              0.018   0.697    -1.351      1.459      0.016    0.011    1758.0    1016.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:chain_4]              0.010   0.680    -1.443      1.276      0.011    0.008    3436.0    3936.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:chain_5]              0.002   0.692    -1.378      1.424      0.010    0.009    4385.0    2374.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:chain_6]              0.013   0.695    -1.451      1.363      0.011    0.012    4333.0    2621.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:chain_7]             -0.004   0.681    -1.439      1.324      0.008    0.009    7281.0    4804.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:chain_8]             -0.012   0.699    -1.440      1.378      0.009    0.011    5780.0    5110.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:participant_10]       0.018   0.694    -1.411      1.368      0.009    0.010    6008.0    5331.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:participant_12]      -0.011   0.688    -1.404      1.361      0.012    0.013    3102.0    7021.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:participant_14]      -0.013   0.692    -1.424      1.354      0.007    0.009    7444.0    9340.0   1.00
+round_num_abs|domain:participant_or_chain_id[cooking:participant_6]        0.330   0.480    -0.608      1.292      0.010    0.010    2360.0    1679.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:chain_1]          0.015   0.702    -1.360      1.504      0.011    0.009    2988.0    6414.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:chain_2]          0.006   0.690    -1.433      1.415      0.010    0.011    4449.0    2475.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:chain_3]         -0.228   0.419    -1.075      0.597      0.006    0.005    5449.0    2929.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:chain_4]          0.519   0.438    -0.365      1.376      0.006    0.005    6082.0    5042.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:chain_5]         -0.014   0.691    -1.467      1.316      0.009    0.009    5077.0    3689.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:chain_6]         -0.010   0.696    -1.348      1.508      0.009    0.011    6092.0    2803.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:chain_7]         -0.005   0.692    -1.424      1.363      0.011    0.009    3867.0    8059.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:chain_8]         -0.005   0.689    -1.390      1.382      0.009    0.010    4831.0    7992.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:participant_10]  -0.008   0.694    -1.404      1.390      0.009    0.011    6443.0    5969.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:participant_12]   0.026   0.689    -1.415      1.371      0.013    0.008    2379.0    3522.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:participant_14]   0.123   0.468    -0.840      1.037      0.005    0.005    8571.0   10435.0   1.00
+round_num_abs|domain:participant_or_chain_id[decorations:participant_6]   -0.014   0.691    -1.437      1.364      0.010    0.011    4624.0    3438.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:chain_1]              0.021   0.681    -1.378      1.365      0.010    0.010    4383.0    4322.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:chain_2]              0.003   0.674    -1.367      1.364      0.008    0.008    6799.0    8377.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:chain_3]             -0.001   0.692    -1.413      1.367      0.014    0.009    2106.0    2957.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:chain_4]             -0.021   0.694    -1.427      1.410      0.011    0.009    4025.0    4792.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:chain_5]              0.012   0.685    -1.395      1.380      0.013    0.008    2348.0    2789.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:chain_6]              0.011   0.692    -1.391      1.433      0.011    0.013    4393.0    1913.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:chain_7]              0.912   0.452     0.056      1.825      0.007    0.005    4840.0    4188.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:chain_8]             -0.481   0.437    -1.358      0.343      0.006    0.005    5785.0    4637.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:participant_10]       0.005   0.694    -1.382      1.440      0.008    0.012    6772.0    8190.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:participant_12]      -0.469   0.487    -1.506      0.417      0.009    0.006    3175.0    1982.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:participant_14]      -0.017   0.687    -1.383      1.377      0.008    0.009    6106.0    3942.0   1.00
+round_num_abs|domain:participant_or_chain_id[potions:participant_6]        0.019   0.698    -1.399      1.436      0.014    0.008    2250.0    3533.0   1.00

@@ -12,52 +12,81 @@
 #     name: python3
 # ---
 
-from ast import literal_eval
+import arviz as az
 
 # %%
 import bambi as bmb
 import pandas as pd
+import pytensor
+from bambi.interpret import slopes
 from pyprojroot import here
 
-# %%
-EXP_NAME = "pilot-7"
-df_trials = pd.read_csv(here(f"data/human-data/{EXP_NAME}/trials.csv"))
-df_trials["actions"] = df_trials["actions"].apply(literal_eval)
-df_trials["n_actions"] = df_trials["actions"].apply(len)
-df_trials["score_per_action"] = df_trials["score"] / df_trials["n_actions"]
-df_trials["trial_idx"] = df_trials["trial_idx"] + 1
-df_trials = df_trials[df_trials["n_actions"] > 0]
-df_messages = pd.read_csv(here(f"data/human-data/{EXP_NAME}/messages.csv"))
-df_surveys = pd.read_csv(here(f"data/human-data/{EXP_NAME}/surveys.csv"))
+pytensor.config.cxx = "/usr/bin/clang++"
 
 # %%
-# recompute trial index
-df_trials["trial_idx"] = (
-    df_trials.sort_values(["player_id", "domain", "trial_idx"])
-    .groupby(["player_id", "domain"])
-    .cumcount()
-    + 1
+EXP_NAME = "pilot-9"
+
+df_gameplay = pd.read_csv(here(f"data/human-data/{EXP_NAME}/processed/gameplay.csv"))
+df_messages = pd.read_csv(here(f"data/human-data/{EXP_NAME}/processed/messages.csv"))
+
+df_gameplay["participant_id"] = df_gameplay["participant_id"].astype(str)
+df_gameplay["chain_id"] = df_gameplay["chain_id"].astype(str)
+df_gameplay["score_efficiency"] = df_gameplay["score"] / df_gameplay["n_actions"]
+
+# %%
+# compute absolute round numbers
+df_gameplay["round_num_abs"] = df_gameplay.apply(
+    lambda row: row["round_num"] + (row["chain_pos"] - 1) * 10
+    if row["condition"] == "chain"
+    else row["round_num"],
+    axis=1,
 )
 
-# only consider trials from participants who completed the practice
-completed_player_ids = df_surveys["player_id"].unique()
-df_trials = df_trials[df_trials["player_id"].isin(completed_player_ids)]
+df_gameplay["round_num_abs_centered"] = (
+    df_gameplay["round_num_abs"] - df_gameplay["round_num_abs"].mean()
+)
 
-df_practice = df_trials[df_trials["domain"] == "practice"]
-df_trials = df_trials[df_trials["domain"] != "practice"]
+df_gameplay["participant_or_chain_id"] = df_gameplay.apply(
+    lambda row: "participant_" + row["participant_id"]
+    if row["condition"] == "individual"
+    else "chain_" + row["chain_id"],
+    axis=1,
+)
 
-# %%
-df_trials
+df_practice = df_gameplay[df_gameplay["domain"] == "practice"]
+df_gameplay = df_gameplay[df_gameplay["domain"] != "practice"]
 
 # %%
 model = bmb.Model(
-    "score ~ trial_idx + (trial_idx | player_id) + (trial_idx | domain)",
-    df_trials[["score", "trial_idx", "player_id", "domain"]],
+    "score ~ 1 + round_num_abs + condition:round_num_abs + (1 + round_num_abs | domain / participant_or_chain_id)",
+    df_gameplay,
 )
 
 results = model.fit(
-    draws=3000,
-    chains=3,
+    draws=5000,
+    chains=4,
 )
 
+# %%
+az.summary(results, hdi_prob=0.95).loc["round_num_abs"]
+
+# %%
+slopes(
+    model,
+    results,
+    wrt="round_num_abs",
+    average_by="condition",
+    prob=0.95,
+)
+
+# %%
+az.plot_trace(results)
+
+# %%
+# Make posterior predictions
+model.predict(results)
+
+az.plot_ppc(results, num_pp_samples=100)
+
+# %%
 # %%
