@@ -50,15 +50,15 @@ class CraftingGame(gym.Env):
         """
         Render the environment.
         """
-        print("Inventory:")
+        ret = "Inventory:"
         for item in self.inventory:
             if isinstance(item, Tool):
-                print(f"Tool: {item.emoji} {item.name}")
+                ret += f"Tool: {item.emoji} {item.name}\n"
             else:
                 features = DESCRIPTOR_FUNCTIONS[self.domain](item)
-                print(
-                    f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {', '.join(features)}"
-                )
+                ret += f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {', '.join(features)}"
+
+        return ret
 
     def reset_world_model(self):
         """
@@ -140,4 +140,10 @@ class CraftingGame(gym.Env):
         reward = max(item.value for item in ingredients)
 
         # overall reward can't go below 0
+        return max(reward, 0)
+        return max(reward, 0)
+        return max(reward, 0)
+        return max(reward, 0)
+        return max(reward, 0)
+        return max(reward, 0)
         return max(reward, 0)
