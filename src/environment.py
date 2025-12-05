@@ -4,7 +4,7 @@ from typing import Optional
 import gymnasium as gym
 
 from src.constants import TOOLS, Tool
-from src.functions import GET_INVENTORY_FUNCTIONS, VALUE_FUNCTIONS
+from src.functions import DESCRIPTOR_FUNCTIONS, GET_INVENTORY_FUNCTIONS, VALUE_FUNCTIONS
 from src.world_model import MemoizedWorldModel
 
 
@@ -53,9 +53,12 @@ class CraftingGame(gym.Env):
         print("Inventory:")
         for item in self.inventory:
             if isinstance(item, Tool):
-                print(f"{item.emoji} {item.name}")
+                print(f"Tool: {item.emoji} {item.name}")
             else:
-                print(f"{item.emoji} {item.name}, value: {item.value}")
+                features = DESCRIPTOR_FUNCTIONS[self.domain](item)
+                print(
+                    f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {', '.join(features)}"
+                )
 
     def reset_world_model(self):
         """
@@ -137,4 +140,5 @@ class CraftingGame(gym.Env):
         reward = max(item.value for item in ingredients)
 
         # overall reward can't go below 0
+        return max(reward, 0)
         return max(reward, 0)
