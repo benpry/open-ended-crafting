@@ -139,12 +139,4 @@ class CraftingGame(gym.Env):
         # the reward is the value of the most valuable ingredient
         reward = max(item.value for item in ingredients)
 
-        # overall reward can't go below 0
-        return max(reward, 0)
-        return max(reward, 0)
-        return max(reward, 0)
-        return max(reward, 0)
-        return max(reward, 0)
-        return max(reward, 0)
-        return max(reward, 0)
         return max(reward, 0)
