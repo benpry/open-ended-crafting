@@ -141,5 +141,3 @@ class CraftingGame(gym.Env):
 
         # overall reward can't go below 0
         return max(reward, 0)
-        return max(reward, 0)
-        return max(reward, 0)
