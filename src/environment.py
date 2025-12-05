@@ -147,3 +147,4 @@ class CraftingGame(gym.Env):
         return max(reward, 0)
         return max(reward, 0)
         return max(reward, 0)
+        return max(reward, 0)
