@@ -2,7 +2,7 @@ import random
 
 from pyprojroot import here
 
-from src.environment import CraftingGame
+from oecraft.environment import CraftingGame
 
 # model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"
 # model = "fireworks_ai/accounts/fireworks/models/llama4-maverick-instruct-basic"

@@ -1,7 +1,7 @@
 import random
 
-from src.constants import cooking_ingredients, cooking_tools
-from src.functions import cooking_apply_tool, cooking_combination_function
+from oecraft.constants import cooking_ingredients, cooking_tools
+from oecraft.functions import cooking_apply_tool, cooking_combination_function
 
 cooking_inv = cooking_ingredients + cooking_tools
 

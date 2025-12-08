@@ -4,7 +4,7 @@ from typing import Optional
 import gymnasium as gym
 from unicards import unicard
 
-from src.constants import CombinedItem, Ingredient, Item, NonTool, Tool
+from oecraft.constants import CombinedItem, Ingredient, Item, NonTool, Tool
 
 suit_order = ["clubs", "diamonds", "spades", "hearts"]
 number_order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"]

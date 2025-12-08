@@ -14,8 +14,8 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from tqdm import tqdm
 
-from src.constants import Item, Tool
-from src.environment import CraftingGame
+from oecraft.constants import Item, Tool
+from oecraft.environment import CraftingGame
 
 Inventory = Tuple[Item, ...]
 Action = Tuple[str, str]

@@ -5,8 +5,8 @@ Run the random and oracle agents on all domains and compare their performance.
 import pandas as pd
 from pyprojroot import here
 
-from src.agents.oracle_agent import run_oracle_agent
-from src.agents.random_agent import run_random_agent
+from oecraft.agents.oracle_agent import run_oracle_agent
+from oecraft.agents.random_agent import run_random_agent
 
 if __name__ == "__main__":
     domains = ["potions", "cooking", "decorations", "animals"]

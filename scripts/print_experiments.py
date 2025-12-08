@@ -4,7 +4,7 @@ This script just prints the system prompts and in-context examples for all the e
 
 from litellm import completion
 
-from src.constants import IC_EXAMPLES, INGREDIENTS, SYSTEM_PROMPTS, TOOLS
+from oecraft.constants import IC_EXAMPLES, INGREDIENTS, SYSTEM_PROMPTS, TOOLS
 
 instruction = """I am developing a paradigm for a psychology experiment, which is an AI-powered crafting game.
 I want the task to have rules that participants can learn over multiple trials of crafting things together and trying to make the best item they can.

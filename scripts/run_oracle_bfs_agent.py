@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 
 from pyprojroot import here
 
-from src.agents.oracle_bfs_agent import run_oracle_bfs_agent
+from oecraft.agents.oracle_bfs_agent import run_oracle_bfs_agent
 
 if __name__ == "__main__":
     parser = ArgumentParser()

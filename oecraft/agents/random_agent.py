@@ -3,8 +3,8 @@ import random
 import pandas as pd
 from tqdm import tqdm
 
-from src.constants import Tool
-from src.environment import CraftingGame
+from oecraft.constants import Tool
+from oecraft.environment import CraftingGame
 
 
 def run_random_agent(domain: str, n_runs: int = 10, n_steps: int = 10) -> pd.DataFrame:

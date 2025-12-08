@@ -3,9 +3,13 @@ from typing import Optional
 
 import gymnasium as gym
 
-from src.constants import TOOLS, Tool
-from src.functions import DESCRIPTOR_FUNCTIONS, GET_INVENTORY_FUNCTIONS, VALUE_FUNCTIONS
-from src.world_model import MemoizedWorldModel
+from oecraft.constants import TOOLS, Tool
+from oecraft.functions import (
+    DESCRIPTOR_FUNCTIONS,
+    GET_INVENTORY_FUNCTIONS,
+    VALUE_FUNCTIONS,
+)
+from oecraft.world_model import MemoizedWorldModel
 
 
 class CraftingGame(gym.Env):
@@ -139,4 +143,6 @@ class CraftingGame(gym.Env):
         # the reward is the value of the most valuable ingredient
         reward = max(item.value for item in ingredients)
 
+        return max(reward, 0)
+        return max(reward, 0)
         return max(reward, 0)

@@ -12,9 +12,9 @@ import time
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.agents.oracle_agent import OracleAgent, run_oracle_agent
-from src.agents.random_agent import run_random_agent
-from src.environment import CraftingGame
+from oecraft.agents.oracle_agent import OracleAgent, run_oracle_agent
+from oecraft.agents.random_agent import run_random_agent
+from oecraft.environment import CraftingGame
 
 
 def test_single_domain(domain: str, n_runs: int = 5, max_steps: int = 10):

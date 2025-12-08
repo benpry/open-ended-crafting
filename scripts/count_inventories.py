@@ -1,4 +1,4 @@
-from src.constants import INGREDIENTS
+from oecraft.constants import INGREDIENTS
 
 for domain in INGREDIENTS.keys():
     ingredients = INGREDIENTS[domain]

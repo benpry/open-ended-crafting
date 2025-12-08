@@ -8,10 +8,10 @@ from dataclasses import asdict, replace
 
 from frozendict import frozendict
 
-from src.constants import CombinedItem, Item, NonTool, Tool
-from src.functions import COMBO_FUNCTIONS
-from src.prompts import get_item_semantics_from_lm
-from src.utils import dict_to_dataclass
+from oecraft.constants import CombinedItem, Item, NonTool, Tool
+from oecraft.functions import COMBO_FUNCTIONS
+from oecraft.prompts import get_item_semantics_from_lm
+from oecraft.utils import dict_to_dataclass
 
 
 def freeze_item(item: Item) -> Item:

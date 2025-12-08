@@ -5,7 +5,7 @@ Run the random baseline agent
 import pandas as pd
 from pyprojroot import here
 
-from src.agents.random_agent import run_random_agent
+from oecraft.agents.random_agent import run_random_agent
 
 if __name__ == "__main__":
     df_all = pd.DataFrame()

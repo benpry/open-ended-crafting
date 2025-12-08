@@ -1,6 +1,6 @@
 import random
 
-from src.practice_environment import PracticeCraftingGame
+from oecraft.practice_environment import PracticeCraftingGame
 
 game = PracticeCraftingGame()
 game.reset()

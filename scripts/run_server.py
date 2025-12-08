@@ -2,11 +2,13 @@
 A fastapi server that runs the cooking game.
 """
 
+from typing import Optional
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.environment import CraftingGame
 from pydantic import BaseModel, Field
-from typing import Optional
+
+from oecraft.environment import CraftingGame
 
 app = FastAPI()
 app.add_middleware(
@@ -63,5 +65,9 @@ def step(request: StepRequest):
     game = games[request.game_id]
     print(f"inventory: {game.inventory}")
     obs, _, _, _ = game.step(request.action)
+    print(f"obs: {obs}")
+    return obs
+    print(f"obs: {obs}")
+    return obs
     print(f"obs: {obs}")
     return obs
