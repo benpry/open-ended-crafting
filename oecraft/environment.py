@@ -3,7 +3,7 @@ from typing import Optional
 
 import gymnasium as gym
 
-from oecraft.constants import TOOLS, Tool
+from oecraft.constants import TOOLS, CombinedItem, Ingredient, Tool
 from oecraft.functions import (
     DESCRIPTOR_FUNCTIONS,
     GET_INVENTORY_FUNCTIONS,
@@ -58,9 +58,15 @@ class CraftingGame(gym.Env):
         for item in self.inventory:
             if isinstance(item, Tool):
                 ret += f"Tool: {item.emoji} {item.name}\n"
-            else:
+            elif isinstance(item, Ingredient):
                 features = DESCRIPTOR_FUNCTIONS[self.domain](item)
                 ret += f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {features}\n"
+            elif isinstance(item, CombinedItem):
+                features = DESCRIPTOR_FUNCTIONS[self.domain](item)
+                component_features = ", ".join(
+                    [DESCRIPTOR_FUNCTIONS[self.domain](ing) for ing in item.ingredients]
+                )
+                ret += f"Combined item: {item.emoji} {item.name}, value: {item.value}, components: {component_features}\n"
 
         return ret
 
