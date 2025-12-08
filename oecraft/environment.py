@@ -63,7 +63,7 @@ class CraftingGame(gym.Env):
                 ret += f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {features}\n"
             elif isinstance(item, CombinedItem):
                 features = DESCRIPTOR_FUNCTIONS[self.domain](item)
-                component_features = ", ".join(
+                component_features = "; ".join(
                     [
                         f"{ing.emoji} {ing.name}: {DESCRIPTOR_FUNCTIONS[self.domain](ing)}"
                         for ing in item.ingredients
