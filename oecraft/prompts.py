@@ -203,7 +203,3 @@ def get_item_semantics_from_lm(
     semantics = call_model(messages, lm_string, reasoning_effort, groq_api_key)
 
     return semantics
-
-    return semantics
-
-    return semantics

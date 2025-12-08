@@ -144,5 +144,3 @@ class CraftingGame(gym.Env):
         reward = max(item.value for item in ingredients)
 
         return max(reward, 0)
-        return max(reward, 0)
-        return max(reward, 0)
