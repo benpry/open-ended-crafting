@@ -60,7 +60,7 @@ class CraftingGame(gym.Env):
                 ret += f"Tool: {item.emoji} {item.name}\n"
             else:
                 features = DESCRIPTOR_FUNCTIONS[self.domain](item)
-                ret += f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {', '.join(features)}"
+                ret += f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {features}"
 
         return ret
 
