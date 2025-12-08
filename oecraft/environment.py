@@ -54,7 +54,7 @@ class CraftingGame(gym.Env):
         """
         Render the environment.
         """
-        ret = "Inventory:"
+        ret = ""
         for item in self.inventory:
             if isinstance(item, Tool):
                 ret += f"Tool: {item.emoji} {item.name}\n"
