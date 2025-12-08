@@ -155,6 +155,6 @@ def main(args):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--exp_name", type=str, default="pilot-9")
+    parser.add_argument("--exp_name", type=str, default="experiment-1")
     args = parser.parse_args()
     main(args)
