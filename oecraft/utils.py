@@ -1,4 +1,4 @@
-from src.constants import CombinedItem, Ingredient, Item, Tool
+from oecraft.constants import CombinedItem, Ingredient, Item, Tool
 
 FIELDS_TO_REMOVE = ["id", "x", "y", "isLoading"]
 

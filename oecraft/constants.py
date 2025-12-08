@@ -487,7 +487,7 @@ decorations_ingredients = [
             "post_frame_messed_with": False,
             "type": "artificial",
         },
-    )
+    ),
 ]
 
 animals_tools = [

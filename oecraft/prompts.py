@@ -10,8 +10,8 @@ from typing import Optional
 import requests
 from pydantic import BaseModel
 
-from src.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
-from src.functions import FEATURE_NAMES
+from oecraft.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
+from oecraft.functions import FEATURE_NAMES
 
 
 def get_completion(
@@ -201,5 +201,9 @@ def get_item_semantics_from_lm(
         all_ic_examples,
     )
     semantics = call_model(messages, lm_string, reasoning_effort, groq_api_key)
+
+    return semantics
+
+    return semantics
 
     return semantics

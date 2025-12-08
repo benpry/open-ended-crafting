@@ -2,8 +2,8 @@ import random
 from dataclasses import replace
 from typing import Any
 
-from src.constants import (INGREDIENTS, CombinedItem, Ingredient, Item,
-                           NonTool, Tool)
+from oecraft.constants import (INGREDIENTS, CombinedItem, Ingredient, Item,
+                               NonTool, Tool)
 
 
 def cooking_value_function(item: NonTool) -> int:
@@ -783,4 +783,6 @@ GET_INVENTORY_FUNCTIONS = {
     "decorations": decorations_get_inventory,
     "animals": animals_get_inventory,
     "potions": potions_get_inventory,
+}
+}
 }
