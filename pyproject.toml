@@ -6,6 +6,3 @@ build-backend = "setuptools.build_meta"
 pythonpath = [
   "."
 ]
-
-[project]
-name = "oecraft"
