@@ -109,8 +109,14 @@ class CraftingGame(gym.Env):
         inv_names = [item.name for item in self.inventory]
 
         # check if the items are in the inventory
-        if name1 not in inv_names or name2 not in inv_names:
-            raise ValueError(f"Item {name1} or {name2} not in inventory")
+        if name1 not in inv_names:
+            raise ValueError(
+                f"Item {name1} not in inventory. Inventory contains the following items: {', '.join(inv_names)}"
+            )
+        if name2 not in inv_names:
+            raise ValueError(
+                f"Item {name2} not in inventory. Inventory contains the following items: {', '.join(inv_names)}"
+            )
 
         # get the items
         item1 = next(item for item in self.inventory if item.name == name1)
