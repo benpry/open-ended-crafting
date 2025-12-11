@@ -15,7 +15,7 @@ from oecraft.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, T
 from oecraft.functions import FEATURE_NAMES
 
 
-@retry(stop=stop_after_attempt(10), wait=wait_exponential(multiplier=1, min=2, max=600))
+@retry(stop=stop_after_attempt(10), wait=wait_exponential())
 def get_completion(
     model: str,
     messages: list,
