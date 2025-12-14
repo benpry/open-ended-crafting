@@ -1,52 +1,66 @@
 from dataclasses import replace
-from typing import Optional
 
 import gymnasium as gym
 
-from oecraft.constants import TOOLS, CombinedItem, Ingredient, Tool
-from oecraft.functions import (
-    DESCRIPTOR_FUNCTIONS,
-    GET_INVENTORY_FUNCTIONS,
-    VALUE_FUNCTIONS,
-)
+from oecraft.types import CombinedItem, GameDescriptor, Ingredient, Tool
+from oecraft.utils import load_function_from_string
 from oecraft.world_model import MemoizedWorldModel
 
 
 class CraftingGame(gym.Env):
-    """
-    An open-ended LM-driven crafting game.
-    """
-
     def __init__(
         self,
+        descriptor: GameDescriptor,
         model: str,
-        domain: str,
         n_starting_ingredients: int = 4,
         assign_names: bool = False,
     ):
-        super().__init__()
-        self.model = model
-        self.domain = domain
-        self.world_model = MemoizedWorldModel(
-            lm=model, domain=self.domain, assign_names=assign_names
+        self.value_fn = load_function_from_string(descriptor.value_fn, "value_fn")
+        self.get_inventory_fn = load_function_from_string(
+            descriptor.get_inventory_fn, "get_inventory_fn"
         )
+        self.descriptor_fn = load_function_from_string(
+            descriptor.descriptor_fn, "descriptor_fn"
+        )
+        self.tools = [Tool(**x) for x in descriptor.tools]
+        self.ingredients = [Ingredient(**x) for x in descriptor.ingredients]
+        self.model = model
         self.n_starting_ingredients = n_starting_ingredients
+
+        self.world_model = MemoizedWorldModel(
+            lm=self.model,
+            combo_function_str=descriptor.combination_fn,
+            assign_names=assign_names,
+            naming_system_prompt=descriptor.naming_system_prompt,
+            naming_ic_examples=descriptor.naming_ic_examples,
+            feature_names=descriptor.feature_names,
+        )
+
         self.inventory = []
 
-    def reset(self, seed=None, options=None):
-        """
-        Get an initial state consisting of basic ingredients.
-        """
-        # get the item names and delete the reasoning
-        tools = TOOLS[self.domain]
-        ingredients = GET_INVENTORY_FUNCTIONS[self.domain](self.n_starting_ingredients)
+    def reset(self, seed: int | None = None, options: dict | None = None):
+        ingredients = self.get_inventory_fn(
+            self.n_starting_ingredients, self.ingredients
+        )
 
-        # Assign values to all ingredients
+        # assign values to the ingredients
+        for ingredient in ingredients:
+            ingredient = replace(ingredient, value=self.value_fn(ingredient))
+
+        # get features for the ingredients
         ingredients = [
-            replace(ing, value=VALUE_FUNCTIONS[self.domain](ing)) for ing in ingredients
+            replace(
+                ingredient,
+                description=self.descriptor_fn(
+                    ingredient, self.world_model.feature_names
+                ),
+            )
+            for ingredient in ingredients
         ]
 
-        self.inventory = tools + ingredients
+        self.inventory = self.tools + ingredients
+
+        print(f"starting inventory: {self.inventory}")
 
         return self.inventory
 
@@ -59,17 +73,20 @@ class CraftingGame(gym.Env):
             if isinstance(item, Tool):
                 ret += f"Tool: {item.emoji} {item.name}\n"
             elif isinstance(item, Ingredient):
-                features = DESCRIPTOR_FUNCTIONS[self.domain](item)
+                features = self.descriptor_fn(item, self.world_model.feature_names)
                 ret += f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {features}\n"
             elif isinstance(item, CombinedItem):
-                features = DESCRIPTOR_FUNCTIONS[self.domain](item)
+                print(f"feature names: {self.world_model.feature_names}")
+                features = self.descriptor_fn(
+                    item, feature_names=self.world_model.feature_names
+                )
                 component_features = "; ".join(
                     [
-                        f"{ing.emoji} {ing.name}: {DESCRIPTOR_FUNCTIONS[self.domain](ing)}"
+                        f"{ing.emoji} {ing.name}: {self.descriptor_fn(ing, feature_names=self.world_model.feature_names)}"
                         for ing in item.ingredients
                     ]
                 )
-                ret += f"Combined item: {item.emoji} {item.name}, value: {item.value}, components: {component_features}\n"
+                ret += f"Combined item: {item.emoji} {item.name}, value: {item.value}, features: {features}, components: {component_features}\n"
 
         return ret
 
@@ -77,7 +94,7 @@ class CraftingGame(gym.Env):
         """
         Reset the world model.
         """
-        self.world_model = MemoizedWorldModel(lm=self.model, domain=self.domain)
+        self.world_model = MemoizedWorldModel(lm=self.model)
 
     def load_world_model(self, filepath: str):
         """
@@ -92,7 +109,7 @@ class CraftingGame(gym.Env):
         """
         self.world_model.save(filepath)
 
-    def step(self, action: Optional[tuple[str, str]]):
+    def step(self, action: tuple[str, str] | None):
         """
         Take an action in the environment.
         """
@@ -139,6 +156,9 @@ class CraftingGame(gym.Env):
 
         # combine the items
         new_item = self.world_model.combine(item1, item2)
+
+        # compute the value of the new item
+        new_item = replace(new_item, value=self.value_fn(new_item))
 
         # update the inventory
         self.inventory.append(new_item)

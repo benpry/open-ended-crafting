@@ -8,10 +8,9 @@ from dataclasses import asdict, replace
 
 from frozendict import frozendict
 
-from oecraft.constants import CombinedItem, Item, NonTool, Tool
-from oecraft.functions import COMBO_FUNCTIONS
 from oecraft.prompts import get_item_semantics_from_lm
-from oecraft.utils import dict_to_dataclass
+from oecraft.types import CombinedItem, Item, NonTool, Tool
+from oecraft.utils import dict_to_dataclass, load_function_from_string
 
 
 def freeze_item(item: Item) -> Item:
@@ -54,18 +53,25 @@ def check_if_same_item(e1: NonTool, e2: NonTool) -> bool:
 class MemoizedWorldModel:
     def __init__(
         self,
-        lm,
-        domain,
-        assign_names=False,
-        reasoning_effort="medium",
-        groq_api_key=None,
+        lm: str,
+        combo_function_str: str,
+        assign_names: bool = False,
+        naming_system_prompt: str | None = None,
+        naming_ic_examples: list[dict] | None = None,
+        feature_names: dict | None = None,
+        reasoning_effort: str = "medium",
+        groq_api_key: str | None = None,
     ):
         self.lm = lm
         self.ic_examples = []
-        self.domain = domain
         self.combinations = {}
-        self.combo_function = COMBO_FUNCTIONS[self.domain]
+        self.combo_function = load_function_from_string(
+            combo_function_str, "combination_fn"
+        )
         self.assign_names = assign_names
+        self.naming_system_prompt = naming_system_prompt
+        self.naming_ic_examples = naming_ic_examples
+        self.feature_names = feature_names
         self.reasoning_effort = reasoning_effort
         self.groq_api_key = groq_api_key
 
@@ -111,9 +117,11 @@ class MemoizedWorldModel:
             semantics = get_item_semantics_from_lm(
                 [e1, e2],
                 new_item,
-                self.domain,
+                self.naming_system_prompt,
+                self.naming_ic_examples,
                 self.lm,
                 self.ic_examples,
+                self.feature_names,
                 self.reasoning_effort,
                 self.groq_api_key,
             )

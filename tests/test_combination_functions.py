@@ -1,41 +1,29 @@
 import random
 
-from oecraft.constants import cooking_ingredients, cooking_tools
-from oecraft.functions import cooking_apply_tool, cooking_combination_function
-
-cooking_inv = cooking_ingredients + cooking_tools
+from oecraft.constants import Ingredient, Tool
+from oecraft.game_descriptors import GAME_DESCRIPTORS
 
 
-def test_cooking_combination_function():
-    # grab two random items
+def test_combination_functions():
+    for domain_name, descriptor in GAME_DESCRIPTORS.items():
+        print(f"Testing domain: {domain_name}")
 
-    for _ in range(100):
-        item1 = random.choice(cooking_inv)
-        item2 = random.choice(cooking_inv)
+        # reconstruct objects from dicts
+        ingredients = [Ingredient(**d) for d in descriptor.ingredients]
+        tools = [Tool(**d) for d in descriptor.tools]
+        inventory = ingredients + tools
 
-        print(f"item 1: {item1}")
-        print(f"item 2: {item2}")
+        combination_fn = descriptor.combination_fn
 
-        # combine them
-        result = cooking_combination_function(item1, item2)
+        for _ in range(50):
+            item1 = random.choice(inventory)
+            item2 = random.choice(inventory)
 
-        # check that the result is a valid item
-        print("result: ", result)
+            # print(f"item 1: {item1}")
+            # print(f"item 2: {item2}")
 
+            # combine them
+            result = combination_fn(item1, item2)
 
-def test_cooking_apply_tool():
-    # grab two random items
-
-    for _ in range(100):
-        tool = random.choice(cooking_tools)
-        item = random.choice(cooking_ingredients)
-
-        print(f"tool: {tool}")
-        print(f"item: {item}")
-
-        # combine them
-        result = cooking_apply_tool(tool, item)
-
-        # check that the result is a valid item
-        print("result: ", result)
-        print("result: ", result)
+            # check that the result is valid (None or has features)
+            # print("result: ", result)

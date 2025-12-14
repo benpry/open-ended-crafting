@@ -11,8 +11,7 @@ import requests
 from pydantic import BaseModel
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-from oecraft.constants import IC_EXAMPLES, SYSTEM_PROMPTS, CombinedItem, Item, Tool
-from oecraft.functions import FEATURE_NAMES
+from oecraft.types import CombinedItem, Item, Tool
 
 
 @retry(stop=stop_after_attempt(10), wait=wait_exponential())
@@ -114,11 +113,13 @@ def item_to_dict(item: Item, feature_names: dict) -> Item:
 
 
 def get_combination_messages(
-    item1: Item, item2: Item, outcome: Item, domain: str, ic_examples: list
+    item1: Item,
+    item2: Item,
+    outcome: Item,
+    system_prompt: str,
+    feature_names: dict,
+    ic_examples: list,
 ) -> list:
-    system_prompt = SYSTEM_PROMPTS[domain]
-    feature_names = FEATURE_NAMES[domain]
-
     messages = [
         {"role": "system", "content": system_prompt},
     ]
@@ -188,18 +189,21 @@ def call_model(
 def get_item_semantics_from_lm(
     inputs: list,
     outcome: dict,
-    domain: str,
+    system_prompt: str,
+    base_ic_examples: list,
     lm_string: str,
     ic_examples: list,
+    feature_names: dict,
     reasoning_effort: str = "medium",
     groq_api_key: Optional[str] = None,
 ) -> dict:
-    all_ic_examples = IC_EXAMPLES[domain] + ic_examples
+    all_ic_examples = base_ic_examples + ic_examples
     messages = get_combination_messages(
         inputs[0],
         inputs[1],
         outcome,
-        domain,
+        system_prompt,
+        feature_names,
         all_ic_examples,
     )
     semantics = call_model(messages, lm_string, reasoning_effort, groq_api_key)

@@ -3,11 +3,13 @@ import random
 import pandas as pd
 from tqdm import tqdm
 
-from oecraft.constants import Tool
 from oecraft.environment import CraftingGame
+from oecraft.types import GameDescriptor, Tool
 
 
-def run_random_agent(domain: str, n_runs: int = 10, n_steps: int = 10) -> pd.DataFrame:
+def run_random_agent(
+    game_descriptor: GameDescriptor, n_runs: int = 10, n_steps: int = 10
+) -> pd.DataFrame:
     """
     Run the random agent for multiple episodes and return results.
 
@@ -20,7 +22,7 @@ def run_random_agent(domain: str, n_runs: int = 10, n_steps: int = 10) -> pd.Dat
         DataFrame with step-by-step episode results with harmonized format
     """
     log = []
-    env = CraftingGame("none", domain=domain, assign_names=False)
+    env = CraftingGame(descriptor=game_descriptor, model="none", assign_names=False)
 
     for run_idx in tqdm(range(n_runs)):
         env.reset()
