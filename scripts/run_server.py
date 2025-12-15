@@ -67,7 +67,3 @@ def step(request: StepRequest):
     obs, _, _, _ = game.step(request.action)
     print(f"obs: {obs}")
     return obs
-    print(f"obs: {obs}")
-    return obs
-    print(f"obs: {obs}")
-    return obs

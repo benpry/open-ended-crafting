@@ -1,3 +1,4 @@
+import json
 from dataclasses import replace
 
 import gymnasium as gym
@@ -60,8 +61,6 @@ class CraftingGame(gym.Env):
 
         self.inventory = self.tools + ingredients
 
-        print(f"starting inventory: {self.inventory}")
-
         return self.inventory
 
     def render(self):
@@ -76,7 +75,6 @@ class CraftingGame(gym.Env):
                 features = self.descriptor_fn(item, self.world_model.feature_names)
                 ret += f"Ingredient: {item.emoji} {item.name}, value: {item.value}, features: {features}\n"
             elif isinstance(item, CombinedItem):
-                print(f"feature names: {self.world_model.feature_names}")
                 features = self.descriptor_fn(
                     item, feature_names=self.world_model.feature_names
                 )
@@ -179,3 +177,128 @@ class CraftingGame(gym.Env):
         reward = max(item.value for item in ingredients)
 
         return max(reward, 0)
+
+
+# Language model crafting game
+SYSTEM_PROMPT = """You are playing a crafting game. Your goal is to craft valuable items. Each item has features that determine how it combines with other items and how valuable it is. Some items are tools and others are ingredients. Tools can be used only once, while ingredients can be used as many times as you want. Using tools will change an item's features, while combining ingredients will create a new combined item. Your overall score is the value of the most valuable item in your inventory at the time you submit, but it cannot drop below 0. The maximum possible value is 100. You will have to learn the rules for how items combine, what the tools do, and how values are determined in order to achieve high scores. You should respond in JSON and follow this format:
+```json
+{
+    "reasoning": "a one or two sentence explanation of why you chose this action",
+    "action": "either a list of the names of two items in the inventory or the string 'submit'"
+}
+```
+The action should include only the item names, not the emoji.
+"""
+
+
+class LMCraftingGame(gym.Env):
+    """
+    A wrapper around the oecraft crafting game that allows for language model interaction.
+    """
+
+    def __init__(self, env: CraftingGame):
+        self.env = env
+        self.prompt_history = []
+
+    def clear_history(self):
+        self.prompt_history = []
+
+    def _append_user_message(self, content: str):
+        if self.prompt_history and self.prompt_history[-1]["role"] == "user":
+            self.prompt_history[-1]["content"] += "\n\n" + content
+        else:
+            self.prompt_history.append({"role": "user", "content": content})
+
+    def reset(
+        self,
+        seed: int | None = None,
+        options: dict | None = None,
+    ):
+        self.env.reset(seed=seed, options=options)
+        if len(self.prompt_history) == 0:
+            self.prompt_history = [{"role": "system", "content": SYSTEM_PROMPT}]
+            self._append_user_message("Starting inventory:\n" + self.env.render())
+        else:
+            self._append_user_message(
+                "You have begin a new round.\nStarting inventory:\n" + self.env.render()
+            )
+
+    def parse_action(self, action: str):
+        # parse the action
+        action_json = json.loads(action)
+        if "reasoning" not in action_json:
+            raise ValueError("Action must contain a 'reasoning' field")
+        if "action" not in action_json:
+            raise ValueError("Action must contain an 'action' field")
+
+        # "action" should have either a pair of items or the string "submit"
+        if action_json["action"] == "submit":
+            return action_json
+        elif (
+            isinstance(action_json["action"], list) and len(action_json["action"]) == 2
+        ):
+            return action_json
+        else:
+            raise ValueError(
+                "Action must contain a pair of items or the string 'submit'"
+            )
+
+    def format_obs(self, obs: dict):
+        new_item = obs["new_item"]
+        if new_item is not None:
+            new_item_features = self.env.descriptor_fn(
+                new_item, self.env.world_model.feature_names
+            )
+            inventory_formatted = f"""New item: {new_item.emoji} {new_item.name}, value: {new_item.value}, features: {new_item_features}
+Current inventory:\n""" + self.env.render()
+        else:
+            inventory_formatted = "Current inventory:\n" + self.env.render()
+
+        inventory_formatted += f"Current score: {self.env.get_reward()}"
+
+        return inventory_formatted
+
+    def inner_step(self, action: str):
+        # parse the action
+        action_json = self.parse_action(action)
+
+        # format the action to be passed to the environment
+        if action_json["action"] == "submit":
+            env_action = None
+        else:
+            env_action = action_json["action"]
+
+        # execute the action
+        obs, reward, terminated, info = self.env.step(env_action)
+
+        self._append_user_message(self.format_obs(obs))
+
+        return obs, reward, terminated, info
+
+    def step(self, action: str):
+        self.prompt_history.append({"role": "assistant", "content": action})
+
+        try:
+            obs, reward, terminated, info = self.inner_step(action)
+        except ValueError as e:
+            self._append_user_message(f"Error: {e}\nPlease try again.")
+            obs = {
+                "inventory": self.env.inventory,
+                "new_item": None,
+            }
+            reward = 0
+            terminated = False
+            info = {}
+
+        return obs, reward, terminated, info
+
+    def get_prompt_history(self):
+        return self.prompt_history[:]
+
+    def add_message_to_history(self, message: str):
+        self._append_user_message(
+            f"You received the following message from a previous player trying to help you:\n{message}"
+        )
+
+    def get_reward(self):
+        return self.env.get_reward()
