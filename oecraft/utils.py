@@ -45,3 +45,17 @@ def load_function_from_string(code: str, function_name: str) -> Callable:
             f"Available keys: {list(scope.keys())}"
         )
     return scope[function_name]
+
+
+class DotDict(dict):
+    """
+    dot.notation access to dictionary attributes
+    https://stackoverflow.com/a/23689767
+    """
+
+    __getattr__ = dict.get
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
+
+    def copy(self):
+        return DotDict(super().copy())

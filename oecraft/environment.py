@@ -2,6 +2,7 @@ import json
 from dataclasses import replace
 
 import gymnasium as gym
+from google.genai import types
 
 from oecraft.types import CombinedItem, GameDescriptor, Ingredient, Tool
 from oecraft.utils import load_function_from_string
@@ -23,8 +24,15 @@ class CraftingGame(gym.Env):
         self.descriptor_fn = load_function_from_string(
             descriptor.descriptor_fn, "descriptor_fn"
         )
-        self.tools = [Tool(**x) for x in descriptor.tools]
-        self.ingredients = [Ingredient(**x) for x in descriptor.ingredients]
+        # GameDescriptor already validates and instantiates Tool/Ingredient objects.
+        # Keep compatibility if a raw mapping ever slips through.
+        self.tools = [
+            Tool(**x) if isinstance(x, dict) else x for x in descriptor.tools
+        ]
+        self.ingredients = [
+            Ingredient(**x) if isinstance(x, dict) else x
+            for x in descriptor.ingredients
+        ]
         self.model = model
         self.n_starting_ingredients = n_starting_ingredients
 
@@ -204,10 +212,24 @@ class LMCraftingGame(gym.Env):
         self.prompt_history = []
 
     def _append_user_message(self, content: str):
-        if self.prompt_history and self.prompt_history[-1]["role"] == "user":
-            self.prompt_history[-1]["content"] += "\n\n" + content
+        if self.prompt_history and self.prompt_history[-1].role == "user":
+            # add the new content to the last message
+            self.prompt_history = self.prompt_history[:-1] + [
+                types.Content(
+                    role="user",
+                    parts=[
+                        types.Part.from_text(
+                            text=self.prompt_history[-1].parts[0].text
+                            + "\n\n"
+                            + content
+                        )
+                    ],
+                )
+            ]
         else:
-            self.prompt_history.append({"role": "user", "content": content})
+            self.prompt_history.append(
+                types.Content(role="user", parts=[types.Part.from_text(text=content)])
+            )
 
     def reset(
         self,
@@ -216,11 +238,11 @@ class LMCraftingGame(gym.Env):
     ):
         self.env.reset(seed=seed, options=options)
         if len(self.prompt_history) == 0:
-            self.prompt_history = [{"role": "system", "content": SYSTEM_PROMPT}]
+            self.prompt_history = []
             self._append_user_message("Starting inventory:\n" + self.env.render())
         else:
             self._append_user_message(
-                "You have begin a new round.\nStarting inventory:\n" + self.env.render()
+                "You have begun a new round.\nStarting inventory:\n" + self.env.render()
             )
 
     def parse_action(self, action: str):
@@ -276,7 +298,9 @@ Current inventory:\n""" + self.env.render()
         return obs, reward, terminated, info
 
     def step(self, action: str):
-        self.prompt_history.append({"role": "assistant", "content": action})
+        self.prompt_history.append(
+            types.Content(role="model", parts=[types.Part.from_text(text=action)])
+        )
 
         try:
             obs, reward, terminated, info = self.inner_step(action)
