@@ -487,8 +487,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -499,8 +499,8 @@ decorations_ingredients = [
         features={
             "hardness": "hard",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -511,8 +511,8 @@ decorations_ingredients = [
         features={
             "hardness": "hard",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -523,8 +523,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -535,8 +535,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -547,8 +547,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -559,8 +559,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -571,8 +571,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -583,8 +583,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -595,8 +595,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -607,8 +607,8 @@ decorations_ingredients = [
         features={
             "hardness": "hard",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -619,8 +619,8 @@ decorations_ingredients = [
         features={
             "hardness": "hard",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -631,8 +631,8 @@ decorations_ingredients = [
         features={
             "hardness": "hard",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -643,8 +643,8 @@ decorations_ingredients = [
         features={
             "hardness": "hard",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "natural",
         },
     ),
@@ -655,8 +655,8 @@ decorations_ingredients = [
         features={
             "hardness": "hard",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -667,8 +667,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -679,8 +679,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -691,8 +691,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -703,8 +703,8 @@ decorations_ingredients = [
         features={
             "hardness": "hard",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -715,8 +715,8 @@ decorations_ingredients = [
         features={
             "hardness": "soft",
             "cut_level": 0,
-            "framed": False,
-            "post_frame_messed_with": False,
+            "framed": 0,
+            "post_frame_messed_with": 0,
             "type": "artificial",
         },
     ),
@@ -731,8 +731,8 @@ decorations_tools = [
 
 decorations_feature_names = {
     "cut_level": ["not cut", "cut", "finely cut"],
-    "framed": {True: "framed", False: "not framed"},
-    "post_frame_messed_with": {False: None, True: "ruined frame"},
+    "framed": ["not framed", "framed"],
+    "post_frame_messed_with": ["frame intact", "ruined frame"],
 }
 
 
@@ -765,8 +765,8 @@ decorations_naming_ic_examples = [
                     "type": "artificial",
                     "hardness": "hard",
                     "cut_level": 2,
-                    "framed": False,
-                    "post_frame_messed_with": False,
+                    "framed": 0,
+                    "post_frame_messed_with": 0,
                 },
             ),
             Ingredient(
@@ -777,8 +777,8 @@ decorations_naming_ic_examples = [
                     "type": "artificial",
                     "hardness": "soft",
                     "cut_level": 0,
-                    "framed": False,
-                    "post_frame_messed_with": False,
+                    "framed": 0,
+                    "post_frame_messed_with": 0,
                 },
             ),
         ],
@@ -792,8 +792,8 @@ decorations_naming_ic_examples = [
                         "type": "artificial",
                         "hardness": "hard",
                         "cut_level": 2,
-                        "framed": False,
-                        "post_frame_messed_with": False,
+                        "framed": 0,
+                        "post_frame_messed_with": 0,
                     },
                 ),
                 Ingredient(
@@ -804,12 +804,12 @@ decorations_naming_ic_examples = [
                         "type": "artificial",
                         "hardness": "soft",
                         "cut_level": 0,
-                        "framed": False,
-                        "post_frame_messed_with": False,
+                        "framed": 0,
+                        "post_frame_messed_with": 0,
                     },
                 ),
             ],
-            features={"framed": False, "post_frame_messed_with": False},
+            features={"framed": 0, "post_frame_messed_with": 0},
             value=25,
         ),
         "semantics": {
@@ -827,8 +827,8 @@ decorations_naming_ic_examples = [
                     "type": "natural",
                     "hardness": "soft",
                     "cut_level": 0,
-                    "framed": False,
-                    "post_frame_messed_with": False,
+                    "framed": 0,
+                    "post_frame_messed_with": 0,
                 },
             ),
             Tool(name="frame", emoji="🖼️"),
@@ -838,8 +838,8 @@ decorations_naming_ic_examples = [
                 "type": "natural",
                 "hardness": "soft",
                 "cut_level": 0,
-                "framed": False,
-                "post_frame_messed_with": False,
+                "framed": 0,
+                "post_frame_messed_with": 0,
             },
             value=20,
         ),
@@ -905,11 +905,11 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
             if tool.name == "frame":
                 if not item.features["framed"]:
                     return replace(
-                        item, features={"framed": True, "post_frame_messed_with": False}
+                        item, features={"framed": 1, "post_frame_messed_with": 0}
                     )
                 else:
                     return replace(
-                        item, features={"framed": True, "post_frame_messed_with": True}
+                        item, features={"framed": 1, "post_frame_messed_with": 1}
                     )
             else:
                 return replace(
@@ -923,7 +923,7 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
 
         if tool.name == "frame":
             # the frame frames things
-            new_features["framed"] = True
+            new_features["framed"] = 1
 
         elif tool.name == "scissors":
             # Only cut soft items, not hard ones
@@ -955,9 +955,9 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
         new_item = apply_tool(item2, item1)
     elif isinstance(item1, CombinedItem) and isinstance(item2, CombinedItem):
         if item1.features["framed"] or item2.features["framed"]:
-            new_features = {"framed": True, "post_frame_messed_with": True}
+            new_features = {"framed": 1, "post_frame_messed_with": 1}
         else:
-            new_features = {"framed": False, "post_frame_messed_with": False}
+            new_features = {"framed": 0, "post_frame_messed_with": 0}
 
         new_item = CombinedItem(
             ingredients=item1.ingredients + item2.ingredients,
@@ -966,14 +966,14 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
 
     elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
         if item1.features["framed"]:
-            new_features = {"framed": True, "post_frame_messed_with": True}
+            new_features = {"framed": 1, "post_frame_messed_with": 1}
         else:
-            new_features = {"framed": False, "post_frame_messed_with": False}
+            new_features = {"framed": 0, "post_frame_messed_with": 0}
 
         if item2.features["framed"]:
             item2_features = item2.features.copy()
-            item2_features["framed"] = True
-            item2_features["post_frame_messed_with"] = True
+            item2_features["framed"] = 1
+            item2_features["post_frame_messed_with"] = 1
             item2 = replace(
                 item2,
                 features=item2_features,
@@ -988,8 +988,8 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
     elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
         if item1.features["framed"]:
             item1_features = item1.features.copy()
-            item1_features["framed"] = True
-            item1_features["post_frame_messed_with"] = True
+            item1_features["framed"] = 1
+            item1_features["post_frame_messed_with"] = 1
             item1 = replace(
                 item1,
                 features=item1_features,
@@ -997,9 +997,9 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
             )
 
         if item2.features["framed"]:
-            new_features = {"framed": True, "post_frame_messed_with": True}
+            new_features = {"framed": 1, "post_frame_messed_with": 1}
         else:
-            new_features = {"framed": False, "post_frame_messed_with": False}
+            new_features = {"framed": 0, "post_frame_messed_with": 0}
 
         new_item = CombinedItem(
             ingredients=item2.ingredients + [item1],
@@ -1008,8 +1008,8 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
     else:
         if item1.features["framed"]:
             item1_features = item1.features.copy()
-            item1_features["framed"] = True
-            item1_features["post_frame_messed_with"] = True
+            item1_features["framed"] = 1
+            item1_features["post_frame_messed_with"] = 1
             item1 = replace(
                 item1,
                 features=item1_features,
@@ -1018,8 +1018,8 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
 
         if item2.features["framed"]:
             item2_features = item2.features.copy()
-            item2_features["framed"] = True
-            item2_features["post_frame_messed_with"] = True
+            item2_features["framed"] = 1
+            item2_features["post_frame_messed_with"] = 1
             item2 = replace(
                 item2,
                 features=item2_features,
@@ -1028,11 +1028,11 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
 
         new_item = CombinedItem(
             ingredients=[item1, item2],
-            features={"framed": False, "post_frame_messed_with": False},
+            features={"framed": 0, "post_frame_messed_with": 0},
         )
 
     if already_framed:
-        new_item.features["post_frame_messed_with"] = True
+        new_item.features["post_frame_messed_with"] = 1
 
     return new_item
 
@@ -1664,7 +1664,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1675,7 +1675,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1686,7 +1686,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1697,7 +1697,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1708,7 +1708,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1719,7 +1719,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1730,7 +1730,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1741,7 +1741,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1752,7 +1752,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1763,7 +1763,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1774,7 +1774,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "solid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1785,7 +1785,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "gas",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1796,7 +1796,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "gas",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1807,7 +1807,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "gas",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1818,7 +1818,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "gas",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1829,7 +1829,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1840,7 +1840,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1851,7 +1851,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "magical": True,
+            "magical": 1,
             "filtering": None,
             "extraction": None,
         },
@@ -1862,7 +1862,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1873,7 +1873,7 @@ potions_ingredients = [
         value=0,
         features={
             "state_of_matter": "liquid",
-            "magical": False,
+            "magical": 0,
             "filtering": None,
             "extraction": None,
         },
@@ -1887,7 +1887,9 @@ potions_tools = [
 ]
 
 
-potions_feature_names = {}
+potions_feature_names = {
+    "magical": ["mundane", "magical"],
+}
 
 
 potions_system_prompt = """
@@ -1916,7 +1918,7 @@ potions_naming_ic_examples = [
                 value=0,
                 features={
                     "state_of_matter": "solid",
-                    "magical": False,
+                    "magical": 0,
                     "filtering": None,
                     "extraction": None,
                 },
@@ -1926,7 +1928,7 @@ potions_naming_ic_examples = [
         "outcome": Ingredient(
             features={
                 "state_of_matter": "solid",
-                "magical": False,
+                "magical": 0,
                 "filtering": "botched",
                 "extraction": None,
             },
@@ -1942,7 +1944,7 @@ potions_naming_ic_examples = [
                 value=30,
                 features={
                     "state_of_matter": "liquid",
-                    "magical": False,
+                    "magical": 0,
                     "filtering": None,
                     "extraction": "extracted",
                 },
@@ -1953,7 +1955,7 @@ potions_naming_ic_examples = [
                 value=0,
                 features={
                     "state_of_matter": "solid",
-                    "magical": True,
+                    "magical": 1,
                     "filtering": None,
                     "extraction": None,
                 },
@@ -1967,7 +1969,7 @@ potions_naming_ic_examples = [
                     value=30,
                     features={
                         "state_of_matter": "liquid",
-                        "magical": False,
+                        "magical": 0,
                         "filtering": None,
                         "extraction": "extracted",
                     },
@@ -1978,7 +1980,7 @@ potions_naming_ic_examples = [
                     value=0,
                     features={
                         "state_of_matter": "solid",
-                        "magical": True,
+                        "magical": 1,
                         "filtering": None,
                         "extraction": None,
                     },
