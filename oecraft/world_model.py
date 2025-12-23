@@ -110,6 +110,7 @@ class MemoizedWorldModel:
                 and isinstance(e1, Tool)
                 and e1.name != "frame"
             ):
+                new_ingredients = []
                 for i in range(len(new_item.ingredients)):
                     named_ingredient = self.combine(e1, e2.ingredients[i])
                     new_ingredients.append(
@@ -134,7 +135,7 @@ class MemoizedWorldModel:
             )
             self.ic_examples.append(
                 ICExample(
-                    input=[e1, e2],
+                    inputs=(e1, e2),
                     outcome=new_item,
                     semantics=ItemSemantics(
                         emoji=semantics["emoji"], name=semantics["name"]
@@ -158,7 +159,6 @@ class MemoizedWorldModel:
                     new_ingredients.append(named_ingredient)
                 new_item = replace(new_item, ingredients=tuple(new_ingredients))
             elif isinstance(e2, CombinedItem) and isinstance(e1, Tool):
-                new_ingredients = []
                 for i in range(len(new_item.ingredients)):
                     named_ingredient = replace(
                         new_item.ingredients[i],
@@ -223,7 +223,7 @@ class MemoizedWorldModel:
         for example in world_model_dict["ic_examples"]:
             self.ic_examples.append(
                 ICExample(
-                    input=[dict_to_dataclass(x) for x in example["input"]],
+                    inputs=(dict_to_dataclass(x) for x in example["input"]),
                     outcome=dict_to_dataclass(example["outcome"]),
                     semantics=ItemSemantics(
                         emoji=example["semantics"]["emoji"],
@@ -247,7 +247,7 @@ class MemoizedWorldModel:
         for example in ic_examples:
             self.ic_examples.append(
                 ICExample(
-                    input=[dict_to_dataclass(x) for x in example["input"]],
+                    inputs=[dict_to_dataclass(x) for x in example["input"]],
                     outcome=dict_to_dataclass(example["outcome"]),
                     semantics=ItemSemantics(
                         emoji=example["semantics"]["emoji"],

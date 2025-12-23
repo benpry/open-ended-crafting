@@ -187,18 +187,23 @@ def validate_game_descriptor(gd: GameDescriptor) -> tuple[bool, str]:
             # Check value of combined item
             value = loaded_fns["value_fn"](result)
             if not isinstance(value, (int, float)):
+                error_message = traceback.format_exc()
                 errors.append(
-                    f"value_fn returned non-numeric for combined item: {value}"
+                    f"value_fn returned non-numeric for combined item: {value}\nTraceback: {error_message}"
                 )
 
             # Check that the result can be frozen/hashed (required for world model)
             success, err = _try_freeze_item(result)
             if not success:
+                error_message = traceback.format_exc()
                 errors.append(
-                    f"combination_fn (tool + ingredient) produced unhashable item: {err}"
+                    f"combination_fn (tool + ingredient) produced unhashable item: {err}\nTraceback: {error_message}"
                 )
     except Exception as e:
-        errors.append(f"Error in combination_fn (tool + ingredient): {e}")
+        error_message = traceback.format_exc()
+        errors.append(
+            f"Error in combination_fn (tool + ingredient): {e}\nTraceback: {error_message}"
+        )
 
     if errors:
         return False, "\n".join(errors)
@@ -626,6 +631,3 @@ if __name__ == "__main__":
     )
     potions_game_descriptor = GAME_DESCRIPTORS["potions"]
     log = optimizer.run(potions_game_descriptor, max_iter=1)
-    print(log)
-
-    # TODO: figute out how to stop having the combination giving dict items

@@ -7,45 +7,70 @@ from pydantic.json_schema import JsonSchemaValue
 from pydantic_core import CoreSchema, core_schema
 
 
-class _FrozenDictPydanticAnnotation:
-    """Custom Pydantic annotation for frozendict support."""
+def _dict_to_entries(d: dict) -> list:
+    """Convert dict to list of {key, value} entries."""
+    return [{"key": k, "value": v} for k, v in d.items()]
+
+
+def _entries_to_dict(entries: list) -> dict:
+    """Convert list of {key, value} entries to dict, parsing numeric strings."""
+    result = {}
+    for item in entries:
+        value = item["value"]
+        # Try to parse string values as numbers
+        if isinstance(value, str):
+            try:
+                value = int(value)
+            except ValueError:
+                try:
+                    value = float(value)
+                except ValueError:
+                    pass
+        result[item["key"]] = value
+    return result
+
+
+class _FrozenDictAnnotation:
+    """Pydantic annotation for frozendict that avoids additionalProperties."""
 
     @classmethod
     def __get_pydantic_core_schema__(
-        cls,
-        _source_type: Any,
-        _handler: GetCoreSchemaHandler,
+        cls, _source_type: Any, _handler: GetCoreSchemaHandler
     ) -> CoreSchema:
-        """Define how to validate frozendict."""
-
-        def validate_frozendict(value: Any) -> frozendict:
+        def validate(value: Any) -> frozendict:
             if isinstance(value, frozendict):
                 return value
             if isinstance(value, dict):
                 return frozendict(value)
-            raise ValueError(f"Expected dict or frozendict, got {type(value)}")
+            if isinstance(value, list):
+                return frozendict(_entries_to_dict(value))
+            raise ValueError(
+                f"Expected dict, frozendict, or list of entries, got {type(value)}"
+            )
 
         return core_schema.no_info_plain_validator_function(
-            validate_frozendict,
+            validate,
             serialization=core_schema.plain_serializer_function_ser_schema(
-                lambda x: dict(x),
+                lambda x: _dict_to_entries(dict(x)),
                 info_arg=False,
-                return_schema=core_schema.dict_schema(),
             ),
         )
 
     @classmethod
     def __get_pydantic_json_schema__(
-        cls,
-        _core_schema: CoreSchema,
-        handler: GetJsonSchemaHandler,
+        cls, _core_schema: CoreSchema, _handler: GetJsonSchemaHandler
     ) -> JsonSchemaValue:
-        """Define the JSON schema as a plain object."""
-        return {"type": "object"}
+        return {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {"key": {"type": "string"}, "value": {"type": "string"}},
+                "required": ["key", "value"],
+            },
+        }
 
 
-# Use this type annotation for frozendict fields in Pydantic models/dataclasses
-FrozenDict = Annotated[frozendict, _FrozenDictPydanticAnnotation]
+FrozenDict = Annotated[frozendict, _FrozenDictAnnotation]
 
 
 @dataclass(frozen=True)
@@ -84,40 +109,78 @@ class ItemSemantics:
 
 @dataclass(frozen=True)
 class ICExample:
-    inputs: Tuple[Item, ...]
-    outcome: Item
+    inputs: Tuple[Tool | Ingredient | CombinedItem, ...]
+    outcome: Tool | Ingredient | CombinedItem
     semantics: ItemSemantics
 
 
+class _FeatureNamesAnnotation:
+    """Pydantic annotation for feature_names dict that avoids additionalProperties."""
+
+    @classmethod
+    def __get_pydantic_core_schema__(
+        cls, _source_type: Any, _handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
+        def validate(value: Any) -> dict:
+            if isinstance(value, dict):
+                return value
+            if isinstance(value, list):
+                return {item["name"]: item["values"] for item in value}
+            raise ValueError(f"Expected dict or list of entries, got {type(value)}")
+
+        return core_schema.no_info_plain_validator_function(
+            validate,
+            serialization=core_schema.plain_serializer_function_ser_schema(
+                lambda x: [{"name": k, "values": v} for k, v in x.items()],
+                info_arg=False,
+            ),
+        )
+
+    @classmethod
+    def __get_pydantic_json_schema__(
+        cls, _core_schema: CoreSchema, _handler: GetJsonSchemaHandler
+    ) -> JsonSchemaValue:
+        return {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "values": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["name", "values"],
+            },
+        }
+
+
+FeatureNames = Annotated[dict, _FeatureNamesAnnotation]
+
+
 class GameDescriptor(BaseModel):
-    """
-    A descriptor for the crafting game.
-    """
+    """A descriptor for the crafting game."""
 
     combination_fn: str = Field(
-        description="A string representing Python code that defines a function called combination_fn that takes two items and returns a new item."
+        description="Python code defining combination_fn(item1, item2) -> new_item"
     )
     value_fn: str = Field(
-        description="A string representing Python code that defines a function called value_fn that takes an item and returns a score between 0 and 100."
+        description="Python code defining value_fn(item) -> score (0-100)"
     )
     get_inventory_fn: str = Field(
-        description="A string representing Python code that defines a function called get_inventory_fn that takes a number of items and a list of all the ingredients and returns a list of items."
+        description="Python code defining get_inventory_fn(n_items, all_ingredients) -> list of items"
     )
     descriptor_fn: str = Field(
-        description="A string representing Python code that defines a function called descriptor_fn that takes an item and returns a string describing the item."
+        description="Python code defining descriptor_fn(item) -> description string"
     )
-    tools: List[Tool] = Field(description="A list of tools in the game.")
-    ingredients: List[Ingredient] = Field(
-        description="A list of ingredients that could appear in the player's starting inventory."
-    )
+    tools: List[Tool] = Field(description="Tools available in the game")
+    ingredients: List[Ingredient] = Field(description="Possible starting ingredients")
     naming_system_prompt: str = Field(
-        description="A string representing the system prompt for the small language model that will be used to assign names to the items given the names of the inputs and the features of the new item."
+        description="System prompt for the LLM that names combined items"
     )
-    feature_names: dict[str, List[str]] = Field(
+    feature_names: FeatureNames = Field(
         default_factory=dict,
-        description="Map from feature name to list of string labels (index = value). Example: {'cook_level': ['raw', 'cooked', 'overcooked']}",
+        description="Map feature name -> list of labels. Example: {'cook_level': ['raw', 'cooked', 'burnt']}",
     )
     naming_ic_examples: List[ICExample] = Field(
         default_factory=list,
-        description="A list of ICExamples representing the input and output features of the items in the game.",
+        description="In-context examples for item naming",
     )
