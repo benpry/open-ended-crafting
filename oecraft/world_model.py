@@ -9,7 +9,7 @@ from dataclasses import asdict, replace
 from frozendict import frozendict
 
 from oecraft.prompts import get_item_semantics_from_lm
-from oecraft.types import CombinedItem, Item, NonTool, Tool
+from oecraft.types import CombinedItem, ICExample, Item, ItemSemantics, NonTool, Tool
 from oecraft.utils import dict_to_dataclass, load_function_from_string
 
 
@@ -82,9 +82,9 @@ class MemoizedWorldModel:
 
         # If one of the items is a tool and the output features are the same as the input features,
         # then the output is the same as the input
-        if e1.tool and check_if_same_item(new_item, e2):
+        if isinstance(e1, Tool) and check_if_same_item(new_item, e2):
             return e2
-        elif e2.tool and check_if_same_item(new_item, e1):
+        elif isinstance(e2, Tool) and check_if_same_item(new_item, e1):
             return e1
 
         if self.assign_names:
@@ -94,13 +94,17 @@ class MemoizedWorldModel:
                 and isinstance(e2, Tool)
                 and e2.name != "frame"
             ):
+                new_ingredients = []
                 for i in range(len(new_item.ingredients)):
                     named_ingredient = self.combine(e1.ingredients[i], e2)
-                    new_item.ingredients[i] = replace(
-                        new_item.ingredients[i],
-                        name=named_ingredient.name,
-                        emoji=named_ingredient.emoji,
+                    new_ingredients.append(
+                        replace(
+                            named_ingredient,
+                            name=named_ingredient.name,
+                            emoji=named_ingredient.emoji,
+                        )
                     )
+                new_item = replace(new_item, ingredients=tuple(new_ingredients))
             elif (
                 isinstance(e2, CombinedItem)
                 and isinstance(e1, Tool)
@@ -108,11 +112,14 @@ class MemoizedWorldModel:
             ):
                 for i in range(len(new_item.ingredients)):
                     named_ingredient = self.combine(e1, e2.ingredients[i])
-                    new_item.ingredients[i] = replace(
-                        new_item.ingredients[i],
-                        name=named_ingredient.name,
-                        emoji=named_ingredient.emoji,
+                    new_ingredients.append(
+                        replace(
+                            new_item.ingredients[i],
+                            name=named_ingredient.name,
+                            emoji=named_ingredient.emoji,
+                        )
                     )
+                new_item = replace(new_item, ingredients=tuple(new_ingredients))
 
             semantics = get_item_semantics_from_lm(
                 [e1, e2],
@@ -126,11 +133,13 @@ class MemoizedWorldModel:
                 self.groq_api_key,
             )
             self.ic_examples.append(
-                {
-                    "input": [e1, e2],
-                    "outcome": new_item,
-                    "semantics": semantics,
-                }
+                ICExample(
+                    input=[e1, e2],
+                    outcome=new_item,
+                    semantics=ItemSemantics(
+                        emoji=semantics["emoji"], name=semantics["name"]
+                    ),
+                )
             )
 
             new_item = replace(
@@ -139,20 +148,25 @@ class MemoizedWorldModel:
 
         else:
             if isinstance(e1, CombinedItem) and isinstance(e2, Tool):
+                new_ingredients = []
                 for i in range(len(new_item.ingredients)):
-                    new_item.ingredients[i] = replace(
+                    named_ingredient = replace(
                         new_item.ingredients[i],
                         name=f"[{e1.ingredients[i].name}-{e2.name}]",
                         emoji="❓",
                     )
+                    new_ingredients.append(named_ingredient)
+                new_item = replace(new_item, ingredients=tuple(new_ingredients))
             elif isinstance(e2, CombinedItem) and isinstance(e1, Tool):
+                new_ingredients = []
                 for i in range(len(new_item.ingredients)):
-                    new_item.ingredients[i] = replace(
+                    named_ingredient = replace(
                         new_item.ingredients[i],
                         name=f"[{e1.name}-{e2.ingredients[i].name}]",
                         emoji="❓",
                     )
-
+                    new_ingredients.append(named_ingredient)
+                new_item = replace(new_item, ingredients=tuple(new_ingredients))
             new_item = replace(new_item, name=f"[{e1.name}]-[{e2.name}]", emoji="❓")
 
         return new_item
@@ -177,10 +191,23 @@ class MemoizedWorldModel:
             inps = tuple(thaw_item(x) for x in combo)
             combinations_lsts[inps] = tuple(asdict(x) for x in result)
 
+        ic_examples_serialized = []
+        for example in self.ic_examples:
+            ic_examples_serialized.append(
+                {
+                    "input": [asdict(x) for x in example.input],
+                    "outcome": asdict(example.outcome),
+                    "semantics": {
+                        "emoji": example.semantics.emoji,
+                        "name": example.semantics.name,
+                    },
+                }
+            )
+
         world_model_dict = {
             "lm": self.lm,
             "combinations": combinations_lsts,
-            "ic_examples": self.ic_examples,
+            "ic_examples": ic_examples_serialized,
             "assign_names": self.assign_names,
         }
 
@@ -192,7 +219,18 @@ class MemoizedWorldModel:
             world_model_dict = json.load(f)
         self.lm = world_model_dict["lm"]
         self.assign_names = world_model_dict["assign_names"]
-        self.ic_examples = world_model_dict["ic_examples"]
+        self.ic_examples = []
+        for example in world_model_dict["ic_examples"]:
+            self.ic_examples.append(
+                ICExample(
+                    input=[dict_to_dataclass(x) for x in example["input"]],
+                    outcome=dict_to_dataclass(example["outcome"]),
+                    semantics=ItemSemantics(
+                        emoji=example["semantics"]["emoji"],
+                        name=example["semantics"]["name"],
+                    ),
+                )
+            )
         self.combinations = {}
         for combo, result in world_model_dict["combinations"].items():
             combo = frozenset(
@@ -208,11 +246,14 @@ class MemoizedWorldModel:
         self.ic_examples = []
         for example in ic_examples:
             self.ic_examples.append(
-                {
-                    "input": [dict_to_dataclass(x) for x in example["input"]],
-                    "outcome": dict_to_dataclass(example["outcome"]),
-                    "semantics": example["semantics"],
-                }
+                ICExample(
+                    input=[dict_to_dataclass(x) for x in example["input"]],
+                    outcome=dict_to_dataclass(example["outcome"]),
+                    semantics=ItemSemantics(
+                        emoji=example["semantics"]["emoji"],
+                        name=example["semantics"]["name"],
+                    ),
+                )
             )
 
         self.combinations = {}
@@ -232,9 +273,12 @@ class MemoizedWorldModel:
         for example in self.ic_examples:
             ic_examples.append(
                 {
-                    "input": [asdict(x) for x in example["input"]],
-                    "outcome": asdict(example["outcome"]),
-                    "semantics": example["semantics"],
+                    "input": [asdict(x) for x in example.input],
+                    "outcome": asdict(example.outcome),
+                    "semantics": {
+                        "emoji": example.semantics.emoji,
+                        "name": example.semantics.name,
+                    },
                 }
             )
 

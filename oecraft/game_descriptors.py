@@ -4,7 +4,15 @@ from inspect import getsource
 from typing import Any
 
 from oecraft.environment import GameDescriptor
-from oecraft.types import CombinedItem, Ingredient, Item, NonTool, Tool
+from oecraft.types import (
+    CombinedItem,
+    ICExample,
+    Ingredient,
+    Item,
+    ItemSemantics,
+    NonTool,
+    Tool,
+)
 
 cooking_ingredients = [
     Ingredient(
@@ -272,8 +280,8 @@ cooking_feature_names = {
 }
 
 cooking_naming_ic_examples = [
-    {
-        "input": [
+    ICExample(
+        inputs=[
             Ingredient(
                 name="cooked fish",
                 emoji="🔥🐟",
@@ -295,7 +303,7 @@ cooking_naming_ic_examples = [
                 },
             ),
         ],
-        "outcome": CombinedItem(
+        outcome=CombinedItem(
             ingredients=[
                 Ingredient(
                     name="cooked fish",
@@ -321,10 +329,10 @@ cooking_naming_ic_examples = [
             features={},
             value=60,
         ),
-        "semantics": {"emoji": "🐟🍚", "name": "fish and rice dish"},
-    },
-    {
-        "input": [
+        semantics=ItemSemantics(emoji="🐟🍚", name="fish and rice dish"),
+    ),
+    ICExample(
+        inputs=[
             Tool(
                 name="stove",
                 emoji="🔥",
@@ -340,7 +348,7 @@ cooking_naming_ic_examples = [
                 },
             ),
         ],
-        "outcome": Ingredient(
+        outcome=Ingredient(
             name="",
             emoji="",
             features={
@@ -350,8 +358,8 @@ cooking_naming_ic_examples = [
             },
             value=20,
         ),
-        "semantics": {"emoji": "🔥🥕", "name": "cooked carrot"},
-    },
+        semantics=ItemSemantics(emoji="🔥🥕", name="cooked carrot"),
+    ),
 ]
 
 
@@ -369,7 +377,7 @@ def cooking_combination_function(item1: Item, item2: Item):
                 ],
             )
 
-        new_features = item.features.copy()
+        new_features = dict(item.features.copy())
 
         if tool.name == "water":
             # adding water always soaks something
@@ -400,11 +408,11 @@ def cooking_combination_function(item1: Item, item2: Item):
         )
     elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
         new_item = CombinedItem(
-            ingredients=item1.ingredients + [item2],
+            ingredients=item1.ingredients + (item2,),
         )
     elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
         new_item = CombinedItem(
-            ingredients=item2.ingredients + [item1],
+            ingredients=item2.ingredients + (item1,),
         )
     else:
         # two ingredients
@@ -755,8 +763,8 @@ Please respond in JSON format, with double quotes around all strings.
 
 
 decorations_naming_ic_examples = [
-    {
-        "input": [
+    ICExample(
+        inputs=[
             Ingredient(
                 name="finely-cut beads",
                 emoji="📿🖊️",
@@ -782,8 +790,8 @@ decorations_naming_ic_examples = [
                 },
             ),
         ],
-        "outcome": CombinedItem(
-            ingredients=[
+        outcome=CombinedItem(
+            ingredients=(
                 Ingredient(
                     name="finely-cut beads",
                     emoji="📿🖊️",
@@ -808,17 +816,17 @@ decorations_naming_ic_examples = [
                         "post_frame_messed_with": 0,
                     },
                 ),
-            ],
+            ),
             features={"framed": 0, "post_frame_messed_with": 0},
             value=25,
         ),
-        "semantics": {
-            "emoji": "📿📰🖊",
-            "name": "newspaper dotted with finely-cut beads",
-        },
-    },
-    {
-        "input": [
+        semantics=ItemSemantics(
+            emoji="📿📰🖊",
+            name="newspaper dotted with finely-cut beads",
+        ),
+    ),
+    ICExample(
+        inputs=[
             Ingredient(
                 name="sunflower",
                 emoji="🌻",
@@ -833,7 +841,7 @@ decorations_naming_ic_examples = [
             ),
             Tool(name="frame", emoji="🖼️"),
         ],
-        "outcome": Ingredient(
+        outcome=Ingredient(
             features={
                 "type": "natural",
                 "hardness": "soft",
@@ -843,8 +851,8 @@ decorations_naming_ic_examples = [
             },
             value=20,
         ),
-        "semantics": {"emoji": "🖼️🌻", "name": "framed sunflower"},
-    },
+        semantics=ItemSemantics(emoji="🖼️🌻", name="framed sunflower"),
+    ),
 ]
 
 
@@ -919,7 +927,7 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
                     ],
                 )
 
-        new_features = item.features.copy()
+        new_features = dict(item.features.copy())
 
         if tool.name == "frame":
             # the frame frames things
@@ -971,7 +979,7 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
             new_features = {"framed": 0, "post_frame_messed_with": 0}
 
         if item2.features["framed"]:
-            item2_features = item2.features.copy()
+            item2_features = dict(item2.features.copy())
             item2_features["framed"] = 1
             item2_features["post_frame_messed_with"] = 1
             item2 = replace(
@@ -981,13 +989,13 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
             )
 
         new_item = CombinedItem(
-            ingredients=item1.ingredients + [item2],
+            ingredients=item1.ingredients + (item2,),
             features=new_features,
         )
 
     elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
         if item1.features["framed"]:
-            item1_features = item1.features.copy()
+            item1_features = dict(item1.features.copy())
             item1_features["framed"] = 1
             item1_features["post_frame_messed_with"] = 1
             item1 = replace(
@@ -1002,37 +1010,37 @@ def decorations_combination_function(item1: Item, item2: Item) -> Item:
             new_features = {"framed": 0, "post_frame_messed_with": 0}
 
         new_item = CombinedItem(
-            ingredients=item2.ingredients + [item1],
+            ingredients=item2.ingredients + (item1,),
             features=new_features,
         )
     else:
         if item1.features["framed"]:
-            item1_features = item1.features.copy()
+            item1_features = dict(item1.features.copy())
             item1_features["framed"] = 1
             item1_features["post_frame_messed_with"] = 1
             item1 = replace(
                 item1,
                 features=item1_features,
-                name=item1.name.replace("framed", "") + " with ruined frame",
             )
 
         if item2.features["framed"]:
-            item2_features = item2.features.copy()
+            item2_features = dict(item2.features.copy())
             item2_features["framed"] = 1
             item2_features["post_frame_messed_with"] = 1
             item2 = replace(
                 item2,
                 features=item2_features,
-                name=item2.name.replace("framed", "") + " with ruined frame",
             )
 
         new_item = CombinedItem(
-            ingredients=[item1, item2],
+            ingredients=(item1, item2),
             features={"framed": 0, "post_frame_messed_with": 0},
         )
 
     if already_framed:
-        new_item.features["post_frame_messed_with"] = 1
+        new_features = dict(new_item.features.copy())
+        new_features["post_frame_messed_with"] = 1
+        new_item = replace(new_item, features=new_features)
 
     return new_item
 
@@ -1367,8 +1375,8 @@ Please respond in JSON format, with double quotes around all strings.
 
 
 animals_naming_ic_examples = [
-    {
-        "input": [
+    ICExample(
+        inputs=[
             Ingredient(
                 name="elephant",
                 emoji="🐘",
@@ -1392,8 +1400,8 @@ animals_naming_ic_examples = [
                 },
             ),
         ],
-        "outcome": CombinedItem(
-            ingredients=[
+        outcome=CombinedItem(
+            ingredients=(
                 Ingredient(
                     name="elephant",
                     emoji="🐘",
@@ -1416,14 +1424,14 @@ animals_naming_ic_examples = [
                         "habitat": "land",
                     },
                 ),
-            ],
+            ),
             features={},
             value=0,
         ),
-        "semantics": {"emoji": "🐘🦒", "name": "elepharaffe"},
-    },
-    {
-        "input": [
+        semantics=ItemSemantics(emoji="🐘🦒", name="elepharaffe"),
+    ),
+    ICExample(
+        inputs=[
             Tool(name="growth serum", emoji="🌡️"),
             Ingredient(
                 name="mutant whale",
@@ -1437,7 +1445,7 @@ animals_naming_ic_examples = [
                 },
             ),
         ],
-        "outcome": Ingredient(
+        outcome=Ingredient(
             features={
                 "size": "large",
                 "mutation_level": 1,
@@ -1446,8 +1454,8 @@ animals_naming_ic_examples = [
             },
             value=-10,
         ),
-        "semantics": {"emoji": "⬆️🧬🐳", "name": "giant mutant whale"},
-    },
+        semantics=ItemSemantics(emoji="⬆️🧬🐳", name="giant mutant whale"),
+    ),
 ]
 
 
@@ -1526,7 +1534,7 @@ def animals_combination_function(item1, item2):
                 ],
             )
 
-        new_features = item.features.copy()
+        new_features = dict(item.features.copy())
 
         if tool.name == "growth serum":
             new_features["growth_level"] = min(
@@ -1557,16 +1565,16 @@ def animals_combination_function(item1, item2):
         )
     elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
         new_item = CombinedItem(
-            ingredients=item1.ingredients + [item2],
+            ingredients=item1.ingredients + (item2,),
         )
     elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
         new_item = CombinedItem(
-            ingredients=item2.ingredients + [item1],
+            ingredients=item2.ingredients + (item1,),
         )
     else:
         # two ingredients
         new_item = CombinedItem(
-            ingredients=[item1, item2],
+            ingredients=(item1, item2),
         )
 
     return new_item
@@ -1910,8 +1918,8 @@ Please respond in JSON format, with double quotes around all strings.
 
 
 potions_naming_ic_examples = [
-    {
-        "input": [
+    ICExample(
+        inputs=[
             Ingredient(
                 name="obsidian",
                 emoji="⚫",
@@ -1925,7 +1933,7 @@ potions_naming_ic_examples = [
             ),
             Tool(name="filter", emoji="🧫"),
         ],
-        "outcome": Ingredient(
+        outcome=Ingredient(
             features={
                 "state_of_matter": "solid",
                 "magical": 0,
@@ -1934,10 +1942,10 @@ potions_naming_ic_examples = [
             },
             value=-20,
         ),
-        "semantics": {"emoji": "🧫⚫", "name": "poorly-filtered obsidian"},
-    },
-    {
-        "input": [
+        semantics=ItemSemantics(emoji="🧫⚫", name="poorly-filtered obsidian"),
+    ),
+    ICExample(
+        inputs=[
             Ingredient(
                 name="rose petal extract",
                 emoji="🧪🌹",
@@ -1961,8 +1969,8 @@ potions_naming_ic_examples = [
                 },
             ),
         ],
-        "outcome": CombinedItem(
-            ingredients=[
+        outcome=CombinedItem(
+            ingredients=(
                 Ingredient(
                     name="rose petal extract",
                     emoji="🧪🌹",
@@ -1985,15 +1993,15 @@ potions_naming_ic_examples = [
                         "extraction": None,
                     },
                 ),
-            ],
+            ),
             features={},
             value=-30,
         ),
-        "semantics": {
-            "emoji": "🌹🦄",
-            "name": "rose potion with chunks of unicorn horn",
-        },
-    },
+        semantics=ItemSemantics(
+            emoji="🌹🦄",
+            name="rose potion with chunks of unicorn horn",
+        ),
+    ),
 ]
 
 
@@ -2049,7 +2057,7 @@ def potions_combination_function(item1, item2):
                 ],
             )
 
-        new_features = item.features.copy()
+        new_features = dict(item.features.copy())
 
         # the vial extracts plant things and makes them liquid
         if tool.name == "vial" and item.features["extraction"] is None:
@@ -2090,16 +2098,16 @@ def potions_combination_function(item1, item2):
         )
     elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
         new_item = CombinedItem(
-            ingredients=item1.ingredients + [item2],
+            ingredients=item1.ingredients + (item2,),
         )
     elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
         new_item = CombinedItem(
-            ingredients=item2.ingredients + [item1],
+            ingredients=item2.ingredients + (item1,),
         )
     else:
         # two ingredients
         new_item = CombinedItem(
-            ingredients=[item1, item2],
+            ingredients=(item1, item2),
         )
 
     return new_item

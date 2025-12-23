@@ -151,7 +151,7 @@ def compute_simulation_statistics(df_sims):
     model_res = model.fit()
     lm_results = f"intercept: {model_res.params['const']:.3f}, slope: {model_res.params['round_num']:.3f}, p_value: {model_res.pvalues['round_num']:.3f}"
 
-    loss = average_mse + 0.1 * average_sd
+    loss = average_mse + average_sd
 
     return {
         "loss": float(loss.round(3)),

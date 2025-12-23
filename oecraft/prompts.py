@@ -11,7 +11,7 @@ import requests
 from pydantic import BaseModel
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-from oecraft.types import CombinedItem, Item, Tool
+from oecraft.types import CombinedItem, ICExample, Item, Tool
 
 
 @retry(stop=stop_after_attempt(10), wait=wait_exponential())
@@ -96,6 +96,8 @@ class ItemSemantics(BaseModel):
 
 def item_to_dict(item: Item, feature_names: dict) -> Item:
     item_dict = asdict(item)
+    if "features" in item_dict:
+        item_dict["features"] = dict(item.features)
 
     # if the item is a tool, we don't need to do anything else
     if isinstance(item, Tool):
@@ -104,7 +106,9 @@ def item_to_dict(item: Item, feature_names: dict) -> Item:
     # convert the item's features to strings
     for feature, value in item_dict["features"].items():
         if feature in feature_names:
-            item_dict["features"][feature] = feature_names[feature][value]
+            # Only convert if value is an integer index; leave strings as-is
+            if isinstance(value, int):
+                item_dict["features"][feature] = feature_names[feature][value]
     if isinstance(item, CombinedItem):
         item_dict["ingredients"] = [
             item_to_dict(x, feature_names) for x in item.ingredients
@@ -118,7 +122,7 @@ def get_combination_messages(
     outcome: Item,
     system_prompt: str,
     feature_names: dict,
-    ic_examples: list,
+    ic_examples: list[ICExample],
 ) -> list:
     messages = [
         {"role": "system", "content": system_prompt},
@@ -129,12 +133,12 @@ def get_combination_messages(
         ic_examples = ic_examples[:2] + ic_examples[-2:]
 
     for example in ic_examples:
-        example_item1, example_item2 = example["input"]
-        example_outcome = example["outcome"]
+        example_item1, example_item2 = example.inputs
+        example_outcome = example.outcome
         dict_item1 = item_to_dict(example_item1, feature_names)
         dict_item2 = item_to_dict(example_item2, feature_names)
         dict_outcome = item_to_dict(example_outcome, feature_names)
-        semantics = example["semantics"]
+        semantics = example.semantics
 
         messages.append(
             {
