@@ -16,7 +16,14 @@ from oecraft.environment import CraftingGame, LMCraftingGame
 
 
 async def run_chain(
-    descriptor, chain_num, args, output_path, file_lock, existing_df=None, verbose=True
+    descriptor,
+    chain_num,
+    args,
+    output_path,
+    file_lock,
+    starting_message: str | None = None,
+    existing_df=None,
+    verbose=True,
 ):
     # Create independent environment and agent for each chain
     game = CraftingGame(
@@ -34,7 +41,7 @@ async def run_chain(
     )
 
     chain_dfs = []
-    message = None
+    message = starting_message
     for i in range(args.chain_length):
         # Check if this step is already completed
         if existing_df is not None:
@@ -42,7 +49,8 @@ async def run_chain(
                 existing_df["chain_pos"] == i
             )
             if mask.any():
-                print(f"Skipping chain {chain_num} pos {i} (already completed)")
+                if verbose:
+                    print(f"Skipping chain {chain_num} pos {i} (already completed)")
                 step_df = existing_df[mask].copy()
                 chain_dfs.append(step_df)
 
@@ -64,7 +72,8 @@ async def run_chain(
             header = not os.path.exists(output_path)
             df_gameplay.to_csv(output_path, mode="a", header=header, index=False)
 
-    print(f"Chain {chain_num} final message: {message}")
+    if verbose:
+        print(f"Chain {chain_num} final message: {message}")
     return chain_dfs
 
 
@@ -89,7 +98,8 @@ async def run_simulations(args):
                 args,
                 output_path,
                 file_lock,
-                existing_df,
+                starting_message=args.starting_message,
+                existing_df=existing_df,
                 verbose=args.verbose,
             )
         )
@@ -113,9 +123,6 @@ def compute_simulation_statistics(df_sims):
         .tail(1)
         .reset_index(drop=True)
     )
-
-    # normalize the scores
-    df_scores["score"] = df_scores["score"]
 
     ideal_learning_curve = pd.Series(
         np.linspace(0, 100, 10), index=range(10), name="ideal_score"
