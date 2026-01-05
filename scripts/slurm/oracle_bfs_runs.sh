@@ -15,8 +15,8 @@ source ~/.zshrc
 conda activate oecraft
 cd ~/open-ended-crafting
 
-python -m scripts.run_oracle_bfs_agent --domain cooking --n_runs 30 --n_steps 8 &
-python -m scripts.run_oracle_bfs_agent --domain decorations --n_runs 30 --n_steps 8 &
-python -m scripts.run_oracle_bfs_agent --domain animals --n_runs 30 --n_steps 8 &
-python -m scripts.run_oracle_bfs_agent --domain potions --n_runs 30 --n_steps 8 &
+python -m scripts.run_oracle_bfs_agent --domain cooking --n_runs 10 --n_steps 8 &
+python -m scripts.run_oracle_bfs_agent --domain decorations --n_runs 10 --n_steps 8 &
+python -m scripts.run_oracle_bfs_agent --domain animals --n_runs 10 --n_steps 8 &
+python -m scripts.run_oracle_bfs_agent --domain potions --n_runs 10 --n_steps 8 &
 wait
