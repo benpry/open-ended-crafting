@@ -61,8 +61,6 @@ def main(args):
             df_sims["domain"] = domain
             df_sims["message_type"] = message_type
             df_all_sims = pd.concat([df_all_sims, df_sims])
-            break
-        break
 
     # compute the average scores in each simulation
     df_scores = (
