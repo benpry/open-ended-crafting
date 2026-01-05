@@ -1,0 +1,120 @@
+vars,id,creation_time,token,kind,message,traceback,participant_id,network_id,node_id,response_id,trial_id,asset_id,process_id,log_line_number,type,class,object_type
+{},1,2025-12-01 22:30:34,c9cf3030,AttributeError,'WriteMessagePage' object has no attribute 'warned_about_identical',"Traceback (most recent call last):
+  File ""/usr/local/lib/python3.11/site-packages/psynet/experiment.py"", line 2521, in process_response
+    validation = event.validate(
+                 ^^^^^^^^^^^^^^^
+  File ""/experiment/crafting_classes.py"", line 152, in validate
+    if response.answer == self.initial_value and not self.warned_about_identical:
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WriteMessagePage' object has no attribute 'warned_about_identical'
+",95,8.0,153.0,,116.0,,,,ErrorRecord,ErrorRecord,ErrorRecord
+{},2,2025-12-01 23:15:28,fa7cf55a,AttributeError,'WriteMessagePage' object has no attribute 'warned_about_identical',"Traceback (most recent call last):
+  File ""/usr/local/lib/python3.11/site-packages/psynet/experiment.py"", line 2521, in process_response
+    validation = event.validate(
+                 ^^^^^^^^^^^^^^^
+  File ""/experiment/crafting_classes.py"", line 152, in validate
+    if response.answer == self.initial_value and not self.warned_about_identical:
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WriteMessagePage' object has no attribute 'warned_about_identical'
+",116,16.0,104.0,,127.0,,,,ErrorRecord,ErrorRecord,ErrorRecord
+{},3,2025-12-01 23:19:31,85867038,AttributeError,'WriteMessagePage' object has no attribute 'warned_about_identical',"Traceback (most recent call last):
+  File ""/usr/local/lib/python3.11/site-packages/psynet/experiment.py"", line 2521, in process_response
+    validation = event.validate(
+                 ^^^^^^^^^^^^^^^
+  File ""/experiment/crafting_classes.py"", line 152, in validate
+    if response.answer == self.initial_value and not self.warned_about_identical:
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WriteMessagePage' object has no attribute 'warned_about_identical'
+",129,52.0,161.0,,146.0,,,,ErrorRecord,ErrorRecord,ErrorRecord
+{},4,2025-12-03 08:28:59,ec9bb629,RuntimeError,"Participant already has an async code block process pending, this shouldn't happen.","Traceback (most recent call last):
+  File ""/usr/local/lib/python3.11/site-packages/psynet/experiment.py"", line 2541, in process_response
+    self.timeline.advance_page(self, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 243, in wrapper
+    res = fun(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 1738, in advance_page
+    new_elt.consume(experiment, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 240, in consume
+    call_function_with_context(
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 189, in call_function_with_context
+    return call_function(function, *args, **new_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 97, in call_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 308, in initiate
+    raise RuntimeError(
+RuntimeError: Participant already has an async code block process pending, this shouldn't happen.
+",188,,,,,,,,ErrorRecord,ErrorRecord,ErrorRecord
+{},5,2025-12-03 08:40:55,8f6858e8,RuntimeError,"Participant already has an async code block process pending, this shouldn't happen.","Traceback (most recent call last):
+  File ""/usr/local/lib/python3.11/site-packages/psynet/experiment.py"", line 2541, in process_response
+    self.timeline.advance_page(self, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 243, in wrapper
+    res = fun(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 1738, in advance_page
+    new_elt.consume(experiment, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 240, in consume
+    call_function_with_context(
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 189, in call_function_with_context
+    return call_function(function, *args, **new_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 97, in call_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 308, in initiate
+    raise RuntimeError(
+RuntimeError: Participant already has an async code block process pending, this shouldn't happen.
+",188,,,,,,,,ErrorRecord,ErrorRecord,ErrorRecord
+{},6,2025-12-03 08:42:08,68ee81fe,RuntimeError,"Participant already has an async code block process pending, this shouldn't happen.","Traceback (most recent call last):
+  File ""/usr/local/lib/python3.11/site-packages/psynet/experiment.py"", line 2541, in process_response
+    self.timeline.advance_page(self, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 243, in wrapper
+    res = fun(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 1738, in advance_page
+    new_elt.consume(experiment, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 240, in consume
+    call_function_with_context(
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 189, in call_function_with_context
+    return call_function(function, *args, **new_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 97, in call_function
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 308, in initiate
+    raise RuntimeError(
+RuntimeError: Participant already has an async code block process pending, this shouldn't happen.
+",188,,,,,,,,ErrorRecord,ErrorRecord,ErrorRecord
+{},7,2025-12-03 16:18:05,e6449f1a,RuntimeError,"Participant had multiple unfinished module states with id = 'consent': [{'vars': '{}', 'creation_time': '2025-12-03 16:17:03', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'id': 1133, 'module_id': 'consent', 'participant_id': 282, 'time_started': '2025-12-03 16:17:03', 'time_finished': None, 'time_aborted': None, 'started': True, 'finished': False, 'aborted': False, 'type': 'ModuleState', 'class': 'ModuleState', 'object_type': 'ModuleState'}, {'vars': '{}', 'creation_time': '2025-12-03 16:17:05', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'id': 1134, 'module_id': 'consent', 'participant_id': 282, 'time_started': '2025-12-03 16:17:05', 'time_finished': None, 'time_aborted': None, 'started': True, 'finished': False, 'aborted': False, 'type': 'ModuleState', 'class': 'ModuleState', 'object_type': 'ModuleState'}], participant: {'vars': '{}', 'id': 282, 'creation_time': '2025-12-03 16:17:03', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'type': 'Participant', 'fingerprint_hash': 'bad6257ca3825e627fcd5aad54dafaee', 'recruiter_id': 'prolific', 'worker_id': '5f16f559325a640008bb9a07', 'assignment_id': '6930623f2d57faf6997b6daf', 'unique_id': '5f16f559325a640008bb9a07:6930623f2d57faf6997b6daf', 'hit_id': '692f8b36ce962fc4d882a50d', 'mode': 'live', 'end_time': None, 'base_pay': None, 'bonus': None, 'entry_information': ""{'recruiter': 'prolific'}"", 'status': 'working', 'elt_id': '[3]', 'elt_id_max': '[376]', 'time_credit': 10.0, 'estimated_max_time_credit': 1795.0, 'progress': 0.005571030640668524, 'time_credit_fixes': '[]', 'progress_fixes': '[]', 'page_uuid': 'e01e8e56-6f29-c83d-5a60-fd24554e9a8b', 'page_count': 1, 'aborted': False, 'complete': False, 'answer': ""['I agree']"", 'answer_accumulators': '[]', 'sequences': '[]', 'branch_log': '[]', 'for_loops': '{}', 'failure_tags': '[]', 'base_payment': 6.0, 'performance_reward': 0.0, 'unpaid_bonus': 0.0, 'total_wait_page_time': 0.0, 'client_ip_address': '50.201.23.90', 'answer_is_fresh': True, 'browser_platform': 'Chrome 142.0.0.0 on Windows 10 64-bit', 'module_state_id': 1134, 'current_trial_id': None, 'trial_status': None, 'awaited_async_code_block_process_id': None, 'class': 'Participant', 'object_type': 'Participant', 'aborted_modules': '[]', 'started_modules': ""['consent', 'consent']"", 'finished_modules': '[]', 'module_id': 'consent'}","Traceback (most recent call last):
+  File ""/usr/local/lib/python3.11/site-packages/psynet/experiment.py"", line 2541, in process_response
+    self.timeline.advance_page(self, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 243, in wrapper
+    res = fun(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 1738, in advance_page
+    new_elt.consume(experiment, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 2840, in consume
+    self.module.end(participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 2641, in end
+    participant.end_module(self)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/participant.py"", line 502, in end_module
+    raise RuntimeError(
+RuntimeError: Participant had multiple unfinished module states with id = 'consent': [{'vars': '{}', 'creation_time': '2025-12-03 16:17:03', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'id': 1133, 'module_id': 'consent', 'participant_id': 282, 'time_started': '2025-12-03 16:17:03', 'time_finished': None, 'time_aborted': None, 'started': True, 'finished': False, 'aborted': False, 'type': 'ModuleState', 'class': 'ModuleState', 'object_type': 'ModuleState'}, {'vars': '{}', 'creation_time': '2025-12-03 16:17:05', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'id': 1134, 'module_id': 'consent', 'participant_id': 282, 'time_started': '2025-12-03 16:17:05', 'time_finished': None, 'time_aborted': None, 'started': True, 'finished': False, 'aborted': False, 'type': 'ModuleState', 'class': 'ModuleState', 'object_type': 'ModuleState'}], participant: {'vars': '{}', 'id': 282, 'creation_time': '2025-12-03 16:17:03', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'type': 'Participant', 'fingerprint_hash': 'bad6257ca3825e627fcd5aad54dafaee', 'recruiter_id': 'prolific', 'worker_id': '5f16f559325a640008bb9a07', 'assignment_id': '6930623f2d57faf6997b6daf', 'unique_id': '5f16f559325a640008bb9a07:6930623f2d57faf6997b6daf', 'hit_id': '692f8b36ce962fc4d882a50d', 'mode': 'live', 'end_time': None, 'base_pay': None, 'bonus': None, 'entry_information': ""{'recruiter': 'prolific'}"", 'status': 'working', 'elt_id': '[3]', 'elt_id_max': '[376]', 'time_credit': 10.0, 'estimated_max_time_credit': 1795.0, 'progress': 0.005571030640668524, 'time_credit_fixes': '[]', 'progress_fixes': '[]', 'page_uuid': 'e01e8e56-6f29-c83d-5a60-fd24554e9a8b', 'page_count': 1, 'aborted': False, 'complete': False, 'answer': ""['I agree']"", 'answer_accumulators': '[]', 'sequences': '[]', 'branch_log': '[]', 'for_loops': '{}', 'failure_tags': '[]', 'base_payment': 6.0, 'performance_reward': 0.0, 'unpaid_bonus': 0.0, 'total_wait_page_time': 0.0, 'client_ip_address': '50.201.23.90', 'answer_is_fresh': True, 'browser_platform': 'Chrome 142.0.0.0 on Windows 10 64-bit', 'module_state_id': 1134, 'current_trial_id': None, 'trial_status': None, 'awaited_async_code_block_process_id': None, 'class': 'Participant', 'object_type': 'Participant', 'aborted_modules': '[]', 'started_modules': ""['consent', 'consent']"", 'finished_modules': '[]', 'module_id': 'consent'}
+",282,,,,,,,,ErrorRecord,ErrorRecord,ErrorRecord
+{},8,2025-12-03 16:18:51,00d6c534,RuntimeError,"Participant had multiple unfinished module states with id = 'consent': [{'vars': '{}', 'creation_time': '2025-12-03 16:17:03', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'id': 1133, 'module_id': 'consent', 'participant_id': 282, 'time_started': '2025-12-03 16:17:03', 'time_finished': None, 'time_aborted': None, 'started': True, 'finished': False, 'aborted': False, 'type': 'ModuleState', 'class': 'ModuleState', 'object_type': 'ModuleState'}, {'vars': '{}', 'creation_time': '2025-12-03 16:17:05', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'id': 1134, 'module_id': 'consent', 'participant_id': 282, 'time_started': '2025-12-03 16:17:05', 'time_finished': None, 'time_aborted': None, 'started': True, 'finished': False, 'aborted': False, 'type': 'ModuleState', 'class': 'ModuleState', 'object_type': 'ModuleState'}], participant: {'vars': '{}', 'id': 282, 'creation_time': '2025-12-03 16:17:03', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'type': 'Participant', 'fingerprint_hash': 'bad6257ca3825e627fcd5aad54dafaee', 'recruiter_id': 'prolific', 'worker_id': '5f16f559325a640008bb9a07', 'assignment_id': '6930623f2d57faf6997b6daf', 'unique_id': '5f16f559325a640008bb9a07:6930623f2d57faf6997b6daf', 'hit_id': '692f8b36ce962fc4d882a50d', 'mode': 'live', 'end_time': None, 'base_pay': None, 'bonus': None, 'entry_information': ""{'recruiter': 'prolific'}"", 'status': 'working', 'elt_id': '[3]', 'elt_id_max': '[376]', 'time_credit': 10.0, 'estimated_max_time_credit': 1795.0, 'progress': 0.005571030640668524, 'time_credit_fixes': '[]', 'progress_fixes': '[]', 'page_uuid': 'e01e8e56-6f29-c83d-5a60-fd24554e9a8b', 'page_count': 1, 'aborted': False, 'complete': False, 'answer': ""['I agree']"", 'answer_accumulators': '[]', 'sequences': '[]', 'branch_log': '[]', 'for_loops': '{}', 'failure_tags': '[]', 'base_payment': 6.0, 'performance_reward': 0.0, 'unpaid_bonus': 0.0, 'total_wait_page_time': 0.0, 'client_ip_address': '50.201.23.90', 'answer_is_fresh': True, 'browser_platform': 'Chrome 142.0.0.0 on Windows 10 64-bit', 'module_state_id': 1134, 'current_trial_id': None, 'trial_status': None, 'awaited_async_code_block_process_id': None, 'class': 'Participant', 'object_type': 'Participant', 'aborted_modules': '[]', 'started_modules': ""['consent', 'consent']"", 'finished_modules': '[]', 'module_id': 'consent'}","Traceback (most recent call last):
+  File ""/usr/local/lib/python3.11/site-packages/psynet/experiment.py"", line 2541, in process_response
+    self.timeline.advance_page(self, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/utils.py"", line 243, in wrapper
+    res = fun(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 1738, in advance_page
+    new_elt.consume(experiment, participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 2840, in consume
+    self.module.end(participant)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/timeline.py"", line 2641, in end
+    participant.end_module(self)
+  File ""/usr/local/lib/python3.11/site-packages/psynet/participant.py"", line 502, in end_module
+    raise RuntimeError(
+RuntimeError: Participant had multiple unfinished module states with id = 'consent': [{'vars': '{}', 'creation_time': '2025-12-03 16:17:03', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'id': 1133, 'module_id': 'consent', 'participant_id': 282, 'time_started': '2025-12-03 16:17:03', 'time_finished': None, 'time_aborted': None, 'started': True, 'finished': False, 'aborted': False, 'type': 'ModuleState', 'class': 'ModuleState', 'object_type': 'ModuleState'}, {'vars': '{}', 'creation_time': '2025-12-03 16:17:05', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'id': 1134, 'module_id': 'consent', 'participant_id': 282, 'time_started': '2025-12-03 16:17:05', 'time_finished': None, 'time_aborted': None, 'started': True, 'finished': False, 'aborted': False, 'type': 'ModuleState', 'class': 'ModuleState', 'object_type': 'ModuleState'}], participant: {'vars': '{}', 'id': 282, 'creation_time': '2025-12-03 16:17:03', 'failed': False, 'failed_reason': None, 'time_of_death': None, 'type': 'Participant', 'fingerprint_hash': 'bad6257ca3825e627fcd5aad54dafaee', 'recruiter_id': 'prolific', 'worker_id': '5f16f559325a640008bb9a07', 'assignment_id': '6930623f2d57faf6997b6daf', 'unique_id': '5f16f559325a640008bb9a07:6930623f2d57faf6997b6daf', 'hit_id': '692f8b36ce962fc4d882a50d', 'mode': 'live', 'end_time': None, 'base_pay': None, 'bonus': None, 'entry_information': ""{'recruiter': 'prolific'}"", 'status': 'working', 'elt_id': '[3]', 'elt_id_max': '[376]', 'time_credit': 10.0, 'estimated_max_time_credit': 1795.0, 'progress': 0.005571030640668524, 'time_credit_fixes': '[]', 'progress_fixes': '[]', 'page_uuid': 'e01e8e56-6f29-c83d-5a60-fd24554e9a8b', 'page_count': 1, 'aborted': False, 'complete': False, 'answer': ""['I agree']"", 'answer_accumulators': '[]', 'sequences': '[]', 'branch_log': '[]', 'for_loops': '{}', 'failure_tags': '[]', 'base_payment': 6.0, 'performance_reward': 0.0, 'unpaid_bonus': 0.0, 'total_wait_page_time': 0.0, 'client_ip_address': '50.201.23.90', 'answer_is_fresh': True, 'browser_platform': 'Chrome 142.0.0.0 on Windows 10 64-bit', 'module_state_id': 1134, 'current_trial_id': None, 'trial_status': None, 'awaited_async_code_block_process_id': None, 'class': 'Participant', 'object_type': 'Participant', 'aborted_modules': '[]', 'started_modules': ""['consent', 'consent']"", 'finished_modules': '[]', 'module_id': 'consent'}
+",282,,,,,,,,ErrorRecord,ErrorRecord,ErrorRecord

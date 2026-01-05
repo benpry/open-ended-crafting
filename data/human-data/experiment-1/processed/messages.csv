@@ -1,0 +1,829 @@
+trial_id,participant_id,chain_id,domain,message,chain_pos,condition
+1,6,29,decorations,Combine what would look nice as a picture on the wall.,1,chain
+3,9,61,potions,Remember how each ingredient reacts and make logical combinations. Everything does not need to be combined to get 100,1,chain
+5,6,48,animals,The mutation serum always takes points. Growth serum is really good.,1,chain
+7,3,55,animals,You can individually get each creature high by doing mutant>growth>mutant>growth. After doing that you can combine up to 3 of them. I haven't figured out how to combine all 4.,1,chain
+8,9,34,decorations,"Be satisfied with a positive outcome even if its not 100. Hold down onto ingredients once you cut or framed theme to understand if they are artifical, natural, soft or hard.",1,chain
+9,6,63,potions,Don't touch the vial...its worthless.,1,chain
+13,6,17,cooking,This one is easy...just don't get too complicated.,1,chain
+15,9,44,animals,You can combine up to three. You can use the growth serum multiple times on the same animal.,1,chain
+16,3,36,decorations,"Use scissors twice on every object, combine the 2 objects with a high value, then frame those combined objects.",1,chain
+17,16,12,cooking,Use the stove but many ingredients are iffy. The water is not your friend.,1,chain
+18,18,57,animals,It is more favorable in the long run to combine two animals that are from the same environment and not use the mutation.,1,chain
+20,9,13,cooking,combine three items. use both water and stove. Combinations can be things you have never had before. Some can add up to 100. Try to make cooked soaked bread and bean stew.,1,chain
+21,3,5,cooking,"Use stove on all ingredients. Ingredients that don't benefit from stove you can use water on. Combine 3 of the highest rated ingredients, 2 should have used stove, and one should have used water. Ignore the 4th ingredient.",1,chain
+23,16,50,animals,Stay away from the mutation,1,chain
+24,16,79,potions,The vial and filter do not work together,1,chain
+25,3,76,potions,See how each object response to vile and filter then combine the highest value ones.,1,chain
+26,16,23,decorations,Careful combining ingredients with frame. Use scissors with items that make sense,1,chain
+27,18,21,decorations,Group cut-able objects together and add scissors. Then group non cut-able objects together with frame.,1,chain
+28,24,16,cooking,"Cooking something twice doesn't make it better, and most times will make it negative. I tried making a BLT and it was marked as overcomplicated, so try and stick to only 3 ingredients mixed together.",1,chain
+29,24,30,decorations,Cutting something twice can make it finely cut if cutting it once is negative. Combine two finely cut or regularly cut items and then frame them,1,chain
+30,26,68,potions,"most liquids can be filtered, and solids can be extracted with vial. Go with your gut.",1,chain
+31,18,14,cooking,You should not add stove and water together. And also raw food are best for the stove.,1,chain
+32,28,4,cooking,it is hard,1,chain
+33,25,32,decorations,"It seems like the frame tool was a bad option, resulting in heavy losses when adding ingredients to it. The scissors tool was better and did well when using ingredient paper and wood OR paper and shell. Scissors was capable of large losses as well but the above 2 examples should be good.",1,chain
+34,24,72,potions,Filter things that aren't solid and then combine those filtered items. Put solids in vials and then combine the items in vials.,1,chain
+35,18,73,potions,Combining vial or filter or even both with anything gives you 30 points mostly.,1,chain
+36,28,37,decorations,it is impossible to reach 80,1,chain
+37,24,46,animals,Use growth until an animal gets to 15 before combining. Do not combine more than three animals. Mutate only twice after combining three animals.,1,chain
+39,25,49,animals,"Okay, so I think the key is to avoid the nutation catalyst and focus on the growth serum. Be careful not to make a crazy hybrid creature (selecting lots of ingredients) because you'll get this message:
+too many is overcomplicated
+and you will lose points",1,chain
+40,30,31,decorations,Try combining natural and artificial soft first then cut to get 80,1,chain
+41,28,56,animals,this is really hard to combine,1,chain
+43,26,43,animals,Don't overmix!! Play with a few things and keep moving,1,chain
+44,28,71,potions,try your best it will run out of time,1,chain
+45,25,9,cooking,I found the stove scored the most points. Try makinbg combinations you think would actually taste good. Don't make it overcomplicated. Avoid bread.,1,chain
+46,7,3,cooking,"I did not solve this puzzle. Max I got was 80 points.
+There is meat, protein, vegetable, and grain. 4 ingredients will overcomplicate your dish, only use 3 ingredients.
+
+You can make all kinds of dishes: salads, sandwiches, skillet, medley, tortillas, stew. I did not explore stew much. Soaking the beans and rice didn't do much but maybe I did it in the wrong order.
+
+Cooked protein/meat + cooked vegetable + grain = 80
+Cooked meat + cooked vegetable + cooked vegetable = 80
+Cooked vegetable + cooked vegetable + cooked rice = 80",1,chain
+47,32,69,potions,The objects always have the same reaction with either item,1,chain
+49,25,80,potions,"as a gerenal rule but don't overdo it or it will be too complicated
+Vials work best with solids, filters with liquids",1,chain
+50,32,51,animals,use first item,1,chain
+51,26,26,decorations,"Don't overmix!!! Use your best logic (cut paper, soft with soft, etc)",1,chain
+53,30,1,cooking,"don't use water, always 3 any protein veggie or grain",1,chain
+54,32,22,decorations,dont use frame,1,chain
+56,26,10,cooking,This round was fun. Just make good dishes. As you would in real life from the pantry.,1,chain
+57,32,18,cooking,water is useless,1,chain
+58,30,77,potions,The best combo is 2 liquid and filter,1,chain
+60,30,54,animals,TRy a water and air animal then a growth,1,chain
+61,38,42,animals,"serum seems to do better than catalyst.
+combine small animals together and big animals together.
+very unsure.",1,chain
+62,40,64,potions,I really couldnt figure out a good strategy,1,chain
+65,40,28,decorations,dont overcomplicate things,1,chain
+67,38,70,potions,"don't over-combine
+don't combine similar elements (flowers and flowers) together",1,chain
+68,40,2,cooking,cook things that would go together in real liofe,1,chain
+69,40,47,animals,mutation barely ever is good,1,chain
+71,49,53,animals,Knowing when to use the catalyst and the growth serum is very important,1,chain
+72,38,15,cooking,"stove beef with soaked veggie
+beef corn potato stove",1,chain
+73,49,20,cooking,Combining the ingredients that goes together best works well.,1,chain
+74,38,27,decorations,cut hard material and combine with cut soft material,1,chain
+75,53,59,animals,"Mutation rarely works out, go for the growth, usually one animal will have a score of 15 once you add the growth enhancement.",1,chain
+76,54,41,animals,try mutating twice then grow on one animal. then mess with combining. i had no idea what was deciding points,1,chain
+78,49,75,potions,Knowing what to mix is hard. Just be careful with filtering,1,chain
+80,53,19,cooking,"Don't cook twice, 3 combinations at most for the highest score, utilize real world logic.",1,chain
+81,49,33,decorations,Knowing which soft or hard decorations to combine is important,1,chain
+83,54,35,decorations,"cut hard things twice for points, then frame. play with different ideas but leave one thing to cut and frame if the other things fail",1,chain
+85,53,74,potions,"Vial for extract, filter for filter. Combine the best outcome extract with the best outcome filter for most of the highest-scoring results. There are some exceptions, such as one where 2 extracts can be combined.",1,chain
+86,54,62,potions,"vial extracts. sometimes vial twice works. filter bad stuff (ink, poison). vial good things, then add the vial and filtered together. always leave an element to get points if you screw everything else up",1,chain
+88,53,39,decorations,Always frame last as combining something already framed will break the frame.,1,chain
+90,54,8,cooking,let him cook. dont overcomplicate. take 60,1,chain
+95,74,45,animals,"Combine two of the four animals after aging them a few times (or max,) then with those two you combined add a couple mutations. Repeat for the other two animals left.",1,chain
+97,74,24,decorations,Don't use the scissors on everything. Try to think about making an arts and craft frame to try and help.,1,chain
+98,74,11,cooking,Cook everything you use. Don't combine everything though.,1,chain
+99,74,67,potions,Filter non-solids. Vial the solids. Combine the ones that seem more alike.,1,chain
+105,98,52,animals,"Difficult to find a pattern. The catalyst always seemed to result in negative points. Combining animals I was unable to find a helpful pattern. Using growth 2 or 3 times seemed to result in some negative points. I started deciding to just leave the animals separated and give them only one growth, otherwise, I would end up with negative points as my score.",1,chain
+108,107,60,animals,mutation isnt reliable. Overgrowth is bad. No real world application.,1,chain
+111,98,6,cooking,"I would suggest not trying to over complicate things. And some recipes are strange, but high value, such as cooked mushroom-beet sandwich for 60 points. Combining or cooking too much usually turns it into zero points.",1,chain
+112,107,66,potions,Use filter for liquids. Use vial for solids. only combine two finished items not 3.,2,chain
+113,109,7,cooking,"Here are tips for several different rounds to maximize your points:  
+Grab the beans but don't soak them, just cook them
+
+Soak rice in water and then cook on stove
+
+Then, combine the cooked beans with the soaked rice
+
+Cook the bacon with stove. Then, put bread on TOP of bacon
+
+Cook fish on stove. Then, add fresh mushrooms but don't cook them. Then, add corn on top of fish and mushroom
+
+Cook egg on stove. Then cook potato separately with stove. Then, place potato on top of egg.
+
+Cook beans, potatoes and mushrooms separately with stove. Then, place potatoes on top of beans. Then, place mushrooms on top of potatoes",1,chain
+115,101,12,cooking,"use stove, pepper, raw beef.
+
+grain and water are spoilers",2,chain
+118,98,65,potions,"It is very confusing to figure this one out. I would suggest keeping it simple. Keep at least one item worth 30 points on the board. I wasn't able to figure out the pattern, sometimes extractions fail and I gave up on filtering because it kept ruining some times. I stuck 30 points most rounds by being cautious to avoid getting zero points.",1,chain
+119,101,49,animals,avoid mutation catalyst and the trout and make sure you dont combine everything,2,chain
+121,107,6,cooking,Some real world application. cook raw foods. Cook veggies. i stpped at mixing 3 items.,2,chain
+124,109,37,decorations,"You can only place ONE item in frame or it ruins the frame and you get a negative score.  So, place ribbons, sunflower, leaf or mushroom on top of frame by themselves.",2,chain
+125,121,1,cooking,"Use stove not water. Use combo of veggie, protein, and grain. Don't use more than 3 ingredients",2,chain
+128,109,47,animals,"Mutation barely ever is good.  Also, putting growth serum on panda, whale, lion, kangaroo, snake, elephant. zebra or shark produces most points",2,chain
+129,101,35,decorations,simply cut and frame items. do not include everything. be realistic,2,chain
+130,98,21,decorations,"Group cut-able objects together and add scissors. Then group non cut-able objects together with frame.
+
+Do not combine more than 2 objects before cutting or framing. If I had 3 cuttable items, I used one with a non cuttable item.",2,chain
+131,107,26,decorations,"1st user: Don't overmix!!! Use your best logic (cut paper, soft with soft, etc). 2nd user: Mixing isnt working well. Hard to figure combos. Cut items seem to match. Most i got was 50 using only cut items. Experiment with soft items so you can add feedback for the next person.",2,chain
+132,121,68,potions,"most liquids can be filtered, and solids can be extracted with vial. Do that first.. Similar themes go well together. (unicorn +rose or basilisk + batwing)",2,chain
+134,109,77,potions,"The best combo is 2 liquid and then put the filter on top of them.  If a round doesn't have 2 liquids, put filter on top of single liquid.",2,chain
+135,101,66,potions,Use filter for liquids and gas. Use vial for solids. only combine two finished items not 3.,1,chain
+137,121,58,animals,"Combine 3
+
+2 mutant catalyst
+
+growth 1
+
+No large animals in the combo.",1,chain
+139,126,54,animals,Do not use the mutation catalyst,2,chain
+142,126,38,decorations,"Frame comes last, try that",1,chain
+143,121,40,decorations,"cut hard things twice soft things once
+
+artificial + natural then + frame
+
+OR
+
+soft artificial + soft natural + frame
+
+Cut before combining.",1,chain
+144,126,78,potions,use no more than 2 ingredients,1,chain
+147,126,2,cooking,"cook things that would go together in real life, one at a time then combine",2,chain
+151,141,25,decorations,combine the scissors with things you can cut,1,chain
+153,141,69,potions,The objects always have the same reaction with either item use the viaL THE MOST,2,chain
+155,141,57,animals,It is more favorable in the long run to combine two animals that are from the same environment and not use the mutation. COMBINE,2,chain
+156,141,17,cooking,This one is easy...just don't get too complicated. DONT USE FISH,2,chain
+160,153,3,cooking,"I did not solve this puzzle. Max I got was 80 points.
+There is meat, protein, vegetable, and grain. 4 ingredients will overcomplicate your dish, only use 3 ingredients.
+
+You can make all kinds of dishes: salads, sandwiches, skillet, medley, tortillas, stew. I did not explore stew much. Soaking the beans and rice didn't do much but maybe I did it in the wrong order.
+
+Cooked protein/meat + cooked vegetable + grain = 80
+Cooked meat + cooked vegetable + cooked vegetable = 80
+Cooked vegetable + cooked vegetable + cooked rice = 80",2,chain
+162,150,9,cooking,Cook what you would eat.,2,chain
+163,156,25,decorations,combine the scissors with things you can cut,2,chain
+165,153,74,potions,"Vial for extract, filter for filter. Combine the best outcome extract with the best outcome filter for most of the highest-scoring results. There are some exceptions, such as one where 2 extracts can be combined.",2,chain
+166,150,31,decorations,Try combining natural and artificial soft first then cut to get 80,2,chain
+169,156,41,animals,try mutating twice then grow on one animal. then mess with combining. i had no idea what was deciding points,2,chain
+170,150,45,animals,"Combine two of the four animals after aging them a few times (or max,) then with those two you combined add a couple mutations. Repeat for the other two animals left.",2,chain
+171,153,58,animals,I didn't good on this one.,2,chain
+173,164,19,cooking,"Don't cook twice, 3 combinations at most for the highest score and be very careful not to mix wrong ingredients.",2,chain
+174,156,70,potions,"don't over-combine
+don't combine similar elements (flowers and flowers) together",2,chain
+175,153,22,decorations,dont use frame,2,chain
+176,150,75,potions,Knowing what to mix is hard. Just be careful with filtering,2,chain
+177,164,50,animals,Stay away from the mutation and be very observant.,2,chain
+178,168,62,potions,"vial extracts. sometimes vial twice works. filter bad stuff (ink, poison). vial good things, then add the vial and filtered together. always leave an element to get points if you screw everything else up use the filter more to gain more points",2,chain
+179,156,11,cooking,Cook everything you use. Don't combine everything though.,2,chain
+180,175,78,potions,Combine only 2 ingredients that have both been successfully filtered or vialed (but not both),2,chain
+181,170,16,cooking,"Cooking something twice doesn't make it better, and most times will make it negative. I tried making a BLT and it was marked as overcomplicated, so try and stick to only 3 ingredients mixed together.",2,chain
+182,164,24,decorations,Don't use the scissors on everything. Try to think about making an arts and craft frame try to be creative.,2,chain
+184,168,5,cooking,"Use stove on all ingredients. Ingredients that don't benefit from stove you can use water on. Combine 3 of the highest rated ingredients, 2 should have used stove, and one should have used water. Ignore the 4th ingredient.Tkae the highest and watch adding together sometimes you will get nothing",2,chain
+186,170,55,animals,You can individually get each creature high by doing mutant>growth>mutant>growth. After doing that you can combine up to 3 of them. I haven't figured out how to combine all 4.,2,chain
+187,168,40,decorations,"cut hard things twice soft things once
+
+artificial + natural then + frame
+
+OR
+
+soft artificial + soft natural + frame
+
+Cut before combining.Always do the soft one first",2,chain
+188,175,32,decorations,Scissors seemed to do better on softer objects. Using them on harder objects just seemed to result in negatives. Framing seemed very mixed in terms of results and often resulted in huge losses except when score was already high (60+).,2,chain
+189,164,72,potions,Filter things that aren't solid and then combine those filtered items. Be very careful.,2,chain
+190,168,44,animals,You can combine up to three. You can use the growth serum multiple times on the same animal.sometimes you will 0,2,chain
+192,170,34,decorations,"Be satisfied with a positive outcome even if its not 100. Hold down onto ingredients once you cut or framed theme to understand if they are artifical, natural, soft or hard.",2,chain
+193,175,8,cooking,Think about recipes of actual food (what you would cook/combine and how you would make it). I never managed above 60.,2,chain
+194,170,79,potions,The vial and filter do not work together,2,chain
+195,175,48,animals,A land + air + water animal and 2 growth always seemed to give me 40+. Struggled to get over 50. Mutation potion seemed to always leave me in the negative.,2,chain
+198,180,36,decorations,"Use 2 scissors on hard objects, 1 on soft. Then combine two and frame. Combine 2 natural soft then frame, or a natural soft and artificial hard for best results.",2,chain
+199,182,38,decorations,Adding the frame last seems to work best,2,chain
+200,185,27,decorations,cut hard material and combine with cut soft material; then frame it but don't combine two frames in any configuration,2,chain
+203,180,4,cooking,"Cook proteins, soak things like rice, beans, and wheat and then cook them. Cook veggies, then combine cooked protein, grain, and one veggie at most.",2,chain
+204,182,65,potions,It was much harder to figure out the right combinations. I was only able to get 30 on some combinations. Don't overthink it too much,2,chain
+205,185,60,animals,"mutation isnt reliable. grow two large animals and then combine if you can, it's gangbusters. No real world application.",2,chain
+206,180,59,animals,"Avoid overly mutating combinations, sometimes two is alright. Focus more on growth, do three growths on combos of small animals, no more than one on those with two large animals.",2,chain
+207,182,13,cooking,"I couldn't find any combinations that gave me above 40. I made the following:
+- cooked bacon and potato hash 
+- cooked soaked tortilla lettuce wrap
+- cooked egg beet medley
+- cooked bacon vegetable medley
+- cooked tomato wheat",2,chain
+208,185,10,cooking,"This round was fun. Just make good dishes. As you would in real life from the pantry. / here's a recipe I thought was tasty: if you combine two vegs (in name not necc. tag?) cook them and combine with a cooked meat, that resulting medley is pretty fat score-wise, give it a wallop",2,chain
+209,180,76,potions,"Use your judgement to test each item with the vial or filter. Combine two that were successful, but lean away from combining mundane and magical items.",2,chain
+210,185,64,potions,"vial will give you an extract try to make good sounding ""____ extract"" terms in ur head; if you get two good extract combine those thangs, I got a wizard phd (100points) for my mandrake-amber elixir so im your professor ok? if you fuck that up filtering fumes is an okay hedge maybe. don't use tools on your kraken ink you'll spill it everywhere and *don't get too complicated*!!!",2,chain
+211,182,46,animals,It is best to use growth serum before mutating,2,chain
+213,189,18,cooking,"water is useless. Also do not over complicate things. Only add thigs that make sense, it deducts points if you try to create anything new",2,chain
+214,189,63,potions,"Don't touch the vial...its worthless. Nothing works, nothing. Liquid gas solid, doesnt matter. Nothing goes to gather, i tried every single combo",2,chain
+215,189,33,decorations,Knowing which soft or hard decorations to combine is important . The items that go together make sense in this one.,2,chain
+216,189,51,animals,use first item. The growth serum works with everything,2,chain
+220,195,52,animals,"You should use growth serum only once on each and just submit. I found that when combining them sometimes it worked out, but I never got that many points. I got maybe around 5-15 but for the most part I really struggled with getting any points at all. Be less experimental and you will earn more points.",2,chain
+223,195,71,potions,I do not really have much advice. I didn't get many points. My best round was 60 points and that was when I just mixed things together excessively.,2,chain
+224,195,29,decorations,"Combine what would look nice as a picture on the wall. Do not use thread, it lowers your points. Just combine two ingredients you think would look nice together and then frame them.",2,chain
+229,195,7,cooking,"Here are tips for several different rounds to maximize your points:  
+Grab the beans but don't soak them, just cook them
+
+Soak rice in water and then cook on stove
+
+Then, combine the cooked beans with the soaked rice
+
+Cook the bacon with stove. Then, put bread on TOP of bacon
+
+Cook fish on stove. Then, add fresh mushrooms but don't cook them. Then, add corn on top of fish and mushroom
+
+Cook egg on stove. Then cook potato separately with stove. Then, place potato on top of egg.
+
+Cook beans, potatoes and mushrooms separately with stove. Then, place potatoes on top of beans. Then, place mushrooms on top of potatoes",2,chain
+231,207,30,decorations,Cutting something twice can make it finely cut if cutting it once is negative. Combine two finely cut or regularly cut items and then frame them. Try to aim for 25 points per each item,2,chain
+233,206,61,potions,"everything works well together and makes logical sense. Just trust your intuition, it will all work out.",2,chain
+235,207,14,cooking,"You should not add stove and water together. And also raw food are best for the stove. Items may be 0, but when combined they could equal a higher score.",2,chain
+236,206,43,animals,Don't overmix!! Play with a few things and keep moving. Also don't do more then 3 animals together.,2,chain
+237,210,42,animals,"Combine like creatures together (small, medium, large)
+Use the growth serum, but only once or twice.   Too often and you overdo it.  Mutation catalyst seems to immediately cause negatives.",2,chain
+239,206,20,cooking,just cook things you normally would in real life,2,chain
+241,207,67,potions,"Filter non-solids. Vial the solids. Combine the ones that seem more alike. One filtered non-solid, and one vial of solid added together becomes a higher score.",2,chain
+242,206,28,decorations,dont overcomplicate things. also use cardboard,2,chain
+243,210,80,potions,"Don't overdo it or it will be too complicated
+Vials work best with solids, filters with liquids
+Filter items before combining
+
+Don't combine more than 2, it becomes overcomplicated
+
+dont use vial for gas",2,chain
+244,207,53,animals,"Knowing when to use the catalyst and the growth serum is very important. Mix around the options, even if you go negative for score.. maybe adding more will make the score higher",2,chain
+246,205,17,cooking,Try to combine ingredients that you would actually cook together.,3,chain
+248,210,39,decorations,"Always frame last as combining something already framed will break the frame.
+Don't do too much - it makes things overcomplicated and those combinations lose points.
+
+Don't cut wood or hard things",2,chain
+249,205,22,decorations,Add the frame last.,3,chain
+250,215,56,animals,Mutant will not do anything. Try combining those animals and use the growth serum instead.,2,chain
+253,218,15,cooking,"stove beef with soaked veggie
+beef corn potato stove
+beet egg bread sandwich oven all",2,chain
+254,220,16,cooking,"Cooking something twice doesn't make it better, and most times will make it negative. I tried making a BLT and it was marked as overcomplicated, so try and stick to only 3 ingredients mixed together. Cook the ingredients",3,chain
+255,193,73,potions,"Vial plus magical, then filter plus mundane.
+Combine those two products for 100",2,chain
+256,209,33,decorations,Knowing which soft or hard decorations to combine is important . The items that go together make sense in this one.,3,chain
+257,205,59,animals,Don't add more than 2 animals together.,3,chain
+258,210,20,cooking,"just cook things you normally would in real life
+Don't cook soaked things. In fact, using water seems to be counterproductive.",3,chain
+259,223,37,decorations,"You can only place ONE item in frame or it ruins the frame and you get a negative score.  So, place ribbons, sunflower, leaf or mushroom on top of frame by themselves.",3,chain
+260,215,9,cooking,Cook what you would eat. Just mix 2 or 3 ingredients.,3,chain
+261,220,69,potions,The objects always have the same reaction with either item use the vial on items and then combine the potions that work,3,chain
+262,205,76,potions,"Choose 1 ingredient and then vial or filter, before choosing another ingredient.",3,chain
+263,218,30,decorations,"Cutting something twice can make it finely cut if cutting it once is negative. Combine two finely cut or regularly cut items and then frame them. Try to aim for 25 points per each item
+Any two 25 point items together framed",3,chain
+265,215,23,decorations,Careful combining ingredients with frame. Use scissors with items that make sense. Cut flowers and ribbon before combining them.,2,chain
+267,223,1,cooking,"Use stove not water. Use combo of veggie, protein, and grain. Don't use more than 3 ingredients",3,chain
+268,215,64,potions,", I got 100points for my mandrake-amber-vial. Don't use tools on your kraken ink and don't get too complicated.",3,chain
+269,220,27,decorations,Cut the items before you combine and then frame it,3,chain
+270,209,43,animals,"Don't overmix!! Play with a few things and keep moving. Also, don't do more than 3 animals together. Growth Serum is more successful.",3,chain
+271,211,73,potions,"Solid ingredients fail being filtered. Vial + solid item. Liquid or gas item+ filter. Combine both = 100
+
+Combine one magical with one mundane for best results",3,chain
+272,218,61,potions,"everything works well together and makes logical sense. Just trust your intuition, it will all work out.
+filter first, then combine, don't use vial",3,chain
+273,220,44,animals,You can combine up to three. You can use the growth serum multiple times on the same animal but it may turn negative.,3,chain
+274,218,46,animals,"It is best to use growth serum before mutating
+zebra shark growth serum",3,chain
+275,223,70,potions,"don't over-combine
+don't combine similar elements (flowers and flowers) together",3,chain
+276,209,2,cooking,"cook things that would go together in real life, one at a time then combine. The stove is more successful.",3,chain
+277,223,41,animals,"don't over combine. 
+just two animals are okay and they should animals that lives on land and air.",3,chain
+278,211,12,cooking,"3 ingredients max, one of each: protein, vegetable, and grain. I combined vegetable with protein, then used stove then combined with grain. Water lowers score. Was only able to get max of 80",3,chain
+280,231,56,animals,Mutant will not do anything. Try combining those animals and use the growth serum instead.  Do 3 instead of 4 animals.,3,chain
+282,231,21,decorations,"Group cut-able objects together and add scissors. Then group non cut-able objects together with frame.
+
+Do not combine more than 2 objects before cutting or framing. If I had 3 cuttable items, I used one with a non cuttable item.
+I put the hardest objects together or softest",3,chain
+283,231,10,cooking,"This round was fun. Just make good dishes. As you would in real life from the pantry. / here's a recipe I thought was tasty: if you combine two vegs (in name not necc. tag?) cook them and combine with a cooked meat, that resulting medley is pretty fat score-wise, give it a wallop.  Water didn't help",3,chain
+285,234,60,animals,Try different combinations and don't use the multiplier too often.,3,chain
+286,231,74,potions,"Vial for extract, filter for filter. Combine the best outcome extract with the best outcome filter for most of the highest-scoring results. There are some exceptions, such as one where 2 extracts can be combined.
+
+It seemed like a lot worked here.  It will look bad, like -60, then add vial and it goes to 100",3,chain
+287,234,34,decorations,Make sure to combine multiple of the same instrument to get a higher score,3,chain
+288,235,25,decorations,"Cut soft objects with scissors and combine them before framing, try not to overcomplicate things though.",3,chain
+289,233,6,cooking,Some real world application. cook raw foods. Cook veggies. i stpped at mixing 3 items. don't mix all foods.  start with stove then raw foods then veggies  leave off water and one thing.,3,chain
+291,238,65,potions,"It was much harder to figure out the right combinations. I was only able to get 30 on some combinations. Don't overthink it too much.
+
+Combining vial together, tend to be more reliable for generating points.",3,chain
+292,234,4,cooking,Cook proteins and put everything else in water. Combine at maximum three items to get the best dish.,3,chain
+293,233,78,potions,Combine only 2 ingredients that have both been successfully filtered or vialed (but not both),3,chain
+294,235,79,potions,"Filter liquids and gasses, Vial solids for extracts. Only combine 1 type of item at a time dont mix 2 different types at once.",3,chain
+295,238,32,decorations,"Scissors was more reliable. Combining scissors with ingredients produced more consistent positive points.
+
+Scissors seemed to do better on softer objects. Using them on harder objects just seemed to result in negatives. Framing seemed very mixed in terms of results and often resulted in huge losses except when score was already high (60+).",3,chain
+296,233,58,animals,I didn't good on this one.3 animals the toogle the 2 processes. I didn't do well.,3,chain
+297,238,15,cooking,Combining stove with ingredients was more reliable for earning 20 points.,3,chain
+298,234,80,potions,Use filters for liquids and gases. Use vial for anything that is solid. Combine the liquids or gases togther. Combine solids together.,3,chain
+300,236,55,animals,You can individually get each creature high by doing mutant>growth>mutant>growth. After doing that you can combine up to 3 of them.,3,chain
+302,235,8,cooking,"Make foods that make sense and dont overthink your choices, cook meats and vegetables, soak rice first and then cook",3,chain
+303,238,42,animals,"Growth serum combined with ingredients tend to produce more positive points--
+Combine like creatures together (small, medium, large)
+Use the growth serum, but only once or twice.   Too often and you overdo it.  Mutation catalyst seems to immediately cause negatives.",3,chain
+304,233,35,decorations,simply cut and frame items. do not include everything. be realistic,3,chain
+305,241,14,cooking,"You should not add stove and water together. And also raw food are best for the stove. Items may be 0, but when combined they could equal a higher score.",3,chain
+306,235,50,animals,"Combine the same landtypes and grow them then add 1 different land type animal, I wasnt able to get mutation to work. My highest was 30 pts",3,chain
+307,236,77,potions,The best combo is 2 liquid and then put the filter on top of them.,3,chain
+309,241,68,potions,"most liquids can be filtered, and solids can be extracted with vial. Do that first.. Similar themes go well together. (unicorn +rose or basilisk + batwing)",3,chain
+310,236,19,cooking,"Don't cook twice, 3 combinations at most for the highest score",3,chain
+311,241,23,decorations,Careful combining ingredients with frame. Use scissors with items that make sense. Cut flowers and ribbon before combining them.,3,chain
+312,236,29,decorations,"Combine what would look nice as a picture on the wall. Do not use thread, it lowers your points. Just combine two ingredients you think would look nice together",3,chain
+313,241,57,animals,It is more favorable in the long run to combine two animals that are from the same environment and not use the mutation. COMBINE,3,chain
+315,247,71,potions,"I do not really have much advice. I didn't get many points. My best round was 60 points and that was when I just mixed things together excessively.
+
+It was hard to find any combinations that produced good results. My best advice is to mix one tool with one ingredient, but don't mix two ingredients as this always resulted in negative points. The most I could get was 30 points which was by making an ingredient into a vial or filtering it.",3,chain
+316,248,28,decorations,"Try to put things that make sense together.
+Here are two trios that will gives you points for at least
+two of the rounds (don't add anything else):
+Frame + Scissors + Newspaper = 45 points
+Scissors + Cardboard + Pinecone = 55 points
+
+I didn't realize the notes were usable for the message at the end for the next person.  So another piece of advice is right down the best combos, duos and trios each round (if you find any 20 point or better) and put them on the scratch pad for your later use but also for the next person.",3,chain
+317,245,31,decorations,Add a soft natural and soft artificial together for 30 then add scissors for a total of 80,3,chain
+318,247,48,animals,A land + air + water animal and 1 or 2 growth always seemed to give me 40+. Struggled to get over 50. Mutation potion seemed to always leave me in the negative.,3,chain
+319,245,3,cooking,"fish + lettuce + stove = 80
+even this doesn't get you 80 add corn
+
+beef+pepper+stove=80
+
+beef+broccoli+bread+stove=80
+
+egg+green bean+tortilla+stove+80
+
+bacon+potato+corn+stove=80",3,chain
+320,248,66,potions,"Filter for liquids and gases, Vial for solids.
+
+Only mix two combined items together not 3.  
+
+Only mix the ones with vials with ones with vials and ones with filters with the ones with filters.
+
+Vial & Sunstone + Vial & Dandelion= 100 points
+Filter & Ghostly Vapor + Filter & Honey = 100 points
+
+Vial & Unicorn Horn + Vial & Obsidian = 100 points",3,chain
+321,247,39,decorations,"Always frame last as combining something already framed will break the frame.
+Don't do too much - it makes things overcomplicated and those combinations lose points.
+Mixing one soft thing with one hard thing usually had good results. Framing it as the final touch always gave me 50 points..
+Don't cut wood or hard things",3,chain
+322,247,5,cooking,"Use stove on all ingredients. Ingredients that don't benefit from stove you can use water on. Combining 3  ingredients, then cooking them on the stove usually produced good results, scored 80 points on most rounds by doing this!",3,chain
+323,245,54,animals,Do not use the mutation catalyst,3,chain
+324,248,7,cooking,"Here are tips for several different rounds to maximize your points:  
+Grab the beans but don't soak them, just cook them
+
+Soak rice in water and then cook on stove
+
+Then, combine the cooked beans with the soaked rice
+
+Cook the bacon with stove. Then, put bread on TOP of bacon
+
+Cook fish on stove. Then, add fresh mushrooms but don't cook them. Then, add corn on top of fish and mushroom
+
+Cook egg on stove. Then cook potato separately with stove. Then, place potato on top of egg.
+
+Cook beans, potatoes and mushrooms separately with stove. Then, place potatoes on top of beans. Then, place mushrooms on top of potatoes",3,chain
+325,248,49,animals,avoid mutation catalyst and the trout and make sure you dont combine everything,3,chain
+326,245,62,potions,"try this first
+
+liquid mundane+filter
+
++
+
+gas magical+filter=100
+
+if top doesn't work try this
+
+mundane+filter
+
++
+
+magical+filter=100",3,chain
+327,251,36,decorations,"Use 2 scissors on hard objects, 1 on soft. Then combine two and frame. Combine 2 natural soft then frame, or a natural soft and artificial hard for best results. Don't over complicate or keep adding more.",3,chain
+329,258,24,decorations,Don't use the scissors on everything. Try out the frame and different ingredients.,3,chain
+331,261,75,potions,Knowing what to mix is hard. Just be careful with filtering,3,chain
+333,251,18,cooking,"water is useless. Also do not over complicate things. Only add things that make sense, it deducts points if you try to create anything new. Don't add too many ingredients",3,chain
+334,251,63,potions,Use the vial on an ingredient. Do that again. Combine. Note some ingredient doesn't work with the vial.,3,chain
+336,258,67,potions,"Filter non-solids. Vial the solids. Combine the ones that seem more alike. One filtered non-solid, and one vial of solid added together becomes a higher score. Bat wing extract plus basilisk venom, mushroom extract plus basilisk venom, mandrake root extract and frog leg and magical mushroom plus dragon extract combinations all give the highest score.",3,chain
+337,252,72,potions,"Filter things that aren't solid and then combine those filtered items. Be very careful, i mean be conscious",3,chain
+338,261,26,decorations,"1st user: Don't overmix!!! Use your best logic (cut paper, soft with soft, etc). 2nd user: Mixing isnt working well. Hard to figure combos. Cut items seem to match. Most i got was 50 using only cut items. Experiment with soft items so you can add feedback for the next person.",3,chain
+341,251,45,animals,"Combine two of the four animals after aging them a few times (or max,) then with those two you combined add a couple mutations. Repeat for the other two animals left. Do not overcomplicate, you will get points deducted.",3,chain
+344,261,51,animals,use first item. The growth serum works with everything,3,chain
+345,269,13,cooking,"I couldn't find any combinations that gave me above 40. I made the following:
+- cooked soaked tortilla  wrap
+- cooked tomato omelette
+- cooked bacon vegetable medley",3,chain
+346,258,47,animals,"Mutation barely ever is good.  Also, putting growth serum on panda, whale, lion, kangaroo, snake, elephant. zebra or shark produces most points",3,chain
+347,252,53,animals,"Knowing when to use the catalyst and the growth serum is very important. Mix around the options, even if you go negative for score.. maybe adding more will make the score higher hmmmmm",3,chain
+350,252,11,cooking,Cook everything you use. Don't combine everything though. play safe,3,chain
+351,261,20,cooking,"just cook things you normally would in real life
+Don't cook soaked things. In fact, using water seems to be counterproductive.",4,chain
+352,269,53,animals,"Knowing when to use the catalyst and the growth serum is very important. Mix around the options, even if you go negative for score.. maybe adding more will make the score higher hmmmmm",4,chain
+354,258,16,cooking,"Cooking something twice doesn't make it better, and most times will make it negative. I tried making a BLT and it was marked as overcomplicated, so try and stick to only 3 ingredients mixed together. Cook the ingredients. beef or fish and vegatble mix give high points.",4,chain
+355,252,39,decorations,"Always frame last as combining something already framed will break the frame.
+Don't do too much - it makes things overcomplicated and those combinations lose points.
+Mixing one soft thing with one hard thing usually had good results. Framing it as the final touch always gave me 50 points..
+Don't cut wood or hard things. watch out",4,chain
+356,269,29,decorations,Combine what would look nice as a picture on the wall. Just combine two or three ingredients you think would look nice together,4,chain
+357,256,19,cooking,"Don't cook twice.
+
+fire for vegetable = 20
+
+fire for protien =20
+
+water + fire for grain = 20
+
+Combine no more than three for highest score.
+
+Vegetable + grain + protein order seems to work best.
+
+Not sure if order of combining makes a difference.",4,chain
+358,269,77,potions,The best combo is 2 liquid and then put the filter on top of them or two solid and put the vial on top,4,chain
+363,273,73,potions,"Put a filter on Luquids or Gases
+Put a vial on solid items
+Mix common items with one not common for 100
+
+DO NOT MIX THE COMBINATIONS",4,chain
+364,279,52,animals,You should use growth serum only once on each and just submit. . I got maybe around 5-15 but for the most part I really struggled with getting any points at all. Be experimental and you will earn more points.,3,chain
+366,279,18,cooking,"water is useless. Also do not over complicate things. Only add things that make sense, it deducts points if you try to create anything new. Don't add too many ingredients",4,chain
+369,281,50,animals,Combine animals (2 works best I've found). If you combine all animals they become overcomplicated resulting in a negative score. Mutate them twice. Some turn into leviathans. Some grow into super-mutants. You can grow animals before combining as well. The highest I scored was 50,4,chain
+372,279,70,potions,"don't over-combine
+don't combine similar elements (flowers and flowers) together. Use the filter it helps.",4,chain
+373,279,21,decorations,"Group cut-able objects together and add scissors. Then group non cut-able objects together with frame.
+
+Do not combine more than 2 objects before cutting or framing. If I had 3 cuttable items, I used one with a non cuttable item.
+I put the hardest objects together or softest",4,chain
+374,273,59,animals,"Combine only animals and non animals
+Don't Use catalyst
+Not really sure how this one works though",4,chain
+377,273,10,cooking,"Two Veg + Stove = ?
+
+Meat + Stove = ?
+
+Mix the two from above
+
+no bread
+
+I can't get 100
+
+This is what was prev said: ""This round was fun. Just make good dishes. As you would in real life from the pantry. / here's a recipe I thought was tasty: if you combine two vegs (in name not necc. tag?) cook them and combine with a cooked meat, that resulting medley is pretty fat score-wise, give it a wallop. Water didn't help""",4,chain
+378,281,7,cooking,"Here are tips for several different rounds to maximize your points:
+
+Grab the beans but don't soak them, just cook them
+
+Soak rice in water and then cook on stove
+
+Then, combine the cooked beans with the soaked rice
+
+Cook the bacon with stove. Then, put bread on TOP of bacon
+
+Cook fish on stove. Then, add fresh mushrooms but don't cook them. Then, add corn on top of fish and mushroom
+
+Cook egg on stove. Then cook potato separately with stove. Then, place potato on top of egg.
+
+Cook beans, potatoes and mushrooms separately with stove. Then, place potatoes on top of beans. Then, place mushrooms on top of potatoes.
+
+You can combine ingredients to make stews.",4,chain
+379,273,40,decorations,"cut hard things twice soft things once
+
+artificial + natural then + frame
+
+OR
+
+soft artificial + soft natural + frame
+
+Cut before combining.Always do the soft one first",3,chain
+380,281,80,potions,"Use filters for liquids and gases. Use vial for anything that is solid. Combine the liquids or gases together. Combine solids together.
+
+You can combine vials and filters. Sometimes they work and sometimes not. I haven't cracked the code.
+
+If you combine all ingredients it will become overcomplicated resulting in a negative score
+
+Magical and mundane do not go well together.",4,chain
+381,285,4,cooking,"Cook proteins (fish/bacon) and put everything else in water to wash them then cook them. Next combine at maximum three items to get the best dish, at most times going to 4 items will bring you back to 0.",4,chain
+382,281,38,decorations,"Adding the frame last seems to work best
+
+Adding too many ingredients overcomplicates the items resulting in a negative score.
+
+If you double frame items they will become ruined frames resulting in negative score.
+
+If you cut soft items first score is larger
+
+frame hard items and cut soft items",3,chain
+383,275,13,cooking,"Combine two of the same type with one of the other type for the best score it seems, you can cook after combining the 3. Never water.",4,chain
+384,285,28,decorations,"Try to put things that make sense together.
+Here are two trios that will gives you points for at least
+two of the rounds (don't add anything else):
+Frame + Scissors + Newspaper = 45 points
+Scissors + Cardboard + Pinecone = 55 points
+
+Here are some combos I found to award a lot of points:
+
+Frame, newspaper, scissors = 45
+
+Cut newspaper, cut sunflower, add thread = threaded sunflower for 80 then add frame for 100 points
+
+Cut leaf, cut ribbon, combine, then add frame for 100 points
+
+Cut newspaper, cut yarn, combine, then add frame for 70 points
+
+Cut newspaper, cut thread, combine, then add frame for 70 points
+
+Combine paper and feather, use scissors to cut them, then add frame for 100 points",4,chain
+386,275,78,potions,"Combine only 2 ingredients that have both been successfully filtered or vialed (but not both)
+
+Combining 2 of the same type after filtering them gave me 80's at first but it stopped working after a while",4,chain
+389,285,45,animals,"Combine two of the four animals after aging them a few times (or max,) then with those two you combined add a couple mutations. Repeat for the other two animals left. Do not overcomplicate, you will get points deducted.
+
+Try to only grow or mutate animals 2 times, the third time will usually be too much.",4,chain
+390,285,68,potions,"most liquids can be filtered, and solids can be extracted with vial. Do that first.. Similar themes go well together. (unicorn +rose or basilisk + batwing)
+
+I got like 0 points on all of them bc I was overcomplicating them, you really only need 2 ingredients to get to 100. I found that these three recipes give a lot of points:
+
+Filtered kraken ink and tree sap blend is 100 points, first filter tree sap, then filter kraken ink, then combine.
+
+Filter honey nectar, then filter kraken ink, combine those two together for 100 points.
+
+Filter kraken ink, vial unicorn extract, then combine those for 60 points",4,chain
+392,291,31,decorations,Add a soft natural and soft artificial together for 30 then add scissors for a total of 80,4,chain
+393,291,57,animals,It is more favorable in the long run to combine two animals that are from the same environment and not use the mutation. DO not use growth more than twice,4,chain
+394,291,63,potions,Use the vial on an ingredient. Do that again. Combine. Note some ingredient doesn't work with the vial.,4,chain
+395,291,3,cooking,"fish + lettuce + stove = 80
+even this doesn't get you 80 add corn
+
+beef+pepper+stove=80
+
+beef+broccoli+bread+stove=80
+
+egg+green bean+tortilla+stove+80
+
+bacon+potato+corn+stove=80",4,chain
+404,308,1,cooking,"Start with stove. Then drag 3 ingredients onto the stove: 1 veggie, 1 protein, and 1 grain. Don't include water and don't go over 3 ingredients.",4,chain
+405,308,52,animals,"I struggled to find any real pattern here. Seemed like the more combinations I put in one round result in a lower score. I would just take two animals that live on different surfaces, put them together, and then take your 5 points and move on. Otherwise maybe you can crack the code better than me.",4,chain
+406,309,27,decorations,"Cut the items before you combine and then frame it
+
+artificial and natural soft together is high",4,chain
+408,293,76,potions,"Choose 1 ingredient and then vial or filter, before choosing another ingredient. Filter works on gases and breath, vial is good for extracting liquids like from dandelions and mushrooms. If you have a negative score after mixing things together, try adding a vial again or a filter again. Sometimes it makes your score go up.",4,chain
+409,308,38,decorations,"Add scissors first -> drag artificial, soft item to scissors -> drag new scissor to board -> drag natural, soft item to new scissors -> combine the two cut pieces -> drag frame onto combined two cut item -> Profit (100 points every time)",4,chain
+411,309,79,potions,"Filter liquids and gasses, Vial solids for extracts. Only combine 1 type of item at a time dont mix 2 different types at once.
+
+Solid mundane/magical combined with exact same is negative...but becomes positive when in a vial but not super high
+
+Gas mundane with gas magical is negative initially but high when filtered
+
+Solid mundane combined with solid magical is high when filtered",4,chain
+413,308,61,potions,"I wasn't able to figure out the ideal mix. Spent the first few rounds overcomplicating and creating terrible negative scores. My advice?:
+Add filter -> drag 1 gas or liquid onto filter -> take your 30 points and submit. 
+Save yourself all the negative points from experimenting.",4,chain
+415,309,17,cooking,"Try to combine ingredients that you would actually cook together.
+
+3 cooked items is very positive ....... 1 veg, 2 protein or 2 veg 1 protein
+
+Never add tortilla and wheat together",4,chain
+416,314,64,potions,Filtered whispering wind and the amber filter will get you to 100. Use the filter for things that need filtering only.,4,chain
+417,315,8,cooking,"Cook vegetables with water, and be careful when adding ingredients like raw eggs. Do not overcomplicate. If meals are already cooked, don't cook them again.",4,chain
+418,309,56,animals,"Mutant will not do anything. Try combining those animals and use the growth serum instead.  Do 3 instead of 4 animals.
+
+2 land + 1 air is only 25
+
+air land water is 35 after growth serum
+
+3 small with serum is only 20",4,chain
+419,314,30,decorations,"Keep it simple and cut each item once. It should be equal to 25 individually. Once they are cut, combine them, and then frame them.",4,chain
+421,314,15,cooking,Combine ingredients that can be cooked on the stove(tool) and make a meal afterwards (combine individual ingredients).,4,chain
+422,315,42,animals,"Mutation catalyst is useless, and it never produced any positive points, no matter how i combined it. Growth serum should be used twice; the third time is already a risk.",4,chain
+423,314,49,animals,Don't use the mutation catalyst. Don't combine everything.,4,chain
+424,317,74,potions,"Vial for extract, filter for filter. Combine the best outcome extract with the best outcome filter for most of the highest-scoring results. There are some exceptions, such as one where 2 extracts can be combined.
+
+It seemed like a lot worked here.  It will look bad, like -60, then add vial and it goes to 100",4,chain
+425,315,67,potions,Filtered Morning Dew and filtered Ghostly Vapor produce 100 points. Filter non-solids and vial solids for maximum points.,4,chain
+426,317,60,animals,Try different combinations and don't use the multiplier too often.,4,chain
+427,315,36,decorations,"Once you frame the object, don't add anything else to it. it will take you straight into negative points territory.",4,chain
+428,302,9,cooking,"Cook what you would eat. Just mix 2 or 3 ingredients only.
+
+Don't cook wheat
+
+Cooked Corn + Cooked fish+ Cooked potato= 100%",4,chain
+429,317,11,cooking,Cook everything you use. Don't combine everything though. play safe,4,chain
+431,320,66,potions,"Sort by liquids/gases or solids
+Use Filter for liquids/gases. Use Vial for solids.
+
+ONLY mix two combined items together not 3. 
+
+Only mix the ones with vials with ones with vials and ones with filters with the ones with filters.",4,chain
+432,317,40,decorations,"cut hard things twice soft things once
+
+artificial + natural then + frame
+
+OR
+
+soft artificial + soft natural + frame
+
+Cut before combining.Always do the soft one first",4,chain
+433,321,5,cooking,"Use stove on all ingredients. Ingredients that don't benefit from stove you can use water on. Combining 3  ingredients, then cooking them on the stove usually produced good results, scored 80 points on most rounds by doing this!",4,chain
+434,321,44,animals,Combine three animals that can work then mutate twice before finally adding growth serum.,4,chain
+435,328,51,animals,Use the growth serum on the individual animals. It has a better effect the larger the animal is. The mutation catalyst seemed to hinder the growth serum's benefits. Do not use the serum on the combined animals if you did them individually or it could lessen the score.,4,chain
+436,320,34,decorations,"Scissors on soft, never hard.
+
+Combine two cut things.
+
+Cut, Artificial + Cut, Natural = Best result.
+
+Don't combine 3 things.
+
+Probably don't combine two framed things.
+
+Method not clear for this set :/",4,chain
+437,321,26,decorations,"1st user: Don't overmix!!! Use your best logic (cut paper, soft with soft, etc). 2nd user: Mixing isnt working well. Hard to figure combos. Cut items seem to match. Most i got was 50 using only cut items. Experiment with soft items so you can add feedback for the next person.
+3rd user: don't mix too much and try to match soft items together and hard items together.",4,chain
+439,320,47,animals,"Pick 3 largest of each locale (air, land, water). Combine the 3. Grow, mutate, grow, mutate.",4,chain
+440,322,32,decorations,"Scissors was more reliable. Combining scissors with ingredients produced more consistent positive points.
+
+Scissors seemed to do better on softer objects. Using them on harder objects just seemed to result in negatives. Framing seemed very mixed in terms of results and often resulted in huge losses except when score was already high (60+).",4,chain
+441,328,62,potions,"liquid, magical, filter= 30
+
+liquid, magical, filtered + liquid filtered mundane = 100
+
+Vial + solid mundane = 30
+
+Vial + solid magical = 30
+
+Vial + solid magical added to Vial + solid mundane = 100",4,chain
+442,331,2,cooking,"cook things that would go together in real life, one at a time then combine. The stove is more successful.",4,chain
+443,321,71,potions,"I do not really have much advice. I didn't get many points. My best round was 60 points and that was when I just mixed things together excessively.
+
+It was hard to find any combinations that produced good results. My best advice is to mix one tool with one ingredient, but don't mix two ingredients as this always resulted in negative points. The most I could get was 30 points which was by making an ingredient into a vial or filtering it.",4,chain
+444,322,41,animals,"don't over combine. 
+just two animals are okay and they should animals that lives on land and air. choose two animals like the prompt stated",4,chain
+445,322,75,potions,Knowing what to mix is hard. Just be careful with filtering was difficult though but be careful,4,chain
+446,328,6,cooking,"Protein stove =20
+
+3 veg combined= 20
+
+3 veg + cooking= 60
+
+stove + protein, veg, grain= 80",4,chain
+448,331,23,decorations,Careful combining ingredients with frame. Use scissors with items that make sense. Cut flowers and ribbon before combining them.,4,chain
+449,328,22,decorations,"Scissored natural + Scissored Artificial +frame= 100
+
+Do not cut hard things.
+Add the frame last.",4,chain
+450,331,55,animals,You can individually get each creature high by doing mutant>growth>mutant>growth. After doing that you can combine up to 3 of them.,4,chain
+451,333,33,decorations,do not use scissors on wood and rock. Use the scissors on the soft items each at a time then combine them at the end.,4,chain
+453,333,54,animals,"Do not use the mutation catalyst. when you reach 15 points, start joining the animals",4,chain
+454,333,43,animals,"Mix two animals before adding a serum, then add the serum. After adding the serum several times, add the serum to the third animal separately until it hits 15 points. Mix the two",4,chain
+455,330,37,decorations,"Ingredients are divided between artificial, natural, soft, and hard. To reach 100 score, pick only two ingredients to work with, including one natural and one artificial. Cut each ingredient separately according to its hardness (one cut for soft, two cuts for hard). Then combine the two ingredients and frame them once. Do not use more than two ingredients, and do not frame twice.",4,chain
+461,343,48,animals,Combining all the animals gives you lower score.,4,chain
+462,342,35,decorations,Simply cut and frame items. Do not include everything. be realistic,4,chain
+463,342,58,animals,I didn't good on this one.3 animals the toogle the 2 processes. I didn't do well.,4,chain
+464,342,46,animals,"It is best to use growth serum before mutating
+zebra shark growth serum",4,chain
+465,343,25,decorations,Combine two soft items and cut with scissors.,4,chain
+4,11,81,cooking,3 items combined and the stove worked best for me.,,individual
+6,12,81,cooking,"If you use up all the ingredients you will most likely get ""overcomplicated"" and the score becomes zero. 
+
+To cook rice you simply use the stove on rice, no need to use water. 
+
+The highest I ever got in any round was 80 points, so I have no idea how to get 100. Good luck!",,individual
+14,10,81,cooking,"Hello, I found the key to scoring high is using the tools ( grey background items) effectively since they give the biggest value increases.",,individual
+19,17,84,potions,"Try not to worry about finding the right combination or you'll be playing this game forever. If you get any points, take them and walk away.",,individual
+42,27,84,potions,"Try not to combine two already mixed elements, as many tend not to give points. Try combining two items and then combining them with one of the tools",,individual
+48,31,82,decorations,Try adding items that makes sense . Don't add too many items,,individual
+52,34,81,cooking,Leave one item out. If you use every ingredient it overcomplicates. Only cook each item 1 time.,,individual
+55,35,84,potions,"It is very easy to get a score of 100 on each round.
+First when you hover over the items you will see if they are a solid, gas, liquid and either magical or mudane.  And solids you should merge with the vial.  Any gas or liquids you should merge with the filter.  Then take one mudane item that is worth 30 points and one magical item worth 30 points and combine them and you will get a 100 point item.",,individual
+59,36,84,potions,"to score 100 every time there is only one way. you first have to put each individual ingredient in a vial or filter it. If it is solid you HAVE to put it in a vial, but if it is gas or liquid, you HAVE to filter it. make sure one is mundane and one is magical. it does not matter if you use solid/liquid/gas, as long as one if mundane and one is magical after you filter it or vial it. once you have one filter/vialed mundane, and one filtered/vialed magical, you combine them together and it'll score 100. combining two magical or two mundane will score 60. combining more than two can drop the score because it becomes over complicated.",,individual
+63,42,82,decorations,"Try cutting soft things and combining them twice. Don't combine things more than twice. For example: Paper and flower cut both, combine both after they are cut and frame it. Should land 100 points. I haven't figured out what to do with the hard items, but most soft things seem to be cut and combine for 50-80 points and then frame.
+cut paper + cut sponge, cut paper+ cut feather, cut paper+ cut mushroom, etc. Just make sure to frame it after. Framing seems to add 20 pts to anything except from hard stuff, think it just damages the frame instead. Good luck!",,individual
+64,44,82,decorations,"soft artificial + soft natural -> scissors -> frame = 100
+soft artificial + soft artificial -> scissors -> frame = 80
+soft artificial -> scissors -> frame = 45",,individual
+70,48,83,animals,"Try to not put all your selections together right away,, sometimes the selections do not favor. Instead, try to add the serum to each before combining.",,individual
+87,63,83,animals,Three animals + one growth serum seems to have the best results. Mutation seems to always make the hybrid negative.,,individual
+91,65,84,potions,Combining plants and liquids with mandrake root usually works well.,,individual
+92,69,81,cooking,"1 grain soaked and cooked, 1 protein cooked, 1 veg cooked =100 add protein last, use three types worth 20",,individual
+93,67,84,potions,"Hello, Mix herb like ingredients and filter. This strategy worked the best for me. Good luck",,individual
+96,76,81,cooking,Try as much as possible to use the stove with simple matching ingredients like meat with grains or veggies as it usually gives a score range between 40-60.,,individual
+100,80,84,potions,"Take your time with figuring out the patterns, but it seems like combining a filtered item with a vialed item that is near or could easily combine would be worth trying out.",,individual
+101,82,83,animals,"to yield a good score, choose the animals that are mostly compatible then add the growth serum. A case example is the one for elephant and shark, combine both of them then add a growth serum. While giraffe and panda and serum to both then combine .  Also for panda and lion, combine the add serum.",,individual
+102,88,81,cooking,Just try not to overcomplicate things by mixing too many ingredients at one time,,individual
+106,102,81,cooking,Look for blooms of 60s and 80s. Try setting up two plates. Keep chin up and get hungry!,,individual
+110,103,84,potions,"filter the dragons breath
+filter basilisk
+ filter tree sap
+ filter basilisk venom
+filter honey necter
+vial with rose petal
+vial with batwing
+vial with sunstone
+vial with amber
+Most of the above ingredients after combined with their tool will combine with another ingredient and their tool, totaling 100, some ingredients like unicorn horn and ghost vapor, I don't believe combined with anything, but not sure.",,individual
+117,117,81,cooking,Don't combine all ingredients. That would always bring my score back to zero. It seems water does nothing to add points. Adding as many meats as possible usually resulted in the highest scores. Combining three ingredients usually resulted in the highest scores I got.,,individual
+123,115,83,animals,"You want to make the best possible combination of 2 animals. Use growth serum once on each animal, and combine the two largest animals together with both animals living in different areas (land + air , air+water, or land+water) to get an extra 5 points beyond the sum of the two animal scores. In some cases, the two largest animals are living in the same area, and you will not gain extra for the hybrid bonus between 2 animals living in different areas. If you use the growth serum twice on one animal, its score will go negative. The mutation catalyst will always make an animal go negative.",,individual
+126,122,81,cooking,3 ingredients work best for points. Anything over 3 will give you negative points,,individual
+133,123,83,animals,"In the initial rounds, experiment with ingredients that have low starting values (Value 0). They often contain a Level 1 feature that the tools can quickly elevate to Level 3 or 4, making them highly profitable. Don't waste tools on ingredients that already have a mid-range value (e.g., 30-40), as they may be closer to their value cap.",,individual
+136,112,84,potions,"Quick Tips for Success:
+Tools (grey) can be reused—apply them to high-value items after combining.
+Combine lower-value ingredients first; some items (like high-value ones) give 0 if combined.
+Track combinations and results in the scratchpad.
+Your score is the highest-value item, so focus on maximizing one or two items.
+Experiment with order: tool → combine or combine → tool for best results.",,individual
+138,125,84,potions,"Most solid things are for the vial not filtering.  Honeys, winds, liquids, those need to be filtered.",,individual
+140,128,83,animals,I never got the mutation action to gain points.,,individual
+141,131,82,decorations,"scissors and pinecone is bad
+
+thread and scirrors work well
+
+beaded mushroom good
+
+beaded wood frame
+
+cut paper mushroom
+
+cut things that can be cut with scissors
+
+cut mushroom ribbon",,individual
+145,133,81,cooking,try as much as possible to combine something that actually make a real meal,,individual
+148,136,84,potions,"You should filter liquid items and ""extract"" (with the vial) solid items. Once filtered or extracted, you can combine one magical and one mundane to get something worth 100. If you have only mundane items, you can extract one of them, then expose that extract to a gas/vapor, then filter to get a final extract worth 100.",,individual
+149,137,81,cooking,Try cooking what makes sense. Like something you would want to eat. And don't use water.,,individual
+150,142,84,potions,Use the filter on liquids & gas. Use the Vial on solids. 1 mundane + 1 magical always. Do not combine them until they are in the same state. Filtered gas & extracted solids become liquids.,,individual
+152,144,83,animals,"I would recommend combining three of the animals, adding the growth serum once, then the mutation catalyst twice (the first time will lower the score, the second will raise it), then adding the growth serum a second time will sometimes raise the score and sometimes lower it, so it's a chance you have to take depending on how high your score is after the 2 mutation catalysts. Adding too many animals together or adding either of the mutation catalysts or growth serum too many times will tank your score.",,individual
+154,143,82,decorations,"bark wood frame for 20 points
+
+ribbon flower scissors for 80 points
+
+sponge feather scissors for 80 points
+
+flower sunflower frame for 20 points
+
+mushroom yarn scissors for 80 points
+
+pinecone and thread for 30 points
+
+paper ribbon fram for 20 points
+
+newspaper and shell for 30 points
+
+newspaper shell scissors for 25 points
+
+sponge cardboard frame 20 points
+
+newspaper cardboard scissors 50 points
+
+pinecone bark frame 20 points",,individual
+159,154,83,animals,"If you're doing the animal game, the growth serum usually leads to better results",,individual
+164,161,81,cooking,"To maximize your score, use one of each: protein, grain, and vegetable in your dish. Do not cook any ingredient more than once or the resulting dish will be overcooked.",,individual
+167,162,83,animals,Try not to overload the experiments try two first if you get zero add another experiment to it Add a growth and submit,,individual
+168,163,84,potions,"Steps for Success
+
+1. Combine solids with a vial 
+2. Combine liquids and gasses with a filter. 
+
+You want to combine the ingredients with the tool first!!
+
+3. Combine one filtered/extracted mundane ingredient with an filtered/extracted magical ingredient.  
+
+Liquids goes with Liquids only",,individual
+183,171,84,potions,"Start by adding filters to either liquid or gas materials, or add vials to solid materials. Then look add these combinations to get max points:
+liquid extracted magical + liquid extracted mundane = 100
+liquid filtered magical + liquid extracted mundane = 100
+liquid filtered magical + liquid filtered mundane = 100",,individual
+185,174,83,animals,"I think you may only be able to combine 3 animals maximum. The small animals can be ultra grown, medium can be super grown, and large can be grown before they go negative. I could not find any positive outcome of using the mutation. It always made my score more negative, but I couldn't score higher than 55 either.",,individual
+197,181,82,decorations,"Combine two soft ingredients - one natural, one artificial. Cut those ingredients one time.",,individual
+201,184,82,decorations,makethe right choices,,individual
+202,183,81,cooking,"Don't try to overcomplicate the recipe. Have one protein and cook it. Have a mixture of vegetables and combine it with the cooked meat to score the highest. Don't use every ingredient, no idea what the water is used for or how it can help.",,individual
+217,191,81,cooking,"Adding all ingredients, regardless of steps seems to give an overcomplicated penalty.
+
+Water + Egg + Stove is not a poached egg even though it should be.
+
+It will never make a stew no matter how hard you try",,individual
+218,192,84,potions,When you find 2 30s combine them.  Use a vial on each one and then combine.  You will get 60 or 100,,individual
+219,194,84,potions,"physical items go in the vial
+air/water/fire etc goes with filter
+create 2 of either vial or filter and combine them for 100 points 
+filter/filter vial/vial is the safest bet, some filter/vial combinations work but is risky
+100 points is the cap for each round",,individual
+225,200,83,animals,"Focus on the animals that live on land and don't add more than two. Always select the bigger animal before the smaller one. If there are small animals that live on land, go for them. This should give you some points. For the tools, don't use the mutation but always use the grown serum. Use more if the animals are very small and less if the animals are big.",,individual
+228,203,83,animals,Don't get greedy. I was not able to ever get higher than 40. If you combine too much it goes negative. Couldn't find a clear pattern - might have to do with animal size?,,individual
+247,213,81,cooking,"Try to combine items with similar characteristics first, then with dissimilar characteristics, and note down, with some care, how the value varies with each transformation of the feature, since the rules are typically founded on simple manipulations of features.",,individual
+251,217,81,cooking,use the stove to cook,,individual
+252,219,82,decorations,"Combine soft items with soft items, hard with hard. 
+Cut items before combining them. 
+Don't try to combine everything together.",,individual
+266,221,81,cooking,You can use the water and oven for each individual ingredient. I thought you had to only use water or stove once. Nope. You can use them multiple times each round.,,individual
+279,227,81,cooking,"If you combine more than 3 food ingredients you will not get a lot of points.
+Combine water with either rice, wheat, tortilla or bread and then once it is soaked cook it 
+After that cook a meat item and a vegetable and then put them all together.
+If more than 2 vegetables, leave one out. If you have more than 3 ingredients you will lose points",,individual
+308,242,82,decorations,There was no rhyme or reason that I could figure out besides this: simple is better.,,individual
+314,244,84,potions,"Do your best to maintain at least a plus 30. Once you identify ingredients for portions, put them in the same mixture and vie versa. Don't be greedy, if you get to plus 70, better submit it before you shoot to a big negative.",,individual
+328,254,81,cooking,Follow the characteristics of every ingredient and test various combinations: unusual couples bring out the most value recipe. Record notes in the scratchpad and use your tools at will to follow trends that can be used throughout rounds.,,individual
+339,259,83,animals,"Just try and avoid using the mutation catalyst, it leads to zero points",,individual
+342,265,83,animals,Use growth serum often to combine more and increase the score when they both live at the same place,,individual
+370,278,82,decorations,The scissors should be put in a soft thing you can cut and also be framed if necessary,,individual
+371,277,82,decorations,match the frame with items that work naturally,,individual
+375,283,82,decorations,Some items like yarn are worth more when you cut them. Don't use scissors after adding a frame. The combinations are kind of intuitive. Don't combine more than two.,,individual
+385,286,84,potions,"Most items get filtered, outside of dragon scale, volcano, etc. Most liquids go into the vials as well. Trial and error is what works here",,individual
+387,288,83,animals,larger animals usually bring about increased points but don't overcomplicate it due to lower points,,individual
+388,287,84,potions,"dragon breath, dragon scale
+rose petal, nectar corn",,individual
+397,297,83,animals,it is not as easy as it looks,,individual
+398,300,82,decorations,"Go with your gut. I found I got the most points from combining logical items like cut-feather-paper-frame. If you try to combine too many things, it will tell you your creation is 'overcomplicated'.",,individual
+399,296,82,decorations,Finding realistic tools and combine them to build up points.,,individual
+402,303,82,decorations,Try combining the ingredients in a way that they follow a certain order of adjectives,,individual
+407,305,83,animals,mutation catalyst=0. Don't use it,,individual
+412,310,83,animals,"To get maxium points, first add together a land animal and an ocean animal. Once those are combined, then add a flying animal. After that, you should be up to about 5 or 10 points. Then add the growth serum ONLY ONCE. It will get you up to 30-45 points. Don't add the growth serum more than once or it will reduce points. Don't ever add the mutation tool! It will bring your points way down. Also, don't ever combine all 4 animals! It takes your points way down.
+
+So in summation: 1 land animal + 1 sea animal + 1 flying animal + growth serum = best result",,individual
+458,340,82,decorations,When cutting items if the first cut is negative points cut again but if the first cut is positive do not cut again. Try only combining only two item together because three will probably be negative points. Also whatever combination you have just slap a frame on and it will increase the points.,,individual
+459,341,82,decorations,Combining more than 2 can lead to negative numbers,,individual
