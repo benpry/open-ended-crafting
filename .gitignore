@@ -188,3 +188,4 @@ data/world-models/
 
 # cluster
 slurm-output
+optimization_checkpoints

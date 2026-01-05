@@ -120,7 +120,7 @@ def process_messages(data_dir: str, trial_type: str):
 
 
 def main():
-    DATA_DIR = "data/human-data/pilot-9"
+    DATA_DIR = "data/human-data/experiment-1"
 
     df_gameplay_chain = process_gameplay(DATA_DIR, "CraftingGameChainTrial")
     df_gameplay_chain["condition"] = "chain"
