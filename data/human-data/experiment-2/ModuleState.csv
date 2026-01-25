@@ -1,0 +1,846 @@
+vars,creation_time,failed,failed_reason,time_of_death,id,module_id,participant_id,time_started,time_finished,time_aborted,started,finished,aborted,type,class,object_type
+{},2026-01-21 23:15:21,False,,,1,consent,1,2026-01-21 23:15:21,2026-01-21 23:15:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:15:25,False,,,2,instructions,1,2026-01-21 23:15:25,2026-01-21 23:16:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:15:54,False,,,3,consent,2,2026-01-21 23:15:54,2026-01-21 23:16:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:16:22,False,,,4,practice_rounds,1,2026-01-21 23:16:22,2026-01-21 23:18:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:16:35,False,,,5,instructions,2,2026-01-21 23:16:35,2026-01-21 23:20:06,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:18:14,False,,,6,message_instructions,1,2026-01-21 23:18:14,2026-01-21 23:18:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:18:42,False,,,8,consent,3,2026-01-21 23:18:42,2026-01-21 23:18:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:18:46,False,,,9,instructions,3,2026-01-21 23:18:46,2026-01-21 23:23:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:19:45,False,,,10,consent,4,2026-01-21 23:19:45,2026-01-21 23:20:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:20:01,False,,,11,instructions,4,2026-01-21 23:20:01,2026-01-21 23:21:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:20:04,False,,,12,consent,5,2026-01-21 23:20:04,2026-01-21 23:20:16,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:20:06,False,,,13,practice_rounds,2,2026-01-21 23:20:06,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:20:16,False,,,14,instructions,5,2026-01-21 23:20:16,2026-01-21 23:23:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:21:20,False,,,15,consent,6,2026-01-21 23:21:20,2026-01-21 23:21:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:21:23,False,,,16,consent,7,2026-01-21 23:21:23,2026-01-21 23:21:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:21:29,False,,,17,instructions,6,2026-01-21 23:21:29,2026-01-21 23:21:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:21:33,False,,,18,consent,8,2026-01-21 23:21:33,2026-01-21 23:21:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:21:38,False,,,19,instructions,8,2026-01-21 23:21:38,2026-01-21 23:23:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:21:39,False,,,20,practice_rounds,6,2026-01-21 23:21:39,2026-01-21 23:28:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:21:41,False,,,21,instructions,7,2026-01-21 23:21:41,2026-01-21 23:25:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:21:46,False,,,22,practice_rounds,4,2026-01-21 23:21:46,2026-01-21 23:29:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:22:04,False,,,23,consent,9,2026-01-21 23:22:04,2026-01-21 23:22:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:22:13,False,,,24,instructions,9,2026-01-21 23:22:13,2026-01-21 23:24:10,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:22:33,False,,,25,consent,10,2026-01-21 23:22:33,2026-01-21 23:25:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:23:19,False,,,26,practice_rounds,8,2026-01-21 23:23:19,2026-01-21 23:26:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:23:23,False,,,27,practice_rounds,5,2026-01-21 23:23:23,2026-01-21 23:28:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:23:28,False,,,28,practice_rounds,3,2026-01-21 23:23:28,2026-01-21 23:28:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:24:10,False,,,29,practice_rounds,9,2026-01-21 23:24:10,2026-01-21 23:27:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:24:56,False,,,30,consent,11,2026-01-21 23:24:56,2026-01-21 23:25:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:25:00,False,,,31,instructions,11,2026-01-21 23:25:00,2026-01-21 23:27:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:25:28,False,,,32,practice_rounds,7,2026-01-21 23:25:28,2026-01-21 23:29:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:25:28,False,,,33,instructions,10,2026-01-21 23:25:28,2026-01-21 23:29:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:26:39,False,,,34,message_instructions,8,2026-01-21 23:26:39,2026-01-21 23:26:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:27:13,False,,,36,practice_rounds,11,2026-01-21 23:27:13,2026-01-21 23:30:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:27:27,False,,,37,message_instructions,9,2026-01-21 23:27:27,2026-01-21 23:27:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:28:04,False,,,39,message_instructions,6,2026-01-21 23:28:04,2026-01-21 23:28:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:28:16,False,,,41,consent,12,2026-01-21 23:28:16,2026-01-21 23:28:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:28:19,False,,,42,message_instructions,3,2026-01-21 23:28:19,2026-01-21 23:28:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:28:30,False,,,44,instructions,12,2026-01-21 23:28:30,2026-01-21 23:30:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:28:40,False,,,45,message_instructions,5,2026-01-21 23:28:40,2026-01-21 23:28:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:29:03,False,,,47,practice_rounds,10,2026-01-21 23:29:03,2026-01-21 23:38:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:29:15,False,,,48,message_instructions,4,2026-01-21 23:29:15,2026-01-21 23:29:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:29:28,False,,,49,message_instructions,7,2026-01-21 23:29:28,2026-01-21 23:29:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:30:15,False,,,52,practice_rounds,12,2026-01-21 23:30:15,2026-01-21 23:36:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:30:35,False,,,53,message_instructions,11,2026-01-21 23:30:35,2026-01-21 23:30:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:33:56,False,,,55,consent,13,2026-01-21 23:33:56,2026-01-21 23:34:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:34:12,False,,,56,instructions,13,2026-01-21 23:34:12,2026-01-21 23:37:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:35:23,False,,,57,consent,14,2026-01-21 23:35:23,2026-01-21 23:35:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:35:27,False,,,58,instructions,14,2026-01-21 23:35:27,2026-01-21 23:36:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:36:17,False,,,59,practice_rounds,14,2026-01-21 23:36:17,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:36:59,False,,,60,message_instructions,12,2026-01-21 23:36:59,2026-01-21 23:37:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:37:20,False,,,62,practice_rounds,13,2026-01-21 23:37:20,2026-01-21 23:51:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:38:49,False,,,63,message_instructions,10,2026-01-21 23:38:49,2026-01-21 23:39:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:40:34,False,,,65,consent,15,2026-01-21 23:40:34,2026-01-21 23:40:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:40:51,False,,,66,instructions,15,2026-01-21 23:40:51,2026-01-21 23:43:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:43:02,False,,,67,practice_rounds,15,2026-01-21 23:43:02,2026-01-21 23:47:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:46:17,False,,,68,consent,16,2026-01-21 23:46:17,2026-01-21 23:46:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:46:24,False,,,69,instructions,16,2026-01-21 23:46:24,2026-01-21 23:52:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:47:35,False,,,70,message_instructions,15,2026-01-21 23:47:35,2026-01-21 23:47:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:48:57,False,,,72,consent,17,2026-01-21 23:48:57,2026-01-21 23:49:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:49:15,False,,,73,instructions,17,2026-01-21 23:49:15,2026-01-21 23:50:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:50:47,False,,,74,practice_rounds,17,2026-01-21 23:50:47,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:51:26,False,,,75,message_instructions,13,2026-01-21 23:51:26,2026-01-21 23:51:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:52:09,False,,,77,practice_rounds,16,2026-01-21 23:52:09,2026-01-21 23:55:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:55:57,False,,,78,message_instructions,16,2026-01-21 23:55:57,2026-01-21 23:56:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:59:51,False,,,80,consent,18,2026-01-21 23:59:51,2026-01-21 23:59:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-21 23:59:59,False,,,81,instructions,18,2026-01-21 23:59:59,2026-01-22 00:01:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:01:34,False,,,82,practice_rounds,18,2026-01-22 00:01:34,2026-01-22 00:07:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:07:02,False,,,83,message_instructions,18,2026-01-22 00:07:02,2026-01-22 00:07:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:08:20,False,,,85,consent,19,2026-01-22 00:08:20,2026-01-22 00:08:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:08:25,False,,,86,instructions,19,2026-01-22 00:08:25,2026-01-22 00:09:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:09:02,False,,,87,practice_rounds,19,2026-01-22 00:09:02,2026-01-22 00:14:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:09:15,False,,,88,consent,20,2026-01-22 00:09:15,2026-01-22 00:10:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:10:00,False,,,89,instructions,20,2026-01-22 00:10:00,2026-01-22 00:10:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:10:25,False,,,90,consent,21,2026-01-22 00:10:25,2026-01-22 00:10:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:10:30,False,,,91,practice_rounds,20,2026-01-22 00:10:30,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:10:31,False,,,92,instructions,21,2026-01-22 00:10:31,2026-01-22 00:11:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:11:49,False,,,93,practice_rounds,21,2026-01-22 00:11:49,2026-01-22 00:19:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:11:52,False,,,94,consent,22,2026-01-22 00:11:52,2026-01-22 00:16:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:12:15,False,,,95,consent,23,2026-01-22 00:12:15,2026-01-22 00:12:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:12:16,False,,,96,consent,24,2026-01-22 00:12:16,2026-01-22 00:12:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:12:31,False,,,97,instructions,24,2026-01-22 00:12:31,2026-01-22 00:12:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:12:39,False,,,98,instructions,23,2026-01-22 00:12:39,2026-01-22 00:17:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:12:41,False,,,99,consent,25,2026-01-22 00:12:41,2026-01-22 00:12:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:12:52,False,,,100,instructions,25,2026-01-22 00:12:52,2026-01-22 00:13:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:12:58,False,,,101,practice_rounds,24,2026-01-22 00:12:58,2026-01-22 00:15:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:13:54,False,,,102,practice_rounds,25,2026-01-22 00:13:54,2026-01-22 00:18:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:14:41,False,,,103,message_instructions,19,2026-01-22 00:14:41,2026-01-22 00:14:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:15:20,False,,,105,message_instructions,24,2026-01-22 00:15:20,2026-01-22 00:15:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:15:40,False,,,107,consent,26,2026-01-22 00:15:40,2026-01-22 00:16:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:16:03,False,,,108,instructions,22,2026-01-22 00:16:03,2026-01-22 00:17:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:16:11,False,,,109,instructions,26,2026-01-22 00:16:11,2026-01-22 00:17:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:17:11,False,,,110,practice_rounds,22,2026-01-22 00:17:11,2026-01-22 00:20:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:17:21,False,,,111,practice_rounds,26,2026-01-22 00:17:21,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:17:26,False,,,112,consent,27,2026-01-22 00:17:26,2026-01-22 00:17:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:17:35,False,,,113,consent,28,2026-01-22 00:17:35,2026-01-22 00:17:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:17:46,False,,,114,instructions,28,2026-01-22 00:17:46,2026-01-22 00:21:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:17:52,False,,,115,practice_rounds,23,2026-01-22 00:17:52,2026-01-22 00:18:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:17:55,False,,,116,instructions,27,2026-01-22 00:17:55,2026-01-22 00:19:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:18:24,False,,,117,message_instructions,25,2026-01-22 00:18:24,2026-01-22 00:18:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:18:57,False,,,119,message_instructions,23,2026-01-22 00:18:57,2026-01-22 00:19:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:19:33,False,,,121,message_instructions,21,2026-01-22 00:19:33,2026-01-22 00:19:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:19:44,False,,,122,practice_rounds,27,2026-01-22 00:19:44,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:20:29,False,,,124,message_instructions,22,2026-01-22 00:20:29,2026-01-22 00:20:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:21:38,False,,,126,practice_rounds,28,2026-01-22 00:21:38,2026-01-22 00:28:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:26:31,False,,,127,consent,29,2026-01-22 00:26:31,2026-01-22 00:27:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:27:38,False,,,128,instructions,29,2026-01-22 00:27:38,2026-01-22 00:30:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:28:51,False,,,129,message_instructions,28,2026-01-22 00:28:51,2026-01-22 00:28:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:30:13,False,,,131,consent,30,2026-01-22 00:30:13,2026-01-22 00:30:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:30:31,False,,,132,instructions,30,2026-01-22 00:30:31,2026-01-22 00:31:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:30:40,False,,,133,practice_rounds,29,2026-01-22 00:30:40,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:31:51,False,,,134,practice_rounds,30,2026-01-22 00:31:51,2026-01-22 00:37:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:33:14,False,,,135,consent,31,2026-01-22 00:33:14,2026-01-22 00:33:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:33:25,False,,,136,instructions,31,2026-01-22 00:33:25,2026-01-22 00:40:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:37:15,False,,,137,message_instructions,30,2026-01-22 00:37:15,2026-01-22 00:37:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:40:18,False,,,139,practice_rounds,31,2026-01-22 00:40:18,2026-01-22 00:44:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:40:44,False,,,140,consent,32,2026-01-22 00:40:44,2026-01-22 00:41:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:41:14,False,,,141,instructions,32,2026-01-22 00:41:14,2026-01-22 00:41:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:41:43,False,,,142,practice_rounds,32,2026-01-22 00:41:43,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:44:03,False,,,143,message_instructions,31,2026-01-22 00:44:03,2026-01-22 00:44:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:45:33,False,,,145,consent,33,2026-01-22 00:45:33,2026-01-22 00:46:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:46:09,False,,,146,instructions,33,2026-01-22 00:46:09,2026-01-22 00:47:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:47:37,False,,,147,practice_rounds,33,2026-01-22 00:47:37,2026-01-22 00:51:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:51:07,False,,,148,consent,34,2026-01-22 00:51:07,2026-01-22 00:52:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:51:27,False,,,149,message_instructions,33,2026-01-22 00:51:27,2026-01-22 00:51:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:52:00,False,,,151,instructions,34,2026-01-22 00:52:00,2026-01-22 01:11:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:52:07,False,,,152,consent,35,2026-01-22 00:52:07,2026-01-22 00:53:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 00:53:00,False,,,153,instructions,35,2026-01-22 00:53:00,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:11:34,False,,,154,practice_rounds,34,2026-01-22 01:11:34,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:14:25,False,,,155,consent,36,2026-01-22 01:14:25,2026-01-22 01:14:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:14:31,False,,,156,instructions,36,2026-01-22 01:14:31,2026-01-22 01:16:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:16:09,False,,,157,practice_rounds,36,2026-01-22 01:16:09,2026-01-22 01:17:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:17:25,False,,,158,message_instructions,36,2026-01-22 01:17:25,2026-01-22 01:17:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:17:55,False,,,160,consent,37,2026-01-22 01:17:55,2026-01-22 01:18:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:18:14,False,,,161,instructions,37,2026-01-22 01:18:14,2026-01-22 01:20:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:19:19,False,,,162,consent,38,2026-01-22 01:19:19,2026-01-22 01:19:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:19:35,False,,,163,instructions,38,2026-01-22 01:19:35,2026-01-22 01:21:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:20:11,False,,,164,practice_rounds,37,2026-01-22 01:20:11,2026-01-22 01:22:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:21:20,False,,,165,practice_rounds,38,2026-01-22 01:21:20,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:22:30,False,,,166,consent,39,2026-01-22 01:22:30,2026-01-22 01:22:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:22:35,False,,,167,instructions,39,2026-01-22 01:22:35,2026-01-22 01:23:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:22:50,False,,,168,message_instructions,37,2026-01-22 01:22:50,2026-01-22 01:23:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:23:06,False,,,169,consent,40,2026-01-22 01:23:06,2026-01-22 01:23:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:23:09,False,,,170,instructions,40,2026-01-22 01:23:09,2026-01-22 01:24:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:23:22,False,,,172,practice_rounds,39,2026-01-22 01:23:22,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:23:42,False,,,173,consent,41,2026-01-22 01:23:42,2026-01-22 01:23:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:23:52,False,,,174,instructions,41,2026-01-22 01:23:52,2026-01-22 01:25:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:24:40,False,,,175,practice_rounds,40,2026-01-22 01:24:40,2026-01-22 01:28:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:25:08,False,,,176,practice_rounds,41,2026-01-22 01:25:08,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:26:29,False,,,177,consent,42,2026-01-22 01:26:29,2026-01-22 01:26:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:26:34,False,,,178,consent,43,2026-01-22 01:26:34,2026-01-22 01:26:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:26:39,False,,,179,instructions,43,2026-01-22 01:26:39,2026-01-22 01:27:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:26:54,False,,,180,instructions,42,2026-01-22 01:26:54,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:27:19,False,,,181,practice_rounds,43,2026-01-22 01:27:19,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:28:20,False,,,182,message_instructions,40,2026-01-22 01:28:20,2026-01-22 01:28:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:29:17,False,,,184,consent,44,2026-01-22 01:29:17,2026-01-22 01:29:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:29:22,False,,,185,instructions,44,2026-01-22 01:29:22,2026-01-22 01:30:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:30:31,False,,,186,practice_rounds,44,2026-01-22 01:30:31,2026-01-22 01:37:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:33:57,False,,,187,consent,45,2026-01-22 01:33:57,2026-01-22 01:34:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:34:03,False,,,188,consent,46,2026-01-22 01:34:03,2026-01-22 01:34:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:34:24,False,,,189,instructions,46,2026-01-22 01:34:24,2026-01-22 01:37:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:34:37,False,,,190,instructions,45,2026-01-22 01:34:37,2026-01-22 01:36:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:36:20,False,,,191,practice_rounds,45,2026-01-22 01:36:20,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:37:26,False,,,192,practice_rounds,46,2026-01-22 01:37:26,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:37:57,False,,,193,message_instructions,44,2026-01-22 01:37:57,2026-01-22 01:38:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:42:27,False,,,195,consent,47,2026-01-22 01:42:27,2026-01-22 01:42:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:42:42,False,,,196,instructions,47,2026-01-22 01:42:42,2026-01-22 01:47:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:45:32,False,,,197,consent,48,2026-01-22 01:45:32,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:47:11,False,,,198,practice_rounds,47,2026-01-22 01:47:11,2026-01-22 01:51:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:47:16,False,,,199,consent,49,2026-01-22 01:47:16,2026-01-22 01:49:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:47:39,False,,,200,consent,50,2026-01-22 01:47:39,2026-01-22 01:47:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:47:46,False,,,201,instructions,50,2026-01-22 01:47:46,2026-01-22 01:49:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:49:25,False,,,202,practice_rounds,50,2026-01-22 01:49:25,2026-01-22 01:51:10,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:49:26,False,,,203,instructions,49,2026-01-22 01:49:26,2026-01-22 01:50:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:49:57,False,,,204,consent,51,2026-01-22 01:49:57,2026-01-22 01:50:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:50:32,False,,,205,instructions,51,2026-01-22 01:50:32,2026-01-22 01:53:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:50:39,False,,,206,practice_rounds,49,2026-01-22 01:50:39,2026-01-22 01:53:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:51:10,False,,,207,message_instructions,50,2026-01-22 01:51:10,2026-01-22 01:51:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:51:15,False,,,208,message_instructions,47,2026-01-22 01:51:15,2026-01-22 01:51:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:53:27,False,,,211,practice_rounds,51,2026-01-22 01:53:27,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:53:50,False,,,212,message_instructions,49,2026-01-22 01:53:50,2026-01-22 01:53:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:57:04,False,,,214,consent,52,2026-01-22 01:57:04,2026-01-22 01:57:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:57:13,False,,,215,instructions,52,2026-01-22 01:57:13,2026-01-22 01:58:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:58:01,False,,,216,consent,53,2026-01-22 01:58:01,2026-01-22 02:02:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 01:58:33,False,,,217,practice_rounds,52,2026-01-22 01:58:33,2026-01-22 02:00:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:00:40,False,,,218,message_instructions,52,2026-01-22 02:00:40,2026-01-22 02:00:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:02:15,False,,,220,instructions,53,2026-01-22 02:02:15,2026-01-22 02:08:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:05:23,False,,,221,consent,54,2026-01-22 02:05:23,2026-01-22 02:05:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:05:27,False,,,222,instructions,54,2026-01-22 02:05:27,2026-01-22 02:08:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:08:03,False,,,223,practice_rounds,54,2026-01-22 02:08:03,2026-01-22 02:10:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:08:12,False,,,224,practice_rounds,53,2026-01-22 02:08:12,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:08:42,False,,,225,consent,55,2026-01-22 02:08:42,2026-01-22 02:09:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:09:08,False,,,226,instructions,55,2026-01-22 02:09:08,2026-01-22 02:11:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:09:55,False,,,227,consent,56,2026-01-22 02:09:55,2026-01-22 02:10:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:10:04,False,,,228,instructions,56,2026-01-22 02:10:04,2026-01-22 02:12:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:10:43,False,,,229,message_instructions,54,2026-01-22 02:10:43,2026-01-22 02:11:05,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:11:36,False,,,231,practice_rounds,55,2026-01-22 02:11:36,2026-01-22 02:14:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:12:01,False,,,232,practice_rounds,56,2026-01-22 02:12:01,2026-01-22 02:14:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:14:01,False,,,233,message_instructions,55,2026-01-22 02:14:01,2026-01-22 02:14:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:14:51,False,,,235,message_instructions,56,2026-01-22 02:14:51,2026-01-22 02:15:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:19:47,False,,,237,consent,57,2026-01-22 02:19:47,2026-01-22 02:20:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:20:39,False,,,238,instructions,57,2026-01-22 02:20:39,2026-01-22 02:25:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:25:41,False,,,239,practice_rounds,57,2026-01-22 02:25:41,2026-01-22 02:31:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:26:14,False,,,240,consent,58,2026-01-22 02:26:14,2026-01-22 02:27:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:27:40,False,,,241,instructions,58,2026-01-22 02:27:40,2026-01-22 02:28:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:28:58,False,,,242,practice_rounds,58,2026-01-22 02:28:58,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:31:59,False,,,243,message_instructions,57,2026-01-22 02:31:59,2026-01-22 02:44:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:32:13,False,,,244,consent,59,2026-01-22 02:32:13,2026-01-22 02:32:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:32:24,False,,,245,instructions,59,2026-01-22 02:32:24,2026-01-22 02:33:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:33:43,False,,,246,practice_rounds,59,2026-01-22 02:33:43,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:43:48,False,,,247,consent,60,2026-01-22 02:43:48,2026-01-22 02:43:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:43:57,False,,,248,instructions,60,2026-01-22 02:43:57,2026-01-22 02:45:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:45:27,False,,,250,practice_rounds,60,2026-01-22 02:45:27,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:50:33,False,,,251,consent,61,2026-01-22 02:50:33,2026-01-22 02:50:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:50:50,False,,,252,instructions,61,2026-01-22 02:50:50,2026-01-22 02:54:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:54:14,False,,,253,practice_rounds,61,2026-01-22 02:54:14,2026-01-22 03:00:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:56:50,False,,,254,consent,62,2026-01-22 02:56:50,2026-01-22 02:57:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:57:02,False,,,255,instructions,62,2026-01-22 02:57:02,2026-01-22 02:59:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 02:59:08,False,,,256,practice_rounds,62,2026-01-22 02:59:08,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:00:04,False,,,257,message_instructions,61,2026-01-22 03:00:04,2026-01-22 03:00:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:13:41,False,,,259,consent,63,2026-01-22 03:13:41,2026-01-22 03:13:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:13:55,False,,,260,instructions,63,2026-01-22 03:13:55,2026-01-22 03:14:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:14:36,False,,,261,practice_rounds,63,2026-01-22 03:14:36,2026-01-22 03:15:53,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:15:53,False,,,262,message_instructions,63,2026-01-22 03:15:53,2026-01-22 03:16:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:18:15,False,,,264,consent,64,2026-01-22 03:18:15,2026-01-22 03:21:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:21:52,False,,,265,instructions,64,2026-01-22 03:21:52,2026-01-22 03:23:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:23:34,False,,,266,practice_rounds,64,2026-01-22 03:23:34,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:27:59,False,,,267,consent,65,2026-01-22 03:27:59,2026-01-22 03:28:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:28:04,False,,,268,instructions,65,2026-01-22 03:28:04,2026-01-22 03:29:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 03:29:21,False,,,269,practice_rounds,65,2026-01-22 03:29:21,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:01:58,False,,,270,consent,66,2026-01-22 17:01:58,2026-01-22 17:02:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:02,False,,,271,consent,67,2026-01-22 17:02:02,2026-01-22 17:02:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:04,False,,,272,consent,68,2026-01-22 17:02:04,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:04,False,,,273,instructions,66,2026-01-22 17:02:04,2026-01-22 17:03:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:05,False,,,274,consent,69,2026-01-22 17:02:05,2026-01-22 17:02:10,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:08,False,,,275,consent,70,2026-01-22 17:02:08,2026-01-22 17:02:16,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:08,False,,,276,consent,71,2026-01-22 17:02:08,2026-01-22 17:02:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:08,False,,,277,instructions,67,2026-01-22 17:02:08,2026-01-22 17:02:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:10,False,,,278,instructions,69,2026-01-22 17:02:10,2026-01-22 17:03:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:11,False,,,279,instructions,71,2026-01-22 17:02:11,2026-01-22 17:03:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:11,False,,,280,consent,72,2026-01-22 17:02:11,2026-01-22 17:02:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:12,False,,,281,consent,73,2026-01-22 17:02:12,2026-01-22 17:02:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:16,False,,,282,instructions,70,2026-01-22 17:02:16,2026-01-22 17:02:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:18,False,,,283,consent,74,2026-01-22 17:02:18,2026-01-22 17:03:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:20,False,,,284,consent,75,2026-01-22 17:02:20,2026-01-22 17:02:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:22,False,,,285,consent,76,2026-01-22 17:02:22,2026-01-22 17:02:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:27,False,,,286,instructions,73,2026-01-22 17:02:27,2026-01-22 17:03:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:29,False,,,287,practice_rounds,70,2026-01-22 17:02:29,2026-01-22 17:03:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:41,False,,,288,consent,77,2026-01-22 17:02:41,2026-01-22 17:02:53,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:47,False,,,289,instructions,76,2026-01-22 17:02:47,2026-01-22 17:04:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:52,False,,,290,instructions,75,2026-01-22 17:02:52,2026-01-22 17:03:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:52,False,,,291,practice_rounds,67,2026-01-22 17:02:52,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:53,False,,,292,instructions,77,2026-01-22 17:02:53,2026-01-22 17:05:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:02:59,False,,,293,instructions,72,2026-01-22 17:02:59,2026-01-22 17:06:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:08,False,,,294,practice_rounds,66,2026-01-22 17:03:08,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:18,False,,,295,practice_rounds,71,2026-01-22 17:03:18,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:21,False,,,296,instructions,74,2026-01-22 17:03:21,2026-01-22 17:04:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:28,False,,,297,consent,78,2026-01-22 17:03:28,2026-01-22 17:03:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:29,False,,,298,practice_rounds,75,2026-01-22 17:03:29,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:36,False,,,299,practice_rounds,69,2026-01-22 17:03:36,2026-01-22 17:06:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:41,False,,,300,instructions,78,2026-01-22 17:03:41,2026-01-22 17:04:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:42,False,,,301,message_instructions,70,2026-01-22 17:03:42,2026-01-22 17:03:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:03:54,False,,,303,practice_rounds,73,2026-01-22 17:03:54,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:04:08,False,,,304,practice_rounds,76,2026-01-22 17:04:08,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:04:15,False,,,305,practice_rounds,74,2026-01-22 17:04:15,2026-01-22 17:15:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:04:31,False,,,306,practice_rounds,78,2026-01-22 17:04:31,2026-01-22 17:08:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:05:58,False,,,307,practice_rounds,77,2026-01-22 17:05:58,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:06:07,False,,,308,message_instructions,69,2026-01-22 17:06:07,2026-01-22 17:06:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:06:22,False,,,310,practice_rounds,72,2026-01-22 17:06:22,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:06:24,False,,,311,consent,79,2026-01-22 17:06:24,2026-01-22 17:06:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:06:32,False,,,312,consent,80,2026-01-22 17:06:32,2026-01-22 17:06:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:06:43,False,,,313,instructions,79,2026-01-22 17:06:43,2026-01-22 17:39:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:06:57,False,,,314,instructions,80,2026-01-22 17:06:57,2026-01-22 17:09:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:07:28,False,,,315,consent,81,2026-01-22 17:07:28,2026-01-22 17:07:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:07:42,False,,,316,instructions,81,2026-01-22 17:07:42,2026-01-22 17:08:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:08:30,False,,,317,consent,82,2026-01-22 17:08:30,2026-01-22 17:08:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:08:36,False,,,318,message_instructions,78,2026-01-22 17:08:36,2026-01-22 17:08:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:08:39,False,,,319,instructions,82,2026-01-22 17:08:39,2026-01-22 17:09:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:08:47,False,,,321,practice_rounds,81,2026-01-22 17:08:47,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:08:58,False,,,322,consent,83,2026-01-22 17:08:58,2026-01-22 17:09:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:09:33,False,,,323,practice_rounds,82,2026-01-22 17:09:33,2026-01-22 17:11:16,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:09:36,False,,,324,practice_rounds,80,2026-01-22 17:09:36,2026-01-22 17:14:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:09:57,False,,,325,instructions,83,2026-01-22 17:09:57,2026-01-22 17:11:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:11:16,False,,,326,message_instructions,82,2026-01-22 17:11:16,2026-01-22 17:11:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:11:18,False,,,327,practice_rounds,83,2026-01-22 17:11:18,2026-01-22 17:14:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:12:02,False,,,329,consent,84,2026-01-22 17:12:02,2026-01-22 17:12:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:12:13,False,,,330,instructions,84,2026-01-22 17:12:13,2026-01-22 17:14:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:13:10,False,,,331,consent,85,2026-01-22 17:13:10,2026-01-22 17:13:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:13:17,False,,,332,instructions,85,2026-01-22 17:13:17,2026-01-22 17:14:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:13:39,False,,,333,consent,86,2026-01-22 17:13:39,2026-01-22 17:14:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:14:00,False,,,334,message_instructions,80,2026-01-22 17:14:00,2026-01-22 17:14:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:14:01,False,,,335,instructions,86,2026-01-22 17:14:01,2026-01-22 17:15:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:14:05,False,,,336,consent,87,2026-01-22 17:14:05,2026-01-22 17:14:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:14:09,False,,,337,practice_rounds,84,2026-01-22 17:14:09,2026-01-22 17:18:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:14:11,False,,,338,message_instructions,83,2026-01-22 17:14:11,2026-01-22 17:14:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:14:31,False,,,341,instructions,87,2026-01-22 17:14:31,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:14:44,False,,,342,practice_rounds,85,2026-01-22 17:14:44,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:15:29,False,,,343,practice_rounds,86,2026-01-22 17:15:29,2026-01-22 17:19:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:15:41,False,,,344,message_instructions,74,2026-01-22 17:15:41,2026-01-22 17:15:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:18:03,False,,,346,message_instructions,84,2026-01-22 17:18:03,2026-01-22 17:21:10,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:19:25,False,,,347,consent,88,2026-01-22 17:19:25,2026-01-22 17:19:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:19:43,False,,,348,message_instructions,86,2026-01-22 17:19:43,2026-01-22 17:19:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:19:47,False,,,349,instructions,88,2026-01-22 17:19:47,2026-01-22 17:21:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:21:14,False,,,352,practice_rounds,88,2026-01-22 17:21:14,2026-01-22 17:26:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:21:45,False,,,353,consent,89,2026-01-22 17:21:45,2026-01-22 17:26:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:22:30,False,,,354,consent,90,2026-01-22 17:22:30,2026-01-22 17:22:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:22:51,False,,,355,instructions,90,2026-01-22 17:22:51,2026-01-22 17:24:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:23:52,False,,,356,consent,91,2026-01-22 17:23:52,2026-01-22 17:24:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:24:04,False,,,357,instructions,91,2026-01-22 17:24:04,2026-01-22 17:35:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:24:22,False,,,358,practice_rounds,90,2026-01-22 17:24:22,2026-01-22 17:34:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:26:01,False,,,359,message_instructions,88,2026-01-22 17:26:01,2026-01-22 17:26:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:26:32,False,,,361,instructions,89,2026-01-22 17:26:32,2026-01-22 17:45:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:33:45,False,,,362,consent,92,2026-01-22 17:33:45,2026-01-22 17:33:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:33:52,False,,,363,instructions,92,2026-01-22 17:33:52,2026-01-22 17:35:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:34:30,False,,,364,message_instructions,90,2026-01-22 17:34:30,2026-01-22 17:34:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:35:03,False,,,366,practice_rounds,92,2026-01-22 17:35:03,2026-01-22 17:36:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:35:18,False,,,367,practice_rounds,91,2026-01-22 17:35:18,2026-01-22 17:43:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:36:35,False,,,368,message_instructions,92,2026-01-22 17:36:35,2026-01-22 17:36:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:39:56,False,,,370,practice_rounds,79,2026-01-22 17:39:56,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:24,False,,,371,consent,93,2026-01-22 17:42:24,2026-01-22 17:42:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:28,False,,,372,consent,94,2026-01-22 17:42:28,2026-01-22 17:42:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:29,False,,,373,instructions,93,2026-01-22 17:42:29,2026-01-22 17:43:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:34,False,,,374,consent,95,2026-01-22 17:42:34,2026-01-22 17:42:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:36,False,,,375,consent,96,2026-01-22 17:42:36,2026-01-22 17:42:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:36,False,,,376,consent,97,2026-01-22 17:42:36,2026-01-22 17:42:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:38,False,,,377,consent,98,2026-01-22 17:42:38,2026-01-22 17:56:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:39,False,,,378,instructions,95,2026-01-22 17:42:39,2026-01-22 17:43:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:39,False,,,379,instructions,94,2026-01-22 17:42:39,2026-01-22 17:43:48,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:42,False,,,380,instructions,97,2026-01-22 17:42:42,2026-01-22 17:44:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:45,False,,,381,instructions,96,2026-01-22 17:42:45,2026-01-22 17:44:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:42:52,False,,,382,consent,99,2026-01-22 17:42:52,2026-01-22 17:43:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:43:07,False,,,383,consent,100,2026-01-22 17:43:07,2026-01-22 17:43:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:43:09,False,,,384,instructions,99,2026-01-22 17:43:09,2026-01-22 17:46:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:43:11,False,,,385,instructions,100,2026-01-22 17:43:11,2026-01-22 17:45:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:43:23,False,,,386,practice_rounds,93,2026-01-22 17:43:23,2026-01-22 17:45:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:43:24,False,,,387,practice_rounds,95,2026-01-22 17:43:24,2026-01-22 17:45:48,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:43:29,False,,,388,message_instructions,91,2026-01-22 17:43:29,2026-01-22 17:43:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:43:48,False,,,390,practice_rounds,94,2026-01-22 17:43:48,2026-01-22 17:46:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:44:20,False,,,391,practice_rounds,97,2026-01-22 17:44:20,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:44:37,False,,,392,practice_rounds,96,2026-01-22 17:44:37,2026-01-22 17:50:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:45:03,False,,,393,practice_rounds,100,2026-01-22 17:45:03,2026-01-22 17:46:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:45:29,False,,,394,message_instructions,93,2026-01-22 17:45:29,2026-01-22 17:45:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:45:48,False,,,396,message_instructions,95,2026-01-22 17:45:48,2026-01-22 17:45:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:45:54,False,,,397,practice_rounds,89,2026-01-22 17:45:54,2026-01-22 17:54:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:46:32,False,,,399,message_instructions,100,2026-01-22 17:46:32,2026-01-22 17:46:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:46:43,False,,,400,message_instructions,94,2026-01-22 17:46:43,2026-01-22 17:46:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:46:45,False,,,401,practice_rounds,99,2026-01-22 17:46:45,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:48:31,False,,,404,consent,101,2026-01-22 17:48:31,2026-01-22 17:49:16,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:49:16,False,,,405,instructions,101,2026-01-22 17:49:16,2026-01-22 17:52:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:49:51,False,,,406,consent,102,2026-01-22 17:49:51,2026-01-22 17:49:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:49:56,False,,,407,instructions,102,2026-01-22 17:49:56,2026-01-22 17:51:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:50:57,False,,,408,message_instructions,96,2026-01-22 17:50:57,2026-01-22 17:53:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:51:26,False,,,409,practice_rounds,102,2026-01-22 17:51:26,2026-01-22 17:53:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:52:19,False,,,410,practice_rounds,101,2026-01-22 17:52:19,2026-01-22 18:05:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:53:38,False,,,411,message_instructions,102,2026-01-22 17:53:38,2026-01-22 17:53:53,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:54:02,False,,,414,message_instructions,89,2026-01-22 17:54:02,2026-01-22 17:55:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:56:38,False,,,416,consent,103,2026-01-22 17:56:38,2026-01-22 17:57:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:56:45,False,,,417,instructions,98,2026-01-22 17:56:45,2026-01-22 17:58:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:57:40,False,,,418,instructions,103,2026-01-22 17:57:40,2026-01-22 18:07:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:57:42,False,,,419,consent,104,2026-01-22 17:57:42,2026-01-22 17:57:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:57:49,False,,,420,instructions,104,2026-01-22 17:57:49,2026-01-22 17:58:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:58:07,False,,,421,practice_rounds,98,2026-01-22 17:58:07,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:58:44,False,,,422,practice_rounds,104,2026-01-22 17:58:44,2026-01-22 18:01:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 17:59:33,False,,,423,consent,105,2026-01-22 17:59:33,2026-01-22 18:19:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:01:09,False,,,424,message_instructions,104,2026-01-22 18:01:09,2026-01-22 18:01:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:01:18,False,,,425,consent,106,2026-01-22 18:01:18,2026-01-22 18:01:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:01:32,False,,,427,instructions,106,2026-01-22 18:01:32,2026-01-22 18:03:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:03:15,False,,,428,practice_rounds,106,2026-01-22 18:03:15,2026-01-22 18:08:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:05:42,False,,,429,message_instructions,101,2026-01-22 18:05:42,2026-01-22 18:06:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:07:35,False,,,431,practice_rounds,103,2026-01-22 18:07:35,2026-01-22 18:10:48,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:08:07,False,,,432,message_instructions,106,2026-01-22 18:08:07,2026-01-22 18:08:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:10:48,False,,,434,message_instructions,103,2026-01-22 18:10:48,2026-01-22 18:11:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:19:12,False,,,436,instructions,105,2026-01-22 18:19:12,2026-01-22 18:41:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:23:57,False,,,437,consent,107,2026-01-22 18:23:57,2026-01-22 18:24:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:24:09,False,,,438,instructions,107,2026-01-22 18:24:09,2026-01-22 18:26:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:26:32,False,,,439,practice_rounds,107,2026-01-22 18:26:32,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:32:56,False,,,440,consent,108,2026-01-22 18:32:56,2026-01-22 18:33:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:08,False,,,441,consent,109,2026-01-22 18:33:08,2026-01-22 18:33:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:08,False,,,442,instructions,108,2026-01-22 18:33:08,2026-01-22 18:34:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:10,False,,,443,consent,110,2026-01-22 18:33:10,2026-01-22 18:33:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:12,False,,,444,consent,111,2026-01-22 18:33:12,2026-01-22 18:33:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:15,False,,,445,instructions,109,2026-01-22 18:33:15,2026-01-22 18:34:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:16,False,,,446,consent,112,2026-01-22 18:33:16,2026-01-22 18:33:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:17,False,,,447,consent,113,2026-01-22 18:33:17,2026-01-22 18:33:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:19,False,,,448,consent,114,2026-01-22 18:33:19,2026-01-22 18:33:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:21,False,,,449,consent,115,2026-01-22 18:33:21,2026-01-22 18:33:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:22,False,,,450,consent,116,2026-01-22 18:33:22,2026-01-22 18:33:48,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:24,False,,,451,instructions,113,2026-01-22 18:33:24,2026-01-22 18:34:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:24,False,,,452,consent,117,2026-01-22 18:33:24,2026-01-22 18:33:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:24,False,,,453,instructions,112,2026-01-22 18:33:24,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:26,False,,,454,instructions,111,2026-01-22 18:33:26,2026-01-22 18:34:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:26,False,,,455,instructions,110,2026-01-22 18:33:26,2026-01-22 18:35:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:29,False,,,456,consent,118,2026-01-22 18:33:29,2026-01-22 19:25:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:30,False,,,457,instructions,114,2026-01-22 18:33:30,2026-01-22 18:35:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:38,False,,,458,consent,119,2026-01-22 18:33:38,2026-01-22 18:35:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:45,False,,,459,consent,120,2026-01-22 18:33:45,2026-01-22 18:34:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:45,False,,,460,instructions,115,2026-01-22 18:33:45,2026-01-22 18:35:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:48,False,,,461,instructions,116,2026-01-22 18:33:48,2026-01-22 18:34:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:33:51,False,,,462,instructions,117,2026-01-22 18:33:51,2026-01-22 18:36:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:01,False,,,463,practice_rounds,108,2026-01-22 18:34:01,2026-01-22 18:47:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:02,False,,,464,instructions,120,2026-01-22 18:34:02,2026-01-22 18:35:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:11,False,,,465,consent,121,2026-01-22 18:34:11,2026-01-22 18:34:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:22,False,,,466,instructions,121,2026-01-22 18:34:22,2026-01-22 18:37:48,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:25,False,,,467,practice_rounds,109,2026-01-22 18:34:25,2026-01-22 18:38:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:41,False,,,468,practice_rounds,113,2026-01-22 18:34:41,2026-01-22 18:37:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:45,False,,,469,practice_rounds,116,2026-01-22 18:34:45,2026-01-22 18:36:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:56,False,,,470,consent,122,2026-01-22 18:34:56,2026-01-22 18:35:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:34:58,False,,,471,practice_rounds,111,2026-01-22 18:34:58,2026-01-22 18:37:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:35:01,False,,,472,instructions,119,2026-01-22 18:35:01,2026-01-22 18:36:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:35:02,False,,,473,instructions,122,2026-01-22 18:35:02,2026-01-22 18:36:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:35:03,False,,,474,practice_rounds,110,2026-01-22 18:35:03,2026-01-22 18:37:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:35:09,False,,,475,practice_rounds,115,2026-01-22 18:35:09,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:35:09,False,,,476,practice_rounds,114,2026-01-22 18:35:09,2026-01-22 18:37:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:35:23,False,,,477,consent,123,2026-01-22 18:35:23,2026-01-22 18:35:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:35:29,False,,,478,instructions,123,2026-01-22 18:35:29,2026-01-22 18:36:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:35:37,False,,,479,practice_rounds,120,2026-01-22 18:35:37,2026-01-22 18:40:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:36:07,False,,,480,practice_rounds,117,2026-01-22 18:36:07,2026-01-22 18:45:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:36:11,False,,,481,consent,124,2026-01-22 18:36:11,2026-01-22 18:36:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:36:18,False,,,482,instructions,124,2026-01-22 18:36:18,2026-01-22 18:39:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:36:22,False,,,483,practice_rounds,119,2026-01-22 18:36:22,2026-01-22 18:40:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:36:35,False,,,484,practice_rounds,122,2026-01-22 18:36:35,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:36:47,False,,,485,message_instructions,116,2026-01-22 18:36:47,2026-01-22 18:36:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:36:59,False,,,487,practice_rounds,123,2026-01-22 18:36:59,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:37:08,False,,,488,message_instructions,110,2026-01-22 18:37:08,2026-01-22 18:37:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:37:28,False,,,489,message_instructions,113,2026-01-22 18:37:28,2026-01-22 18:37:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:37:30,False,,,491,message_instructions,111,2026-01-22 18:37:30,2026-01-22 18:37:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:37:47,False,,,494,message_instructions,114,2026-01-22 18:37:47,2026-01-22 18:37:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:37:48,False,,,495,practice_rounds,121,2026-01-22 18:37:48,2026-01-22 18:39:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:38:34,False,,,497,message_instructions,109,2026-01-22 18:38:34,2026-01-22 18:38:53,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:39:12,False,,,499,practice_rounds,124,2026-01-22 18:39:12,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:39:45,False,,,500,message_instructions,121,2026-01-22 18:39:45,2026-01-22 18:40:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:39:46,False,,,501,consent,125,2026-01-22 18:39:46,2026-01-22 18:39:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:39:55,False,,,502,instructions,125,2026-01-22 18:39:55,2026-01-22 18:40:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:40:23,False,,,503,consent,126,2026-01-22 18:40:23,2026-01-22 18:40:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:40:40,False,,,504,message_instructions,119,2026-01-22 18:40:40,2026-01-22 18:40:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:40:40,False,,,505,instructions,126,2026-01-22 18:40:40,2026-01-22 18:42:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:40:45,False,,,506,message_instructions,120,2026-01-22 18:40:45,2026-01-22 18:40:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:40:55,False,,,508,practice_rounds,125,2026-01-22 18:40:55,2026-01-22 18:43:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:41:14,False,,,511,practice_rounds,105,2026-01-22 18:41:14,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:42:08,False,,,512,practice_rounds,126,2026-01-22 18:42:08,2026-01-22 18:45:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:43:13,False,,,513,message_instructions,125,2026-01-22 18:43:13,2026-01-22 18:43:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:43:17,False,,,514,consent,127,2026-01-22 18:43:17,2026-01-22 18:43:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:43:23,False,,,515,instructions,127,2026-01-22 18:43:23,2026-01-22 18:44:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:43:52,False,,,517,consent,128,2026-01-22 18:43:52,2026-01-22 18:44:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:44:08,False,,,518,instructions,128,2026-01-22 18:44:08,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:44:41,False,,,519,practice_rounds,127,2026-01-22 18:44:41,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:45:03,False,,,520,message_instructions,126,2026-01-22 18:45:03,2026-01-22 18:45:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:45:42,False,,,522,message_instructions,117,2026-01-22 18:45:42,2026-01-22 18:46:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:47:14,False,,,524,message_instructions,108,2026-01-22 18:47:14,2026-01-22 18:47:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:49:13,False,,,526,consent,129,2026-01-22 18:49:13,2026-01-22 18:49:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:49:50,False,,,527,instructions,129,2026-01-22 18:49:50,2026-01-22 18:54:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:49:50,False,,,528,consent,130,2026-01-22 18:49:50,2026-01-22 18:50:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:50:07,False,,,529,instructions,130,2026-01-22 18:50:07,2026-01-22 18:51:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:50:32,False,,,530,consent,131,2026-01-22 18:50:32,2026-01-22 18:50:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:50:40,False,,,531,instructions,131,2026-01-22 18:50:40,2026-01-22 18:51:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:51:30,False,,,532,practice_rounds,130,2026-01-22 18:51:30,2026-01-22 18:52:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:51:55,False,,,533,practice_rounds,131,2026-01-22 18:51:55,2026-01-22 18:59:16,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:52:45,False,,,534,message_instructions,130,2026-01-22 18:52:45,2026-01-22 18:53:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:54:14,False,,,536,practice_rounds,129,2026-01-22 18:54:14,2026-01-22 18:58:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:55:37,False,,,537,consent,132,2026-01-22 18:55:37,2026-01-22 18:55:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:55:51,False,,,538,instructions,132,2026-01-22 18:55:51,2026-01-22 18:58:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:58:35,False,,,539,message_instructions,129,2026-01-22 18:58:35,2026-01-22 18:59:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:58:45,False,,,540,practice_rounds,132,2026-01-22 18:58:45,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 18:59:16,False,,,541,message_instructions,131,2026-01-22 18:59:16,2026-01-22 18:59:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:00:18,False,,,544,consent,133,2026-01-22 19:00:18,2026-01-22 19:00:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:00:39,False,,,545,instructions,133,2026-01-22 19:00:39,2026-01-22 19:01:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:01:37,False,,,546,practice_rounds,133,2026-01-22 19:01:37,2026-01-22 19:03:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:03:54,False,,,547,message_instructions,133,2026-01-22 19:03:54,2026-01-22 19:04:05,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:28,False,,,549,consent,134,2026-01-22 19:23:28,2026-01-22 19:23:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:30,False,,,550,consent,135,2026-01-22 19:23:30,2026-01-22 19:23:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:30,False,,,551,consent,136,2026-01-22 19:23:30,2026-01-22 19:24:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:33,False,,,552,instructions,134,2026-01-22 19:23:33,2026-01-22 19:25:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:33,False,,,553,consent,137,2026-01-22 19:23:33,2026-01-22 19:23:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:34,False,,,554,consent,138,2026-01-22 19:23:34,2026-01-22 19:23:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:36,False,,,555,instructions,135,2026-01-22 19:23:36,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:40,False,,,556,instructions,137,2026-01-22 19:23:40,2026-01-22 19:25:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:43,False,,,557,instructions,138,2026-01-22 19:23:43,2026-01-22 19:24:53,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:51,False,,,558,consent,139,2026-01-22 19:23:51,2026-01-22 19:24:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:23:51,False,,,559,consent,140,2026-01-22 19:23:51,2026-01-22 19:24:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:04,False,,,560,consent,141,2026-01-22 19:24:04,2026-01-22 19:24:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:11,False,,,561,instructions,136,2026-01-22 19:24:11,2026-01-22 19:25:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:17,False,,,562,instructions,141,2026-01-22 19:24:17,2026-01-22 19:25:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:19,False,,,563,instructions,139,2026-01-22 19:24:19,2026-01-22 19:26:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:39,False,,,564,consent,142,2026-01-22 19:24:39,2026-01-22 19:24:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:41,False,,,565,instructions,140,2026-01-22 19:24:41,2026-01-22 19:26:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:44,False,,,566,instructions,142,2026-01-22 19:24:44,2026-01-22 19:25:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:53,False,,,567,practice_rounds,138,2026-01-22 19:24:53,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:24:59,False,,,568,consent,143,2026-01-22 19:24:59,2026-01-22 19:25:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:00,False,,,569,practice_rounds,137,2026-01-22 19:25:00,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:03,False,,,570,consent,144,2026-01-22 19:25:03,2026-01-22 19:25:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:04,False,,,571,practice_rounds,141,2026-01-22 19:25:04,2026-01-22 19:27:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:11,False,,,572,instructions,144,2026-01-22 19:25:11,2026-01-22 19:25:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:12,False,,,573,practice_rounds,136,2026-01-22 19:25:12,2026-01-22 19:28:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:19,False,,,574,instructions,143,2026-01-22 19:25:19,2026-01-22 19:26:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:32,False,,,575,instructions,118,2026-01-22 19:25:32,2026-01-22 19:28:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:33,False,,,576,practice_rounds,134,2026-01-22 19:25:33,2026-01-22 19:37:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:55,False,,,577,consent,145,2026-01-22 19:25:55,2026-01-22 19:26:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:57,False,,,578,practice_rounds,142,2026-01-22 19:25:57,2026-01-22 19:28:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:25:59,False,,,579,practice_rounds,144,2026-01-22 19:25:59,2026-01-22 19:27:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:26:17,False,,,580,practice_rounds,139,2026-01-22 19:26:17,2026-01-22 19:28:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:26:21,False,,,581,consent,146,2026-01-22 19:26:21,2026-01-22 19:26:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:26:33,False,,,582,instructions,146,2026-01-22 19:26:33,2026-01-22 19:30:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:26:40,False,,,583,instructions,145,2026-01-22 19:26:40,2026-01-22 19:34:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:26:45,False,,,584,consent,147,2026-01-22 19:26:45,2026-01-22 19:27:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:26:52,False,,,585,practice_rounds,140,2026-01-22 19:26:52,2026-01-22 19:31:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:26:54,False,,,586,practice_rounds,143,2026-01-22 19:26:54,2026-01-22 19:29:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:27:10,False,,,587,consent,148,2026-01-22 19:27:10,2026-01-22 19:27:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:27:14,False,,,588,instructions,147,2026-01-22 19:27:14,2026-01-22 19:31:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:27:18,False,,,589,message_instructions,144,2026-01-22 19:27:18,2026-01-22 19:27:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:27:22,False,,,590,message_instructions,141,2026-01-22 19:27:22,2026-01-22 19:27:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:27:32,False,,,593,instructions,148,2026-01-22 19:27:32,2026-01-22 19:29:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:28:00,False,,,594,consent,149,2026-01-22 19:28:00,2026-01-22 19:28:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:28:10,False,,,595,consent,150,2026-01-22 19:28:10,2026-01-22 19:28:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:28:15,False,,,596,message_instructions,139,2026-01-22 19:28:15,2026-01-22 19:28:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:28:18,False,,,597,message_instructions,136,2026-01-22 19:28:18,2026-01-22 19:28:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:28:21,False,,,598,message_instructions,142,2026-01-22 19:28:21,2026-01-22 19:28:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:28:21,False,,,599,instructions,150,2026-01-22 19:28:21,2026-01-22 19:29:10,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:28:30,False,,,602,practice_rounds,118,2026-01-22 19:28:30,2026-01-22 23:41:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:28:34,False,,,604,instructions,149,2026-01-22 19:28:34,2026-01-22 19:33:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:29:10,False,,,605,practice_rounds,150,2026-01-22 19:29:10,2026-01-22 19:30:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:29:30,False,,,606,message_instructions,143,2026-01-22 19:29:29,2026-01-22 19:29:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:29:42,False,,,607,practice_rounds,148,2026-01-22 19:29:42,2026-01-22 19:34:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:30:24,False,,,609,practice_rounds,146,2026-01-22 19:30:24,2026-01-22 19:35:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:30:50,False,,,610,message_instructions,150,2026-01-22 19:30:50,2026-01-22 19:31:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:30:54,False,,,611,consent,151,2026-01-22 19:30:54,2026-01-22 19:32:48,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:31:24,False,,,613,practice_rounds,147,2026-01-22 19:31:24,2026-01-22 19:43:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:31:49,False,,,614,message_instructions,140,2026-01-22 19:31:49,2026-01-22 19:32:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:32:48,False,,,616,instructions,151,2026-01-22 19:32:48,2026-01-22 19:37:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:33:12,False,,,617,practice_rounds,149,2026-01-22 19:33:12,2026-01-22 19:44:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:34:29,False,,,618,message_instructions,148,2026-01-22 19:34:29,2026-01-22 19:34:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:34:56,False,,,620,practice_rounds,145,2026-01-22 19:34:56,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:35:15,False,,,621,message_instructions,146,2026-01-22 19:35:15,2026-01-22 19:35:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:37:12,False,,,623,practice_rounds,151,2026-01-22 19:37:12,2026-01-22 19:44:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:37:14,False,,,624,message_instructions,134,2026-01-22 19:37:14,2026-01-22 19:37:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:37:47,False,,,626,consent,152,2026-01-22 19:37:47,2026-01-22 19:38:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:38:01,False,,,627,instructions,152,2026-01-22 19:38:01,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:38:53,False,,,628,consent,153,2026-01-22 19:38:53,2026-01-22 19:39:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:39:26,False,,,629,instructions,153,2026-01-22 19:39:26,2026-01-22 19:42:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:42:30,False,,,630,practice_rounds,153,2026-01-22 19:42:30,2026-01-22 19:45:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:43:13,False,,,631,message_instructions,147,2026-01-22 19:43:13,2026-01-22 19:43:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:44:30,False,,,633,message_instructions,149,2026-01-22 19:44:30,2026-01-22 19:45:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:44:37,False,,,634,message_instructions,151,2026-01-22 19:44:37,2026-01-22 19:46:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:45:22,False,,,636,message_instructions,153,2026-01-22 19:45:22,2026-01-22 19:45:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:55:41,False,,,639,consent,154,2026-01-22 19:55:41,2026-01-22 19:55:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:55:57,False,,,640,instructions,154,2026-01-22 19:55:57,2026-01-22 19:56:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:56:42,False,,,641,practice_rounds,154,2026-01-22 19:56:42,2026-01-22 19:57:48,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:57:48,False,,,642,message_instructions,154,2026-01-22 19:57:48,2026-01-22 19:57:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:21,False,,,644,consent,155,2026-01-22 19:59:21,2026-01-22 20:04:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:36,False,,,645,consent,156,2026-01-22 19:59:36,2026-01-22 19:59:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:37,False,,,646,consent,158,2026-01-22 19:59:37,2026-01-22 19:59:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:38,False,,,647,consent,157,2026-01-22 19:59:38,2026-01-22 19:59:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:44,False,,,648,consent,159,2026-01-22 19:59:44,2026-01-22 20:00:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:45,False,,,649,instructions,158,2026-01-22 19:59:45,2026-01-22 20:00:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:48,False,,,650,consent,160,2026-01-22 19:59:48,2026-01-22 20:00:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:50,False,,,651,instructions,156,2026-01-22 19:59:50,2026-01-22 20:01:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 19:59:54,False,,,652,instructions,157,2026-01-22 19:59:54,2026-01-22 20:01:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:00:00,False,,,653,instructions,160,2026-01-22 20:00:00,2026-01-22 20:02:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:00:13,False,,,654,consent,161,2026-01-22 20:00:13,2026-01-22 20:00:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:00:26,False,,,655,practice_rounds,158,2026-01-22 20:00:26,2026-01-22 20:04:06,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:00:27,False,,,656,instructions,159,2026-01-22 20:00:27,2026-01-22 20:02:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:00:35,False,,,657,consent,162,2026-01-22 20:00:35,2026-01-22 20:01:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:00:47,False,,,658,instructions,161,2026-01-22 20:00:47,2026-01-22 20:04:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:01:08,False,,,659,instructions,162,2026-01-22 20:01:08,2026-01-22 20:03:53,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:01:36,False,,,660,practice_rounds,157,2026-01-22 20:01:36,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:01:51,False,,,661,practice_rounds,156,2026-01-22 20:01:51,2026-01-22 20:05:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:02:21,False,,,662,practice_rounds,159,2026-01-22 20:02:21,2026-01-22 20:08:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:02:42,False,,,663,practice_rounds,160,2026-01-22 20:02:42,2026-01-22 20:06:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:03:53,False,,,664,practice_rounds,162,2026-01-22 20:03:53,2026-01-22 20:22:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:04:06,False,,,665,message_instructions,158,2026-01-22 20:04:06,2026-01-22 20:04:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:04:14,False,,,666,consent,163,2026-01-22 20:04:14,2026-01-22 20:04:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:04:27,False,,,668,practice_rounds,161,2026-01-22 20:04:27,2026-01-22 20:06:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:04:30,False,,,669,instructions,163,2026-01-22 20:04:30,2026-01-22 20:04:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:04:55,False,,,670,practice_rounds,163,2026-01-22 20:04:55,2026-01-22 20:07:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:04:56,False,,,671,instructions,155,2026-01-22 20:04:56,2026-01-22 20:06:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:05:46,False,,,672,message_instructions,156,2026-01-22 20:05:46,2026-01-22 20:05:53,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:06:18,False,,,674,message_instructions,160,2026-01-22 20:06:18,2026-01-22 20:06:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:06:28,False,,,675,practice_rounds,155,2026-01-22 20:06:28,2026-01-22 20:09:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:06:36,False,,,677,message_instructions,161,2026-01-22 20:06:36,2026-01-22 20:08:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:07:10,False,,,678,consent,164,2026-01-22 20:07:10,2026-01-22 20:07:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:07:20,False,,,679,message_instructions,163,2026-01-22 20:07:20,2026-01-22 20:07:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:07:32,False,,,681,instructions,164,2026-01-22 20:07:32,2026-01-22 20:08:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:08:01,False,,,682,message_instructions,159,2026-01-22 20:08:01,2026-01-22 20:08:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:08:45,False,,,685,practice_rounds,164,2026-01-22 20:08:45,2026-01-22 20:11:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:09:41,False,,,686,message_instructions,155,2026-01-22 20:09:41,2026-01-22 20:09:57,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:11:55,False,,,688,message_instructions,164,2026-01-22 20:11:55,2026-01-22 20:12:08,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:14:15,False,,,690,consent,165,2026-01-22 20:14:15,2026-01-22 20:16:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:16:36,False,,,691,instructions,165,2026-01-22 20:16:36,2026-01-22 20:29:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:22:57,False,,,692,message_instructions,162,2026-01-22 20:22:57,2026-01-22 20:23:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:29:38,False,,,694,practice_rounds,165,2026-01-22 20:29:38,2026-01-22 20:36:05,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:10,False,,,695,consent,166,2026-01-22 20:32:10,2026-01-22 20:32:16,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:12,False,,,696,consent,167,2026-01-22 20:32:12,2026-01-22 20:32:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:16,False,,,697,instructions,166,2026-01-22 20:32:16,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:20,False,,,698,instructions,167,2026-01-22 20:32:20,2026-01-22 20:32:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:28,False,,,699,consent,168,2026-01-22 20:32:28,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:30,False,,,700,practice_rounds,167,2026-01-22 20:32:30,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:43,False,,,701,consent,169,2026-01-22 20:32:43,2026-01-22 20:32:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:48,False,,,702,consent,170,2026-01-22 20:32:48,2026-01-22 20:33:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:49,False,,,703,consent,171,2026-01-22 20:32:49,2026-01-22 20:34:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:55,False,,,704,consent,172,2026-01-22 20:32:55,2026-01-22 20:33:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:57,False,,,705,consent,173,2026-01-22 20:32:57,2026-01-22 20:35:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:32:59,False,,,706,instructions,169,2026-01-22 20:32:59,2026-01-22 20:33:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:33:03,False,,,707,instructions,170,2026-01-22 20:33:03,2026-01-22 20:33:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:33:04,False,,,708,consent,174,2026-01-22 20:33:04,2026-01-22 20:33:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:33:07,False,,,709,instructions,172,2026-01-22 20:33:07,2026-01-22 20:34:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:33:10,False,,,710,consent,175,2026-01-22 20:33:10,2026-01-22 20:33:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:33:13,False,,,711,instructions,174,2026-01-22 20:33:13,2026-01-22 20:34:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:33:31,False,,,712,practice_rounds,170,2026-01-22 20:33:31,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:33:34,False,,,713,instructions,175,2026-01-22 20:33:34,2026-01-22 20:36:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:33:58,False,,,714,practice_rounds,169,2026-01-22 20:33:58,2026-01-22 20:36:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:34:00,False,,,715,consent,176,2026-01-22 20:34:00,2026-01-22 20:34:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:34:19,False,,,716,instructions,176,2026-01-22 20:34:19,2026-01-22 20:36:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:34:24,False,,,717,instructions,171,2026-01-22 20:34:24,2026-01-22 20:36:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:34:27,False,,,718,practice_rounds,172,2026-01-22 20:34:27,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:34:41,False,,,719,consent,177,2026-01-22 20:34:41,2026-01-22 20:34:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:34:47,False,,,720,instructions,177,2026-01-22 20:34:47,2026-01-22 20:36:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:34:51,False,,,721,practice_rounds,174,2026-01-22 20:34:51,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:35:00,False,,,722,instructions,173,2026-01-22 20:35:00,2026-01-22 20:35:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:35:08,False,,,723,consent,178,2026-01-22 20:35:08,2026-01-22 20:37:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:35:26,False,,,724,practice_rounds,173,2026-01-22 20:35:26,2026-01-22 20:47:06,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:36:05,False,,,725,message_instructions,165,2026-01-22 20:36:05,2026-01-22 20:40:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:36:24,False,,,726,message_instructions,169,2026-01-22 20:36:24,2026-01-22 20:36:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:36:40,False,,,728,practice_rounds,176,2026-01-22 20:36:40,2026-01-22 20:39:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:36:43,False,,,729,practice_rounds,177,2026-01-22 20:36:43,2026-01-22 20:38:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:36:44,False,,,730,practice_rounds,171,2026-01-22 20:36:44,2026-01-22 20:40:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:36:52,False,,,731,practice_rounds,175,2026-01-22 20:36:52,2026-01-22 21:03:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:37:35,False,,,732,instructions,178,2026-01-22 20:37:35,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:38:28,False,,,733,message_instructions,177,2026-01-22 20:38:28,2026-01-22 20:38:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:38:32,False,,,734,consent,179,2026-01-22 20:38:32,2026-01-22 20:38:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:38:45,False,,,735,instructions,179,2026-01-22 20:38:45,2026-01-22 20:42:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:39:11,False,,,737,message_instructions,176,2026-01-22 20:39:11,2026-01-22 20:39:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:40:11,False,,,739,consent,180,2026-01-22 20:40:11,2026-01-22 20:40:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:40:26,False,,,740,message_instructions,171,2026-01-22 20:40:26,2026-01-22 20:40:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:40:33,False,,,742,instructions,180,2026-01-22 20:40:33,2026-01-22 20:45:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:40:37,False,,,743,consent,181,2026-01-22 20:40:37,2026-01-22 20:40:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:40:42,False,,,745,instructions,181,2026-01-22 20:40:42,2026-01-22 20:40:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:40:58,False,,,746,practice_rounds,181,2026-01-22 20:40:58,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:42:15,False,,,747,practice_rounds,179,2026-01-22 20:42:15,2026-01-22 20:47:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:45:30,False,,,748,practice_rounds,180,2026-01-22 20:45:30,2026-01-22 20:54:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:46:13,False,,,749,consent,182,2026-01-22 20:46:13,2026-01-22 20:47:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:47:06,False,,,750,message_instructions,173,2026-01-22 20:47:06,2026-01-22 20:47:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:47:14,False,,,751,message_instructions,179,2026-01-22 20:47:14,2026-01-22 20:47:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:47:30,False,,,753,consent,183,2026-01-22 20:47:30,2026-01-22 20:48:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:47:37,False,,,755,instructions,182,2026-01-22 20:47:37,2026-01-22 20:54:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:48:17,False,,,756,instructions,183,2026-01-22 20:48:17,2026-01-22 20:53:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:49:23,False,,,757,consent,184,2026-01-22 20:49:23,2026-01-22 20:49:35,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:49:35,False,,,758,instructions,184,2026-01-22 20:49:35,2026-01-22 20:55:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:50:04,False,,,759,consent,185,2026-01-22 20:50:04,2026-01-22 20:50:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:50:49,False,,,760,instructions,185,2026-01-22 20:50:49,2026-01-22 20:52:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:52:28,False,,,761,practice_rounds,185,2026-01-22 20:52:28,2026-01-22 20:57:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:53:22,False,,,762,practice_rounds,183,2026-01-22 20:53:22,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:54:50,False,,,763,practice_rounds,182,2026-01-22 20:54:50,2026-01-22 21:10:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:54:54,False,,,764,message_instructions,180,2026-01-22 20:54:54,2026-01-22 20:55:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:55:14,False,,,765,practice_rounds,184,2026-01-22 20:55:14,2026-01-22 21:09:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 20:57:36,False,,,767,message_instructions,185,2026-01-22 20:57:36,2026-01-22 20:58:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:03:27,False,,,769,message_instructions,175,2026-01-22 21:03:27,2026-01-22 21:03:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:08:24,False,,,771,consent,186,2026-01-22 21:08:24,2026-01-22 21:08:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:08:37,False,,,772,instructions,186,2026-01-22 21:08:37,2026-01-22 21:11:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:09:08,False,,,773,consent,187,2026-01-22 21:09:08,2026-01-22 21:10:06,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:09:19,False,,,774,message_instructions,184,2026-01-22 21:09:19,2026-01-22 21:10:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:10:06,False,,,775,instructions,187,2026-01-22 21:10:06,2026-01-22 21:11:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:10:12,False,,,776,message_instructions,182,2026-01-22 21:10:12,2026-01-22 21:10:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:11:27,False,,,779,practice_rounds,187,2026-01-22 21:11:27,2026-01-22 21:32:06,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:11:31,False,,,780,practice_rounds,186,2026-01-22 21:11:31,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:21:55,False,,,781,consent,188,2026-01-22 21:21:55,2026-01-22 21:23:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:23:29,False,,,782,instructions,188,2026-01-22 21:23:29,2026-01-22 21:27:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:27:56,False,,,783,practice_rounds,188,2026-01-22 21:27:56,2026-01-22 21:38:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:32:06,False,,,784,message_instructions,187,2026-01-22 21:32:06,2026-01-22 21:32:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:03,False,,,786,consent,189,2026-01-22 21:34:03,2026-01-22 21:34:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:09,False,,,787,instructions,189,2026-01-22 21:34:09,2026-01-22 21:35:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:19,False,,,788,consent,190,2026-01-22 21:34:19,2026-01-22 21:34:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:27,False,,,789,consent,191,2026-01-22 21:34:27,2026-01-22 21:35:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:28,False,,,790,instructions,190,2026-01-22 21:34:28,2026-01-22 21:35:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:28,False,,,791,consent,192,2026-01-22 21:34:28,2026-01-22 21:34:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:36,False,,,792,consent,193,2026-01-22 21:34:36,2026-01-22 21:35:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:41,False,,,793,instructions,192,2026-01-22 21:34:41,2026-01-22 21:36:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:34:53,False,,,794,consent,194,2026-01-22 21:34:53,2026-01-22 21:35:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:35:07,False,,,795,instructions,191,2026-01-22 21:35:07,2026-01-22 21:37:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:35:09,False,,,796,instructions,194,2026-01-22 21:35:09,2026-01-22 21:36:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:35:38,False,,,797,practice_rounds,190,2026-01-22 21:35:38,2026-01-22 21:41:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:35:38,False,,,798,instructions,193,2026-01-22 21:35:38,2026-01-22 21:40:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:35:40,False,,,799,practice_rounds,189,2026-01-22 21:35:40,2026-01-22 21:42:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:35:45,False,,,800,consent,195,2026-01-22 21:35:45,2026-01-22 21:36:10,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:36:07,False,,,801,practice_rounds,192,2026-01-22 21:36:07,2026-01-22 21:38:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:36:10,False,,,802,instructions,195,2026-01-22 21:36:10,2026-01-22 21:38:16,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:36:27,False,,,803,practice_rounds,194,2026-01-22 21:36:27,2026-01-22 21:39:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:37:27,False,,,804,practice_rounds,191,2026-01-22 21:37:27,2026-01-22 21:53:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:38:03,False,,,805,message_instructions,188,2026-01-22 21:38:03,2026-01-22 21:38:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:38:16,False,,,806,practice_rounds,195,2026-01-22 21:38:16,2026-01-22 21:41:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:38:36,False,,,808,message_instructions,192,2026-01-22 21:38:36,2026-01-22 21:38:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:39:40,False,,,810,message_instructions,194,2026-01-22 21:39:40,2026-01-22 21:39:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:40:13,False,,,812,practice_rounds,193,2026-01-22 21:40:13,2026-01-22 21:44:53,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:41:11,False,,,813,message_instructions,190,2026-01-22 21:41:11,2026-01-22 21:41:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:41:20,False,,,814,message_instructions,195,2026-01-22 21:41:20,2026-01-22 21:41:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:42:11,False,,,817,message_instructions,189,2026-01-22 21:42:11,2026-01-22 21:42:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:42:19,False,,,818,consent,196,2026-01-22 21:42:19,2026-01-22 21:42:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:42:34,False,,,820,instructions,196,2026-01-22 21:42:34,2026-01-22 21:43:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:43:44,False,,,821,practice_rounds,196,2026-01-22 21:43:44,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:44:53,False,,,822,message_instructions,193,2026-01-22 21:44:53,2026-01-22 21:51:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:48:06,False,,,823,consent,197,2026-01-22 21:48:06,2026-01-22 21:48:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:48:13,False,,,824,instructions,197,2026-01-22 21:48:13,2026-01-22 21:55:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:48:42,False,,,825,consent,198,2026-01-22 21:48:42,2026-01-22 21:49:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:49:12,False,,,826,instructions,198,2026-01-22 21:49:12,2026-01-22 21:49:26,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:49:26,False,,,827,practice_rounds,198,2026-01-22 21:49:26,2026-01-22 21:50:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:50:44,False,,,828,message_instructions,198,2026-01-22 21:50:44,2026-01-22 21:55:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:53:33,False,,,830,message_instructions,191,2026-01-22 21:53:33,2026-01-22 21:53:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:55:12,False,,,832,practice_rounds,197,2026-01-22 21:55:12,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:56:49,False,,,834,consent,199,2026-01-22 21:56:49,2026-01-22 21:57:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:57:23,False,,,835,instructions,199,2026-01-22 21:57:23,2026-01-22 21:58:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:58:41,False,,,836,practice_rounds,199,2026-01-22 21:58:41,2026-01-22 22:02:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:58:47,False,,,837,consent,200,2026-01-22 21:58:47,2026-01-22 21:59:00,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:59:00,False,,,838,instructions,200,2026-01-22 21:59:00,2026-01-22 21:59:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 21:59:50,False,,,839,practice_rounds,200,2026-01-22 21:59:50,2026-01-22 22:05:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 22:02:00,False,,,840,message_instructions,199,2026-01-22 22:02:00,2026-01-22 22:02:09,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 22:05:32,False,,,842,message_instructions,200,2026-01-22 22:05:32,2026-01-22 22:05:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 22:12:52,False,,,844,consent,201,2026-01-22 22:12:52,2026-01-22 22:13:16,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 22:13:16,False,,,845,instructions,201,2026-01-22 22:13:16,2026-01-22 22:16:52,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 22:16:52,False,,,846,practice_rounds,201,2026-01-22 22:16:52,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 23:41:12,False,,,878,message_instructions,118,2026-01-22 23:41:12,2026-01-22 23:41:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 23:48:05,False,,,880,consent,202,2026-01-22 23:48:05,2026-01-22 23:48:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 23:48:11,False,,,881,instructions,202,2026-01-22 23:48:11,2026-01-22 23:50:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 23:50:03,False,,,882,practice_rounds,202,2026-01-22 23:50:03,2026-01-23 00:13:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 23:50:32,False,,,883,consent,203,2026-01-22 23:50:32,2026-01-22 23:50:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 23:50:37,False,,,884,instructions,203,2026-01-22 23:50:37,2026-01-22 23:53:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 23:53:07,False,,,885,practice_rounds,203,2026-01-22 23:53:07,2026-01-22 23:56:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-22 23:56:24,False,,,886,message_instructions,203,2026-01-22 23:56:24,2026-01-22 23:56:33,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:13:19,False,,,888,message_instructions,202,2026-01-23 00:13:19,2026-01-23 00:13:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:21,False,,,890,consent,204,2026-01-23 00:36:21,2026-01-23 00:36:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:22,False,,,891,consent,205,2026-01-23 00:36:22,2026-01-23 00:36:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:25,False,,,892,consent,206,2026-01-23 00:36:25,2026-01-23 00:36:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:27,False,,,893,consent,207,2026-01-23 00:36:27,2026-01-23 00:36:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:27,False,,,894,instructions,205,2026-01-23 00:36:27,2026-01-23 00:38:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:29,False,,,895,consent,208,2026-01-23 00:36:29,2026-01-23 00:36:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:34,False,,,896,instructions,206,2026-01-23 00:36:34,2026-01-23 00:37:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:38,False,,,897,instructions,207,2026-01-23 00:36:38,2026-01-23 00:37:42,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:42,False,,,898,consent,209,2026-01-23 00:36:42,2026-01-23 00:36:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:46,False,,,899,instructions,209,2026-01-23 00:36:46,2026-01-23 00:37:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:47,False,,,900,instructions,204,2026-01-23 00:36:47,2026-01-23 00:39:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:58,False,,,901,consent,210,2026-01-23 00:36:58,2026-01-23 00:37:05,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:36:59,False,,,902,instructions,208,2026-01-23 00:36:59,2026-01-23 00:39:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:37:05,False,,,903,instructions,210,2026-01-23 00:37:05,2026-01-23 00:38:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:37:18,False,,,904,consent,211,2026-01-23 00:37:18,2026-01-23 00:37:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:37:22,False,,,905,practice_rounds,206,2026-01-23 00:37:22,2026-01-23 00:39:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:37:41,False,,,906,instructions,211,2026-01-23 00:37:41,2026-01-23 00:39:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:37:42,False,,,907,practice_rounds,207,2026-01-23 00:37:42,2026-01-23 00:38:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:37:43,False,,,908,practice_rounds,209,2026-01-23 00:37:43,2026-01-23 00:39:01,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:38:15,False,,,909,practice_rounds,210,2026-01-23 00:38:15,2026-01-23 00:39:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:38:17,False,,,910,message_instructions,207,2026-01-23 00:38:17,2026-01-23 00:38:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:38:45,False,,,912,practice_rounds,205,2026-01-23 00:38:45,2026-01-23 00:43:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:39:01,False,,,913,message_instructions,209,2026-01-23 00:39:01,2026-01-23 00:39:12,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:39:02,False,,,914,practice_rounds,204,2026-01-23 00:39:02,2026-01-23 00:43:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:39:22,False,,,916,practice_rounds,208,2026-01-23 00:39:22,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:39:49,False,,,917,message_instructions,206,2026-01-23 00:39:49,2026-01-23 00:39:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:39:50,False,,,918,practice_rounds,211,2026-01-23 00:39:50,2026-01-23 00:41:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:39:54,False,,,919,message_instructions,210,2026-01-23 00:39:54,2026-01-23 00:40:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:41:46,False,,,922,message_instructions,211,2026-01-23 00:41:46,2026-01-23 00:42:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:42:27,False,,,923,consent,212,2026-01-23 00:42:27,2026-01-23 00:42:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:42:34,False,,,925,instructions,212,2026-01-23 00:42:34,2026-01-23 00:43:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:43:19,False,,,926,message_instructions,204,2026-01-23 00:43:19,2026-01-23 00:43:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:43:22,False,,,927,practice_rounds,212,2026-01-23 00:43:22,2026-01-23 00:45:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:43:36,False,,,929,message_instructions,205,2026-01-23 00:43:36,2026-01-23 00:43:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:45:50,False,,,931,message_instructions,212,2026-01-23 00:45:50,2026-01-23 00:45:59,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:51:20,False,,,933,consent,213,2026-01-23 00:51:20,2026-01-23 00:52:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:52:44,False,,,934,instructions,213,2026-01-23 00:52:44,2026-01-23 00:55:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:55:29,False,,,935,practice_rounds,213,2026-01-23 00:55:29,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:59:45,False,,,936,consent,214,2026-01-23 00:59:45,2026-01-23 00:59:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 00:59:58,False,,,937,instructions,214,2026-01-23 00:59:58,2026-01-23 01:08:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 01:08:03,False,,,938,practice_rounds,214,2026-01-23 01:08:03,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:18:22,False,,,939,consent,215,2026-01-23 03:18:22,2026-01-23 03:18:56,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:18:56,False,,,940,instructions,215,2026-01-23 03:18:56,2026-01-23 03:21:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:19:03,False,,,941,consent,216,2026-01-23 03:19:03,2026-01-23 03:19:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:19:37,False,,,942,instructions,216,2026-01-23 03:19:37,2026-01-23 03:20:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:20:22,False,,,943,practice_rounds,216,2026-01-23 03:20:22,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:20:52,False,,,944,consent,217,2026-01-23 03:20:52,2026-01-23 03:27:06,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:21:44,False,,,945,practice_rounds,215,2026-01-23 03:21:44,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:27:06,False,,,946,instructions,217,2026-01-23 03:27:06,2026-01-23 03:38:18,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:37:11,False,,,947,consent,218,2026-01-23 03:37:11,2026-01-23 03:37:36,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:37:36,False,,,948,instructions,218,2026-01-23 03:37:36,2026-01-23 03:38:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:38:18,False,,,949,practice_rounds,217,2026-01-23 03:38:18,2026-01-23 03:49:47,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:38:23,False,,,950,practice_rounds,218,2026-01-23 03:38:23,2026-01-23 03:40:24,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:40:24,False,,,951,message_instructions,218,2026-01-23 03:40:24,2026-01-23 03:40:38,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 03:49:47,False,,,953,message_instructions,217,2026-01-23 03:49:47,2026-01-23 03:50:58,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:53:37,False,,,955,consent,219,2026-01-23 18:53:37,2026-01-23 18:54:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:53:40,False,,,956,consent,220,2026-01-23 18:53:40,2026-01-23 18:54:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:53:53,False,,,957,consent,221,2026-01-23 18:53:53,2026-01-23 18:54:06,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:53:53,False,,,958,consent,222,2026-01-23 18:53:53,2026-01-23 18:54:05,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:54:01,False,,,959,consent,223,2026-01-23 18:54:01,2026-01-23 18:54:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:54:04,False,,,960,instructions,220,2026-01-23 18:54:04,2026-01-23 18:56:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:54:05,False,,,961,instructions,222,2026-01-23 18:54:05,2026-01-23 18:55:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:54:06,False,,,962,instructions,221,2026-01-23 18:54:06,2026-01-23 18:56:32,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:54:27,False,,,963,instructions,223,2026-01-23 18:54:27,2026-01-23 18:56:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:54:33,False,,,964,consent,224,2026-01-23 18:54:33,2026-01-23 18:54:48,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:54:48,False,,,965,instructions,224,2026-01-23 18:54:48,2026-01-23 18:56:30,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:54:56,False,,,966,instructions,219,2026-01-23 18:54:56,2026-01-23 18:57:17,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:55:14,False,,,967,practice_rounds,222,2026-01-23 18:55:14,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:55:25,False,,,968,consent,225,2026-01-23 18:55:25,2026-01-23 18:55:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:55:34,False,,,969,instructions,225,2026-01-23 18:55:34,2026-01-23 18:59:45,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:56:07,False,,,970,practice_rounds,220,2026-01-23 18:56:07,2026-01-23 19:02:27,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:56:30,False,,,971,practice_rounds,224,2026-01-23 18:56:30,2026-01-23 19:02:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:56:32,False,,,972,practice_rounds,221,2026-01-23 18:56:32,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:56:46,False,,,973,practice_rounds,223,2026-01-23 18:56:46,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:57:17,False,,,974,practice_rounds,219,2026-01-23 18:57:17,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 18:59:45,False,,,975,practice_rounds,225,2026-01-23 18:59:45,2026-01-23 19:04:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:02:27,False,,,976,message_instructions,220,2026-01-23 19:02:27,2026-01-23 19:02:41,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:02:29,False,,,977,message_instructions,224,2026-01-23 19:02:29,2026-01-23 19:02:51,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:02:33,False,,,978,consent,226,2026-01-23 19:02:33,2026-01-23 19:02:37,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:02:37,False,,,979,instructions,226,2026-01-23 19:02:37,2026-01-23 19:03:29,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:02:46,False,,,981,consent,227,2026-01-23 19:02:46,2026-01-23 19:03:02,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:03:02,False,,,983,instructions,227,2026-01-23 19:03:02,2026-01-23 19:04:22,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:03:29,False,,,984,practice_rounds,226,2026-01-23 19:03:29,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:03:40,False,,,985,consent,228,2026-01-23 19:03:40,2026-01-23 19:03:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:03:46,False,,,986,instructions,228,2026-01-23 19:03:46,2026-01-23 19:04:46,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:04:13,False,,,987,message_instructions,225,2026-01-23 19:04:13,2026-01-23 19:06:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:04:22,False,,,988,practice_rounds,227,2026-01-23 19:04:22,2026-01-23 19:06:31,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:04:46,False,,,989,practice_rounds,228,2026-01-23 19:04:46,2026-01-23 19:08:19,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:05:25,False,,,990,consent,229,2026-01-23 19:05:25,2026-01-23 19:06:13,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:06:13,False,,,991,instructions,229,2026-01-23 19:06:13,2026-01-23 19:08:14,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:06:31,False,,,992,message_instructions,227,2026-01-23 19:06:31,2026-01-23 19:07:11,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:06:42,False,,,993,consent,230,2026-01-23 19:06:42,2026-01-23 19:06:50,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:06:50,False,,,994,instructions,230,2026-01-23 19:06:50,2026-01-23 19:08:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:08:14,False,,,997,practice_rounds,229,2026-01-23 19:08:14,2026-01-23 19:16:49,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:08:19,False,,,998,message_instructions,228,2026-01-23 19:08:19,2026-01-23 19:08:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:08:55,False,,,1000,practice_rounds,230,2026-01-23 19:08:55,2026-01-23 19:19:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:12:54,False,,,1001,consent,231,2026-01-23 19:12:54,2026-01-23 19:14:07,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:14:07,False,,,1002,instructions,231,2026-01-23 19:14:07,2026-01-23 19:16:25,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:16:25,False,,,1003,practice_rounds,231,2026-01-23 19:16:25,2026-01-23 19:20:44,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:16:49,False,,,1004,message_instructions,229,2026-01-23 19:16:49,2026-01-23 19:18:34,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:19:54,False,,,1006,message_instructions,230,2026-01-23 19:19:54,2026-01-23 19:20:03,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:20:44,False,,,1008,message_instructions,231,2026-01-23 19:20:44,2026-01-23 19:21:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:24:01,False,,,1010,consent,232,2026-01-23 19:24:01,2026-01-23 19:24:28,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:24:28,False,,,1011,instructions,232,2026-01-23 19:24:28,2026-01-23 19:26:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:24:29,False,,,1012,consent,233,2026-01-23 19:24:29,2026-01-23 19:25:21,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:25:21,False,,,1013,instructions,233,2026-01-23 19:25:21,2026-01-23 19:25:55,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:25:55,False,,,1014,practice_rounds,233,2026-01-23 19:25:55,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:26:39,False,,,1015,practice_rounds,232,2026-01-23 19:26:39,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:35:03,False,,,1016,consent,234,2026-01-23 19:35:03,2026-01-23 19:35:43,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:35:43,False,,,1017,instructions,234,2026-01-23 19:35:43,2026-01-23 19:37:39,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:37:39,False,,,1018,practice_rounds,234,2026-01-23 19:37:39,2026-01-23 19:44:23,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 19:44:23,False,,,1019,message_instructions,234,2026-01-23 19:44:23,2026-01-23 19:44:40,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 20:06:41,False,,,1021,consent,235,2026-01-23 20:06:41,2026-01-23 20:07:15,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 20:07:15,False,,,1022,instructions,235,2026-01-23 20:07:15,2026-01-23 20:10:04,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 20:10:04,False,,,1023,practice_rounds,235,2026-01-23 20:10:04,,,True,False,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 20:50:57,False,,,1024,consent,236,2026-01-23 20:50:57,2026-01-23 20:51:06,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 20:51:06,False,,,1025,instructions,236,2026-01-23 20:51:06,2026-01-23 20:52:20,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 20:52:20,False,,,1026,practice_rounds,236,2026-01-23 20:52:20,2026-01-23 20:53:54,,True,True,False,ModuleState,ModuleState,ModuleState
+{},2026-01-23 20:53:54,False,,,1027,message_instructions,236,2026-01-23 20:53:54,2026-01-23 20:53:59,,True,True,False,ModuleState,ModuleState,ModuleState

@@ -189,3 +189,6 @@ data/world-models/
 # cluster
 slurm-output
 optimization_checkpoints
+
+# bonus file contains prolific ids
+bonuses.csv

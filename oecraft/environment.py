@@ -26,9 +26,7 @@ class CraftingGame(gym.Env):
         )
         # GameDescriptor already validates and instantiates Tool/Ingredient objects.
         # Keep compatibility if a raw mapping ever slips through.
-        self.tools = [
-            Tool(**x) if isinstance(x, dict) else x for x in descriptor.tools
-        ]
+        self.tools = [Tool(**x) if isinstance(x, dict) else x for x in descriptor.tools]
         self.ingredients = [
             Ingredient(**x) if isinstance(x, dict) else x
             for x in descriptor.ingredients
