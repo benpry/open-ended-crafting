@@ -9,12 +9,18 @@ import pandas as pd
 from pyprojroot import here
 
 
-def process_gameplay(data_dir: str, trial_type: str):
+def process_gameplay(
+    data_dir: str, trial_type: str, trial_ids_to_exclude: list[int] = None
+):
     """
     Process the actions and rewards for each trial.
     Transform from one row per trial to one row per round.
     """
     df_trial = pd.read_csv(here(f"{data_dir}/{trial_type}.csv"))
+
+    if trial_ids_to_exclude is not None:
+        df_trial = df_trial[~df_trial["id"].isin(trial_ids_to_exclude)]
+
     # filter out failed trials
     df_trial = df_trial[~df_trial["failed"]]
     df_trial["vars"] = df_trial["vars"].apply(json.loads)

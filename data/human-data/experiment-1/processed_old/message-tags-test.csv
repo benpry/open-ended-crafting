@@ -1,0 +1,91 @@
+message_id,trial_id,participant_id,chain_id,domain,chain_pos,condition,message,abstractions,concrete_recipes,positive_valence,negative_valence,policy,dynamics,avoidance
+28,280,231,56,animals,3.0,chain,Mutant will not do anything. Try combining those animals and use the growth serum instead.  Do 3 instead of 4 animals.,1,0,0,0,1,1,1
+9,431,320,66,potions,4.0,chain,"Sort by liquids/gases or solids
+Use Filter for liquids/gases. Use Vial for solids.
+
+ONLY mix two combined items together not 3. 
+
+Only mix the ones with vials with ones with vials and ones with filters with the ones with filters.",1,0,0,0,1,0,1
+2,286,231,74,potions,3.0,chain,"Vial for extract, filter for filter. Combine the best outcome extract with the best outcome filter for most of the highest-scoring results. There are some exceptions, such as one where 2 extracts can be combined.
+
+It seemed like a lot worked here.  It will look bad, like -60, then add vial and it goes to 100",1,0,1,1,1,1,0
+19,213,189,18,cooking,2.0,chain,"water is useless. Also do not over complicate things. Only add thigs that make sense, it deducts points if you try to create anything new",1,0,0,1,1,0,1
+26,406,309,27,decorations,4.0,chain,"Cut the items before you combine and then frame it
+
+artificial and natural soft together is high",1,0,1,0,1,1,0
+10,163,156,25,decorations,2.0,chain,combine the scissors with things you can cut,1,0,0,0,1,0,0
+32,243,210,80,potions,2.0,chain,"Don't overdo it or it will be too complicated
+Vials work best with solids, filters with liquids
+Filter items before combining
+
+Don't combine more than 2, it becomes overcomplicated
+
+dont use vial for gas",1,0,1,0,1,1,1
+11,192,170,34,decorations,2.0,chain,"Be satisfied with a positive outcome even if its not 100. Hold down onto ingredients once you cut or framed theme to understand if they are artifical, natural, soft or hard.",1,0,1,1,1,0,0
+7,423,314,49,animals,4.0,chain,Don't use the mutation catalyst. Don't combine everything.,1,0,0,0,1,0,1
+14,296,233,58,animals,3.0,chain,I didn't good on this one.3 animals the toogle the 2 processes. I didn't do well.,0,0,0,1,0,0,0
+33,181,170,16,cooking,2.0,chain,"Cooking something twice doesn't make it better, and most times will make it negative. I tried making a BLT and it was marked as overcomplicated, so try and stick to only 3 ingredients mixed together.",1,0,0,0,1,1,1
+13,345,269,13,cooking,3.0,chain,"I couldn't find any combinations that gave me above 40. I made the following:
+- cooked soaked tortilla  wrap
+- cooked tomato omelette
+- cooked bacon vegetable medley",0,0,0,1,0,0,0
+3,124,109,37,decorations,2.0,chain,"You can only place ONE item in frame or it ruins the frame and you get a negative score.  So, place ribbons, sunflower, leaf or mushroom on top of frame by themselves.",1,0,0,1,1,1,1
+6,351,261,20,cooking,4.0,chain,"just cook things you normally would in real life
+Don't cook soaked things. In fact, using water seems to be counterproductive.",1,0,0,1,1,1,1
+29,306,235,50,animals,3.0,chain,"Combine the same landtypes and grow them then add 1 different land type animal, I wasnt able to get mutation to work. My highest was 30 pts",1,0,0,1,1,0,0
+35,190,168,44,animals,2.0,chain,You can combine up to three. You can use the growth serum multiple times on the same animal.sometimes you will 0,1,0,0,1,0,1,0
+36,40,30,31,decorations,1.0,chain,Try combining natural and artificial soft first then cut to get 80,1,0,0,0,1,0,0
+15,121,107,6,cooking,2.0,chain,Some real world application. cook raw foods. Cook veggies. i stpped at mixing 3 items.,1,0,0,0,1,0,0
+5,58,30,77,potions,1.0,chain,The best combo is 2 liquid and filter,1,0,1,0,0,1,0
+25,333,251,18,cooking,3.0,chain,"water is useless. Also do not over complicate things. Only add things that make sense, it deducts points if you try to create anything new. Don't add too many ingredients",1,0,0,1,1,1,1
+1,134,109,77,potions,2.0,chain,"The best combo is 2 liquid and then put the filter on top of them.  If a round doesn't have 2 liquids, put filter on top of single liquid.",1,0,1,0,1,1,0
+12,69,40,47,animals,1.0,chain,mutation barely ever is good,1,0,0,1,0,1,1
+0,171,153,58,animals,2.0,chain,I didn't good on this one.,0,0,0,1,0,0,0
+31,144,126,78,potions,1.0,chain,use no more than 2 ingredients,1,0,0,0,1,0,1
+17,253,218,15,cooking,2.0,chain,"stove beef with soaked veggie
+beef corn potato stove
+beet egg bread sandwich oven all",0,1,0,0,0,0,0
+18,205,185,60,animals,2.0,chain,"mutation isnt reliable. grow two large animals and then combine if you can, it's gangbusters. No real world application.",1,0,0,1,1,1,0
+27,394,291,63,potions,4.0,chain,Use the vial on an ingredient. Do that again. Combine. Note some ingredient doesn't work with the vial.,1,0,0,0,1,1,0
+22,316,248,28,decorations,3.0,chain,"Try to put things that make sense together.
+Here are two trios that will gives you points for at least
+two of the rounds (don't add anything else):
+Frame + Scissors + Newspaper = 45 points
+Scissors + Cardboard + Pinecone = 55 points
+
+I didn't realize the notes were usable for the message at the end for the next person.  So another piece of advice is right down the best combos, duos and trios each round (if you find any 20 point or better) and put them on the scratch pad for your later use but also for the next person.",1,1,0,0,1,1,0
+16,83,54,35,decorations,1.0,chain,"cut hard things twice for points, then frame. play with different ideas but leave one thing to cut and frame if the other things fail",1,0,0,1,1,0,0
+21,57,32,18,cooking,1.0,chain,water is useless,1,0,0,1,0,1,1
+30,441,328,62,potions,4.0,chain,"liquid, magical, filter= 30
+
+liquid, magical, filtered + liquid filtered mundane = 100
+
+Vial + solid mundane = 30
+
+Vial + solid magical = 30
+
+Vial + solid magical added to Vial + solid mundane = 100",1,1,1,1,0,1,0
+23,415,309,17,cooking,4.0,chain,"Try to combine ingredients that you would actually cook together.
+
+3 cooked items is very positive ....... 1 veg, 2 protein or 2 veg 1 protein
+
+Never add tortilla and wheat together",1,0,1,0,1,1,1
+39,436,320,34,decorations,4.0,chain,"Scissors on soft, never hard.
+
+Combine two cut things.
+
+Cut, Artificial + Cut, Natural = Best result.
+
+Don't combine 3 things.
+
+Probably don't combine two framed things.
+
+Method not clear for this set :/",1,0,1,1,1,1,1
+4,78,49,75,potions,1.0,chain,Knowing what to mix is hard. Just be careful with filtering,0,0,0,1,1,0,0
+34,346,258,47,animals,3.0,chain,"Mutation barely ever is good.  Also, putting growth serum on panda, whale, lion, kangaroo, snake, elephant. zebra or shark produces most points",1,1,1,1,0,1,1
+38,16,3,36,decorations,1.0,chain,"Use scissors twice on every object, combine the 2 objects with a high value, then frame those combined objects.",1,0,1,0,1,0,0
+37,305,241,14,cooking,3.0,chain,"You should not add stove and water together. And also raw food are best for the stove. Items may be 0, but when combined they could equal a higher score.",1,0,1,0,1,1,1
+20,312,236,29,decorations,3.0,chain,"Combine what would look nice as a picture on the wall. Do not use thread, it lowers your points. Just combine two ingredients you think would look nice together",1,0,0,1,1,0,1
+24,51,26,26,decorations,1.0,chain,"Don't overmix!!! Use your best logic (cut paper, soft with soft, etc)",1,0,0,0,1,0,1
+8,237,210,42,animals,2.0,chain,"Combine like creatures together (small, medium, large)
+Use the growth serum, but only once or twice.   Too often and you overdo it.  Mutation catalyst seems to immediately cause negatives.",1,0,0,1,1,1,1

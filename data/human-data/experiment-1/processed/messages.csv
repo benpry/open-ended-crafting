@@ -669,6 +669,12 @@ Add the frame last.",4,chain
 464,342,46,animals,"It is best to use growth serum before mutating
 zebra shark growth serum",4,chain
 465,343,25,decorations,Combine two soft items and cut with scissors.,4,chain
+469,347,12,cooking,"3 ingredients max, one of each: protein, vegetable, and grain. I combined vegetable with protein, then used stove then combined with grain. Was only able to get max of 80",4,chain
+471,347,72,potions,"2 items max. If you have 2 items that are liquid or gas (any combination) put them in the filter then combine for 100. With 3 items that are solid, put the non-solid in the filter then put a related solid (i.e. morning dew + sunstone) in the vial and combine for 100.",4,chain
+472,347,24,decorations,Don't use the scissors on everything. Try out the frame and different ingredients.,4,chain
+474,350,69,potions,Add the items individually and then add the filter to each and see how many points you get,4,chain
+475,350,14,cooking,Add raw meat with the stove for guaranteed points,4,chain
+476,352,65,potions,Just try to find a chemistry between the ingredients and dont overthink it.,4,chain
 4,11,81,cooking,3 items combined and the stove worked best for me.,,individual
 6,12,81,cooking,"If you use up all the ingredients you will most likely get ""overcomplicated"" and the score becomes zero. 
 
@@ -827,3 +833,9 @@ rose petal, nectar corn",,individual
 So in summation: 1 land animal + 1 sea animal + 1 flying animal + growth serum = best result",,individual
 458,340,82,decorations,When cutting items if the first cut is negative points cut again but if the first cut is positive do not cut again. Try only combining only two item together because three will probably be negative points. Also whatever combination you have just slap a frame on and it will increase the points.,,individual
 459,341,82,decorations,Combining more than 2 can lead to negative numbers,,individual
+466,344,82,decorations,"Adding too many items together will result in a very low-scoring, ""overcomplicated"" creation. Less is more. Cutting soft objects, like paper or leaves, and combining them in a frame seems to add value. Cutting objects after they're combined sometimes takes away value.",,individual
+467,345,84,potions,Don't be afraid to experiment with different combinations.,,individual
+468,346,82,decorations,"Experiment with different combinations of ingredients—some results are obvious, but others are surprising. Pay attention to the features of each ingredient; they determine how items combine and their final value. Take notes as you go in your scratchpad, especially for combinations that produce high-value items. Don’t be afraid to try unusual pairings, and remember that your score for the round is based on your highest-value item, not the total of all items. If an item gets stuck, you can refresh the page without losing your inventory.",,individual
+470,348,82,decorations,"Don't use 2 tools together, it ruins the project",,individual
+473,349,83,animals,Be careful not to corrupt combinations. Don't get greedy,,individual
+477,355,83,animals,There is no trick to this game that I've found. Ive tried a lot of different ways and nothing.,,individual

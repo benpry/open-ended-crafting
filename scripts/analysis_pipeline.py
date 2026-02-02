@@ -22,8 +22,12 @@ def fit_models(df_gameplay: pd.DataFrame, args):
     )
 
     results = model.fit(
-        draws=5000,
+        draws=10000,
+        tune=10000,
         chains=4,
+        inference_method="numpyro",
+        nuts_kwargs={"target_accept": 0.999, "max_treedepth": 15},
+        random_seed=2026,
     )
 
     summary = az.summary(results, hdi_prob=0.95)
@@ -107,7 +111,10 @@ def make_plots(df_gameplay: pd.DataFrame, args):
 
 def main(args):
     data_dir = here(f"data/human-data/{args.exp_name}")
-    df_gameplay_chain = process_gameplay(data_dir, "CraftingGameChainTrial")
+    trial_ids_to_exclude = [451, 464]
+    df_gameplay_chain = process_gameplay(
+        data_dir, "CraftingGameChainTrial", trial_ids_to_exclude
+    )
     df_gameplay_chain["condition"] = "chain"
     df_gameplay_individual = process_gameplay(data_dir, "CraftingGameIndividualTrial")
     df_gameplay_individual["condition"] = "individual"
