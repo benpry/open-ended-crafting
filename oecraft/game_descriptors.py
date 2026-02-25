@@ -2188,3 +2188,67 @@ GAME_DESCRIPTORS = {
     "animals": animals_game_descriptor,
     "potions": potions_game_descriptor,
 }
+
+
+def potions_smaller_penalty_value_function(item: Item) -> int:
+    """Calculate the value of a potion based on its features."""
+
+    if isinstance(item, CombinedItem):
+        ingredient_values = [
+            potions_value_function(ingredient) for ingredient in item.ingredients
+        ]
+        n_ingredients = len(item.ingredients)
+        states_of_matter = set(x.features["state_of_matter"] for x in item.ingredients)
+        magicalities = set(x.features["magical"] for x in item.ingredients)
+        bonus = 0
+
+        if len(magicalities) == 2:
+            bonus += 40
+
+        # including non-liquid things is bad
+        if states_of_matter != {"liquid"} or n_ingredients > 2:
+            bonus -= 20
+
+        return sum(ingredient_values) + bonus
+
+    features = item.features
+
+    value = 0  # No base value for potions
+
+    # Extracted, filtered, and ground things are good
+    if features["extraction"] == "extracted":
+        value += 30
+    elif features["extraction"] == "botched":
+        value -= 20
+    if features["filtering"] == "filtered":
+        value += 30
+    elif features["filtering"] == "botched":
+        value -= 20
+
+    return value
+
+
+potions_smaller_penalty_descriptor = GameDescriptor(
+    combination_fn=getsource(potions_combination_function).replace(
+        "potions_combination_function", "combination_fn"
+    ),
+    value_fn=getsource(potions_smaller_penalty_value_function).replace(
+        "potions_smaller_penalty_value_function", "value_fn"
+    ),
+    get_inventory_fn=getsource(potions_get_inventory).replace(
+        "potions_get_inventory", "get_inventory_fn"
+    ),
+    descriptor_fn=getsource(potions_get_item_descriptor).replace(
+        "potions_get_item_descriptor", "descriptor_fn"
+    ),
+    tools=[asdict(x) for x in potions_tools],
+    ingredients=[asdict(x) for x in potions_ingredients],
+    naming_system_prompt=potions_system_prompt,
+    feature_names=potions_feature_names,
+    naming_ic_examples=potions_naming_ic_examples,
+)
+
+POTIONS_VARIANT_DESCRIPTORS = {
+    "potions_standard": potions_game_descriptor,
+    "potions_smaller_penalty": potions_smaller_penalty_descriptor,
+}
