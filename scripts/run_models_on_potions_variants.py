@@ -4,6 +4,7 @@ Run models on both variants of the potions game.
 
 import asyncio
 from argparse import ArgumentParser
+from typing import Optional
 
 from oecraft.game_descriptors import POTIONS_VARIANT_DESCRIPTORS
 from oecraft.optimization.simulation import run_simulations
@@ -24,6 +25,7 @@ if __name__ == "__main__":
     parser.add_argument("--num-rounds", type=int, default=5)
     parser.add_argument("--num-chains", type=int, default=10)
     parser.add_argument("--chain-length", type=int, default=1)
+    parser.add_argument("--starting-message", type=Optional[str], default=None)
     parser.add_argument("--output-dir", type=str, default="data/simulations")
     parser.add_argument("--verbose", type=bool, default=False)
 
