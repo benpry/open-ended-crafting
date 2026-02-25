@@ -15,4 +15,4 @@ source ~/.zshrc
 conda activate oecraft
 cd ~/open-ended-crafting
 
-python -m scripts.evaluate_all_messages --naming_model openai/gpt-oss-20b --agent_model gemini-2.5-flash --num-rounds 5 --num-chains 10 --chain-length 1 --output-dir data/simulations --verbose False
+python -m scripts.evaluate_gold_and_none_messages --naming_model openai/gpt-oss-20b --agent_model gemini-2.5-flash --num-rounds 5 --num-chains 10 --chain-length 1 --output-dir data/simulations --verbose False
