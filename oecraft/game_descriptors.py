@@ -2195,7 +2195,8 @@ def potions_smaller_penalty_value_function(item: Item) -> int:
 
     if isinstance(item, CombinedItem):
         ingredient_values = [
-            potions_value_function(ingredient) for ingredient in item.ingredients
+            potions_smaller_penalty_value_function(ingredient)
+            for ingredient in item.ingredients
         ]
         n_ingredients = len(item.ingredients)
         states_of_matter = set(x.features["state_of_matter"] for x in item.ingredients)

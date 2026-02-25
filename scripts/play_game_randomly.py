@@ -1,27 +1,27 @@
 import random
 
-from pyprojroot import here
-
 from oecraft.environment import CraftingGame
+from oecraft.game_descriptors import POTIONS_VARIANT_DESCRIPTORS
 
 # model = "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct"
 # model = "fireworks_ai/accounts/fireworks/models/llama4-maverick-instruct-basic"
 # model = "gemini/gemini-2.5-flash-preview-04-17"
-model = "meta-llama/llama-4-maverick-17b-128e-instruct"
+# model = "meta-llama/llama-4-maverick-17b-128e-instruct"
 # model = "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
 # model = "Qwen/Qwen3-235B-A22B-fp8-tput"
 # model = "groq/llama-4-scout"
 # model = "openai/gpt-4.1-mini"
 # model = "anthropic/claude-3-7-sonnet-20250219"
+model = "openai/gpt-oss-20b"
 
-DOMAIN = "animals"
-game = CraftingGame(model, DOMAIN, assign_names=True)
+DOMAIN = "potions_smaller_penalty"
+game = CraftingGame(POTIONS_VARIANT_DESCRIPTORS[DOMAIN], model=model, assign_names=True)
 game.reset()
 
 
 def get_action(inv):
     item1, item2 = random.sample(inv, 2)
-    return item1["name"], item2["name"]
+    return item1.name, item2.name
 
 
 rewards = []
@@ -41,7 +41,7 @@ for run in range(3):
 print(f"Rewards: {rewards}")
 
 print(f"Average reward: {sum(rewards) / len(rewards)}")
-short_model_name = model.split("/")[-1].replace(".", "-")
-game.world_model.save(
-    str(here(f"data/world-models/{DOMAIN}_{short_model_name}_random.json"))
-)
+# short_model_name = model.split("/")[-1].replace(".", "-")
+# game.world_model.save(
+#     str(here(f"data/world-models/{DOMAIN}_{short_model_name}_random.json"))
+# )
