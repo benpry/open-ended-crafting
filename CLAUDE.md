@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a research project studying how LLM agents learn and communicate in an open-ended crafting game. Agents play crafting games across four domains (cooking, decorations, animals, potions), pass messages to future players, and the project analyzes how knowledge transfers through these chains. The package is called `oecraft`.
+This is a research project studying how humans and LLM Agents play crafting games across four domains (cooking, decorations, animals, potions) and pass messages to future players. The project analyzes how knowledge transfers through these chains. The package is called `oecraft`.
 
 ## Commands
 
