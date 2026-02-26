@@ -14,7 +14,7 @@ from oecraft.game_descriptors import POTIONS_VARIANT_DESCRIPTORS
 # model = "anthropic/claude-3-7-sonnet-20250219"
 model = "openai/gpt-oss-20b"
 
-DOMAIN = "potions_smaller_penalty"
+DOMAIN = "potions_framed_as_cooking"
 game = CraftingGame(POTIONS_VARIANT_DESCRIPTORS[DOMAIN], model=model, assign_names=True)
 game.reset()
 
@@ -29,7 +29,7 @@ for run in range(3):
     game.reset()
     for i in range(10):
         print(f"Step {i}")
-        game.render()
+        print(game.render())
         action = get_action(game.inventory)
         game.step(action)
 

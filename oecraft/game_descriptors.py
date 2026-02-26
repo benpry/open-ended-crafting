@@ -2182,11 +2182,545 @@ potions_game_descriptor = GameDescriptor(
     naming_ic_examples=potions_naming_ic_examples,
 )
 
+# COOKING-FRAMED POTIONS DOMAIN
+# Isomorphic to potions (identical rules/values) but with cooking-themed names
+
+potions_framed_as_cooking_ingredients = [
+    # === WHOLE items (= solid in potions) ===
+    # Plain (= mundane), 7 items
+    Ingredient(
+        name="potato",
+        emoji="🥔",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="carrot",
+        emoji="🥕",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="celery",
+        emoji="🥬",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="apple",
+        emoji="🍎",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="onion",
+        emoji="🧅",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="beet",
+        emoji="🫜",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="cucumber",
+        emoji="🥒",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    # Seasoned (= magical), 4 items
+    Ingredient(
+        name="garlic",
+        emoji="🧄",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="ginger",
+        emoji="🫚",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="chili pepper",
+        emoji="🌶️",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="lemongrass",
+        emoji="🌿",
+        value=0,
+        features={
+            "form": "whole",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    # === GROUND items (= gas in potions) ===
+    # Seasoned (= magical), 3 items
+    Ingredient(
+        name="curry powder",
+        emoji="🍛",
+        value=0,
+        features={
+            "form": "ground",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="paprika",
+        emoji="🫙",
+        value=0,
+        features={
+            "form": "ground",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    # Plain (= mundane), 1 item
+    Ingredient(
+        name="flour",
+        emoji="🌾",
+        value=0,
+        features={
+            "form": "ground",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="cinnamon",
+        emoji="🟤",
+        value=0,
+        features={
+            "form": "ground",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    # === LIQUID items (= liquid in potions) ===
+    # Seasoned (= magical), 2 items
+    Ingredient(
+        name="soy sauce",
+        emoji="🥫",
+        value=0,
+        features={
+            "form": "liquid",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    # Plain (= mundane), 3 items
+    Ingredient(
+        name="water",
+        emoji="💧",
+        value=0,
+        features={
+            "form": "liquid",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="hot sauce",
+        emoji="🔥",
+        value=0,
+        features={
+            "form": "liquid",
+            "seasoned": 1,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="milk",
+        emoji="🥛",
+        value=0,
+        features={
+            "form": "liquid",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+    Ingredient(
+        name="olive oil",
+        emoji="🫒",
+        value=0,
+        features={
+            "form": "liquid",
+            "seasoned": 0,
+            "straining": None,
+            "juicing": None,
+        },
+    ),
+]
+
+
+potions_framed_as_cooking_tools = [
+    Tool(name="juicer", emoji="🧃"),
+    Tool(name="strainer", emoji="🥣"),
+]
+
+
+potions_framed_as_cooking_feature_names = {
+    "seasoned": ["plain", "seasoned"],
+}
+
+
+potions_framed_as_cooking_system_prompt = """
+You are controlling the semantics of a cooking preparation game. You will see two items and the features of the item you get from combining them. Your job is to generate an appropriate name and string of up to three emoji that describe the item. The name should be informative and make it possible for the player to know the relevant features so they can learn the rules. The emoji should describe the item and its features. When in doubt it is safe to combine the emoji of the two items. If the new item has different features than any of the original items, it must get a new name.
+
+Please keep the following rules in mind:
+- If an item's straining is "strained," its name should include "strained." If it is "botched," its name should include "poorly-strained"
+- If an item's juicing is "juiced," its name should include the word "juice" or "juiced". If it is "botched," its name should include "with failed juicing"
+- Combined dishes should have descriptive names rather than just a list of their ingredients.
+- A combined dish that has 3 or more ingredients in its ingredient list should have the word "overcomplicated" in the name.
+
+Keep in mind that these rules only apply to the main item. For instance, if a dish has multiple ingredients, you don't need all of the descriptors for each ingredient in the overall name.
+
+In general, the name should give the player some sense of why the item's value is the way it is.
+
+Please respond in JSON format, with double quotes around all strings.
+"""
+
+
+potions_framed_as_cooking_naming_ic_examples = [
+    ICExample(
+        inputs=[
+            Ingredient(
+                name="cucumber",
+                emoji="🥒",
+                value=0,
+                features={
+                    "form": "whole",
+                    "seasoned": 0,
+                    "straining": None,
+                    "juicing": None,
+                },
+            ),
+            Tool(name="strainer", emoji="🥣"),
+        ],
+        outcome=Ingredient(
+            features={
+                "form": "whole",
+                "seasoned": 0,
+                "straining": "botched",
+                "juicing": None,
+            },
+            value=-20,
+        ),
+        semantics=ItemSemantics(emoji="🥣🥒", name="poorly-strained cucumber"),
+    ),
+    ICExample(
+        inputs=[
+            Ingredient(
+                name="apple juice",
+                emoji="🧃🍎",
+                value=30,
+                features={
+                    "form": "liquid",
+                    "seasoned": 0,
+                    "straining": None,
+                    "juicing": "juiced",
+                },
+            ),
+            Ingredient(
+                name="ginger",
+                emoji="🫚",
+                value=0,
+                features={
+                    "form": "whole",
+                    "seasoned": 1,
+                    "straining": None,
+                    "juicing": None,
+                },
+            ),
+        ],
+        outcome=CombinedItem(
+            ingredients=(
+                Ingredient(
+                    name="apple juice",
+                    emoji="🧃🍎",
+                    value=30,
+                    features={
+                        "form": "liquid",
+                        "seasoned": 0,
+                        "straining": None,
+                        "juicing": "juiced",
+                    },
+                ),
+                Ingredient(
+                    name="ginger",
+                    emoji="🫚",
+                    value=0,
+                    features={
+                        "form": "whole",
+                        "seasoned": 1,
+                        "straining": None,
+                        "juicing": None,
+                    },
+                ),
+            ),
+            features={},
+            value=-30,
+        ),
+        semantics=ItemSemantics(
+            emoji="🍎🫚",
+            name="apple sauce with chunks of ginger",
+        ),
+    ),
+]
+
+
+def potions_framed_as_cooking_value_function(item: Item) -> int:
+    """Calculate the value of a cooking item based on its features."""
+
+    if isinstance(item, CombinedItem):
+        ingredient_values = [
+            potions_framed_as_cooking_value_function(ingredient)
+            for ingredient in item.ingredients
+        ]
+        n_ingredients = len(item.ingredients)
+        forms = set(x.features["form"] for x in item.ingredients)
+        seasonings = set(x.features["seasoned"] for x in item.ingredients)
+        bonus = 0
+
+        if len(seasonings) == 2:
+            bonus += 40
+
+        # including non-liquid things is bad
+        if forms != {"liquid"} or n_ingredients > 2:
+            bonus -= 100
+
+        return sum(ingredient_values) + bonus
+
+    features = item.features
+
+    value = 0
+
+    # Juiced and strained things are good
+    if features["juicing"] == "juiced":
+        value += 30
+    elif features["juicing"] == "botched":
+        value -= 20
+    if features["straining"] == "strained":
+        value += 30
+    elif features["straining"] == "botched":
+        value -= 20
+
+    return value
+
+
+def potions_framed_as_cooking_combination_function(item1, item2):
+    """The overall combination function for the cooking-framed potions domain."""
+
+    def apply_tool(tool: Tool, item: NonTool) -> NonTool:
+        """Apply a tool to a cooking ingredient."""
+
+        if isinstance(item, CombinedItem):
+            return replace(
+                item,
+                ingredients=[
+                    apply_tool(tool, ingredient) for ingredient in item.ingredients
+                ],
+            )
+
+        new_features = dict(item.features.copy())
+
+        # the juicer juices whole things and makes them liquid
+        if tool.name == "juicer" and item.features["juicing"] is None:
+            if item.features["form"] == "whole" and item.features["straining"] is None:
+                new_features["juicing"] = "juiced"
+                new_features["form"] = "liquid"
+            else:
+                new_features["juicing"] = "botched"
+
+        # the strainer strains things and makes them liquid
+        elif tool.name == "strainer" and item.features["straining"] is None:
+            if (
+                item.features["form"] in ("liquid", "ground")
+                and item.features["juicing"] is None
+            ):
+                new_features["straining"] = "strained"
+                new_features["form"] = "liquid"
+            else:
+                new_features["straining"] = "botched"
+
+        return Ingredient(features=new_features)
+
+    if isinstance(item1, Tool) and isinstance(item2, Tool):
+        return None
+
+    # If they're both tools, return None
+    if isinstance(item1, Tool):
+        new_item = apply_tool(item1, item2)
+    elif isinstance(item2, Tool):
+        new_item = apply_tool(item2, item1)
+    elif isinstance(item1, CombinedItem) and isinstance(item2, CombinedItem):
+        # combine two combined items
+        new_item = CombinedItem(
+            ingredients=item1.ingredients + item2.ingredients,
+        )
+    elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
+        new_item = CombinedItem(
+            ingredients=item1.ingredients + (item2,),
+        )
+    elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
+        new_item = CombinedItem(
+            ingredients=item2.ingredients + (item1,),
+        )
+    else:
+        # two ingredients
+        new_item = CombinedItem(
+            ingredients=(item1, item2),
+        )
+
+    return new_item
+
+
+def potions_framed_as_cooking_get_item_descriptor(
+    item: dict[str, Any], feature_names: dict
+) -> list[str]:
+    if isinstance(item, CombinedItem):
+        ingredient_descriptors = [
+            f"{x.emoji} {x.name}: {potions_framed_as_cooking_get_item_descriptor(x, feature_names)}"
+            for x in item.ingredients
+        ]
+        return "\\n".join(ingredient_descriptors)
+
+    descriptors = []
+    descriptors.append(item.features["form"])
+
+    if item.features["juicing"] is not None:
+        if item.features["juicing"] == "botched":
+            descriptors.append("botched juicing")
+        else:
+            descriptors.append("juiced")
+    if item.features["straining"] is not None:
+        if item.features["straining"] == "botched":
+            descriptors.append("botched straining")
+        else:
+            descriptors.append("strained")
+
+    if item.features["seasoned"]:
+        descriptors.append("seasoned")
+    else:
+        descriptors.append("plain")
+
+    return ", ".join(descriptors)
+
+
+def potions_framed_as_cooking_get_inventory(
+    n_items: int, all_ingredients: list[Ingredient]
+):
+    # one seasoned, one plain
+    seasoned_ingredients = [
+        item for item in all_ingredients if item.features["seasoned"]
+    ]
+    plain_ingredients = [
+        item for item in all_ingredients if not item.features["seasoned"]
+    ]
+    inventory = random.sample(seasoned_ingredients, 1)
+    inventory += random.sample(plain_ingredients, 1)
+
+    if n_items > 2:
+        remaining_ingredients = [
+            item for item in all_ingredients if item not in inventory
+        ]
+        remaining_ingredients = random.sample(remaining_ingredients, n_items - 2)
+        inventory += remaining_ingredients
+
+    return inventory
+
+
+potions_framed_as_cooking_game_descriptor = GameDescriptor(
+    combination_fn=getsource(potions_framed_as_cooking_combination_function).replace(
+        "potions_framed_as_cooking_combination_function", "combination_fn"
+    ),
+    value_fn=getsource(potions_framed_as_cooking_value_function).replace(
+        "potions_framed_as_cooking_value_function", "value_fn"
+    ),
+    get_inventory_fn=getsource(potions_framed_as_cooking_get_inventory).replace(
+        "potions_framed_as_cooking_get_inventory", "get_inventory_fn"
+    ),
+    descriptor_fn=getsource(potions_framed_as_cooking_get_item_descriptor).replace(
+        "potions_framed_as_cooking_get_item_descriptor", "descriptor_fn"
+    ),
+    tools=[asdict(x) for x in potions_framed_as_cooking_tools],
+    ingredients=[asdict(x) for x in potions_framed_as_cooking_ingredients],
+    naming_system_prompt=potions_framed_as_cooking_system_prompt,
+    feature_names=potions_framed_as_cooking_feature_names,
+    naming_ic_examples=potions_framed_as_cooking_naming_ic_examples,
+)
+
 GAME_DESCRIPTORS = {
     "cooking": cooking_game_descriptor,
     "decorations": decorations_game_descriptor,
     "animals": animals_game_descriptor,
     "potions": potions_game_descriptor,
+    "potions_framed_as_cooking": potions_framed_as_cooking_game_descriptor,
 }
 
 
@@ -2252,4 +2786,5 @@ potions_smaller_penalty_descriptor = GameDescriptor(
 POTIONS_VARIANT_DESCRIPTORS = {
     "potions_standard": potions_game_descriptor,
     "potions_smaller_penalty": potions_smaller_penalty_descriptor,
+    "potions_framed_as_cooking": potions_framed_as_cooking_game_descriptor,
 }
