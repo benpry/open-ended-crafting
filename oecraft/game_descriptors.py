@@ -459,6 +459,10 @@ def cooking_get_item_descriptor(item: NonTool, feature_names: dict) -> str:
 
     if item.features["cook_level"] > 0:
         descriptors.append(feature_names["cook_level"][item.features["cook_level"]])
+
+    if item.features["water_level"] > 0:
+        descriptors.append(feature_names["water_level"][item.features["water_level"]])
+
     descriptors.append(item.features["type"])
 
     return ", ".join(descriptors)
