@@ -12,7 +12,7 @@ def dict_to_dataclass(item: dict) -> Item:
         if field in item:
             del item[field]
 
-    if item["tool"]:
+    if item.get("tool", False):
         return Tool(**item)
     elif "ingredients" in item:
         item["ingredients"] = [dict_to_dataclass(x) for x in item["ingredients"]]

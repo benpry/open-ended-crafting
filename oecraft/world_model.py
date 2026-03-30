@@ -50,6 +50,21 @@ def check_if_same_item(e1: NonTool, e2: NonTool) -> bool:
         return e1.features == e2.features
 
 
+def _to_json_safe(obj):
+    """Recursively convert frozendict (and other dict subclasses) to plain dict.
+
+    dataclasses.asdict preserves the concrete dict subclass type, so FrozenDict
+    fields come back as frozendict instances. str() of those produces
+    "frozendict({...})" which literal_eval cannot parse. This helper ensures
+    the output contains only JSON-native types.
+    """
+    if isinstance(obj, dict):
+        return {k: _to_json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [_to_json_safe(x) for x in obj]
+    return obj
+
+
 class MemoizedWorldModel:
     def __init__(
         self,
@@ -195,7 +210,7 @@ class MemoizedWorldModel:
         for example in self.ic_examples:
             ic_examples_serialized.append(
                 {
-                    "input": [asdict(x) for x in example.input],
+                    "input": [asdict(x) for x in example.inputs],
                     "outcome": asdict(example.outcome),
                     "semantics": {
                         "emoji": example.semantics.emoji,
@@ -259,21 +274,21 @@ class MemoizedWorldModel:
         self.combinations = {}
         for combo, result in world_model_dict["combinations"].items():
             combo = frozenset(
-                freeze_item(dict_to_dataclass(x)) for x in literal_eval(combo)
+                freeze_item(dict_to_dataclass(x)) for x in json.loads(combo)
             )
             self.combinations[combo] = [dict_to_dataclass(x) for x in result]
 
     def dumps(self):
         combinations_lsts = {}
         for combo, result in self.combinations.items():
-            inps = tuple(asdict(thaw_item(x)) for x in combo)
-            combinations_lsts[str(inps)] = tuple(asdict(x) for x in result)
+            inps = [_to_json_safe(asdict(thaw_item(x))) for x in combo]
+            combinations_lsts[json.dumps(inps)] = [_to_json_safe(asdict(x)) for x in result]
 
         ic_examples = []
         for example in self.ic_examples:
             ic_examples.append(
                 {
-                    "input": [asdict(x) for x in example.input],
+                    "input": [asdict(x) for x in example.inputs],
                     "outcome": asdict(example.outcome),
                     "semantics": {
                         "emoji": example.semantics.emoji,

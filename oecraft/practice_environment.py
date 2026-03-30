@@ -4,7 +4,7 @@ from typing import Optional
 import gymnasium as gym
 from unicards import unicard
 
-from oecraft.constants import CombinedItem, Ingredient, Item, NonTool, Tool
+from oecraft.types import CombinedItem, Ingredient, Item, NonTool, Tool
 
 suit_order = ["clubs", "diamonds", "spades", "hearts"]
 number_order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"]
@@ -63,7 +63,7 @@ def apply_tool(tool: Tool, item: NonTool) -> NonTool:
             ingredients=[apply_tool(tool, x) for x in item.ingredients],
         )
 
-    new_features = item.features.copy()
+    new_features = dict(item.features)
 
     if tool.name == "number increaser":
         new_features["number"] = min(item.features["number"] + 1, len(number_order) - 1)
@@ -107,11 +107,11 @@ def combo_fn(item1: Item, item2: Item) -> NonTool:
         )
     elif isinstance(item1, CombinedItem) and isinstance(item2, Ingredient):
         new_item = CombinedItem(
-            ingredients=item1.ingredients + [item2],
+            ingredients=item1.ingredients + (item2,),
         )
     elif isinstance(item1, Ingredient) and isinstance(item2, CombinedItem):
         new_item = CombinedItem(
-            ingredients=item2.ingredients + [item1],
+            ingredients=item2.ingredients + (item1,),
         )
     else:
         # two ingredients
@@ -222,3 +222,11 @@ class PracticeCraftingGame(gym.Env):
 
         # overall reward can't go below 0
         return max(reward, 0)
+
+
+if __name__ == "__main__":
+    env = PracticeCraftingGame()
+    env.reset()
+    env.render()
+    env.step(("2 of clubs", "5 of hearts"))
+    env.render()

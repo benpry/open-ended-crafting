@@ -1,8 +1,138 @@
 import random
 
-from oecraft.types import CombinedItem, Ingredient, Tool
+from oecraft.types import CombinedItem, ICExample, Ingredient, ItemSemantics, Tool
 from oecraft.game_descriptors import GAME_DESCRIPTORS
-from oecraft.utils import load_function_from_string
+from oecraft.utils import dict_to_dataclass, load_function_from_string
+from oecraft.practice_environment import apply_tool, combo_fn
+
+
+def test_dict_to_dataclass_combined_item_ingredients_without_tool_key():
+    """Regression: ingredients nested in a CombinedItem dict lack 'tool' key.
+
+    serialize_item adds 'tool' only to the top-level item; asdict() recurses into
+    Ingredient dataclasses which have no 'tool' field. When that dict is sent back
+    from the frontend and dict_to_dataclass recurses into the ingredients, it must
+    not raise KeyError.
+    """
+    combined = {
+        "name": "cooked egg",
+        "emoji": "🍳",
+        "value": 10,
+        "description": "a cooked egg",
+        "features": [],
+        "tool": False,
+        "ingredients": [
+            {"name": "egg", "emoji": "🥚", "value": 5, "description": "an egg", "features": []},
+            {"name": "pan", "emoji": "🍳", "value": 5, "description": "a pan", "features": []},
+        ],
+    }
+    result = dict_to_dataclass(combined)
+    assert isinstance(result, CombinedItem)
+    assert result.name == "cooked egg"
+    assert len(result.ingredients) == 2
+    assert isinstance(result.ingredients[0], Ingredient)
+
+
+def test_combo_fn_combined_item_plus_ingredient():
+    """Regression: combining a CombinedItem with an Ingredient must not crash.
+
+    CombinedItem.ingredients is a Tuple, so concatenation must use tuple syntax.
+    """
+    from oecraft.practice_environment import combo_fn, ingredients as practice_ingredients
+
+    a, b, c = practice_ingredients[:3]
+
+    combined = combo_fn(a, b)
+    assert isinstance(combined, CombinedItem)
+
+    result = combo_fn(combined, c)
+    assert isinstance(result, CombinedItem)
+    assert len(result.ingredients) == 3
+
+    # Also test the Ingredient + CombinedItem path (practice_environment.py line 114)
+    result2 = combo_fn(c, combined)
+    assert isinstance(result2, CombinedItem)
+    assert len(result2.ingredients) == 3
+
+
+def test_world_model_dumps_loads_roundtrip_with_frozendict_features():
+    """Regression: dumps()/loads() roundtrip must survive frozendict features.
+
+    pydantic re-validates the FrozenDict field on construction, converting dict
+    back to frozendict. dataclasses.asdict preserves the frozendict type, so
+    str(inps) produces "frozendict({...})" which literal_eval cannot parse.
+    The fix uses json.dumps/json.loads for combo keys instead of str/literal_eval.
+    """
+    from oecraft.world_model import MemoizedWorldModel
+
+    desc = GAME_DESCRIPTORS["potions"]
+    wm = MemoizedWorldModel(
+        lm="",
+        combo_function_str=desc.combination_fn,
+        assign_names=False,
+    )
+
+    vial = Tool(name="vial", emoji="🧪")
+    ingredient = Ingredient(
+        name="water",
+        emoji="💧",
+        features={"state_of_matter": "solid", "magical": 0, "filtering": None, "extraction": None},
+    )
+
+    # Store a combination so dumps() has something to serialize
+    result = wm.combine(vial, ingredient)
+    assert result is not None
+
+    # dumps() then loads() must not raise ValueError from literal_eval
+    serialized = wm.dumps()
+    wm2 = MemoizedWorldModel(lm="", combo_function_str=desc.combination_fn, assign_names=False)
+    wm2.loads(serialized)  # must not raise
+
+    # The loaded world model should return the cached result
+    result2 = wm2.combine(vial, ingredient)
+    assert result2 is not None
+    assert result2.name == result.name
+
+
+def test_world_model_dumps_with_ic_examples():
+    """Regression: MemoizedWorldModel.dumps() must not crash when ic_examples exist.
+
+    ICExample uses 'inputs' (plural) but dumps() was accessing 'input' (singular),
+    causing an AttributeError.
+    """
+    from oecraft.world_model import MemoizedWorldModel
+
+    desc = GAME_DESCRIPTORS["potions"]
+    wm = MemoizedWorldModel(
+        lm="",
+        combo_function_str=desc.combination_fn,
+        assign_names=False,
+        naming_ic_examples=desc.naming_ic_examples,
+        feature_names=desc.feature_names,
+    )
+
+    ingredient = Ingredient(
+        name="water", emoji="💧", features={"state_of_matter": "liquid", "magical": 0}
+    )
+    tool = Tool(name="vial", emoji="🧪")
+    example = ICExample(
+        inputs=(tool, ingredient),
+        outcome=ingredient,
+        semantics=ItemSemantics(emoji="💧", name="water"),
+    )
+    wm.ic_examples.append(example)
+
+    # Should not raise AttributeError: 'ICExample' object has no attribute 'input'
+    serialized = wm.dumps()
+    assert serialized is not None
+
+
+def test_apply_tool_number_increaser_returns_mutable_result():
+    """Regression: apply_tool must not crash when features is a frozendict."""
+    card = Ingredient(features={"number": 3, "suit": 0})
+    tool = Tool(name="number increaser", emoji="")
+    result = apply_tool(tool, card)
+    assert result.features["number"] == 4
 
 
 def test_combination_functions():
